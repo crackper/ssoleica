@@ -51,10 +51,10 @@ class HomeController extends Controller {
 
         //return \Response::json($this->trabajadorRepository->find('1')->load('profesion'));
 
-        dd($this->trabajadorRepository->getModel()->where('apellidos', 'like', '%u%')->get()->load('profesion'));
+        //dd($this->trabajadorRepository->getModel()->where('apellidos', 'like', '%u%')->get()->load('profesion'));
 
-        //
-        //dd($this->trabajadorRepository->find('1')->load('profesion'));
+
+        dd($this->trabajadorRepository->find('1')->load('profesion'));
 	}
 
 }

@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "73f5b8293927bcef55cc9d2115af6884",
+    "hash": "6749e293780d8d7c6a79335ef0322f0c",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -2912,7 +2912,7 @@
         {
             "name": "symfony/security-core",
             "version": "v2.6.6",
-            "target-dir": "Symfony/Component/Security/Core",
+            "target-dir": "Symfony/Component/Security/core",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/security-core.git",
@@ -2969,7 +2969,7 @@
                     "email": "fabien@symfony.com"
                 }
             ],
-            "description": "Symfony Security Component - Core Library",
+            "description": "Symfony Security Component - core Library",
             "homepage": "http://symfony.com",
             "time": "2015-03-30 15:54:10"
         },
