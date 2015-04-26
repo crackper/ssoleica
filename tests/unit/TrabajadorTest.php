@@ -17,7 +17,7 @@ class TrabajadorTest extends \Codeception\TestCase\Test
     }
 
     // tests
-    public function tesSavingTrabajador()
+    public function testAddTrabajador()
     {
         $trabajador = new \SSOLeica\Core\Model\Trabajador();
 
@@ -27,12 +27,12 @@ class TrabajadorTest extends \Codeception\TestCase\Test
         $trabajador->fecha_nacimiento = '1981-10-24';
         $trabajador->estado_civil = 'Casado';
         $trabajador->direccion = 'Urb. San Roque, El Capuli A-02';
-        $trabajador->fecha_ingres = '2014-11-23';
+        $trabajador->fecha_ingreso = '2014-11-23';
         $trabajador->profesion_id = 5;
         $trabajador->cargo_id = 5;
         $trabajador->save();
 
-        $this->assertEquals('Samuel',$trabajador->nombre);
+        $this->assertTrue($trabajador->id > 0);
 
     }
 
