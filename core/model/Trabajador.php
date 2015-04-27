@@ -21,4 +21,9 @@ class Trabajador extends Model {
         return $this->hasOne('SSOLeica\Core\Model\EnumTables',$foreignKey= 'id',$localKey='profesion_id');//,$foreignKey= 'profesion_id',$localKey='id'
     }
 
+    public function pais()
+    {
+        return $this->hasOne('SSOLeica\Core\Model\EnumTables',$foreignKey= 'id',$localKey='pais_id');
+    }
+
 }
