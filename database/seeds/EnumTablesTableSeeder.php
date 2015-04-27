@@ -24,7 +24,9 @@ class EnumTablesTableSeeder extends \Illuminate\Database\Seeder {
             ['id'=> 4,'type'=>'ExamenMedico','name'=>'Ex. Med. Altura Física (EMAF)','symbol'=>'EMAF','created_at' => new DateTime, 'updated_at' => new DateTime],
             ['id'=> 5,'type'=>'ExamenMedico','name'=>'Ex. Med. Altura Geográfica (EMAG)','symbol'=>'EMAG','created_at' => new DateTime, 'updated_at' => new DateTime],
             ['id'=> 6,'type'=>'ExamenMedico','name'=>'Ex. Med. Dermatológico','symbol' => '','created_at' => new DateTime, 'updated_at' => new DateTime],
-            ['id'=> 7,'type'=>'ExamenMedico','name'=>'Ex. Med. Psicológico','symbol'=>'','created_at' => new DateTime, 'updated_at' => new DateTime]
+            ['id'=> 7,'type'=>'ExamenMedico','name'=>'Ex. Med. Psicológico','symbol'=>'','created_at' => new DateTime, 'updated_at' => new DateTime],
+            ['id'=> 8,'type'=>'Pais','name'=>'Perú','symbol'=>'','PE' => new DateTime, 'updated_at' => new DateTime],
+            ['id'=> 9,'type'=>'Pais','name'=>'Chile','symbol'=>'','CL' => new DateTime, 'updated_at' => new DateTime]
         );
         DB::table('enum_tables')->insert($enums);
 

@@ -45,6 +45,7 @@ class TrabajadorTableSeeder extends Seeder {
             $parentesco = array('Padre','Madre','Esposo(a)','Hijo(a)','Hermano(a)','Otro');
 
             DB::table('trabajador')->insert(array(
+                'pais_id'           =>  rand(8,9),
                 'dni'               =>  $faker->randomNumber($nbDigits = 8),
                 'nombre'            =>  $faker->name,
                 'apellidos'         =>  $faker->lastName,

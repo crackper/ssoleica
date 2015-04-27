@@ -18,13 +18,14 @@ class EnumAttributesTableSeeder extends \Illuminate\Database\Seeder {
             ['id'=> 1,'enum_class'=>'ExamenMedico','created_at' => new DateTime, 'updated_at' => new DateTime],
             ['id'=> 2,'enum_class'=>'Fotocheck','created_at' => new DateTime, 'updated_at' => new DateTime],
             ['id'=> 3,'enum_class'=>'Monitoreo','created_at' => new DateTime, 'updated_at' => new DateTime],
-            ['id'=> 4,'enum_class'=>'Cargo','created_at' => new DateTime, 'updated_at' => new DateTime]
+            ['id'=> 4,'enum_class'=>'Pais','created_at' => new DateTime, 'updated_at' => new DateTime],
+            ['id'=> 5,'enum_class'=>'Cargo','created_at' => new DateTime, 'updated_at' => new DateTime]
         );
         DB::table('enum_attributes')->insert($enums);
 
         $faker = Faker::create();
 
-        for($i = 0; $i<50;$i++)
+        for($i = 0; $i<10;$i++)
         {
             DB::table('enum_attributes')->insert(array(
                 'enum_class' => $faker->company,
