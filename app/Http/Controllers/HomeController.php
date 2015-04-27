@@ -47,11 +47,11 @@ class HomeController extends Controller {
 
         //dd($trabajador);
 
-		//return view('home');
+		return view('home');
 
         //return \Response::json($this->trabajadorRepository->find('1')->load('profesion'));
 
-        dd($this->trabajadorRepository->getModel()->where('apellidos', 'like', '%u%')->get()->load('profesion','pais'));
+        //dd($this->trabajadorRepository->getModel()->where('apellidos', 'like', '%u%')->get()->load('profesion','pais'));
 
 
         //dd($this->trabajadorRepository->find('1')->load('profesion'));
