@@ -1,9 +1,16 @@
 <?php namespace SSOLeica\Http\Controllers;
 
+use Nayjest\Grids\EloquentDataProvider;
+use Nayjest\Grids\Grid;
+use Nayjest\Grids\GridConfig;
 use SSOLeica\Core\Model\EnumTables;
 use SSOLeica\Core\Model\Trabajador;
 use SSOLeica\Core\Model\TrabajadorOperacion;
 use SSOLeica\Core\Repository\TrabajadorRepository;
+use Grids;
+use HTML;
+use Nayjest\Grids\FieldConfig;
+//use Nayjest\Grids\EloquentDataProvider;
 
 class HomeController extends Controller {
 
@@ -56,5 +63,28 @@ class HomeController extends Controller {
 
         //dd($this->trabajadorRepository->find('1')->load('profesion'));
 	}
+
+    public function grid()
+    {
+        $cfg = (new  GridConfig())
+            ->setDataProvider(
+                new EloquentDataProvider(
+                    (new Trabajador)->newQuery()
+                )
+            )
+            ->setColumns([
+                new FieldConfig('id'),
+                new FieldConfig('dni'),
+                new FieldConfig('nombre'),
+                new FieldConfig('apellidos'),
+                new FieldConfig('direccion'),
+            ])
+            ->setPageSize(10);
+        
+        $grid = new Grid($cfg);
+        $text = "<h1>Constructing grid programmatically</h1>";
+        return view('grid', compact('grid', 'text'));
+
+    }
 
 }
