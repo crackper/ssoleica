@@ -21,3 +21,7 @@ Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
 ]);
+
+//Route::get('trabajador','TrabajadorController@index');
+Route::get('trabajador/{id}/delete',['as'=>'index.delete','uses'=>'TrabajadorController@delete']);
+Route::resource('trabajador','TrabajadorController');

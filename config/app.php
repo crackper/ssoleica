@@ -150,6 +150,9 @@ return [
          */
         'Nayjest\Grids\ServiceProvider',
         'Illuminate\Html\HtmlServiceProvider',
+        'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
+        'Barryvdh\Debugbar\ServiceProvider',
+        'Maatwebsite\Excel\ExcelServiceProvider',
 
 	],
 

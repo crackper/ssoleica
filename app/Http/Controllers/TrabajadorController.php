@@ -1,24 +1,22 @@
 <?php namespace SSOLeica\Http\Controllers;
 
+use Nayjest\Grids\Components\ColumnHeader;
+use SSOLeica\Http\Requests;
+use SSOLeica\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use Nayjest\Grids\EloquentDataProvider;
 use Nayjest\Grids\Grid;
 use Nayjest\Grids\GridConfig;
-use SSOLeica\Core\Model\EnumTables;
-use SSOLeica\Core\Model\TrabajadorOperacion;
 use SSOLeica\Core\Repository\TrabajadorRepository as Trabajador;
+use SSOLeica\Core\Repository\EnumTablesRepository as EnumTables;
 use Grids;
 use HTML;
-use Illuminate\Support\Facades\DB;
 use Nayjest\Grids\FieldConfig;
 use Nayjest\Grids\FilterConfig;
 use Nayjest\Grids\IdFieldConfig;
 use Nayjest\Grids\SelectFilterConfig;
-//ªªªªª
-use Illuminate\Support\Facades\Config;
 use Nayjest\Grids\Components\Base\RenderableRegistry;
 use Nayjest\Grids\Components\ColumnHeadersRow;
-use Nayjest\Grids\Components\ColumnsHider;
-use Nayjest\Grids\Components\CsvExport;
 use Nayjest\Grids\Components\ExcelExport;
 use Nayjest\Grids\Components\Filters\DateRangePicker;
 use Nayjest\Grids\Components\FiltersRow;
@@ -30,86 +28,54 @@ use Nayjest\Grids\Components\RenderFunc;
 use Nayjest\Grids\Components\ShowingRecords;
 use Nayjest\Grids\Components\TFoot;
 use Nayjest\Grids\Components\THead;
-use Nayjest\Grids\Components\TotalsRow;
+use Nayjest\Grids\Components\ColumnsHider;
 
 
-//use Nayjest\Grids\EloquentDataProvider;
 
-class HomeController extends Controller {
-
-	/*
-	|--------------------------------------------------------------------------
-	| Home Controller
-	|--------------------------------------------------------------------------
-	|
-	| This controller renders your application's "dashboard" for users that
-	| are authenticated. Of course, you are free to change or remove the
-	| controller as you wish. It is just here to get your app started!
-	|
-	*/
-
+class TrabajadorController extends Controller {
     /**
-     * @var TrabajadorRepository
+     * @var Trabajador
      */
     private $trabajador;
+    /**
+     * @var EnumTables
+     */
+    private $enum_tables;
 
     /**
-	 * Create a new controller instance.
-	 *
-	 * @return void
-	 */
-	public function __construct(Trabajador $trabajador)
-	{
+     * @param Trabajador $trabajador
+     * @param EnumTables $enum_tables
+     */
+    public  function __construct(Trabajador $trabajador, EnumTables $enum_tables){
+
         $this->trabajador = $trabajador;
+        $this->enum_tables = $enum_tables;
     }
 
 	/**
-	 * Show the application dashboard to the user.
+	 * Display a listing of the resource.
 	 *
 	 * @return Response
 	 */
 	public function index()
 	{
-       // $trabajador = Trabajador::find(1)->load('profesion','operaciones.operacion.examenes_medicos.examen');
-
-        //$enum = EnumTables::find(14)->load('trabajadores.profesion');
-        //$operacion = TrabajadorOperacion::find(1);
-
-        //dd($trabajador);
-
-		return view('home');
-
-        //return \Response::json($this->trabajadorRepository->find('1')->load('profesion'));
-
-        //dd($this->trabajadorRepository->getModel()->where('apellidos', 'like', '%u%')->get()->load('profesion','pais'));
-
-
-        //dd($this->trabajador->find('1')->load('profesion'));
-	}
-
-    public function grid()
-    {
-
         $query = $this->trabajador->getTrabajadores();
 
-        $query_cargos = EnumTables::where('type','=','Cargo')->get();
         $cargos = array();
 
-        foreach($query_cargos as $row)
+        foreach($this->enum_tables->getCargos() as $row)
         {
             $cargos[$row->id] = $row->name;
         }
 
-        //dd($cargos);
-
-        $estado = array('Soltero'=>'Soltero','Casado'=>'Casado', 'Viudo'=>'Viudo','Divorciado'=>'Divorcioado','Conviviente'=>'Conviviente');
-        //dd($estado);
         $cfg = (new  GridConfig())
+            ->setName("gridTrabadores")
             ->setDataProvider(
                 new EloquentDataProvider($query)
             )
             ->setColumns([
-                new IdFieldConfig,
+                (new IdFieldConfig)
+                    ->setLabel('#'),
                 (new FieldConfig)
                     ->setName('dni')
                     ->setLabel('DNI')
@@ -138,27 +104,14 @@ class HomeController extends Controller {
                         (new FilterConfig)
                             ->setOperator(FilterConfig::OPERATOR_LIKE)
                     ),
-                /*(new FieldConfig)
-                    ->setLabel('Estado Civil')
-                    ->setName('estado_civil')
+                (new FieldConfig)
+                    ->setName('fecha_ingreso')
+                    ->setLabel('Ingreso')
+                    ->setSortable(true),
+                (new FieldConfig)
+                    ->setName('cargo')
+                    ->setLabel('Cargo')
                     ->setSortable(true)
-                    ->addFilter(
-                        (new SelectFilterConfig)
-                            ->setSubmittedOnChange(true)
-                            ->setOptions($estado)
-                            ->setFilteringFunc(function($val, EloquentDataProvider $provider) {
-                                $provider->getBuilder()->where('estado_civil', '=', $val);
-                            })
-                    )
-                ,*/
-                (new FieldConfig)
-                ->setName('fecha_ingreso')
-                ->setLabel('Ingreso')
-                ->setSortable(true),
-                (new FieldConfig)
-                ->setName('cargo')
-                ->setLabel('Cargo')
-                ->setSortable(true)
                     ->addFilter(
                         (new SelectFilterConfig)
                             ->setSubmittedOnChange(true)
@@ -166,7 +119,17 @@ class HomeController extends Controller {
                             ->setFilteringFunc(function($val, EloquentDataProvider $provider) {
                                 $provider->getBuilder()->where('cargo_id', '=', $val);
                             })
-                    )
+                    ),
+                (new FieldConfig())
+                    ->setName('id')
+                    ->setLabel('Acciones')
+                    ->setCallback(function ($val) {
+
+                        $icon_edit = "<a href='/trabajador/$val/edit' data-toggle='tooltip' data-placement='left' title='Editar Trabajador'><span class='glyphicon glyphicon-pencil'></span></a>";
+                        $icon_remove = "<a href='/trabajador/$val/delete' data-toggle='tooltip' data-placement='left' title='Eliminar Trabajador' ><span class='glyphicon glyphicon-trash'></span></a>";
+
+                        return $icon_edit.' '.$icon_remove;
+                    })
             ])
             ->setComponents([
                 (new THead)
@@ -206,6 +169,7 @@ class HomeController extends Controller {
                                         40,
                                         50
                                     ]),
+                                new ColumnsHider,
                                 new ExcelExport(),
                                 (new HtmlTag)
                                     ->setContent('<span class="glyphicon glyphicon-refresh"></span> Filtrar')
@@ -213,6 +177,18 @@ class HomeController extends Controller {
                                     ->setRenderSection(RenderableRegistry::SECTION_END)
                                     ->setAttributes([
                                         'class' => 'btn btn-success btn-sm'
+                                    ]),
+                                (new HtmlTag)
+                                    ->setContent('&nbsp;')
+                                    ->setRenderSection(RenderableRegistry::SECTION_END)
+                                    ->setTagName('span'),
+                                (new HtmlTag)
+                                    ->setContent('<span class="glyphicon glyphicon-plus"></span> Registrar Nuevo Trabajador')
+                                    ->setTagName('a')
+                                    ->setRenderSection(RenderableRegistry::SECTION_END)
+                                    ->setAttributes([
+                                        'class' => 'btn btn-warning btn-sm',
+                                        'href' => '/trabajador/create'
                                     ])
                             ])
                     ])
@@ -227,9 +203,82 @@ class HomeController extends Controller {
             ])->setPageSize(10);
 
         $grid = new Grid($cfg);
-        $text = "<h1>Constructing grid programmatically</h1>";
-        return view('grid', compact('grid', 'text'));
 
+        $text = "<h3>Información Trabajadores</h3>";
+
+        return view('trabajador.index', compact('grid', 'text'));
+	}
+
+	/**
+	 * Show the form for creating a new resource.
+	 *
+	 * @return Response
+	 */
+	public function create()
+	{
+		dd('create trabajador');
+	}
+
+	/**
+	 * Store a newly created resource in storage.
+	 *
+	 * @return Response
+	 */
+	public function store()
+	{
+		//
+	}
+
+	/**
+	 * Display the specified resource.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function show($id)
+	{
+		//
+	}
+
+	/**
+	 * Show the form for editing the specified resource.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function edit($id)
+	{
+		dd($id);
+	}
+
+	/**
+	 * Update the specified resource in storage.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function update($id)
+	{
+		//
+	}
+
+	/**
+	 * Remove the specified resource from storage.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function destroy($id)
+	{
+		//
+	}
+
+    /**
+     * @param $id
+     */
+    public function delete($id)
+    {
+        dd($id);
     }
 
 }

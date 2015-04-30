@@ -41,7 +41,7 @@
 
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
-					<li><a href="/">Home</a></li>
+					<li><a href="/home">Home</a></li>
 					@if (!Auth::guest())
 						<li><a href="#">Clientes</a></li>
 					@endif
@@ -49,7 +49,7 @@
                          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">General <span class="caret"></span></a>
                          <ul class="dropdown-menu" role="menu">
                             <li><a href="#">Registrar Nuevo Trabajador</a></li>
-                            <li><a href="#">Información de Trabajadores</a></li>
+                            <li>{!! link_to_route('trabajador.index','Información de Trabajadores') !!}</li>
                             <li class="divider"></li>
                             <li><a href="#">Horas Hombre Trabajadas (HHT)</a></li>
                          </ul>

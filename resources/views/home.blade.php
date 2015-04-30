@@ -21,7 +21,7 @@
             </div>
             <div class="panel-body">
                 <a href="#">Registrar Nuevo Trabajador</a><br/>
-                <a href="#">Información de Trabajadores</a><br/>
+               {!! link_to_route('trabajador.index','Información de Trabajadores') !!}<br/>
                 <a href="#">Horas Hombre Trabajadas (HHT)</a>
             </div>
         </div>
