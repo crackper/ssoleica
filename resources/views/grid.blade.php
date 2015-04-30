@@ -1,6 +1,6 @@
 @extends('app')
 
 @section('content')
-    <h1>Grillas</h1>
+    <h2>Información Trabajadores</h2>
      <?= $grid ?>
 @endsection
