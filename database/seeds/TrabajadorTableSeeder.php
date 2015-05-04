@@ -32,13 +32,13 @@ class TrabajadorTableSeeder extends Seeder {
                 'updated_at'    => new DateTime
             ));
 
-            $cargo_id = DB::table('enum_tables')->insertGetId(array(
+            /*$cargo_id = DB::table('enum_tables')->insertGetId(array(
                 'type'          =>  'Cargo',
                 'name'          =>  $faker->name,
                 'symbol'        =>  $faker->countryCode,
                 'created_at'    => new DateTime,
                 'updated_at'    => new DateTime
-            ));
+            ));*/
 
             $estado = array('Soltero','Casado', 'Viudo','Divorciado','Conviviente');
             $grupo = array('A+','A-','B+','B-','AB+','AB-','O+','O-');
@@ -55,7 +55,7 @@ class TrabajadorTableSeeder extends Seeder {
                 'nro_telefono'      =>  $faker->phoneNumber,
                 'fecha_ingreso'     =>  $faker->dateTimeBetween($startDate = '-7 years', $endDate = 'now'),
                 'profesion_id'      =>  $profesion_id,
-                'cargo_id'          =>  $cargo_id,
+                'cargo_id'          =>  rand(10,16),
                 'foto'              =>  $faker->imageUrl($width = 640, $height = 480, 'people'),
                 'grupo_saguineo'    =>   $grupo[rand(0,7)],
                 'em_nombres'        =>  $faker->name.' '.$faker->lastName,

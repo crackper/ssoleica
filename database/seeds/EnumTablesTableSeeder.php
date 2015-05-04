@@ -26,7 +26,14 @@ class EnumTablesTableSeeder extends \Illuminate\Database\Seeder {
             ['id'=> 6,'type'=>'ExamenMedico','name'=>'Ex. Med. Dermatológico','symbol' => '','created_at' => new DateTime, 'updated_at' => new DateTime],
             ['id'=> 7,'type'=>'ExamenMedico','name'=>'Ex. Med. Psicológico','symbol'=>'','created_at' => new DateTime, 'updated_at' => new DateTime],
             ['id'=> 8,'type'=>'Pais','name'=>'Perú','symbol'=>'PE','created_at' => new DateTime, 'updated_at' => new DateTime],
-            ['id'=> 9,'type'=>'Pais','name'=>'Chile','symbol'=>'CL','created_at' => new DateTime, 'updated_at' => new DateTime]
+            ['id'=> 9,'type'=>'Pais','name'=>'Chile','symbol'=>'CL','created_at' => new DateTime, 'updated_at' => new DateTime],
+            ['id'=> 10,'type'=>'Cargo','name'=>'Técnico de Operaciones','symbol'=>'TOP','created_at' => new DateTime, 'updated_at' => new DateTime],
+            ['id'=> 11,'type'=>'Cargo','name'=>'Ingeniero de Operacioens','symbol'=>'IOP','created_at' => new DateTime, 'updated_at' => new DateTime],
+            ['id'=> 12,'type'=>'Cargo','name'=>'Asesor Prevención de Riesgos','symbol'=>'APR','created_at' => new DateTime, 'updated_at' => new DateTime],
+            ['id'=> 13,'type'=>'Cargo','name'=>'Jefe de Operaciones','symbol'=>'JOP','created_at' => new DateTime, 'updated_at' => new DateTime],
+            ['id'=> 14,'type'=>'Cargo','name'=>'Gerente de Operaciones','symbol'=>'GOP','created_at' => new DateTime, 'updated_at' => new DateTime],
+            ['id'=> 15,'type'=>'Cargo','name'=>'Supervisor de Operaciones','symbol'=>'SOP','created_at' => new DateTime, 'updated_at' => new DateTime],
+            ['id'=> 16,'type'=>'Cargo','name'=>'Gerente de Ventas','symbol'=>'GV','created_at' => new DateTime, 'updated_at' => new DateTime]
         );
         DB::table('enum_tables')->insert($enums);
 

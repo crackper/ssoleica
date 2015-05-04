@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "a24597afae6ba15eb5f3ba809243e72e",
+    "hash": "01bce46d5cbaf7fa5d92794d06c088c2",
     "packages": [
         {
             "name": "barryvdh/laravel-debugbar",
@@ -718,6 +718,62 @@
                 }
             ],
             "time": "2015-01-01 16:31:18"
+        },
+        {
+            "name": "intervention/image",
+            "version": "2.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Intervention/image.git",
+                "reference": "6626d7624ac0895137a38c123943afedd0827efc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Intervention/image/zipball/6626d7624ac0895137a38c123943afedd0827efc",
+                "reference": "6626d7624ac0895137a38c123943afedd0827efc",
+                "shasum": ""
+            },
+            "require": {
+                "ext-fileinfo": "*",
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "~0.9.2",
+                "phpunit/phpunit": "3.*"
+            },
+            "suggest": {
+                "ext-gd": "to use GD library based image processing.",
+                "ext-imagick": "to use Imagick based image processing.",
+                "intervention/imagecache": "Caching extension for the Intervention Image library"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Intervention\\Image\\": "src/Intervention/Image"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Oliver Vogel",
+                    "email": "oliver@olivervogel.net",
+                    "homepage": "http://olivervogel.net/"
+                }
+            ],
+            "description": "Image handling and manipulation library with support for Laravel integration",
+            "homepage": "http://image.intervention.io/",
+            "keywords": [
+                "gd",
+                "image",
+                "imagick",
+                "laravel",
+                "thumbnail",
+                "watermark"
+            ],
+            "time": "2015-04-24 14:50:48"
         },
         {
             "name": "ircmaxell/password-compat",
@@ -3731,6 +3787,105 @@
                 "environment"
             ],
             "time": "2014-12-05 15:19:21"
+        },
+        {
+            "name": "zofe/burp",
+            "version": "2.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zofe/burp.git",
+                "reference": "f69d1cb1ee498c02f83baa99ccefd379bd1a4325"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/zofe/burp/zipball/f69d1cb1ee498c02f83baa99ccefd379bd1a4325",
+                "reference": "f69d1cb1ee498c02f83baa99ccefd379bd1a4325",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "~5.0",
+                "php": ">=5.4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Zofe\\Burp\\": "src/"
+                },
+                "files": [
+                    "src/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Felice Ostuni",
+                    "email": "felice.ostuni@gmail.com"
+                }
+            ],
+            "description": "Simple PHP router that works with query-string and uri-segments",
+            "homepage": "https://github.com/zofe/burp",
+            "keywords": [
+                "Simple",
+                "filter",
+                "front controller",
+                "php",
+                "router"
+            ],
+            "time": "2015-03-09 22:51:58"
+        },
+        {
+            "name": "zofe/rapyd",
+            "version": "2.0.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zofe/rapyd-laravel.git",
+                "reference": "cb95a58e8af537ed106b192c98b29b5014c2a4b7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/zofe/rapyd-laravel/zipball/cb95a58e8af537ed106b192c98b29b5014c2a4b7",
+                "reference": "cb95a58e8af537ed106b192c98b29b5014c2a4b7",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/html": "~5.0",
+                "illuminate/support": "~5.0",
+                "intervention/image": "2.*",
+                "php": ">=5.4.0",
+                "zofe/burp": "2.*"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "migrations"
+                ],
+                "psr-4": {
+                    "Zofe\\Rapyd\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "zofe",
+                    "email": "felice.ostuni@gmail.com"
+                }
+            ],
+            "description": "crud widgets for laravel, to make an admin in few lines of code",
+            "homepage": "https://github.com/zofe/rapyd-laravel",
+            "keywords": [
+                "Rapyd",
+                "admin",
+                "administrator",
+                "backend",
+                "crud",
+                "datatable",
+                "form",
+                "laravel"
+            ],
+            "time": "2015-04-18 19:23:02"
         }
     ],
     "packages-dev": [

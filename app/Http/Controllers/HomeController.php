@@ -31,6 +31,7 @@ use Nayjest\Grids\Components\ShowingRecords;
 use Nayjest\Grids\Components\TFoot;
 use Nayjest\Grids\Components\THead;
 use Nayjest\Grids\Components\TotalsRow;
+use Zofe\Rapyd\DataForm\DataForm;
 
 
 //use Nayjest\Grids\EloquentDataProvider;
@@ -232,4 +233,12 @@ class HomeController extends Controller {
 
     }
 
+    public function form()
+    {
+        $form = DataForm::source(EnumTables::find(1));
+        $form->add('name','Enum Name', 'text')->rule('required|min:5');
+        $form->add('type','Type','text')->rule('required|min:5');
+
+        return view('form',compact('form'));
+    }
 }

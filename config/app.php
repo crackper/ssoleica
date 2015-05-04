@@ -146,13 +146,18 @@ return [
 		'SSOLeica\Providers\RouteServiceProvider',
 
         /*
-         *Grillas
+         * Grillas
          */
         'Nayjest\Grids\ServiceProvider',
         'Illuminate\Html\HtmlServiceProvider',
         'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
         'Barryvdh\Debugbar\ServiceProvider',
         'Maatwebsite\Excel\ExcelServiceProvider',
+
+        /*
+         * Forms
+         * */
+        'Zofe\Rapyd\RapydServiceProvider',
 
 	],
 
@@ -207,6 +212,7 @@ return [
         'Form'  => 'Illuminate\Html\FormFacade',
         'HTML'  => 'Illuminate\Html\HtmlFacade',
         'Grids'     => 'Nayjest\Grids\Grids',
+        'Excel' => 'Maatwebsite\Excel\Facades\Excel',
 
 	],
 

@@ -170,7 +170,7 @@ class TrabajadorController extends Controller {
                                         50
                                     ]),
                                 new ColumnsHider,
-                                new ExcelExport(),
+                                //new ExcelExport(),
                                 (new HtmlTag)
                                     ->setContent('<span class="glyphicon glyphicon-refresh"></span> Filtrar')
                                     ->setTagName('button')
