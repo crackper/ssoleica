@@ -29,7 +29,7 @@ class Trabajador extends Model {
     }
 
     public function getFullNameAttribute(){
-        return $this->attributes['apellidos'] .', '.$this->attributes['nombre'] ;
+        return $this->attributes['app_paterno'].' '.$this->attributes['app_materno'] .', '.$this->attributes['nombre'] ;
     }
 
 }

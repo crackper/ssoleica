@@ -60,7 +60,7 @@ class TrabajadorController extends Controller {
 	public function index()
 	{
         $query = $this->trabajador->getTrabajadores();
-
+        //dd($query->get());
         $cargos = array();
 
         foreach($this->enum_tables->getCargos() as $row)
@@ -85,25 +85,26 @@ class TrabajadorController extends Controller {
                             ->setOperator(FilterConfig::OPERATOR_LIKE)
                     ),
                 (new FieldConfig)
-                    ->setName('nombre')
-                    ->setLabel('Nombres')
+                    ->setName('full_name')
+                    ->setLabel('Trabajador')
+                    ->setSortable(true)
+                    ->setSorting(Grid::SORT_ASC)
                     ->setCallback(function ($val) {
                         return "<span class='glyphicon glyphicon-user'></span> {$val}";
                     })
-                    ->setSortable(true)
                     ->addFilter(
                         (new FilterConfig)
-                            ->setOperator(FilterConfig::OPERATOR_LIKE)
-                    ),
+                            ->setFilteringFunc(function($val, EloquentDataProvider $provider) {
+                                    $provider->getBuilder()
+                                        ->where('app_paterno', 'like', '%'.$val.'%')
+                                        ->orWhere('app_materno', 'like', '%'.$val.'%')
+                                        ->orWhere('nombre', 'like', '%'.$val.'%');
+                            })
+                    )
+                ,
                 (new FieldConfig)
-                    ->setName('apellidos')
-                    ->setLabel('Apellidos')
-                    ->setSortable(true)
-                    ->setSorting(Grid::SORT_ASC)
-                    ->addFilter(
-                        (new FilterConfig)
-                            ->setOperator(FilterConfig::OPERATOR_LIKE)
-                    ),
+                    ->setName('email')
+                    ->setLabel('E-mail'),
                 (new FieldConfig)
                     ->setName('fecha_ingreso')
                     ->setLabel('Ingreso')

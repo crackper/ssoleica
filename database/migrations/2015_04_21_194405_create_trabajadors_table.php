@@ -18,10 +18,13 @@ class CreateTrabajadorsTable extends Migration {
             $table->increments('id');
             $table->string('dni',20);
             $table->string('nombre',100);
-            $table->string('apellidos',255);
+            $table->string('app_paterno',200);
+            $table->string('app_materno',200);
+            $table->enum('sexo',['Hombre','Mujer']);
             $table->date('fecha_nacimiento');
             $table->enum('estado_civil', ['Soltero','Casado', 'Viudo','Divorciado','Conviviente']);
             $table->string('direccion')->nullable();
+            $table->string('email')->nullable();
             $table->string('nro_telefono',50)->nullable();
             $table->date('fecha_ingreso');
             $table->integer('profesion_id')->unsigned();
