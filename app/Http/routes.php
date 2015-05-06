@@ -26,3 +26,8 @@ Route::controllers([
 //Route::get('trabajador','TrabajadorController@index');
 Route::get('trabajador/{id}/delete',['as'=>'index.delete','uses'=>'TrabajadorController@delete']);
 Route::resource('trabajador','TrabajadorController');
+
+Route::group(array('middleware' => 'auth'), function(){
+    Route::get('repositorio', 'FilemanagerLaravelController@getRepository');
+    Route::controller('filemanager', 'FilemanagerLaravelController');
+});

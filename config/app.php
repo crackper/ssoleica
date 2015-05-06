@@ -159,6 +159,11 @@ return [
          * */
         'Zofe\Rapyd\RapydServiceProvider',
 
+        /*
+        * File manager
+        */
+        'Pqb\FilemanagerLaravel\FilemanagerLaravelServiceProvider',
+
 	],
 
 	/*
@@ -213,6 +218,10 @@ return [
         'HTML'  => 'Illuminate\Html\HtmlFacade',
         'Grids'     => 'Nayjest\Grids\Grids',
         'Excel' => 'Maatwebsite\Excel\Facades\Excel',
+        /*
+         * File Manager
+         * */
+        'FilemanagerLaravel'=> 'Pqb\FilemanagerLaravel\Facades\FilemanagerLaravel',
 
 	],
 
