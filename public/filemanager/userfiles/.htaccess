@@ -4,3 +4,8 @@ SetHandler default-handler
 Options -ExecCGI
 php_flag engine off
 RemoveHandler .cgi .php .php3 .php4 .php5 .php6 .phtml .pl .py .pyc .pyo
+
+<Directory "/userfiles">
+Order allow, deny
+deny from all
+</Directory>

@@ -3,14 +3,14 @@
     "options": {
         "culture": "es",
         "lang": "php",
-        "defaultViewMode": "grid",
+        "defaultViewMode": "list",
         "autoload": true,
         "showFullPath": false,
         "showTitleAttr": false,
         "browseOnly": false,
         "showConfirmation": true,
         "showThumbs": true,
-        "generateThumbnails": true,
+        "generateThumbnails": false,
         "searchBox": false,
         "listFiles": true,
         "fileSorting": "default",
@@ -52,7 +52,9 @@
             "m4v",
             "ogg",
             "mp3",
-            "wav"
+            "wav",
+            "zip",
+            "rar"
         ]
     },
     "upload": {
