@@ -29,4 +29,11 @@ class EnumTablesRepository extends Repository {
 
         return $query;
     }
+
+    function getPaises()
+    {
+        $query = EnumTables::where('type','=','Pais')->get();
+
+        return $query;
+    }
 }

@@ -34,4 +34,5 @@ class TrabajadorRepository extends Repository {
 
         return $query;
     }
+
 }

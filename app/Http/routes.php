@@ -27,6 +27,9 @@ Route::controllers([
 Route::get('trabajador/{id}/delete',['as'=>'index.delete','uses'=>'TrabajadorController@delete']);
 Route::resource('trabajador','TrabajadorController');
 
+Route::post('pais/workspace',['as' =>'pais.workspace','uses' =>'PaisController@workspace']);
+Route::resource('pais','PaisController');
+
 Route::group(array('middleware' => 'auth'), function(){
     Route::get('repositorio', 'FilemanagerLaravelController@getRepository');
     Route::controller('filemanager', 'FilemanagerLaravelController');

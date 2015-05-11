@@ -1,5 +1,6 @@
 <?php namespace SSOLeica\Http\Controllers;
 
+use Illuminate\Support\Facades\Session;
 use Nayjest\Grids\Components\ColumnHeader;
 use SSOLeica\Http\Requests;
 use SSOLeica\Http\Controllers\Controller;
@@ -59,7 +60,7 @@ class TrabajadorController extends Controller {
 	 */
 	public function index()
 	{
-        $query = $this->trabajador->getTrabajadores();
+        $query = $this->trabajador->getTrabajadores()->where('pais_id','=',Session::get('pais_id'));
         //dd($query->get());
         $cargos = array();
 

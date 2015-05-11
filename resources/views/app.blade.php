@@ -71,7 +71,7 @@
                         </ul>
                     </li>
                     @if (!Auth::guest())
-                    	<li><a href="filemanager/repository">Repositorio</a></li>
+                    	<li>  {!! link_to('filemanager/repository','Repositorio') !!}</li>
                     @endif
 				</ul>
 
