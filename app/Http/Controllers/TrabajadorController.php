@@ -1,5 +1,6 @@
 <?php namespace SSOLeica\Http\Controllers;
 
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Session;
 use Nayjest\Grids\Components\ColumnHeader;
 use SSOLeica\Http\Requests;
@@ -30,7 +31,7 @@ use Nayjest\Grids\Components\ShowingRecords;
 use Nayjest\Grids\Components\TFoot;
 use Nayjest\Grids\Components\THead;
 use Nayjest\Grids\Components\ColumnsHider;
-
+use Zofe\Rapyd\DataForm\DataForm;
 
 
 class TrabajadorController extends Controller {
@@ -60,7 +61,7 @@ class TrabajadorController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function index()
+	public function getIndex()
 	{
         $query = $this->trabajador->getTrabajadores()->where('pais_id','=',Session::get('pais_id'));
         //dd($query->get());
@@ -129,7 +130,7 @@ class TrabajadorController extends Controller {
                     ->setLabel('Acciones')
                     ->setCallback(function ($val) {
 
-                        $icon_edit = "<a href='/trabajador/$val/edit' data-toggle='tooltip' data-placement='left' title='Editar Trabajador'><span class='glyphicon glyphicon-pencil'></span></a>";
+                        $icon_edit = "<a href='/trabajador/edit/$val' data-toggle='tooltip' data-placement='left' title='Editar Trabajador'><span class='glyphicon glyphicon-pencil'></span></a>";
                         $icon_remove = "<a href='/trabajador/$val/delete' data-toggle='tooltip' data-placement='left' title='Eliminar Trabajador' ><span class='glyphicon glyphicon-trash'></span></a>";
 
                         return $icon_edit.' '.$icon_remove;
@@ -250,9 +251,37 @@ class TrabajadorController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($id)
+	public function anyEdit($id)
 	{
-		dd($id);
+        $edit = DataForm::source($this->trabajador->find($id));
+        $edit->add('dni','DNI', 'text')->rule('required|min:8');
+        $edit->add('nombre','Nombre', 'text')->rule('required|max:100');
+        $edit->add('app_paterno','Apellido Paterno', 'text')->rule('required');
+        $edit->add('app_materno','Apellido Materno', 'text')->rule('required');
+        $edit->add('sexo','Sexo', 'select')->options(array('Masculino' => 'Maculino','Femenino' => 'Femenino'));
+        $edit->add('sexo','Sexo','radiogroup')->option('F','Femenino')->option('M','Masculino');
+        $edit->add('fecha_nacimiento','Fecha de Nacimiento', 'date')->format('d/m/Y', 'it')->rule('required');
+        $edit->add('estado_civil','Estado Civil', 'select')->options(array('Soltero' => 'Soltero','Casado' => 'Casado', 'Viudo' => 'Viudo','Divorciado' => 'Divorciado','Conviviente' => 'Conviviente'));
+        $edit->add('app_materno','Apellido Materno', 'text')->rule('required');
+        $edit->add('direccion','Direccion', 'text');
+        $edit->add('email','E-mail', 'text')->rule('email');
+        $edit->add('nro_telefono','Nro. Telefono', 'text');
+        $edit->add('fecha_ingreso','Fecha de Ingreso', 'date')->format('d/m/Y', 'it')->rule('required');
+        $edit->add('profesion_id','Profesion', 'select')->options($this->enum_tables->getProfesiones()->lists('name','id'));
+        $edit->add('cargo_id','Cargo', 'select')->options($this->enum_tables->getCargos()->lists('name','id'));
+        //informacion adicional
+        $edit->add('foto','Foto', 'image')->move('uploads/images/')->fit(240, 240)->preview(150,150);
+        $edit->add('grupo_saguineo','Grupo Sanquineo','select')->options(array('A+' => 'A+','A-' => 'A-','B+' => 'B+','B-' =>'B-','AB+' =>'AB+','AB-' => 'AB-','O+' =>'O+','O-' =>'O-'));
+
+        $edit->submit('Guardar');
+
+        $edit->saved(function () use ($edit) {
+
+           return new RedirectResponse(url('/trabajador'));
+
+        });
+
+        return $edit->view('trabajador.edit', compact('edit'));
 	}
 
 	/**

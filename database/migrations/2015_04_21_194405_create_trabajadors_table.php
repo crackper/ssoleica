@@ -20,7 +20,7 @@ class CreateTrabajadorsTable extends Migration {
             $table->string('nombre',100);
             $table->string('app_paterno',200);
             $table->string('app_materno',200);
-            $table->enum('sexo',['Hombre','Mujer']);
+            $table->enum('sexo',['M','F']);
             $table->date('fecha_nacimiento');
             $table->enum('estado_civil', ['Soltero','Casado', 'Viudo','Divorciado','Conviviente']);
             $table->string('direccion')->nullable();
@@ -39,8 +39,8 @@ class CreateTrabajadorsTable extends Migration {
             $table->enum('grupo_saguineo',['A+','A-','B+','B-','AB+','AB-','O+','O-'])->nullable();
             $table->string('lic_conducir')->nullable();
             $table->integer('lic_categoria_id')->unsigned()->nullable();
-            $table->integer('lic_clase_id')->unsigned()->nullable();
-            $table->date('lic_fecha_vencimiento')->nullable();
+            //$table->integer('lic_clase_id')->unsigned()->nullable();
+            //$table->date('lic_fecha_vencimiento')->nullable();
             $table->string('em_nombres')->nullable();
             $table->string('em_telef_fijo')->nullable();
             $table->string('em_telef_celular')->nullable();

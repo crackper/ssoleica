@@ -27,7 +27,7 @@
             </div>
             <div class="panel-body">
                 <a href="#">Registrar Nuevo Trabajador</a><br/>
-               {!! link_to_route('trabajador.index','Información de Trabajadores') !!}<br/>
+               {!! link_to('trabajador/index','Información de Trabajadores') !!}<br/>
 
             </div>
         </div>

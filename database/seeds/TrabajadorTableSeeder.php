@@ -43,7 +43,7 @@ class TrabajadorTableSeeder extends Seeder {
             $estado = array('Soltero','Casado', 'Viudo','Divorciado','Conviviente');
             $grupo = array('A+','A-','B+','B-','AB+','AB-','O+','O-');
             $parentesco = array('Padre','Madre','Esposo(a)','Hijo(a)','Hermano(a)','Otro');
-            $sexo = array('Hombre','Mujer');
+            $sexo = array('M','F');
 
             DB::table('trabajador')->insert(array(
                 'pais_id'           =>  rand(8,9),
@@ -60,7 +60,7 @@ class TrabajadorTableSeeder extends Seeder {
                 'fecha_ingreso'     =>  $faker->dateTimeBetween($startDate = '-7 years', $endDate = 'now'),
                 'profesion_id'      =>  $profesion_id,
                 'cargo_id'          =>  rand(10,16),
-                'foto'              =>  $faker->imageUrl($width = 640, $height = 480, 'people'),
+                'foto'              =>  'people.jpeg',
                 'grupo_saguineo'    =>   $grupo[rand(0,7)],
                 'em_nombres'        =>  $faker->name.' '.$faker->lastName,
                 'em_telef_fijo'     =>  $faker->phoneNumber,

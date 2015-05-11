@@ -36,4 +36,11 @@ class EnumTablesRepository extends Repository {
 
         return $query;
     }
+
+    function getProfesiones()
+    {
+        $query = EnumTables::where('type','=','Profesion')->get();
+
+        return $query;
+    }
 }

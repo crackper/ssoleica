@@ -54,7 +54,7 @@
                          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">General <span class="caret"></span></a>
                          <ul class="dropdown-menu" role="menu">
                             <li><a href="#">Registrar Nuevo Trabajador</a></li>
-                            <li>{!! link_to_route('trabajador.index','Información de Trabajadores') !!}</li>
+                            <li>{!! link_to('/trabajador/index','Información de Trabajadores') !!}</li>
                             <li class="divider"></li>
                             <li><a href="#">Horas Hombre Trabajadas (HHT)</a></li>
                          </ul>
