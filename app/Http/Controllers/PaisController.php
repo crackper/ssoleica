@@ -51,8 +51,6 @@ class PaisController extends Controller {
         Session::put('pais_id', $pais_id);
         Session::put('pais_name', $pais->name);
 
-        //dd(Session::get('pais_id'));
-
         return new RedirectResponse(url('/home'));
     }
 

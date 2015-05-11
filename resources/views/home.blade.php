@@ -8,7 +8,12 @@
                 <img src="/images/logoHexagon.png" alt="Hexagon Mining"/>
                 <img src="/images/logoLeicaGeosystem.gif" alt="Leica Geosystems" width="69"/>
                 SSO Leica
-                <small>Geosystems</small>
+                <small>
+                    Geosystems
+                    @if(Session::has('pais_name'))
+                        {!! Session::get('pais_name') !!}
+                    @endif
+                </small>
             </h3>
         </div>
     </div>

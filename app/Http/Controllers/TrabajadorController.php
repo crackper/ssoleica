@@ -49,6 +49,8 @@ class TrabajadorController extends Controller {
      */
     public  function __construct(Trabajador $trabajador, EnumTables $enum_tables){
 
+        $this->middleware('workspace');
+
         $this->trabajador = $trabajador;
         $this->enum_tables = $enum_tables;
     }

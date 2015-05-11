@@ -61,6 +61,7 @@ class HomeController extends Controller {
 	 */
 	public function __construct(Trabajador $trabajador)
 	{
+        $this->middleware('workspace');
         $this->trabajador = $trabajador;
     }
 
