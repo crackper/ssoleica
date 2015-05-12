@@ -253,7 +253,17 @@ class TrabajadorController extends Controller {
 	 */
 	public function anyEdit($id)
 	{
+        $pais = $this->enum_tables->find(Session::get('pais_id'))->load('categorias.categoria');
+
+        $licencias = array();
+        $licencias[]="[- Seleccione -]";
+        foreach($pais->categorias as $row){
+            $licencias[$row->enum_value_id] = $row->categoria->name;
+        }
+
         $edit = DataForm::source($this->trabajador->find($id));
+
+
         $edit->add('dni','DNI', 'text')->rule('required|min:8');
         $edit->add('nombre','Nombre', 'text')->rule('required|max:100');
         $edit->add('app_paterno','Apellido Paterno', 'text')->rule('required');
@@ -269,19 +279,23 @@ class TrabajadorController extends Controller {
         $edit->add('cargo_id','Cargo', 'select')->options($this->enum_tables->getCargos()->lists('name','id'));
         //informacion adicional
         $edit->add('foto','Foto', 'image')->move('uploads/images/')->preview(150,200);
-        $edit->add('grupo_saguineo','Grupo Sanquineo','select')->options(array('A+' => 'A+','A-' => 'A-','B+' => 'B+','B-' =>'B-','AB+' =>'AB+','AB-' => 'AB-','O+' =>'O+','O-' =>'O-'));
+        $edit->add('grupo_saguineo','Grupo Sanquineo','select')->options(array('' => '[- Seleccione -]','A+' => 'A+','A-' => 'A-','B+' => 'B+','B-' =>'B-','AB+' =>'AB+','AB-' => 'AB-','O+' =>'O+','O-' =>'O-'));
         $edit->add('lic_conducir','Licencia de Conducir', 'text');
+        $edit->add('lic_categoria_id','Tipo Licencia','select')->options($licencias);
         $edit->add('em_nombres','Nombres', 'text');
         $edit->add('em_telef_fijo','Telefono Fijo', 'text');
         $edit->add('em_telef_celular','Telefono Celular', 'text');
-        $edit->add('em_parentesco','Parentesco','select')->options(array('Padre' => 'Padre','Madre' => 'Madre','Esposo(a)' => 'Esposo(a)','Hijo(a)' => 'Hijo(a)','Hermano(a)' => 'Hermano(a)','Otro' => 'Otro'));
+        $edit->add('em_parentesco','Parentesco','select')->options(array('' => '[- Seleccione -]','Padre' => 'Padre','Madre' => 'Madre','Esposo(a)' => 'Esposo(a)','Hijo(a)' => 'Hijo(a)','Hermano(a)' => 'Hermano(a)','Otro' => 'Otro'));
         $edit->add('em_direccion','Dirección', 'text');
 
         $edit->submit('Guardar');
+        $edit->link("/trabajador","Cancelar");
 
         $edit->saved(function () use ($edit) {
 
-           return new RedirectResponse(url('/trabajador'));
+            return new RedirectResponse(url('trabajador/edit/'.$edit->model->id));
+           // $edit->message("ok record saved");
+            //$edit->link("/trabajador","Next Step");
 
         });
 

@@ -22,7 +22,7 @@ class CreateTrabajadorsTable extends Migration {
             $table->string('app_materno',200);
             $table->enum('sexo',['M','F']);
             $table->date('fecha_nacimiento');
-            $table->enum('estado_civil', ['Soltero','Casado', 'Viudo','Divorciado','Conviviente']);
+            $table->enum('estado_civil', ['Soltero','Casado', 'Viudo','Divorciado','Conviviente'])->default('Soltero');
             $table->string('direccion')->nullable();
             $table->string('email')->nullable();
             $table->string('nro_telefono',50)->nullable();
@@ -36,7 +36,7 @@ class CreateTrabajadorsTable extends Migration {
 
             //informacion adicional
             $table->longText('foto')->nullable();
-            $table->enum('grupo_saguineo',['A+','A-','B+','B-','AB+','AB-','O+','O-'])->nullable();
+            $table->enum('grupo_saguineo',['','A+','A-','B+','B-','AB+','AB-','O+','O-'])->nullable();
             $table->string('lic_conducir')->nullable();
             $table->integer('lic_categoria_id')->unsigned()->nullable();
             //$table->integer('lic_clase_id')->unsigned()->nullable();
@@ -44,7 +44,7 @@ class CreateTrabajadorsTable extends Migration {
             $table->string('em_nombres')->nullable();
             $table->string('em_telef_fijo')->nullable();
             $table->string('em_telef_celular')->nullable();
-            $table->enum('em_parentesco',['Padre','Madre','Esposo(a)','Hijo(a)','Hermano(a)','Otro'])->nullable();
+            $table->enum('em_parentesco',['','Padre','Madre','Esposo(a)','Hijo(a)','Hermano(a)','Otro'])->nullable();
             $table->string('em_direccion')->nullable();
             //auditoria
             $table->timestamps();

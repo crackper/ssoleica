@@ -16,14 +16,10 @@ class CreateOperacionsTable extends Migration {
 		{
 			$table->increments('id');
             $table->string('nombre_operacion',100);
-            $table->string('gerencia',100);
-            $table->integer('supervisor_id')->unsigned()->nullable();
-            $table->foreign('supervisor_id')->references('id')->on('trabajador');
-            $table->integer('asesor_prev_riesgos_id')->unsigned()->nullable();
-            $table->foreign('asesor_prev_riesgos_id')->references('id')->on('trabajador');
-            $table->boolean('exist_cphs');
-            $table->boolean('exist_subcontrato');
-            $table->longText('observaciones')->nullable();
+            $table->string('ubicacion',200)->nullable();
+            $table->longText('descripcion')->nullable();
+            $table->integer('pais_id')->unsigned();
+            $table->foreign('pais_id')->references('id')->on('enum_tables');
             //auditoria
             $table->timestamps();
             $table->softDeletes();

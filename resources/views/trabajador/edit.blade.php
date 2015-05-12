@@ -2,22 +2,24 @@
 
 @section('content')
 {!! Rapyd::styles() !!}
-{!! $edit->header !!}
+
+<h3>Información del Trabajador</h3>
+{!! $edit->message !!}
 <div role="tabpanel">
 
   <!-- Nav tabs -->
   <ul class="nav nav-tabs" role="tablist">
     <li role="presentation" class="active"><a href="#general" aria-controls="general" role="tab" data-toggle="tab">Información General</a></li>
     <li role="presentation"><a href="#adicional" aria-controls="adicional" role="tab" data-toggle="tab">Información Adicional</a></li>
-    <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Messages</a></li>
+    <li role="presentation"><a href="#contrato" aria-controls="contrato" role="tab" data-toggle="tab">Operación/Contrato</a></li>
     <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Settings</a></li>
   </ul>
-
+{!! $edit->header !!}
   <!-- Tab panes -->
   <div class="tab-content">
 
     <div role="tabpanel" class="tab-pane active" id="general">
-        <div class="row" style="padding: 15px 0px 0px 0px;">
+        <div class="row" style="padding: 0px 0px 0px 0px;">
             <div class="form-group @if($edit->field('dni')->has_error) has-error @endif">
                 <label for="dni" class="col-sm-2 control-label required">Dni</label>
                 <div class="col-md-5">
@@ -123,7 +125,7 @@
         </div>
     </div>
     <div role="tabpanel" class="tab-pane" id="adicional">
-        <div class="row" style="padding: 15px 0px 0px 0px;">
+        <div class="row" style="padding: 0px 0px 0px 0px;">
             <div class="form-group">
                <label for="foto" class="col-md-2 control-label required">Foto</label>
                 <div class="col-sm-5">
@@ -140,6 +142,12 @@
                <label for="lic_conducir" class="col-md-2 control-label required">Lic. de Conducir</label>
                 <div class="col-sm-5">
                   {!! $edit->field('lic_conducir') !!}
+                </div>
+             </div>
+            <div class="form-group">
+               <label for="lic_categoria_id" class="col-md-2 control-label required">Tipo Lic. Conducir</label>
+                <div class="col-sm-5">
+                  {!! $edit->field('lic_categoria_id') !!}
                 </div>
              </div>
              <div class="form-group">
@@ -183,12 +191,12 @@
             </fielset>
         </div>
     </div>
-    <div role="tabpanel" class="tab-pane" id="messages">...</div>
+    <div role="tabpanel" class="tab-pane" id="contrato">...</div>
     <div role="tabpanel" class="tab-pane" id="settings">...</div>
   </div>
-
+{!! $edit->footer !!}
 </div>
- {!! $edit->footer !!}
+
 
  {!! Rapyd::scripts() !!}
  {!! Rapyd::head() !!}

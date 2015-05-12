@@ -72,7 +72,7 @@ class EnumTablesTableSeeder extends \Illuminate\Database\Seeder {
             ['id'=>'13','enum_value_id' => '29','category_id' => '9','created_at' => new DateTime, 'updated_at' => new DateTime ],
             ['id'=>'14','enum_value_id' => '30','category_id' => '9','created_at' => new DateTime, 'updated_at' => new DateTime ],
             ['id'=>'15','enum_value_id' => '31','category_id' => '9','created_at' => new DateTime, 'updated_at' => new DateTime ],
-            ['id'=>'16','enum_value_id' => '33','category_id' => '9','created_at' => new DateTime, 'updated_at' => new DateTime ],
+            ['id'=>'16','enum_value_id' => '32','category_id' => '9','created_at' => new DateTime, 'updated_at' => new DateTime ],
         );
 
         DB::table('enum_categories')->insert($categories);

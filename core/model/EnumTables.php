@@ -11,4 +11,9 @@ class EnumTables extends Model {
         return $this->hasMany('SSOLeica\Core\Model\Trabajador',$foreignKey = 'profesion_id',$localKey='id');
     }*/
 
+    public function categorias()
+    {
+        return $this->hasMany('SSOLeica\Core\Model\EnumCategories',$foreignKey = 'category_id',$localKey='id');
+    }
+
 }

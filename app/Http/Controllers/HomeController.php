@@ -5,6 +5,7 @@ use Nayjest\Grids\Grid;
 use Nayjest\Grids\GridConfig;
 use SSOLeica\Core\Model\EnumTables;
 use SSOLeica\Core\Model\TrabajadorOperacion;
+use SSOLeica\Core\Model\EnumCategories;
 use SSOLeica\Core\Repository\TrabajadorRepository as Trabajador;
 use Grids;
 use HTML;
@@ -236,10 +237,19 @@ class HomeController extends Controller {
 
     public function form()
     {
-        $form = DataForm::source(EnumTables::find(1));
+        $enum = EnumCategories::where('category_id','=',9)->get()->load('categoria');
+        $licencias = array();
+
+        foreach($enum as $row){
+            $licencias[$row->enum_value_id] = $row->categoria->name;
+        }
+
+        dd($licencias);
+
+        /*$form = DataForm::source(EnumTables::find(1));
         $form->add('name','Enum Name', 'text')->rule('required|min:5');
         $form->add('type','Type','text')->rule('required|min:5');
 
-        return view('form',compact('form'));
+        return view('form',compact('form'));*/
     }
 }
