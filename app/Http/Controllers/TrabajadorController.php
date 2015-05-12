@@ -258,11 +258,9 @@ class TrabajadorController extends Controller {
         $edit->add('nombre','Nombre', 'text')->rule('required|max:100');
         $edit->add('app_paterno','Apellido Paterno', 'text')->rule('required');
         $edit->add('app_materno','Apellido Materno', 'text')->rule('required');
-        $edit->add('sexo','Sexo', 'select')->options(array('Masculino' => 'Maculino','Femenino' => 'Femenino'));
         $edit->add('sexo','Sexo','radiogroup')->option('F','Femenino')->option('M','Masculino');
         $edit->add('fecha_nacimiento','Fecha de Nacimiento', 'date')->format('d/m/Y', 'it')->rule('required');
         $edit->add('estado_civil','Estado Civil', 'select')->options(array('Soltero' => 'Soltero','Casado' => 'Casado', 'Viudo' => 'Viudo','Divorciado' => 'Divorciado','Conviviente' => 'Conviviente'));
-        $edit->add('app_materno','Apellido Materno', 'text')->rule('required');
         $edit->add('direccion','Direccion', 'text');
         $edit->add('email','E-mail', 'text')->rule('email');
         $edit->add('nro_telefono','Nro. Telefono', 'text');
@@ -270,8 +268,14 @@ class TrabajadorController extends Controller {
         $edit->add('profesion_id','Profesion', 'select')->options($this->enum_tables->getProfesiones()->lists('name','id'));
         $edit->add('cargo_id','Cargo', 'select')->options($this->enum_tables->getCargos()->lists('name','id'));
         //informacion adicional
-        $edit->add('foto','Foto', 'image')->move('uploads/images/')->fit(240, 240)->preview(150,150);
+        $edit->add('foto','Foto', 'image')->move('uploads/images/')->preview(150,200);
         $edit->add('grupo_saguineo','Grupo Sanquineo','select')->options(array('A+' => 'A+','A-' => 'A-','B+' => 'B+','B-' =>'B-','AB+' =>'AB+','AB-' => 'AB-','O+' =>'O+','O-' =>'O-'));
+        $edit->add('lic_conducir','Licencia de Conducir', 'text');
+        $edit->add('em_nombres','Nombres', 'text');
+        $edit->add('em_telef_fijo','Telefono Fijo', 'text');
+        $edit->add('em_telef_celular','Telefono Celular', 'text');
+        $edit->add('em_parentesco','Parentesco','select')->options(array('Padre' => 'Padre','Madre' => 'Madre','Esposo(a)' => 'Esposo(a)','Hijo(a)' => 'Hijo(a)','Hermano(a)' => 'Hermano(a)','Otro' => 'Otro'));
+        $edit->add('em_direccion','Dirección', 'text');
 
         $edit->submit('Guardar');
 
@@ -280,6 +284,8 @@ class TrabajadorController extends Controller {
            return new RedirectResponse(url('/trabajador'));
 
         });
+
+        $edit->built();
 
         return $edit->view('trabajador.edit', compact('edit'));
 	}
