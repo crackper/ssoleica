@@ -84,9 +84,9 @@
                     <h3 class="panel-title text-inverse">Proyectos</h3>
                 </div>
                 <div class="panel-body">
-                    <a href="#">Registrar Proyecto</a><br/>
+                    <a href="/operacion/create">Registrar Proyecto</a><br/>
                     <a href="#">Registrar Contrato</a><br/>
-                    <a href="#">Información de Proyectos</a><br/>
+                    <a href="/operacion">Información de Proyectos</a><br/>
                     <a href="#">Información de Contratos</a>
                 </div>
             </div>

@@ -30,6 +30,8 @@ Route::get('form','HomeController@form');
 Route::get('trabajador/{id}/delete',['as'=>'index.delete','uses'=>'TrabajadorController@delete']);
 Route::controller('trabajador','TrabajadorController');
 
+Route::controller('operacion','OperacionController');
+
 Route::post('pais/workspace',['as' =>'pais.workspace','uses' =>'PaisController@workspace']);
 Route::resource('pais','PaisController');
 
