@@ -156,6 +156,8 @@ class OperacionController extends Controller {
             return new RedirectResponse(url('operacion/edit/'.$form->model->id));
         });
 
+        $form->build();
+
         return $form->view('operacion.create', compact('form'));
 	}
 
@@ -202,6 +204,8 @@ class OperacionController extends Controller {
 
             return new RedirectResponse(url('operacion/edit/'.$form->model->id));
         });
+
+        $form->build();
 
         return $form->view('operacion.edit', compact('form'));
 	}

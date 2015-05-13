@@ -46,18 +46,23 @@
 
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
-					<li><a href="/home">Home</a></li>
-					@if (!Auth::guest())
-						<li><a href="#">Clientes</a></li>
-					@endif
 					<li class="dropdown">
                          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">General <span class="caret"></span></a>
                          <ul class="dropdown-menu" role="menu">
                             <li><a href="#">Registrar Nuevo Trabajador</a></li>
                             <li>{!! link_to('/trabajador/index','Información de Trabajadores') !!}</li>
-                            <li class="divider"></li>
-                            <li><a href="#">Horas Hombre Trabajadas (HHT)</a></li>
+                            <!--li class="divider"></li-->
+
                          </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Programa Mensual SSO <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#">Registar EHSE Anual</a></li>
+                            <li><a href="#">Registar Cumplimiento EHSE</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">Reporte Mensual</a></li>
+                        </ul>
                     </li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Seguridad <span class="caret"></span></a>
@@ -67,12 +72,23 @@
                         </ul>
                     </li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Programa Mesnsual SSO <span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Estadisticas Seguridad <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="#">Registar EHSE Anual</a></li>
-                            <li><a href="#">Registar Cumplimiento EHSE</a></li>
+                            <li><a href="#"> Registar Hombre (HHT)</a></li>
+                            <li> <a href="#">Horas Hombre Trabajadas (HHT)</a></li>
                             <li class="divider"></li>
-                            <li><a href="#">Reporte Mensual</a></li>
+                            <li><a href="#">Registar Estadisticas</a></li>
+                            <li><a href="#">Historial Estadisticas</a></li>
+                        </ul>
+                    </li>
+                   <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Proyectos <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="/operacion/create">Registrar Proyecto</a></li>
+                            <li> <a href="#">Registrar Contrato</a></li>
+                            <li class="divider"></li>
+                            <li><a href="/operacion">Información de Proyectos</a></li>
+                            <li><a href="#">Información de Contratos</a></li>
                         </ul>
                     </li>
                     @if (!Auth::guest())

@@ -35,7 +35,7 @@
         <div class="col-md-12">
          <div class="panel panel-warning">
             <div class="panel-heading">
-                <h3 class="panel-title text-inverse">Programa Mesnsual SSO</h3>
+                <h3 class="panel-title text-inverse">Programa Mensual SSO</h3>
             </div>
             <div class="panel-body">
                 <a href="#">Registar EHSE Anual</a><br/>
@@ -67,8 +67,8 @@
                     <h3 class="panel-title text-inverse">Estadisticas Seguridad</h3>
                 </div>
                 <div class="panel-body">
-                    <a href="#"> Registar Hombre (HHT)</a>
-                    <a href="#">Horas Hombre Trabajadas (HHT)</a>
+                    <a href="#"> Registar Hombre (HHT)</a><br/>
+                    <a href="#">Horas Hombre Trabajadas (HHT)</a><br/>
                     <a href="#">Registar Estadisticas</a><br/>
                     <a href="#">Historial Estadisticas</a><br/>
                 </div>

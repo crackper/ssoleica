@@ -11,11 +11,6 @@
 |
 */
 
-//dataform routing
-Burp::post(null, 'process=1', array('as'=>'save', function() {
-    BurpEvent::queue('dataform.save');
-}));
-
 Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
