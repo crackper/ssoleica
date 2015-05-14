@@ -35,4 +35,27 @@ class TrabajadorRepository extends Repository {
         return $query;
     }
 
+   function getTrabajadoresList($pais_id)
+    {
+        $query = Trabajador::where('pais_id','=',$pais_id)
+            ->select('trabajador.id','trabajador.nombre','trabajador.app_paterno','trabajador.app_materno')
+            //->addSelect(DB::raw('CONCAT(trabajador.nombre," ",trabajador.app_paterno," " ,trabajador.app_materno) AS full_name'))
+            ->orderBy('trabajador.nombre')
+            ->get();
+
+        return $query;
+    }
+
+    function getTrabajadoresListAC($criterio,$pais_id)
+    {
+        $query = Trabajador::where('pais_id','=',$pais_id);
+
+        $query = $query->where('nombre','like',$criterio.'%')
+                    ->orWhere('app_paterno','like',$criterio.'%')
+                    ->take(10)->get();
+
+        return $query;
+    }
+
+
 }

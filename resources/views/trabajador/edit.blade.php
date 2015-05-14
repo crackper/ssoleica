@@ -1,7 +1,6 @@
 @extends('app')
 
 @section('content')
-{!! Rapyd::styles() !!}
 
 <h3>Información del Trabajador</h3>
 {!! $edit->message !!}
@@ -198,6 +197,5 @@
 </div>
 
 
- {!! Rapyd::scripts() !!}
  {!! Rapyd::head() !!}
 @endsection

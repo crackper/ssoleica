@@ -26,6 +26,7 @@ Route::get('trabajador/{id}/delete',['as'=>'index.delete','uses'=>'TrabajadorCon
 Route::controller('trabajador','TrabajadorController');
 
 Route::controller('operacion','OperacionController');
+Route::controller('contrato','ContratoController');
 
 Route::post('pais/workspace',['as' =>'pais.workspace','uses' =>'PaisController@workspace']);
 Route::resource('pais','PaisController');

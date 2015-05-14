@@ -8,10 +8,13 @@
 
 	<!--link href="/css/bootstrap.min.css" rel="stylesheet">
 	<link href="/css/bootstrap-theme.min.css" rel="stylesheet" -->
-	<link href="/css/bootstrap.curlean.min.css" rel="stylesheet">
+	<link href="http://fonts.googleapis.com/css?family=Bitter" rel="stylesheet" type="text/css" />
+    <link href="/css/bootstrap.curlean.min.css" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
 	@yield('styles')
 	<!-- Fonts -->
-	<link href='//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
+	<!--link href='//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'-->
 
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -85,10 +88,10 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Proyectos <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="/operacion/create">Registrar Proyecto</a></li>
-                            <li> <a href="#">Registrar Contrato</a></li>
+                            <li> <a href="/contrato/create">Registrar Contrato</a></li>
                             <li class="divider"></li>
                             <li><a href="/operacion">Información de Proyectos</a></li>
-                            <li><a href="#">Información de Contratos</a></li>
+                            <li><a href="/contrato">Información de Contratos</a></li>
                         </ul>
                     </li>
                     @if (!Auth::guest())

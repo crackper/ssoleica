@@ -85,9 +85,9 @@
                 </div>
                 <div class="panel-body">
                     <a href="/operacion/create">Registrar Proyecto</a><br/>
-                    <a href="#">Registrar Contrato</a><br/>
+                    <a href="/contrato/create">Registrar Contrato</a><br/>
                     <a href="/operacion">Información de Proyectos</a><br/>
-                    <a href="#">Información de Contratos</a>
+                    <a href="/contrato">Información de Contratos</a>
                 </div>
             </div>
         </div>

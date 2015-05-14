@@ -161,6 +161,11 @@ class OperacionController extends Controller {
         return $form->view('operacion.create', compact('form'));
 	}
 
+    public function getVarios()
+    {
+        dd('varios');
+    }
+
 	/**
 	 * Store a newly created resource in storage.
 	 *
