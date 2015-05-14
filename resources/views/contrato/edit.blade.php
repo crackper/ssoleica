@@ -4,7 +4,7 @@
 
 
     <div class="col-md-10">
-        <h3>Registrar nuevo Contrato</h3>
+        <h3>Información del Contrato</h3>
         {!! $form !!}
     </div>
 

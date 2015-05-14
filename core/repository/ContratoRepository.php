@@ -10,6 +10,7 @@ namespace SSOLeica\Core\Repository;
 
 
 use SSOLeica\Core\Data\Repository;
+use SSOLeica\Core\Model\Contrato;
 
 class ContratoRepository extends Repository {
 
@@ -21,5 +22,15 @@ class ContratoRepository extends Repository {
     function model()
     {
         return 'SSOLeica\Core\Model\Contrato';
+    }
+
+    function getContratos($pais_id)
+    {
+        $query = Contrato::join('operacion','contrato.operacion_id','=','operacion.id')
+                ->where('operacion.pais_id','=',$pais_id)
+                ->select('contrato.*')
+                ->addSelect('operacion.nombre_operacion as proyecto');
+
+        return $query;
     }
 }

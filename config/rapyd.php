@@ -34,6 +34,6 @@ return [
     |--------------------------------------------------------------------------
     */
     'field'=> [
-        'attributes' => ['class'=>'form-control'],
+        'attributes' => ['class'=>'form-control input-sm'],
     ],
 ];
