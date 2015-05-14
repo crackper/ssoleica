@@ -14,6 +14,9 @@ class EventServiceProvider extends ServiceProvider {
 		'event.name' => [
 			'EventListener',
 		],
+        'SSOLeica\Events\ContratoWasSaved' => [
+            'SSOLeica\Handlers\Events\HandleContratoWasSaved',
+        ],
 	];
 
 	/**
@@ -25,8 +28,6 @@ class EventServiceProvider extends ServiceProvider {
 	public function boot(DispatcherContract $events)
 	{
 		parent::boot($events);
-
-		//
 	}
 
 }

@@ -9,6 +9,7 @@ use SSOLeica\Core\Model\Contrato;
 use SSOLeica\Core\Repository\ContratoRepository;
 use SSOLeica\Core\Repository\OperacionRepository;
 use SSOLeica\Core\Repository\TrabajadorRepository;
+use SSOLeica\Events\ContratoWasSaved;
 use SSOLeica\Http\Requests;
 use Nayjest\Grids\Components\Base\RenderableRegistry;
 use Nayjest\Grids\Components\ColumnHeadersRow;
