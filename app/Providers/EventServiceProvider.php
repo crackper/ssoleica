@@ -17,6 +17,9 @@ class EventServiceProvider extends ServiceProvider {
         'SSOLeica\Events\ContratoWasSaved' => [
             'SSOLeica\Handlers\Events\HandleContratoWasSaved',
         ],
+        'SSOLeica\Events\TrabajadorWasSaved' => [
+            'SSOLeica\Handlers\Events\HandleTrabajadorWasSaved',
+        ],
 	];
 
 	/**
