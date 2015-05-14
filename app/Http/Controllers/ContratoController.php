@@ -107,6 +107,32 @@ class ContratoController extends Controller {
                             ->setOperator(FilterConfig::OPERATOR_LIKE)
                     ),
                 (new FieldConfig)
+                    ->setName('supervisor')
+                    ->setLabel('Ing./Supervisor')
+                    ->setSortable(true)
+                    ->addFilter(
+                        (new FilterConfig)
+                            ->setFilteringFunc(function($val, EloquentDataProvider $provider) {
+                                $provider->getBuilder()
+                                    ->where('s.app_paterno', 'like', '%'.$val.'%')
+                                    ->orWhere('s.nombre', 'like', '%'.$val.'%');
+                            })
+                    )
+                ,
+                (new FieldConfig)
+                    ->setName('apr')
+                    ->setLabel('APR')
+                    ->setSortable(true)
+                    ->addFilter(
+                        (new FilterConfig)
+                            ->setFilteringFunc(function($val, EloquentDataProvider $provider) {
+                                $provider->getBuilder()
+                                    ->where('atr.app_paterno', 'like', '%'.$val.'%')
+                                    ->orWhere('atr.nombre', 'like', '%'.$val.'%');
+                            })
+                    )
+                ,
+                (new FieldConfig)
                     ->setName('exist_cphs')
                     ->setLabel('CPHS')
                     ->setSortable(true)
@@ -136,7 +162,7 @@ class ContratoController extends Controller {
                                 $provider->getBuilder()->where('exist_subcontrato','=',$val);
                             })
                     ),
-                (new FieldConfig)
+                /*(new FieldConfig)
                     ->setName('is_activo')
                     ->setLabel('Activo')
                     ->setSortable(true)
@@ -150,14 +176,14 @@ class ContratoController extends Controller {
                             ->setFilteringFunc(function($val, EloquentDataProvider $provider){
                                 $provider->getBuilder()->where('is_activo','=',$val);
                             })
-                    ),
+                    ),*/
                 (new FieldConfig())
                     ->setName('id')
                     ->setLabel('Acciones')
                     ->setCallback(function ($val) {
 
-                        $icon_edit = "<a href='/operacion/edit/$val' data-toggle='tooltip' data-placement='left' title='Editar Proyecto'><span class='glyphicon glyphicon-pencil'></span></a>";
-                        $icon_remove = "<a href='/operacion/delete/$val' data-toggle='tooltip' data-placement='left' title='Eliminar Proyecto' ><span class='glyphicon glyphicon-trash'></span></a>";
+                        $icon_edit = "<a href='/contrato/edit/$val' data-toggle='tooltip' data-placement='left' title='Editar Contrato'><span class='glyphicon glyphicon-pencil'></span></a>";
+                        $icon_remove = "<a href='/contrato/delete/$val' data-toggle='tooltip' data-placement='left' title='Eliminar Contrato' ><span class='glyphicon glyphicon-trash'></span></a>";
 
                         return $icon_edit . ' ' . $icon_remove;
                     })
