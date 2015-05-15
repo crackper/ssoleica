@@ -13,7 +13,7 @@ class TrabajadorContrato extends Model {
         return $this->belongsTo('SSOLeica\Core\Model\Trabajador');
     }
 
-    public function operacion()
+    public function contrato()
     {
         return $this->belongsTo('SSOLeica\Core\Model\Contrato');
     }

@@ -26,4 +26,9 @@ class Contrato extends Model {
         return $this->hasMany('SSOLeica\Core\Model\TrabajadorContratoExamMedico');
     }
 
+    public function operacion()
+    {
+        return $this->belongsTo('SSOLeica\Core\Model\Operacion');
+    }
+
 }

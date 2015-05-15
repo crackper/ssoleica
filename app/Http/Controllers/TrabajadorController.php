@@ -2,16 +2,14 @@
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Session;
-use Nayjest\Grids\Components\ColumnHeader;
+use SSOLeica\Core\Model\TrabajadorContrato;
+use SSOLeica\Core\Repository\OperacionRepository;
 use SSOLeica\Http\Requests;
-use SSOLeica\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use Nayjest\Grids\EloquentDataProvider;
 use Nayjest\Grids\Grid;
 use Nayjest\Grids\GridConfig;
 use SSOLeica\Core\Repository\TrabajadorRepository as Trabajador;
 use SSOLeica\Core\Repository\EnumTablesRepository as EnumTables;
-use Grids;
 use HTML;
 use Nayjest\Grids\FieldConfig;
 use Nayjest\Grids\FilterConfig;
@@ -19,7 +17,6 @@ use Nayjest\Grids\IdFieldConfig;
 use Nayjest\Grids\SelectFilterConfig;
 use Nayjest\Grids\Components\Base\RenderableRegistry;
 use Nayjest\Grids\Components\ColumnHeadersRow;
-use Nayjest\Grids\Components\ExcelExport;
 use Nayjest\Grids\Components\Filters\DateRangePicker;
 use Nayjest\Grids\Components\FiltersRow;
 use Nayjest\Grids\Components\HtmlTag;
@@ -43,17 +40,24 @@ class TrabajadorController extends Controller {
      * @var EnumTables
      */
     private $enum_tables;
+    /**
+     * @var OperacionRepository
+     */
+    private $operacionRepository;
+
 
     /**
      * @param Trabajador $trabajador
      * @param EnumTables $enum_tables
+     * @param OperacionRepository $operacionRepository
      */
-    public  function __construct(Trabajador $trabajador, EnumTables $enum_tables){
+    public  function __construct(Trabajador $trabajador, EnumTables $enum_tables, OperacionRepository $operacionRepository ){
 
         $this->middleware('workspace');
 
         $this->trabajador = $trabajador;
         $this->enum_tables = $enum_tables;
+        $this->operacionRepository = $operacionRepository;
     }
 
 	/**
@@ -224,26 +228,15 @@ class TrabajadorController extends Controller {
 		dd('create trabajador');
 	}
 
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{
-		//
-	}
+    public function getProyectos($id)
+    {
+        $data = TrabajadorContrato::where('trabajador_id','=',$id)
+                ->get()->load('contrato.operacion');
 
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		//
-	}
+        //return dd($data);
+
+        return view('trabajador.proyectos')->with('data',$data);
+    }
 
 	/**
 	 * Show the form for editing the specified resource.
@@ -304,27 +297,6 @@ class TrabajadorController extends Controller {
         return $edit->view('trabajador.edit', compact('edit'));
 	}
 
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		//
-	}
-
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
-		//
-	}
 
     /**
      * @param $id
@@ -333,5 +305,6 @@ class TrabajadorController extends Controller {
     {
         dd($id);
     }
+
 
 }

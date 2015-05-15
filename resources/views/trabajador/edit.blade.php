@@ -4,7 +4,7 @@
 
 <h3>Información del Trabajador</h3>
 {!! $edit->message !!}
-<div role="tabpanel">
+<div id="tabTrabajador" role="tabpanel">
 
   <!-- Nav tabs -->
   <ul class="nav nav-tabs" role="tablist">
@@ -123,7 +123,7 @@
              </div>
         </div>
     </div>
-    <div role="tabpanel" class="tab-pane" id="adicional">
+    <div role="tabpanel" class="tab-pane fade" id="adicional">
         <div class="row" style="padding: 0px 0px 0px 0px;">
             <div class="form-group">
                <label for="foto" class="col-md-2 control-label required">Foto</label>
@@ -190,12 +190,49 @@
             </fielset>
         </div>
     </div>
-    <div role="tabpanel" class="tab-pane" id="contrato">...</div>
-    <div role="tabpanel" class="tab-pane" id="settings">...</div>
+    <div role="tabpanel" class="tab-pane fade" id="contrato">...</div>
+    <div role="tabpanel" class="tab-pane fade" id="settings">...</div>
   </div>
 {!! $edit->footer !!}
 </div>
 
+@endsection
 
- {!! Rapyd::head() !!}
+@section('styles')
+    <link rel="stylesheet" href="/css/bootstrap-select.min.css">
+@endsection
+
+@section('scripts')
+    {!! Rapyd::head() !!}
+    <script src="/js/bootstrap-select.min.js"></script>
+    <script>
+        $(function(){
+            $('select').selectpicker({
+            		size: 7
+            });
+
+            $('#tabTrabajador a[href="#contrato"]').click(function (e) {
+                e.preventDefault();
+
+                $.ajax({
+                    url: '/trabajador/proyectos/1',
+                    type: 'GET'
+                })
+                .done(function(data) {
+                    $('#contrato').html(data);
+                    console.log("success");
+                })
+                .fail(function() {
+                    console.log("error");
+                })
+                .always(function() {
+                    console.log("complete");
+            });
+
+              $(this).tab('show')
+            });
+
+        });
+
+    </script>
 @endsection

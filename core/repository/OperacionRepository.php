@@ -11,6 +11,7 @@ namespace SSOLeica\Core\Repository;
 
 use SSOLeica\Core\Data\Repository;
 use SSOLeica\Core\Model\Operacion;
+use SSOLeica\Core\Model\TrabajadorOperacion;
 
 class OperacionRepository extends Repository {
 
@@ -33,5 +34,17 @@ class OperacionRepository extends Repository {
         $query = Operacion::where('pais_id','=',$pais_id);
 
         return $query;
+    }
+
+    /**
+     * @param $trabajador_id
+     * @return array
+     */
+    public  function getOperacionesByTrabajador($trabajador_id)
+    {
+        $data = TrabajadorOperacion::where('trabajador_id','=',$trabajador_id)->get()
+            ->load('operacion')->load('contratos');
+
+        return $data;
     }
 }

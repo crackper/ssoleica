@@ -42,4 +42,8 @@ class ContratoRepository extends Repository {
 
         return $query;
     }
+
+    function getContratosByTrabajador($trabajador_id){
+        $query = Contrato::get();
+    }
 }
