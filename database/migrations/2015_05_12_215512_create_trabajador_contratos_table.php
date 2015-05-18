@@ -14,7 +14,7 @@ class CreateTrabajadorContratosTable extends Migration {
 	{
 		Schema::create('trabajador_contrato', function(Blueprint $table)
 		{
-            //$table->primary('trabajador_id','contrato_id');
+            $table->increments('id');
             $table->integer('trabajador_id')->unsigned();
             $table->foreign('trabajador_id')->references('id')->on('trabajador');
             $table->integer('contrato_id')->unsigned();

@@ -21,9 +21,12 @@ class TrabajadorTest extends \Codeception\TestCase\Test
     {
         $trabajador = new \SSOLeica\Core\Model\Trabajador();
 
+        $trabajador->pais_id = 8;
         $trabajador->dni = '12345678';
         $trabajador->nombre = 'Samuel';
-        $trabajador->apellidos = 'Mestanza';
+        $trabajador->app_paterno = 'Mestanza';
+        $trabajador->app_materno = 'A.';
+        $trabajador->sexo = 'M';
         $trabajador->fecha_nacimiento = '1981-10-24';
         $trabajador->estado_civil = 'Casado';
         $trabajador->direccion = 'Urb. San Roque, El Capuli A-02';

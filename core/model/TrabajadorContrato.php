@@ -6,7 +6,7 @@ class TrabajadorContrato extends Model {
 
     protected $table = 'trabajador_contrato';
 
-    protected $primaryKey = array('trabajador_id','contrato_id');
+    //protected $primaryKey = array('trabajador_id','contrato_id');
 
     public function trabajador()
     {

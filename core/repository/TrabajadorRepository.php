@@ -12,6 +12,7 @@ namespace SSOLeica\Core\Repository;
 use Illuminate\Support\Facades\DB;
 use SSOLeica\Core\Model\Trabajador;
 use SSOLeica\Core\Data\Repository;
+use SSOLeica\Core\Model\TrabajadorContrato;
 
 class TrabajadorRepository extends Repository {
 
@@ -44,6 +45,27 @@ class TrabajadorRepository extends Repository {
             ->get();
 
         return $query;
+    }
+
+    /**
+     * @param $trabajador_id
+     * @return mixed
+     */
+    function getContratos($trabajador_id){
+        return TrabajadorContrato::where('trabajador_id', '=', $trabajador_id)
+            ->get()->load('contrato.operacion');
+    }
+
+    /**
+     * @param $trabajador_id
+     * @param $contrato_id
+     * @return mixed
+     */
+    public  function updateContrato($contrato_id,$data = array())
+    {
+        $contrato = TrabajadorContrato::where('id','=',$contrato_id);
+
+        return $contrato->update($data);
     }
 
     function getTrabajadoresListAC($criterio,$pais_id)

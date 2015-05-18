@@ -12,6 +12,7 @@ namespace SSOLeica\Core\Repository;
 use Illuminate\Support\Facades\DB;
 use SSOLeica\Core\Data\Repository;
 use SSOLeica\Core\Model\Contrato;
+use SSOLeica\Core\Model\TrabajadorContrato;
 
 class ContratoRepository extends Repository {
 
@@ -41,9 +42,5 @@ class ContratoRepository extends Repository {
                 ->addSelect(DB::raw('CONCAT(atr.nombre, " ", atr.app_paterno) AS apr'));
 
         return $query;
-    }
-
-    function getContratosByTrabajador($trabajador_id){
-        $query = Contrato::get();
     }
 }
