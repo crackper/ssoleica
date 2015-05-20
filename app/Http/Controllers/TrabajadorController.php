@@ -5,6 +5,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Session;
+use SSOLeica\Core\Model\Contrato;
 use SSOLeica\Core\Model\TrabajadorContrato;
 use SSOLeica\Core\Repository\ContratoRepository;
 use SSOLeica\Core\Repository\OperacionRepository;
@@ -310,12 +311,30 @@ class TrabajadorController extends Controller
 
         $success = $this->trabajadorRepository->updateContrato($contrato_id,$changeContrato);
 
-        $data = $success == 1 ? "La fecha de vencimiento se acutalizó satisfactoriamente." : "Error: No se puedo actualizar";
+        $data = $success == 1 ? "La fecha de vencimiento se actualizó satisfactoriamente." : "Error: No se puedo actualizar";
 
         return Response::json(array(
             'success' => $success,
             'data'   => $data
         ));
+    }
+
+    public function postCambiarcontrato()
+    {
+        $now = Carbon::now();
+
+        $data['proyecto']           =   Input::get('proyecto');
+        $data['contrato']           =   Input::get('contrato');
+        $data['proyectoId']         =   Input::get('proyectoId');
+        $data['contratoId']         =   Input::get('contratoId');
+        $data['contratoTrabajador'] =   Input::get('contratoTrabajador');
+
+        $data['contratos'] = Contrato::where('operacion_Id','=',$data['proyectoId'])
+                        ->whereNotIn('id',array($data['contratoId']))
+                        ->lists('nombre_contrato','id');
+
+
+        return view('trabajador.cambiarContrato')->with('data',$data);
     }
 
     /**

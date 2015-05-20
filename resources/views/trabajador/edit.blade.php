@@ -195,6 +195,7 @@
   </div>
 {!! $edit->footer !!}
 </div>
+<div id="modalView"></div>
 
 @endsection
 
@@ -203,36 +204,10 @@
 @endsection
 
 @section('scripts')
+
     {!! Rapyd::head() !!}
-    <script src="/js/bootstrap-select.min.js"></script>
-    <script>
-        $(function(){
-            $('select').selectpicker({
-            		size: 7
-            });
+<script src="/js/bootstrap-select.min.js"></script>
+<script src="/js/jquery.mask.min.js"></script>
+<script src="/js/app/trabajador.edit.js"></script>
 
-            $('#tabTrabajador a[href="#contrato"]').click(function (e) {
-                e.preventDefault();
-
-                $.ajax({
-                    url: '/trabajador/proyectos/1',
-                    type: 'GET'
-                })
-                .done(function(data) {
-                    $('#contrato').html(data);
-                    console.log("success");
-                })
-                .fail(function() {
-                    console.log("error");
-                })
-                .always(function() {
-                    console.log("complete");
-            });
-
-              $(this).tab('show')
-            });
-
-        });
-
-    </script>
 @endsection

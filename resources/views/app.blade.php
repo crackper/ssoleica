@@ -6,10 +6,13 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>SSO Leica</title>
 
-	<!--link href="/css/bootstrap.min.css" rel="stylesheet">
-	<link href="/css/bootstrap-theme.min.css" rel="stylesheet" -->
-	<link href="http://fonts.googleapis.com/css?family=Bitter" rel="stylesheet" type="text/css" />
-    <link href="/css/bootstrap.curlean.min.css" rel="stylesheet">
+	<!--link href="/css/bootstrap.min.css" rel="stylesheet"-->
+    <!--link href="/css/bootstrap-theme.min.css" rel="stylesheet" -->
+
+
+    <link href="/css/hexagon.theme.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/hexagon.min.css"/>
+    <!--link href="http://fonts.googleapis.com/css?family=Bitter" rel="stylesheet" type="text/css" /-->
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 
 	@yield('styles')
@@ -26,11 +29,12 @@
 	<!-- Scripts -->
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <script src="/js/app/hexagon.js"></script>
     @yield('scripts')
 
 </head>
 <body>
-	<nav class="navbar navbar-default navbar-static-top">
+	<nav class="navbar navbar-default navbar-fixed-top">
 		<div class="container">
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
