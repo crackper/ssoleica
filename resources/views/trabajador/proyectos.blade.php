@@ -28,7 +28,7 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>{!! $row->contrato->nombre_contrato !!}</td>
+                            <td><div data-toggle="{!! $row->id !!}">{!! $row->contrato->nombre_contrato !!}</div></td>
                             <td>{!! $row->nro_fotocheck !!}</td>
                             <td>
                                 <div>

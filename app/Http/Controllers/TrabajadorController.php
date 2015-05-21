@@ -338,6 +338,22 @@ class TrabajadorController extends Controller
         return view('trabajador.cambiarContrato')->with('data',$data);
     }
 
+    public function postSavecontratotrabajador($id)
+    {
+        $fechaFin = Input::get('fecFinActual');
+        $data['fecha_inicio'] = Input::get('fecIniCambio');
+        $data['contrato_id'] = Input::get('contrato_id');
+
+        $success = $this->trabajadorRepository->updateContrato($id,$data,$fechaFin);
+
+        $data = $success == 1 ? 'La información se actualizó correctamente' : "Error: No se puedo actualizar el contrato";
+
+        return Response::json(array(
+            'success' => $success,
+            'data'   => $data
+        ));
+    }
+
     /**
      * @param $id
      */

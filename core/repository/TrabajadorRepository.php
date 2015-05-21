@@ -61,11 +61,20 @@ class TrabajadorRepository extends Repository {
      * @param $contrato_id
      * @return mixed
      */
-    public  function updateContrato($contrato_id,$data = array())
+    public  function updateContrato($contrato_id,$data = array(),$fechaFin = null)
     {
         $contrato = TrabajadorContrato::where('id','=',$contrato_id);
 
-        return $contrato->update($data);
+        if(!$fechaFin)
+        {
+            $success = $contrato->update($data);
+        }
+        else
+        {
+            $success = $contrato->update($data);
+        }
+
+        return $success;
     }
 
     function getTrabajadoresListAC($criterio,$pais_id)

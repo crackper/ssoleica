@@ -6,10 +6,11 @@
         <h4 class="modal-title">Cambiar de Contrato</h4>
       </div>
       <div class="modal-body">
-            <form id="formUpdateContrato" method="post" role="form">
+            <form id="formUpdateContrato" method="post" action="/trabajador/savecontratotrabajador/{!! $data['contratoTrabajador'] !!}" role="form" data-contract="{!! $data['contratoTrabajador'] !!}">
                 <div class="form-group">
                     <label for="proyecto" class="control-label">Proyecto</label>
                     <input type="text" class="form-control input-sm" id="proyecto" value="{!! $data['proyecto'] !!}" disabled>
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 </div>
                 <div class="form-group">
                       <label for="contratoActual" class="control-label">Contrato actual</label>

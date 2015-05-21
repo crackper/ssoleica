@@ -161,16 +161,53 @@ $(function(){
                     }
                 }
             }
+        }).on('success.form.fv', function(e) {
+            e.preventDefault();
+
+            var $form = $(e.target),
+                fv    = $(e.target).data('formValidation');
+
+            $.ajax({
+                url: $form.attr('action'),
+                type: 'POST',
+                data: $form.serialize(),
+                success: function(data) {
+
+                    var style = data.success == 1 ? 'info':'danger';
+
+                    var alerta = '<div class="alert alert-'+ style +' alert-dismissable">';
+                    alerta += '<button type="button" class="close" data-dismiss="alert">&times;</button>';
+                    alerta += data.data;
+                    alerta += '</div>';
+
+                    var contrat =  $('*[data-toggle="' + $form.data('contract') + '"]');
+
+                    $(contrat).closest('.table-responsive').find('.alert').remove();
+
+                    if(data.success == 1)
+                    {
+                        var cbContratos = $('#contrato_id option:selected');
+
+                        $(contrat).html($(cbContratos).text());
+                        $(contrat).closest('.table-responsive').find('.change').data('contrato-id',$(cbContratos).val());
+                        $(contrat).closest('.table-responsive').find('.change').data('contrato',$(cbContratos).text());
+
+                        $(contrat).closest('.table-responsive').append(alerta);
+                    }
+                    else
+                    {
+                        $(contrat).closest('.table-responsive').append(alerta);
+                    }
+
+                    $('#modalCambiarContratoShow').modal('hide');
+                }
+            });
         });
 
     });
 
     $(document).on('click','*[data-update="contrato"]',function(e){
         e.preventDefault();
-
-        var btn = $(this);
-
-
         $('#formUpdateContrato').submit();
 
     });
