@@ -163,6 +163,10 @@ return [
         * File manager
         */
         'Pqb\FilemanagerLaravel\FilemanagerLaravelServiceProvider',
+        /*
+         * Minify
+         * */
+        'Devfactory\Minify\MinifyServiceProvider',
 
 	],
 
@@ -222,6 +226,10 @@ return [
          * File Manager
          * */
         'FilemanagerLaravel'=> 'Pqb\FilemanagerLaravel\Facades\FilemanagerLaravel',
+        /*
+         * Minify
+         * */
+        'Minify'        => 'Devfactory\Minify\Facades\MinifyFacade',
 
 	],
 

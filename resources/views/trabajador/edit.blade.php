@@ -219,7 +219,7 @@
 <script src="/js/jquery.mask.min.js"></script>
 <script src="/js/formvalidation/formValidation.min.js"></script>
 <script src="/js/formvalidation/framework/bootstrap.min.js"></script>
-<script type="text/javascript" src="/js/formvalidation/language/es_ES.js"></script>
-<script src="/js/app/trabajador.edit.js"></script>
+{!! Minify::javascript('/js/formvalidation/language/es_ES.js') !!}
+{!! Minify::javascript('/js/app/trabajador.edit.js') !!}
 
 @endsection
