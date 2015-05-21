@@ -6,6 +6,7 @@ $(function(){
         size: 7
     });
 
+
     $(document).on('focus','*[data-toggle="date"]', function(event) {
         event.preventDefault();
 
@@ -119,6 +120,59 @@ $(function(){
                 });
                 console.log("success");
             });
+    });
+
+    $(document).on('shown.bs.modal','#modalCambiarContratoShow',function(){
+
+        $('select').selectpicker({
+            size: 7
+        });
+
+        $('*[data-toggle="date"]').mask("0000-00-00", {placeholder: "yyyy-m-d"});
+
+        $('#formUpdateContrato').formValidation({
+            framework: 'bootstrap',
+            icon: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+                fecFinActual: {
+                    validators: {
+                        notEmpty: {
+                            message: 'La fecha de fin de proyecto actual es requerida'
+                        },
+                        date: {
+                            format: 'YYYY-MM-DD',
+                            message: 'Ingresa una fecha válida.'
+                        }
+                    }
+                },
+                fecIniCambio: {
+                    validators: {
+                        notEmpty: {
+                            message: 'La fecha de inicio en el nuevo contrato requerida'
+                        },
+                        date: {
+                            format: 'YYYY-MM-DD',
+                            message: 'Ingresa una fecha válida.'
+                        }
+                    }
+                }
+            }
+        });
+
+    });
+
+    $(document).on('click','*[data-update="contrato"]',function(e){
+        e.preventDefault();
+
+        var btn = $(this);
+
+
+        $('#formUpdateContrato').submit();
+
     });
 
 });

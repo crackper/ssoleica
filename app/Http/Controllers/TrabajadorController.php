@@ -333,7 +333,8 @@ class TrabajadorController extends Controller
                         ->whereNotIn('id',array($data['contratoId']))
                         ->lists('nombre_contrato','id');
 
-
+        $data['existContratos'] = count($data['contratos']) > 0 ? true : false;
+        
         return view('trabajador.cambiarContrato')->with('data',$data);
     }
 

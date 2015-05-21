@@ -201,6 +201,15 @@
 
 @section('styles')
     <link rel="stylesheet" href="/css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="/css/formValidation.min.css">
+<style type="text/css">
+.has-error .form-control-feedback {
+    color: #E74C3C;
+}
+.has-success .form-control-feedback {
+    color: #18BCA0;
+}
+</style>
 @endsection
 
 @section('scripts')
@@ -208,6 +217,9 @@
     {!! Rapyd::head() !!}
 <script src="/js/bootstrap-select.min.js"></script>
 <script src="/js/jquery.mask.min.js"></script>
+<script src="/js/formvalidation/formValidation.min.js"></script>
+<script src="/js/formvalidation/framework/bootstrap.min.js"></script>
+<script type="text/javascript" src="/js/formvalidation/language/es_ES.js"></script>
 <script src="/js/app/trabajador.edit.js"></script>
 
 @endsection
