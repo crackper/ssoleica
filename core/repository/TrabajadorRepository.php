@@ -10,6 +10,7 @@ namespace SSOLeica\Core\Repository;
 
 
 use Illuminate\Support\Facades\DB;
+use SSOLeica\Core\Model\ShiftContratoTrabajador;
 use SSOLeica\Core\Model\Trabajador;
 use SSOLeica\Core\Data\Repository;
 use SSOLeica\Core\Model\TrabajadorContrato;
@@ -71,7 +72,30 @@ class TrabajadorRepository extends Repository {
         }
         else
         {
+            $old_contrato = $contrato->first();
+
             $success = $contrato->update($data);
+
+            $shift_contato = ShiftContratoTrabajador::where('trabajador_contrato_id','=',$old_contrato->id)
+                            ->where('trabajador_id','=',$old_contrato->trabajador_id)
+                            ->where('contrato_id','=',$old_contrato->contrato_id);
+
+            $shift_contato->update(array('fecha_fin' => $fechaFin));
+
+
+            $new_shift_contato = new ShiftContratoTrabajador;
+            $new_shift_contato->trabajador_contrato_id = $old_contrato->id;
+            $new_shift_contato->trabajador_id = $old_contrato->trabajador_id;
+            $new_shift_contato->contrato_id = $data['contrato_id'];
+            $new_shift_contato->fecha_inicio = $data['fecha_inicio'];
+            $new_shift_contato->save();
+
+            /*ShiftContratoTrabajador::create(array(
+                'trabajador_contrato_id' => $old_contrato->id,
+                'trabajador_id' => $old_contrato->trabajador_id,
+                'contrato_id' => $data['contrato_id'],
+                'fecha_inicio' => $data['fecha_inicio']
+            ));*/
         }
 
         return $success;

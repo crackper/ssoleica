@@ -209,7 +209,6 @@ $(function(){
     $(document).on('click','*[data-update="contrato"]',function(e){
         e.preventDefault();
         $('#formUpdateContrato').submit();
-
     });
 
 });
