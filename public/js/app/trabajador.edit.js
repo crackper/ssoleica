@@ -2,6 +2,7 @@
  * Created by Samuel on 19/05/15.
  */
 $(function(){
+
     $('select').selectpicker({
         size: 7
     });
@@ -27,7 +28,7 @@ $(function(){
         e.preventDefault();
 
         $.ajax({
-            url: '/trabajador/proyectos/1',
+            url: $('#tabTrabajador').data('url'),
             type: 'GET'
         })
             .done(function(data) {
@@ -209,6 +210,167 @@ $(function(){
     $(document).on('click','*[data-update="contrato"]',function(e){
         e.preventDefault();
         $('#formUpdateContrato').submit();
+    });
+
+    $(document).on('click','#asignarContrato',function(e){
+        e.preventDefault();
+        var btn = $(this);
+        var trabajadorId = $(btn).data('trabajador-id');
+
+        $.ajax({
+            url: '/trabajador/asignarcontrato/' + trabajadorId,
+            type: 'GET'
+        })
+            .done(function(data) {
+                $('#modalView').append(data);
+                $('#modalAsignarContratoShow').modal('show');
+                $('#modalAsignarContratoShow').on('hidden.bs.modal', function (e) {
+                    $(this).remove();
+                });
+                console.log("success");
+            });
+    });
+
+    $(document).on('shown.bs.modal','#modalAsignarContratoShow',function(){
+
+        $('#btnAsignarContrato').hide();
+
+       $('select').selectpicker({
+            size: 7
+        });
+
+        $('*[data-toggle="date"]').mask("0000-00-00", {placeholder: "yyyy-m-d"});
+
+        $("#proyecto_id").change(function() {
+            $.getJSON("/trabajador/contratos/" + $("#proyecto_id").val(), function(data) {
+                $("#contrato_id").empty();
+
+
+                $("#contrato_id").closest('div').find('.alert').remove();
+
+                if(data.length != 0 )
+                {
+                    $.each(data, function(index, value) {
+                        $("#contrato_id").append('<option value="'+index+'">' +value+'</option>');
+                    });
+
+                    $("#contrato_id").trigger("change");
+                    $('#btnAsignarContrato').show();
+                }
+                else{
+                    $('#btnAsignarContrato').hide();
+
+                    var alerta = '<div class="alert alert-danger alert-dismissable">';
+                    alerta += '<button type="button" class="close" data-dismiss="alert">&times;</button>';
+                    alerta += 'No hay contratos disponibles en este proyecto';
+                    alerta += '</div>';
+
+                    $("#contrato_id").closest('div').append(alerta);
+                }
+
+                $("#contrato_id").selectpicker('refresh');
+
+
+            });
+        });
+
+        $('#formAsignarContrato').formValidation({
+            framework: 'bootstrap',
+            icon: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+                proyecto_id: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Seleccione un Proyecto'
+                        }
+                    }
+                },
+                contrato_id: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Seleccione un contrato'
+                        }
+                    }
+                },
+                fecInicio: {
+                    validators: {
+                        notEmpty: {
+                            message: 'La fecha de inicio en el contrato requerida'
+                        },
+                        date: {
+                            format: 'YYYY-MM-DD',
+                            message: 'Ingresa una fecha válida.'
+                        }
+                    }
+                },
+                fecVencimiento: {
+                    validators: {
+                        notEmpty: {
+                            message: 'La fecha de Vencimiento del Fotocheck es requerida'
+                        },
+                        date: {
+                            format: 'YYYY-MM-DD',
+                            message: 'Ingresa una fecha válida.'
+                        }
+                    }
+                },
+                nroFotocheck: {
+                    validators: {
+                        notEmpty: {
+                            message: 'El Nro de Fotocheck es requerido'
+                        },
+                        stringLength: {
+                            min: 8,
+                            message: 'Nro de Fotocheck debe tener 8 caracteres como mínimo'
+                        }
+                    }
+                }
+            }
+        }).on('success.form.fv', function(e) {
+            e.preventDefault();
+
+            var $form = $(e.target),
+                fv    = $(e.target).data('formValidation');
+
+            $.ajax({
+                url: $form.attr('action'),
+                type: 'POST',
+                data: $form.serialize(),
+                success: function(data) {
+
+                    var style = data.success ? 'info':'danger';
+
+                    var alerta = '<div class="alert alert-'+ style +' alert-dismissable">';
+                    alerta += '<button type="button" class="close" data-dismiss="alert">&times;</button>';
+                    alerta += data.data;
+                    alerta += '</div>';
+
+                    $("#btnAsignarContrato").closest('div').find('.alert').remove();
+
+                    if(data.success == true)
+                    {
+                        $('#tabTrabajador a[href="#contrato"]').trigger('click');
+                    }
+                    else
+                    {
+                        $("#btnAsignarContrato").closest('div').append(alerta);
+                    }
+
+                    $('#modalAsignarContratoShow').modal('hide');
+                    alert(data.data);
+
+                }
+            });
+        });
+    });
+
+    $(document).on('click','#btnAsignarContrato',function(e){
+        e.preventDefault();
+        $('#formAsignarContrato').submit();
     });
 
 });

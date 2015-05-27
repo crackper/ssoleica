@@ -6,7 +6,6 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Session;
 use SSOLeica\Core\Model\Contrato;
-use SSOLeica\Core\Model\TrabajadorContrato;
 use SSOLeica\Core\Repository\ContratoRepository;
 use SSOLeica\Core\Repository\OperacionRepository;
 use SSOLeica\Core\Repository\TrabajadorRepository;
@@ -51,20 +50,36 @@ class TrabajadorController extends Controller
      * @var Trabajador
      */
     private $trabajadorRepository;
+    /**
+     * @var ContratoRepository
+     */
+    private $contratoRepository;
+    /**
+     * @var OperacionRepository
+     */
+    private $operacionRepository;
 
 
     /**
      * @param Trabajador $trabajador
      * @param EnumTables $enum_tables
      * @param Trabajador $trabajadorRepository
+     * @param ContratoRepository $contratoRepository
+     * @param OperacionRepository $operacionRepository
      */
-    public function __construct(Trabajador $trabajador, EnumTables $enum_tables, TrabajadorRepository $trabajadorRepository)
+    public function __construct(Trabajador $trabajador,
+                                EnumTables $enum_tables,
+                                TrabajadorRepository $trabajadorRepository,
+                                ContratoRepository $contratoRepository,
+                                OperacionRepository $operacionRepository)
     {
         $this->middleware('workspace');
 
         $this->trabajador = $trabajador;
         $this->enum_tables = $enum_tables;
         $this->trabajadorRepository = $trabajadorRepository;
+        $this->contratoRepository = $contratoRepository;
+        $this->operacionRepository = $operacionRepository;
     }
 
     /**
@@ -238,12 +253,10 @@ class TrabajadorController extends Controller
     {
         $data = $this->trabajadorRepository->getContratos($id);
 
-        return view('trabajador.proyectos')->with('data', $data);
+        return view('trabajador.proyectos')->with('data', $data)->with('trabajador_id',$id);
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
      * @param  int $id
      * @return Response
      */
@@ -297,9 +310,12 @@ class TrabajadorController extends Controller
 
         $edit->built();
 
-        return $edit->view('trabajador.edit', compact('edit'));
+        return $edit->view('trabajador.edit', compact('edit','id'));
     }
 
+    /**
+     * @return json
+     */
     public function postUpdatefecha()
     {
         $contrato_id = Input::get('contrato');
@@ -311,7 +327,7 @@ class TrabajadorController extends Controller
 
         $success = $this->trabajadorRepository->updateContrato($contrato_id,$changeContrato);
 
-        $data = $success == 1 ? "La fecha de vencimiento se actualizó satisfactoriamente." : "Error: No se puedo actualizar";
+        $data = $success == 1 ? "La fecha de vencimiento se actualizó satisfactoriamente." : "Error: No se pudo actualizar";
 
         return Response::json(array(
             'success' => $success,
@@ -319,25 +335,28 @@ class TrabajadorController extends Controller
         ));
     }
 
+    /**
+     * @return response
+     */
     public function postCambiarcontrato()
     {
-        $now = Carbon::now();
-
         $data['proyecto']           =   Input::get('proyecto');
         $data['contrato']           =   Input::get('contrato');
         $data['proyectoId']         =   Input::get('proyectoId');
         $data['contratoId']         =   Input::get('contratoId');
         $data['contratoTrabajador'] =   Input::get('contratoTrabajador');
 
-        $data['contratos'] = Contrato::where('operacion_Id','=',$data['proyectoId'])
-                        ->whereNotIn('id',array($data['contratoId']))
-                        ->lists('nombre_contrato','id');
+        $data['contratos'] = $this->contratoRepository->getContratosDisponibles($data['proyectoId'], $data['contratoId']);
 
         $data['existContratos'] = count($data['contratos']) > 0 ? true : false;
         
         return view('trabajador.cambiarContrato')->with('data',$data);
     }
 
+    /**
+     * @param $id
+     * @return json
+     */
     public function postSavecontratotrabajador($id)
     {
         $fechaFin = Input::get('fecFinActual');
@@ -354,6 +373,45 @@ class TrabajadorController extends Controller
         ));
     }
 
+    public function getAsignarcontrato($id)
+    {
+        $operaciones = $this->operacionRepository->getOperacionesDiponiblesByTrabajador($id);
+
+        $query = array('' => '[-- Seleccione un proyecto--]') + $operaciones;
+
+        $data['proyectos'] = $query;
+        $data['trabajador_id'] = $id;
+
+        return view('trabajador.asignarContrato')->with('data',$data);
+    }
+
+    public function postAsignarcontrato($id)
+    {
+        $data['trabajador_id'] = $id;
+        $data['contrato_id'] = Input::get('contrato_id');
+        $data['fecha_inicio'] = Input::get('fecInicio');
+        $data['nro_fotocheck'] = Input::get('nroFotocheck');
+        $data['fecha_vencimiento'] = Input::get('fecVencimiento');
+
+        $success = $this-> contratoRepository->registarContratoTrabajador($data);
+
+        $data = $success ? "La informacion de guardo correctamente." : "Error: No se pudo guardar la información";
+
+        return Response::json(array(
+            'success' => $success,
+            'data'   => $data
+        ));
+
+    }
+
+    public function getContratos($id = 0)
+    {
+        $query = Contrato::where('operacion_id','=',$id)->lists('nombre_contrato','id');
+
+
+        return Response::json($query);
+    }
+
     /**
      * @param $id
      */
@@ -361,8 +419,6 @@ class TrabajadorController extends Controller
     {
         dd($id);
     }
-
-
 
 
 }

@@ -60,7 +60,7 @@ class TrabajadorRepository extends Repository {
     /**
      * @param $trabajador_id
      * @param $contrato_id
-     * @return mixed
+     * @return bool
      */
     public  function updateContrato($contrato_id,$data = array(),$fechaFin = null)
     {
@@ -90,12 +90,6 @@ class TrabajadorRepository extends Repository {
             $new_shift_contato->fecha_inicio = $data['fecha_inicio'];
             $new_shift_contato->save();
 
-            /*ShiftContratoTrabajador::create(array(
-                'trabajador_contrato_id' => $old_contrato->id,
-                'trabajador_id' => $old_contrato->trabajador_id,
-                'contrato_id' => $data['contrato_id'],
-                'fecha_inicio' => $data['fecha_inicio']
-            ));*/
         }
 
         return $success;

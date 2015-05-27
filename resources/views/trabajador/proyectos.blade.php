@@ -1,6 +1,6 @@
  <div class="row">
     <div class="col-md-12">
-         <button type="button" class="btn btn-warning btn-sm">
+         <button id="asignarContrato" data-trabajador-id="{!! $trabajador_id !!}"  type="button" class="btn btn-warning btn-sm">
             <span class="glyphicon glyphicon-link"></span>
             Asignar a nuevo Proyecto
          </button>

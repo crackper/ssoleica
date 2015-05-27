@@ -4,7 +4,7 @@
 
 <h3>Información del Trabajador</h3>
 {!! $edit->message !!}
-<div id="tabTrabajador" role="tabpanel">
+<div id="tabTrabajador" role="tabpanel" data-url="/trabajador/proyectos/{!! $id !!}">
 
   <!-- Nav tabs -->
   <ul class="nav nav-tabs" role="tablist">

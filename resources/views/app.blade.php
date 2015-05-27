@@ -11,8 +11,8 @@
 
     {!! Minify::stylesheet('/css/hexagon.theme.css') !!}
     <link rel="stylesheet" href="/css/hexagon.min.css"/>
-    <!--link href="http://fonts.googleapis.com/css?family=Bitter" rel="stylesheet" type="text/css" /-->
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <!--link href="http://fonts.googleapis.com/css?family=Bitter" rel="stylesheet" type="text/css">
+    <!--link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet"-->
 
 	@yield('styles')
 	<!-- Fonts -->
