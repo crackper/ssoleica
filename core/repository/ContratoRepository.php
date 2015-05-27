@@ -72,21 +72,35 @@ class ContratoRepository extends Repository {
      */
     public function registarContratoTrabajador($data)
     {
-        $trabajador_contrato = new TrabajadorContrato;
-        $trabajador_contrato->trabajador_id = $data['trabajador_id'];
-        $trabajador_contrato->contrato_id = $data['contrato_id'];
-        $trabajador_contrato->fecha_inicio = $data['fecha_inicio'];
-        $trabajador_contrato->nro_fotocheck = $data['nro_fotocheck'];
-        $trabajador_contrato->fecha_vencimiento = $data['fecha_vencimiento'];
-        $trabajador_contrato->is_activo = 1;
-        $success = $trabajador_contrato->save();
+        $success = 0;
 
-        $shift_contato = new ShiftContratoTrabajador;
-        $shift_contato->trabajador_contrato_id = $trabajador_contrato->id;
-        $shift_contato->trabajador_id = $data['trabajador_id'];
-        $shift_contato->contrato_id = $data['contrato_id'];
-        $shift_contato->fecha_inicio = $data['fecha_inicio'];
-        $shift_contato->save();
+        try{
+            DB::connection()->getPdo()->beginTransaction();
+
+            $trabajador_contrato = new TrabajadorContrato;
+            $trabajador_contrato->trabajador_id = $data['trabajador_id'];
+            $trabajador_contrato->contrato_id = $data['contrato_id'];
+            $trabajador_contrato->fecha_inicio = $data['fecha_inicio'];
+            $trabajador_contrato->nro_fotocheck = $data['nro_fotocheck'];
+            $trabajador_contrato->fecha_vencimiento = $data['fecha_vencimiento'];
+            $trabajador_contrato->is_activo = 1;
+            $success = $trabajador_contrato->save();
+
+            $shift_contato = new ShiftContratoTrabajador;
+            $shift_contato->trabajador_contrato_id = $trabajador_contrato->id;
+            $shift_contato->trabajador_id = $data['trabajador_id'];
+            $shift_contato->contrato_id = $data['contrato_id'];
+            $shift_contato->fecha_inicio = $data['fecha_inicio'];
+            $shift_contato->save();
+
+            DB::connection()->getPdo()->commit();
+        }
+        catch(\PDOException $ex){
+            $success = 0;
+            DB::connection()->getPdo()->rollback();
+            Log::error('Error en ContratoRepository->registarContratoTrabajador(): '.$ex);
+        }
+
 
         return $success;
     }

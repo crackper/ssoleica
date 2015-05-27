@@ -10,6 +10,7 @@ namespace SSOLeica\Core\Repository;
 
 
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use SSOLeica\Core\Model\ShiftContratoTrabajador;
 use SSOLeica\Core\Model\Trabajador;
 use SSOLeica\Core\Data\Repository;
@@ -64,32 +65,45 @@ class TrabajadorRepository extends Repository {
      */
     public  function updateContrato($contrato_id,$data = array(),$fechaFin = null)
     {
-        $contrato = TrabajadorContrato::where('id','=',$contrato_id);
+        $success = 0;
 
-        if(!$fechaFin)
-        {
-            $success = $contrato->update($data);
+        try{
+            DB::connection()->getPdo()->beginTransaction();
+
+            $contrato = TrabajadorContrato::where('id','=',$contrato_id);
+
+            if(!$fechaFin)
+            {
+                $success = $contrato->update($data);
+            }
+            else
+            {
+                $old_contrato = $contrato->first();
+
+                $success = $contrato->update($data);
+
+                $shift_contato = ShiftContratoTrabajador::where('trabajador_contrato_id','=',$old_contrato->id)
+                    ->where('trabajador_id','=',$old_contrato->trabajador_id)
+                    ->where('contrato_id','=',$old_contrato->contrato_id);
+
+                $shift_contato->update(array('fecha_fin' => $fechaFin));
+
+                $new_shift_contato = new ShiftContratoTrabajador;
+                $new_shift_contato->trabajador_contrato_id = $old_contrato->id;
+                $new_shift_contato->trabajador_id = $old_contrato->trabajador_id;
+                $new_shift_contato->contrato_id = $data['contrato_id'];
+                $new_shift_contato->fecha_inicio = $data['fecha_inicio'];
+                $new_shift_contato->save();
+
+            }
+
+            DB::connection()->getPdo()->commit();
         }
-        else
+        catch(\PDOException $ex)
         {
-            $old_contrato = $contrato->first();
-
-            $success = $contrato->update($data);
-
-            $shift_contato = ShiftContratoTrabajador::where('trabajador_contrato_id','=',$old_contrato->id)
-                            ->where('trabajador_id','=',$old_contrato->trabajador_id)
-                            ->where('contrato_id','=',$old_contrato->contrato_id);
-
-            $shift_contato->update(array('fecha_fin' => $fechaFin));
-
-
-            $new_shift_contato = new ShiftContratoTrabajador;
-            $new_shift_contato->trabajador_contrato_id = $old_contrato->id;
-            $new_shift_contato->trabajador_id = $old_contrato->trabajador_id;
-            $new_shift_contato->contrato_id = $data['contrato_id'];
-            $new_shift_contato->fecha_inicio = $data['fecha_inicio'];
-            $new_shift_contato->save();
-
+            $success = 0;
+            DB::connection()->getPdo()->rollback();
+            Log::error('Error en TrabajadorRepository->updateContrato(): '.$ex);
         }
 
         return $success;
