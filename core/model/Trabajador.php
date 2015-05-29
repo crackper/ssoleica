@@ -22,10 +22,10 @@ class Trabajador extends Model {
         return $this->hasMany('SSOLeica\Core\Model\TrabajadorOperacion');//,$foreingKey='id',$localKey='trabajador_id');
     }
 
-    public function examenes_medicos()
+    /*public function examenes_medicos()
     {
         return $this->hasMany('SSOLeica\Core\Model\TrabajadorOperacionExamMedico');
-    }
+    }*/
 
     public function profesion()
     {

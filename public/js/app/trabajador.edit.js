@@ -373,4 +373,35 @@ $(function(){
         $('#formAsignarContrato').submit();
     });
 
+    $('#examenesMedicos').click(function (e) {
+        e.preventDefault();
+
+        var link = $(this);
+        var ul = $(link).closest('.dropdown').find('ul');
+        var trabajador_id = $(link).data('trabajador');
+
+        $(ul).empty();
+
+        $.getJSON($(link).data('url'), function(data) {
+
+            $.each(data, function(index, value){
+                var item = '<li><a href="#examenes" data-examen="true" data-url="/trabajador/examenesmedicos/' + trabajador_id +'/' + index + '/' + value +'" tabindex="-1" role="tab" data-toggle="tab" aria-controls="dropdown1">' + value + '</a></li>';
+                $(ul).append(item);
+            });
+        });
+    });
+
+    $(document).on('click','*[data-examen="true"]',function(){
+        var link = this;
+
+        $.ajax({
+            url: $(link).data('url'),
+            type: 'GET',
+            success: function(data){
+                $('#examenes').html(data);
+            }
+        })
+
+    });
+
 });

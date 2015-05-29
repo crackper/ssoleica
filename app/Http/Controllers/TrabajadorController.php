@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Session;
 use SSOLeica\Core\Model\Contrato;
+use SSOLeica\Core\Model\TrabajadorVencimiento;
 use SSOLeica\Core\Repository\ContratoRepository;
 use SSOLeica\Core\Repository\OperacionRepository;
 use SSOLeica\Core\Repository\TrabajadorRepository;
@@ -407,9 +408,30 @@ class TrabajadorController extends Controller
     public function getContratos($id = 0)
     {
         $query = Contrato::where('operacion_id','=',$id)->lists('nombre_contrato','id');
-
-
         return Response::json($query);
+    }
+
+    public function getProyectostrabajador($trabajador_id)
+    {
+        $data = $this->operacionRepository->getListsOperacionesByTrabajador($trabajador_id);
+
+        return Response::json($data);
+    }
+
+    public  function getExamenesmedicos($trabajador_id, $operacion_id,$proyecto)
+    {
+
+        $query = TrabajadorVencimiento::join('enum_tables','enum_tables.id','=','trabajador_vencimiento.vencimiento_id')
+                    ->where('trabajador_vencimiento.trabajador_id','=',$trabajador_id)
+                    ->where('trabajador_vencimiento.operacion_id','=',$operacion_id)
+                    ->where('enum_tables.type','=','ExamenMedico')
+                    ->select('trabajador_vencimiento.*')
+                    ->addSelect('enum_tables.name as examen_medico')
+                    ->get();
+
+        //dd($query);
+
+        return view('trabajador.examenes')->with('data',$query)->with('proyecto',$proyecto);
     }
 
     /**

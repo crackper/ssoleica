@@ -64,4 +64,16 @@ class OperacionRepository extends Repository {
 
         return $query;
     }
+
+    public function getListsOperacionesByTrabajador($trabajador_id)
+    {
+        $query = Operacion::join('contrato', 'contrato.operacion_id', '=', 'operacion.id')
+            ->join('trabajador_contrato', 'trabajador_contrato.contrato_id', '=', 'contrato.id')
+            ->select('operacion.id')
+            ->addSelect('operacion.nombre_operacion')
+            ->where('trabajador_contrato.trabajador_id', '=', $trabajador_id)
+            ->lists('nombre_operacion','id');
+
+        return $query;
+    }
 }

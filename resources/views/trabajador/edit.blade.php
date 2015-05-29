@@ -11,7 +11,13 @@
     <li role="presentation" class="active"><a href="#general" aria-controls="general" role="tab" data-toggle="tab">Información General</a></li>
     <li role="presentation"><a href="#adicional" aria-controls="adicional" role="tab" data-toggle="tab">Información Adicional</a></li>
     <li role="presentation"><a href="#contrato" aria-controls="contrato" role="tab" data-toggle="tab">Operación/Contrato</a></li>
-    <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Settings</a></li>
+    <li role="presentation" class="dropdown">
+        <a aria-expanded="false" href="#" id="examenesMedicos" data-url="/trabajador/proyectostrabajador/{!! $id !!}"  data-trabajador="{!! $id !!}" class="dropdown-toggle" data-toggle="dropdown" aria-controls="myTabDrop1-contents">Exámenes Medicos <span class="caret"></span></a>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="myTabDrop1" id="myTabDrop1-contents">
+        </ul>
+      </li>
+    <li role="presentation"><a href="#documentos" aria-controls="documentos" role="tab" data-toggle="tab">Otros Documentos</a></li>
+
   </ul>
 {!! $edit->header !!}
   <!-- Tab panes -->
@@ -191,7 +197,8 @@
         </div>
     </div>
     <div role="tabpanel" class="tab-pane fade" id="contrato">...</div>
-    <div role="tabpanel" class="tab-pane fade" id="settings">...</div>
+    <div role="tabpanel" class="tab-pane fade" id="examenes"><h1>Examenes Medicos</h1></div>
+    <div role="tabpanel" class="tab-pane fade" id="documentos">...</div>
   </div>
 {!! $edit->footer !!}
 </div>

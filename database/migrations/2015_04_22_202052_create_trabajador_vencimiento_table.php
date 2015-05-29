@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTrabajadorOperacionExamMedicosTable extends Migration {
+class CreateTrabajadorVencimientoTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,15 +12,17 @@ class CreateTrabajadorOperacionExamMedicosTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('trabajador_operacion_exam_medico', function(Blueprint $table)
+		Schema::create('trabajador_vencimiento', function(Blueprint $table)
 		{
             //$table->primary(array('trabajador_id','operacion_id','exam_medico_id'));
+            $table->increments('id');
             $table->integer('trabajador_id')->unsigned();
             $table->foreign('trabajador_id')->references('id')->on('trabajador');
-            $table->integer('operacion_id')->unsigned();
+            $table->integer('operacion_id')->nullable()->unsigned();
             $table->foreign('operacion_id')->references('id')->on('operacion');
-            $table->integer('exam_medico_id')->unsigned();
-            $table->foreign('exam_medico_id')->references('id')->on('enum_tables');
+            $table->integer('vencimiento_id')->unsigned();
+            $table->foreign('vencimiento_id')->references('id')->on('enum_tables');
+            $table->string('type',50);
             $table->boolean('caduca')->default(true);
             $table->date('fecha_vencimiento');
             $table->longText('observaciones')->nullable();
@@ -39,7 +41,7 @@ class CreateTrabajadorOperacionExamMedicosTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('trabajador_operacion_exam_medico');
+		Schema::drop('trabajador_vencimiento');
 	}
 
 }
