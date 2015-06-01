@@ -404,4 +404,55 @@ $(function(){
 
     });
 
+    $(document).on('click','button.update-examen', function () {
+        var btn = $(this);
+        var examen = $(btn).data('examen');
+        var tr = $(btn).closest('tr');
+        var fecha = $(tr).find('td').eq(2).find('input').val();
+        var caduca = $(tr).find('td').eq(3).find('input[type=checkbox]').is(":checked") ? 1 : 0;
+        var obs = $(tr).find('td').eq(4).find('input').val();
+        var token = $('input[name = _token]').val();
+
+        if(fecha == '')
+        {
+            var alerta = '<div class="alert alert-danger alert-dismissable">';
+            alerta += '<button type="button" class="close" data-dismiss="alert">&times;</button>';
+            alerta += 'Ingresa una fecha valida';
+            alerta += '</div>';
+
+            $(tr).find('td').eq('1').append(alerta);
+            $(tr).find('td').eq('2').find('input.date').closest('div').addClass('has-error');
+
+            return;
+        }
+        else
+        {
+            $(tr).find('td').eq('1').find('.alert').remove();
+            $(tr).find('td').eq('2').find('input.date').closest('div').removeClass('has-error');
+        }
+
+       $.ajax({
+            url: '/trabajador/updateexamen',
+            type: 'POST',
+            dataType: 'json',
+            data: {'examen': examen, 'fecha': fecha, 'obs': obs,'caduca':caduca,'_token': token},
+            beforeSend: function(xhr){
+                $(btn).button('loading');
+            },
+            success :function(data) {
+
+                var style = data.success == 1 ? 'info':'danger';
+
+                var alerta = '<div class="alert alert-'+ style +' alert-dismissable">';
+                alerta += '<button type="button" class="close" data-dismiss="alert">&times;</button>';
+                alerta += data.data;
+                alerta += '</div>';
+
+                $(tr).find('td').eq('1').append(alerta);
+
+                $(btn).button('reset');
+            }
+        });
+    });
+
 });

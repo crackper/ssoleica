@@ -31,8 +31,11 @@
                     <tr>
                         <td class="text-center">{!! $key+1 !!}</td>
                         <td>{!! $row->examen_medico !!}</td>
-                        <td class="text-center"><input type="text" value="{!!$row->fecha_vencimiento !!}" data-toggle="date" class="form-control input-sm date" style="width: 7em;" /></td>
-                        <td class="text-center">{!! Form::checkbox('name', 'value', $row->caduca,array('class'=>'form-control input-sm checkbox')); !!}</td>
+                        <td class="text-center">
+                        <div>
+                            <input type="text" value="{!!$row->fecha_vencimiento !!}" data-toggle="date" class="form-control input-sm date" style="width: 7em;" /></td>
+                        </div>
+                        <td class="text-center">{!! Form::checkbox('name', $row->caduca,array('class'=>'form-control input-sm checkbox')); !!}</td>
                         <td><input type="text" class="form-control input-sm obs" value="{!! $row->observaciones !!}"></td>
                         <td>
                             <button type="button" class="btn btn-danger btn-sm update-examen" data-loading-text="Actualizando..."  data-examen="{!! $row->id !!}" >

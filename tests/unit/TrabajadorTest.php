@@ -1,6 +1,5 @@
 <?php
 
-
 class TrabajadorTest extends \Codeception\TestCase\Test
 {
     /**

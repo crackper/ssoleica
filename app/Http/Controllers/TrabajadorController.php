@@ -405,6 +405,7 @@ class TrabajadorController extends Controller
 
     }
 
+    //refactorizar
     public function getContratos($id = 0)
     {
         $query = Contrato::where('operacion_id','=',$id)->lists('nombre_contrato','id');
@@ -432,6 +433,27 @@ class TrabajadorController extends Controller
         //dd($query);
 
         return view('trabajador.examenes')->with('data',$query)->with('proyecto',$proyecto);
+    }
+    public function postUpdateexamen()
+    {
+        $data['vencimiento_id'] = Input::get('examen');
+        $data['fecha']= Input::get('fecha');
+        $data['caduca']= Input::get('caduca');
+        $data['obs']= Input::get('obs');
+
+        $examen = TrabajadorVencimiento::find($data['vencimiento_id']);
+
+        $examen->fecha_vencimiento = $data['fecha'];
+        $examen->caduca = $data['caduca'];
+        $examen->observaciones = $data['obs'];
+        $success = $examen->save();
+
+        $success = $success ? 1 : 0;
+
+        return Response::json(array(
+            'success' => $success,
+            'data'   => 'La fecha de vencimiento se actualizó correctamente'
+        ));
     }
 
     /**
