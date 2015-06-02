@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Session;
 use SSOLeica\Core\Model\Contrato;
+use SSOLeica\Core\Model\EnumCategories;
 use SSOLeica\Core\Model\TrabajadorVencimiento;
 use SSOLeica\Core\Repository\ContratoRepository;
 use SSOLeica\Core\Repository\OperacionRepository;
@@ -15,7 +16,7 @@ use Nayjest\Grids\EloquentDataProvider;
 use Nayjest\Grids\Grid;
 use Nayjest\Grids\GridConfig;
 use SSOLeica\Core\Repository\TrabajadorRepository as Trabajador;
-use SSOLeica\Core\Repository\EnumTablesRepository as EnumTables;
+use SSOLeica\Core\Repository\EnumTablesRepository;
 use HTML;
 use Nayjest\Grids\FieldConfig;
 use Nayjest\Grids\FilterConfig;
@@ -59,17 +60,22 @@ class TrabajadorController extends Controller
      * @var OperacionRepository
      */
     private $operacionRepository;
+    /**
+     * @var EnumTablesRepository
+     */
+    private $enumTablesRepository;
 
 
     /**
      * @param Trabajador $trabajador
-     * @param EnumTables $enum_tables
+     * @param EnumTablesRepository $enumTablesRepository
      * @param Trabajador $trabajadorRepository
      * @param ContratoRepository $contratoRepository
      * @param OperacionRepository $operacionRepository
+     * @internal param EnumTables $enum_tables
      */
     public function __construct(Trabajador $trabajador,
-                                EnumTables $enum_tables,
+                                EnumTablesRepository $enumTablesRepository,
                                 TrabajadorRepository $trabajadorRepository,
                                 ContratoRepository $contratoRepository,
                                 OperacionRepository $operacionRepository)
@@ -77,10 +83,10 @@ class TrabajadorController extends Controller
         $this->middleware('workspace');
 
         $this->trabajador = $trabajador;
-        $this->enum_tables = $enum_tables;
         $this->trabajadorRepository = $trabajadorRepository;
         $this->contratoRepository = $contratoRepository;
         $this->operacionRepository = $operacionRepository;
+        $this->enumTablesRepository = $enumTablesRepository;
     }
 
     /**
@@ -94,7 +100,7 @@ class TrabajadorController extends Controller
         //dd($query->get());
         $cargos = array();
 
-        foreach ($this->enum_tables->getCargos() as $row) {
+        foreach ($this->enumTablesRepository->getCargos() as $row) {
             $cargos[$row->id] = $row->name;
         }
 
@@ -263,7 +269,7 @@ class TrabajadorController extends Controller
      */
     public function anyEdit($id)
     {
-        $pais = $this->enum_tables->find(Session::get('pais_id'))->load('categorias.categoria');
+        $pais = $this->enumTablesRepository->find(Session::get('pais_id'))->load('categorias.categoria');
 
         $licencias = array();
         $licencias[] = "[- Seleccione -]";
@@ -285,8 +291,8 @@ class TrabajadorController extends Controller
         $edit->add('email', 'E-mail', 'text')->rule('email');
         $edit->add('nro_telefono', 'Nro. Telefono', 'text');
         $edit->add('fecha_ingreso', 'Fecha de Ingreso', 'date')->format('d/m/Y', 'it')->rule('required');
-        $edit->add('profesion_id', 'Profesion', 'select')->options($this->enum_tables->getProfesiones()->lists('name', 'id'));
-        $edit->add('cargo_id', 'Cargo', 'select')->options($this->enum_tables->getCargos()->lists('name', 'id'));
+        $edit->add('profesion_id', 'Profesion', 'select')->options($this->enumTablesRepository->getProfesiones()->lists('name', 'id'));
+        $edit->add('cargo_id', 'Cargo', 'select')->options($this->enumTablesRepository->getCargos()->lists('name', 'id'));
         //informacion adicional
         $edit->add('foto', 'Foto', 'image')->move('uploads/images/')->preview(150, 200);
         $edit->add('grupo_saguineo', 'Grupo Sanquineo', 'select')->options(array('' => '[- Seleccione -]', 'A+' => 'A+', 'A-' => 'A-', 'B+' => 'B+', 'B-' => 'B-', 'AB+' => 'AB+', 'AB-' => 'AB-', 'O+' => 'O+', 'O-' => 'O-'));
@@ -432,7 +438,10 @@ class TrabajadorController extends Controller
 
         //dd($query);
 
-        return view('trabajador.examenes')->with('data',$query)->with('proyecto',$proyecto);
+        return view('trabajador.examenes')->with('data',$query)
+            ->with('proyecto',$proyecto)
+            ->with('trabajador_id',$trabajador_id)
+            ->with('operacion_id',$operacion_id);
     }
     public function postUpdateexamen()
     {
@@ -454,6 +463,20 @@ class TrabajadorController extends Controller
             'success' => $success,
             'data'   => 'La fecha de vencimiento se actualizó correctamente'
         ));
+    }
+
+    public function getAddexamen($trabajador_id, $operacion_id,$proyecto)
+    {
+        $in_examen = TrabajadorVencimiento::where('trabajador_vencimiento.trabajador_id','=',$trabajador_id)
+            ->where('trabajador_vencimiento.operacion_id','=',$operacion_id)
+            ->select('trabajador_vencimiento.vencimiento_id')
+            ->lists('trabajador_vencimiento.vencimiento_id');
+
+        $examenes =  array('' => '[-- Seleccione un Examen --]') + \SSOLeica\Core\Model\EnumTables::where('type','=','ExamenMedico')
+                    ->whereNotIn('id',$in_examen)
+                    ->lists('name','id');
+
+        return view('trabajador.addexamen')->with('examenes',$examenes);
     }
 
     /**

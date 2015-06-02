@@ -1,6 +1,8 @@
  <div class="row">
     <div class="col-md-12">
-         <button id="addExamenMedico"  type="button" class="btn btn-warning btn-sm">
+         <button id="addExamenMedico"  type="button"
+            data-url="/trabajador/addexamen/{!! $trabajador_id!!}/{!! $operacion_id !!}/{!! $proyecto !!}"
+            class="btn btn-warning btn-sm">
             <span class="glyphicon glyphicon-th-list"></span>
             Agregar Examen Médico
          </button>

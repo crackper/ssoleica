@@ -57,7 +57,7 @@
                          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">General <span class="caret"></span></a>
                          <ul class="dropdown-menu" role="menu">
                             <li><a href="#">Registrar Nuevo Trabajador</a></li>
-                            <li>{!! link_to('/trabajador/index','Información de Trabajadores') !!}</li>
+                            <li><a href="/trabajador">Información de Trabajadores</a></li>
                             <!--li class="divider"></li-->
 
                          </ul>
@@ -98,8 +98,9 @@
                             <li><a href="/contrato">Información de Contratos</a></li>
                         </ul>
                     </li>
+                    <li>  {!! link_to('/filemanager/repository','Repositorio') !!}</li>
                     @if (!Auth::guest())
-                    	<li>  {!! link_to('filemanager/repository','Repositorio') !!}</li>
+                        <li>  {!! link_to('filemanager/repository','Repositorio') !!}</li>
                     @endif
 				</ul>
 

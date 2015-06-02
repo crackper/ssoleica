@@ -31,10 +31,12 @@ Route::controller('contrato','ContratoController');
 Route::post('pais/workspace',['as' =>'pais.workspace','uses' =>'PaisController@workspace']);
 Route::resource('pais','PaisController');
 
-Route::group(array('middleware' => 'auth'), function(){
-    Route::get('repositorio', 'FilemanagerLaravelController@getRepository');
-    Route::controller('filemanager', 'FilemanagerLaravelController');
-});
+//Route::group(array('middleware' => 'auth'), function(){
+    Route::get('repository', 'FilemanagerLaravelController@getRepository');
+    Route::get('connectors', 'FilemanagerLaravelController@getConnectors');
+    Route::post('connectors', 'FilemanagerLaravelController@postConnectors');
+    //Route::controller('filemanager', 'FilemanagerLaravelController');
+//});
 
 //filtro para el ajax
 Route::filter('csrf', function() {

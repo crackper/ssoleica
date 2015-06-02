@@ -11,6 +11,7 @@
 <!--[if lte IE 8]>
 <link rel="stylesheet" type="text/css" href="styles/ie8.css" />
 <![endif]-->
+<br/>
 <div>
 <form id="uploader" method="post">
 <input type="hidden" name="_token" value="{{ csrf_token() }}">

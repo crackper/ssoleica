@@ -455,4 +455,20 @@ $(function(){
         });
     });
 
+    $(document).on('click','#addExamenMedico',function(){
+        var link = this;
+
+        $.ajax({
+            url: $(link).data('url'),
+            type: 'GET',
+            success: function(data){
+                $('#modalView').append(data);
+                $('#modalAddExamenShow').modal('show');
+                $('#modalAddExamenShow').on('hidden.bs.modal', function (e) {
+                    $(this).remove();
+                });
+            }
+        })
+    });
+
 });
