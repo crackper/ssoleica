@@ -10,6 +10,7 @@ namespace SSOLeica\Core\Repository;
 
 use SSOLeica\Core\Model\EnumTables;
 use SSOLeica\Core\Data\Repository;
+use SSOLeica\Core\Model\TrabajadorVencimiento;
 
 class EnumTablesRepository extends Repository {
 
@@ -40,6 +41,20 @@ class EnumTablesRepository extends Repository {
     function getProfesiones()
     {
         $query = EnumTables::where('type','=','Profesion')->get();
+
+        return $query;
+    }
+
+    public function getExamenesDisponibles($trabajador_id, $operacion_id)
+    {
+        $in_examen = TrabajadorVencimiento::where('trabajador_vencimiento.trabajador_id','=',$trabajador_id)
+            ->where('trabajador_vencimiento.operacion_id','=',$operacion_id)
+            ->select('trabajador_vencimiento.vencimiento_id')
+            ->lists('trabajador_vencimiento.vencimiento_id');
+
+        $query = EnumTables::where('type','=','ExamenMedico')
+            ->whereNotIn('id',$in_examen)
+            ->lists('name','id');
 
         return $query;
     }

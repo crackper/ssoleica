@@ -11,6 +11,7 @@ use SSOLeica\Core\Model\TrabajadorVencimiento;
 use SSOLeica\Core\Repository\ContratoRepository;
 use SSOLeica\Core\Repository\OperacionRepository;
 use SSOLeica\Core\Repository\TrabajadorRepository;
+use SSOLeica\Core\Repository\TrabajadorVencimientoRepository;
 use SSOLeica\Http\Requests;
 use Nayjest\Grids\EloquentDataProvider;
 use Nayjest\Grids\Grid;
@@ -64,6 +65,10 @@ class TrabajadorController extends Controller
      * @var EnumTablesRepository
      */
     private $enumTablesRepository;
+    /**
+     * @var TrabajadorVencimientoRepository
+     */
+    private $trabajadorVencimientoRepository;
 
 
     /**
@@ -72,13 +77,15 @@ class TrabajadorController extends Controller
      * @param Trabajador $trabajadorRepository
      * @param ContratoRepository $contratoRepository
      * @param OperacionRepository $operacionRepository
+     * @param TrabajadorVencimientoRepository $trabajadorVencimientoRepository
      * @internal param EnumTables $enum_tables
      */
     public function __construct(Trabajador $trabajador,
                                 EnumTablesRepository $enumTablesRepository,
                                 TrabajadorRepository $trabajadorRepository,
                                 ContratoRepository $contratoRepository,
-                                OperacionRepository $operacionRepository)
+                                OperacionRepository $operacionRepository,
+                                TrabajadorVencimientoRepository $trabajadorVencimientoRepository)
     {
         $this->middleware('workspace');
 
@@ -87,6 +94,7 @@ class TrabajadorController extends Controller
         $this->contratoRepository = $contratoRepository;
         $this->operacionRepository = $operacionRepository;
         $this->enumTablesRepository = $enumTablesRepository;
+        $this->trabajadorVencimientoRepository = $trabajadorVencimientoRepository;
     }
 
     /**
@@ -356,7 +364,7 @@ class TrabajadorController extends Controller
         $data['contratos'] = $this->contratoRepository->getContratosDisponibles($data['proyectoId'], $data['contratoId']);
 
         $data['existContratos'] = count($data['contratos']) > 0 ? true : false;
-        
+
         return view('trabajador.cambiarContrato')->with('data',$data);
     }
 
@@ -382,7 +390,7 @@ class TrabajadorController extends Controller
 
     public function getAsignarcontrato($id)
     {
-        $operaciones = $this->operacionRepository->getOperacionesDiponiblesByTrabajador($id);
+        $operaciones = $this->operacionRepository->getOperacionesDiponiblesByTrabajador($id,Session::get('pais_id'));
 
         $query = array('' => '[-- Seleccione un proyecto--]') + $operaciones;
 
@@ -411,10 +419,9 @@ class TrabajadorController extends Controller
 
     }
 
-    //refactorizar
     public function getContratos($id = 0)
     {
-        $query = Contrato::where('operacion_id','=',$id)->lists('nombre_contrato','id');
+        $query = $this->contratoRepository->getListsContrato($id);
         return Response::json($query);
     }
 
@@ -427,16 +434,7 @@ class TrabajadorController extends Controller
 
     public  function getExamenesmedicos($trabajador_id, $operacion_id,$proyecto)
     {
-
-        $query = TrabajadorVencimiento::join('enum_tables','enum_tables.id','=','trabajador_vencimiento.vencimiento_id')
-                    ->where('trabajador_vencimiento.trabajador_id','=',$trabajador_id)
-                    ->where('trabajador_vencimiento.operacion_id','=',$operacion_id)
-                    ->where('enum_tables.type','=','ExamenMedico')
-                    ->select('trabajador_vencimiento.*')
-                    ->addSelect('enum_tables.name as examen_medico')
-                    ->get();
-
-        //dd($query);
+        $query = $this->trabajadorVencimientoRepository->getExamenesMedicos($trabajador_id,$operacion_id);
 
         return view('trabajador.examenes')->with('data',$query)
             ->with('proyecto',$proyecto)
@@ -445,40 +443,57 @@ class TrabajadorController extends Controller
     }
     public function postUpdateexamen()
     {
-        $data['vencimiento_id'] = Input::get('examen');
-        $data['fecha']= Input::get('fecha');
-        $data['caduca']= Input::get('caduca');
-        $data['obs']= Input::get('obs');
+        $vencimiento_id             = Input::get('examen');
+        $data['fecha_vencimiento']  = Input::get('fecha');
+        $data['caduca']             = Input::get('caduca');
+        $data['observaciones']      = Input::get('obs');
 
-        $examen = TrabajadorVencimiento::find($data['vencimiento_id']);
+        $examen = $this->trabajadorVencimientoRepository->update($data,$vencimiento_id);
 
-        $examen->fecha_vencimiento = $data['fecha'];
-        $examen->caduca = $data['caduca'];
-        $examen->observaciones = $data['obs'];
-        $success = $examen->save();
+        $success = is_null($examen) ? 0 : 1;
 
-        $success = $success ? 1 : 0;
+        $msg = $success == 1 ? 'La fecha de vencimiento se actualizó correctamente' : 'La fecha de vencimiento no se pudo actualizó' ;
 
         return Response::json(array(
             'success' => $success,
-            'data'   => 'La fecha de vencimiento se actualizó correctamente'
+            'data'   => $msg
         ));
     }
 
     public function getAddexamen($trabajador_id, $operacion_id,$proyecto)
     {
-        $in_examen = TrabajadorVencimiento::where('trabajador_vencimiento.trabajador_id','=',$trabajador_id)
-            ->where('trabajador_vencimiento.operacion_id','=',$operacion_id)
-            ->select('trabajador_vencimiento.vencimiento_id')
-            ->lists('trabajador_vencimiento.vencimiento_id');
+        $examenes =  array('' => '[-- Seleccione un Examen --]') + $this->enumTablesRepository->getExamenesDisponibles($trabajador_id,$operacion_id);
 
-        $examenes =  array('' => '[-- Seleccione un Examen --]') + \SSOLeica\Core\Model\EnumTables::where('type','=','ExamenMedico')
-                    ->whereNotIn('id',$in_examen)
-                    ->lists('name','id');
-
-        return view('trabajador.addexamen')->with('examenes',$examenes);
+        return view('trabajador.addexamen')
+                ->with('examenes',$examenes)
+                ->with('trabajador_id',$trabajador_id)
+                ->with('operacion_id',$operacion_id);
     }
 
+    public function postAddexamen($trabajador_id, $operacion_id)
+    {
+        $data['trabajador_id']      = $trabajador_id;
+        $data['operacion_id']       = $operacion_id;
+        $data['vencimiento_id']     = Input::get('examen_id');
+        $data['type']               = 'ExamenMedico';
+        $data['caduca']             = Input::get('caduca');
+        $data['fecha_vencimiento']  = Input::get('fecVencimiento');
+        $data['observaciones']      = Input::get('observaciones');
+
+        $examen = $this->trabajadorVencimientoRepository->create($data);
+
+        $examen['fecha_vencimiento'] = Carbon::parse($data['fecha_vencimiento'])->format('Y-m-d');
+
+        $success = is_null($examen) ? 0 : 1;
+
+        $msg = $success == 1 ? 'El examen se guardo Correctamente' : 'No se pudo guardar el examen' ;
+
+        return Response::json(array(
+            'success' => $success,
+            'data'   => $examen,
+            'msg' => $msg
+        ));
+    }
     /**
      * @param $id
      */

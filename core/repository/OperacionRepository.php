@@ -52,15 +52,18 @@ class OperacionRepository extends Repository {
      * @param $trabajador_id
      * @return array(nombre_operacion,id)
      */
-    public function getOperacionesDiponiblesByTrabajador($trabajador_id)
+    public function getOperacionesDiponiblesByTrabajador($trabajador_id,$pais_id)
     {
         $in_operaciones = Operacion::join('contrato', 'contrato.operacion_id', '=', 'operacion.id')
             ->join('trabajador_contrato', 'trabajador_contrato.contrato_id', '=', 'contrato.id')
             ->select('operacion.id')
             ->where('trabajador_contrato.trabajador_id', '=', $trabajador_id)
+            ->where('operacion.pais_id',$pais_id)
             ->lists('id');
 
-        $query = Operacion::whereNotIn('id', $in_operaciones)->lists('nombre_operacion', 'id');
+        $query = Operacion::whereNotIn('id', $in_operaciones)
+                    ->where('operacion.pais_id',$pais_id)
+                    ->lists('nombre_operacion', 'id');
 
         return $query;
     }

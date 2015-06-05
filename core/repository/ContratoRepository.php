@@ -104,4 +104,9 @@ class ContratoRepository extends Repository {
 
         return $success;
     }
+
+    public function getListsContrato($operacion_id)
+    {
+        return Contrato::where('operacion_id','=',$operacion_id)->lists('nombre_contrato','id');
+    }
 }

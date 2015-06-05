@@ -11,8 +11,6 @@ $(function(){
     $(document).on('focus','*[data-toggle="date"]', function(event) {
         event.preventDefault();
 
-        console.log('select datepicker');
-
         $(this).mask("0000-00-00", {placeholder: "yyyy-m-d"});
 
         $(this).datepicker({
@@ -20,8 +18,6 @@ $(function(){
             language: 'es',
             autoclose: true
         });
-
-        console.log('value: ' + $(this).val());
     });
 
     $('#tabTrabajador a[href="#contrato"]').click(function (e) {
@@ -471,4 +467,114 @@ $(function(){
         })
     });
 
+    $(document).on('click','#btnAddExamen',function(e){
+        e.preventDefault();
+        $('#formAddExamen').submit();
+    });
+
+    $(document).on('shown.bs.modal','#modalAddExamenShow',function(){
+
+        $('#btnAddExamen').hide();
+
+        if($('#examen_id option').size() == 1 )
+        {
+            $(this).find('option[value=""]').text('NO HAY EXAMENES DISPONIBLES');
+            $('#examen_id').attr('disabled', 'disabled');
+        }
+
+        $('select').selectpicker({
+            size: 7
+        });
+
+        $('*[data-toggle="date"]').mask("0000-00-00", {placeholder: "yyyy-m-d"});
+
+        $('#formAddExamen').formValidation({
+            framework: 'bootstrap',
+            icon: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+                examen_id: {
+                    validators: {
+                        integer: {
+                            message: 'Seleccione un Examen'
+                        }
+                    }
+                },
+                fecVencimiento: {
+                    validators: {
+                        notEmpty: {
+                            message: 'La fecha de Vencimiento es requerida'
+                        },
+                        date: {
+                            format: 'YYYY-MM-DD',
+                            message: 'Ingresa una fecha válida.'
+                        }
+                    }
+                }
+            }
+        })
+            .on('change', '#examen_id', function(e) {
+                $('#examen_id').formValidation('revalidateField', 'examen_id');
+
+                if($(this).val() > 0)
+                {
+                    $('#btnAddExamen').show();
+                }
+                else
+                {
+                    $('#btnAddExamen').hide();
+                }
+            })
+            .on('success.form.fv', function(e) {
+            e.preventDefault();
+
+            var $form = $(e.target),
+                fv    = $(e.target).data('formValidation');
+
+                var examen = $("#examen_id option:selected").text();
+
+                $.ajax({
+                    url: $form.attr('action'),
+                    type: 'POST',
+                    data: $form.serialize(),
+                    success: function(data) {
+
+                        var style = data.success == 1 ? 'info':'danger';
+
+                        var alerta = '<div class="alert alert-'+ style +' alert-dismissable">';
+                        alerta += '<button type="button" class="close" data-dismiss="alert">&times;</button>';
+                        alerta += data.msg;
+                        alerta += '</div>';
+
+                        if(data.success == 1)
+                        {
+                            var rows = $('#gridExamenes > tbody > tr').length;
+                            var table = $('#gridExamenes > tbody');
+
+                            var row = $(table).find('tr').last();
+                            var newRow = $(row).clone().removeClass('hide').insertBefore(row);
+
+                            $(newRow).find('td').eq(0).html(rows);
+                            $(newRow).find('td').eq(1).html(examen);
+                            $(newRow).find('td').eq(2).find('input.date').val(data.data.fecha_vencimiento);
+                            $(newRow).find('td').eq(4).find('input').val(data.data.observaciones);
+                            $(newRow).find('td').eq(5).find('button').attr('data-examen',data.data.id);
+
+                            if(data.data.caduca == 1)
+                            {
+                                $(newRow).find('td').eq(3).find('input[type=checkbox]').prop('checked',true);
+                            }
+                        }
+
+                        $('.mensaje').find('.alert').remove();
+                        $('.mensaje').append(alerta);
+
+                        $('#modalAddExamenShow').modal('hide');
+                    }
+                });
+        });
+    });
 });

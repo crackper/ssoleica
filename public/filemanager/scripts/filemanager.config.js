@@ -11,7 +11,7 @@
         "showConfirmation": true,
         "showThumbs": true,
         "generateThumbnails": false,
-        "searchBox": false,
+        "searchBox": true,
         "listFiles": true,
         "fileSorting": "default",
         "chars_only_latin": true,

@@ -10,6 +10,7 @@ namespace SSOLeica\Core\Repository;
 
 
 use SSOLeica\Core\Data\Repository;
+use SSOLeica\Core\Model\TrabajadorVencimiento;
 
 class TrabajadorVencimientoRepository extends Repository {
 
@@ -21,5 +22,19 @@ class TrabajadorVencimientoRepository extends Repository {
     function model()
     {
         return 'SSOLeica\Core\Model\TrabajadorVencimiento';
+    }
+
+    public  function getExamenesMedicos($trabajador_id,$operacion_id)
+    {
+        $query = TrabajadorVencimiento::join('enum_tables','enum_tables.id','=','trabajador_vencimiento.vencimiento_id')
+            ->where('trabajador_vencimiento.trabajador_id','=',$trabajador_id)
+            ->where('trabajador_vencimiento.operacion_id','=',$operacion_id)
+            ->where('enum_tables.type','=','ExamenMedico')
+            ->select('trabajador_vencimiento.*')
+            ->addSelect('enum_tables.name as examen_medico')
+            ->get();
+
+
+        return $query;
     }
 }
