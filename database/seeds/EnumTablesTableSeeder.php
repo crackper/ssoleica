@@ -49,7 +49,12 @@ class EnumTablesTableSeeder extends \Illuminate\Database\Seeder {
             ['id'=> 29,'type'=>'LicConducir','name'=>'C','symbol'=>'C','created_at' => new DateTime, 'updated_at' => new DateTime],
             ['id'=> 30,'type'=>'LicConducir','name'=>'D','symbol'=>'D','created_at' => new DateTime, 'updated_at' => new DateTime],
             ['id'=> 31,'type'=>'LicConducir','name'=>'E','symbol'=>'E','created_at' => new DateTime, 'updated_at' => new DateTime],
-            ['id'=> 32,'type'=>'LicConducir','name'=>'F','symbol'=>'F','created_at' => new DateTime, 'updated_at' => new DateTime]
+            ['id'=> 32,'type'=>'LicConducir','name'=>'F','symbol'=>'F','created_at' => new DateTime, 'updated_at' => new DateTime],
+            ['id'=> 33,'type'=>'Documento','name'=>'Documento Nacional de Identidad(DNI)','symbol'=>'DNI','created_at' => new DateTime, 'updated_at' => new DateTime],
+            ['id'=> 34,'type'=>'Documento','name'=>'Pasaporte','symbol'=>'','created_at' => new DateTime, 'updated_at' => new DateTime],
+            ['id'=> 35,'type'=>'Documento','name'=>'Antecedentes Penales','symbol'=>'','created_at' => new DateTime, 'updated_at' => new DateTime],
+            ['id'=> 36,'type'=>'Documento','name'=>'Antecedentes Judiciales','symbol'=>'','created_at' => new DateTime, 'updated_at' => new DateTime],
+            ['id'=> 37,'type'=>'Documento','name'=>'Carnet de Extranjeria','symbol'=>'','created_at' => new DateTime, 'updated_at' => new DateTime]
         );
         DB::table('enum_tables')->insert($enums);
 

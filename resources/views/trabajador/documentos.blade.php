@@ -1,11 +1,11 @@
- <div class="row">
+<div class="row">
     <div class="col-md-12">
          <button id="addExamenMedico"  type="button"
-            data-url="/trabajador/addvencimiento/examen/{!! $trabajador_id!!}/{!! $operacion_id !!}/"
-            data-type="examen-medico"
+            data-url="/trabajador/addvencimiento/documento/{!! $trabajador_id!!}/0/"
+            data-type="documento"
             class="btn btn-warning btn-sm addVencimiento">
             <span class="glyphicon glyphicon-th-list"></span>
-            Agregar Examen Médico
+            Agregar Documento
          </button>
     </div>
  </div>
@@ -17,16 +17,16 @@
 </div>
 <div class="row">
     <div class="col-md-10">
-        <div class="panel panel-info">
+        <div class="panel panel-warning">
             <div class="panel-heading">
-                <h3 class="panel-title">Proyecto: {!! $proyecto !!}</h3>
+                <h3 class="panel-title">Documentos</h3>
             </div>
             <div class="table-responsive">
                 <table class="table table-striped" data-toogle="documentos">
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Exámen Médico</th>
+                        <th>Documento</th>
                         <th>Fecha Vencimiento</th>
                         <th>Caduca</th>
                         <th>Comentario</th>
@@ -37,7 +37,7 @@
                 @foreach($data as $key => $row)
                     <tr>
                         <td class="text-center">{!! $key+1 !!}</td>
-                        <td>{!! $row->examen_medico !!}</td>
+                        <td>{!! $row->documento !!}</td>
                         <td class="text-center">
                         <div>
                             <input type="text" value="{!!$row->fecha_vencimiento !!}" data-toggle="date" class="form-control input-sm date" style="width: 7em;" />

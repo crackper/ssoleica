@@ -58,4 +58,17 @@ class EnumTablesRepository extends Repository {
 
         return $query;
     }
+
+    public function getDocumentosDisponibles($trabajador_id)
+    {
+        $in_examen = TrabajadorVencimiento::where('trabajador_vencimiento.trabajador_id','=',$trabajador_id)
+            ->select('trabajador_vencimiento.vencimiento_id')
+            ->lists('trabajador_vencimiento.vencimiento_id');
+
+        $query = EnumTables::where('type','=','Documento')
+            ->whereNotIn('id',$in_examen)
+            ->lists('name','id');
+
+        return $query;
+    }
 }

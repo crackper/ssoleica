@@ -441,9 +441,10 @@ class TrabajadorController extends Controller
             ->with('trabajador_id',$trabajador_id)
             ->with('operacion_id',$operacion_id);
     }
-    public function postUpdateexamen()
+
+    public function postUpdatevencimiento()
     {
-        $vencimiento_id             = Input::get('examen');
+        $vencimiento_id             = Input::get('vencimiento');
         $data['fecha_vencimiento']  = Input::get('fecha');
         $data['caduca']             = Input::get('caduca');
         $data['observaciones']      = Input::get('obs');
@@ -460,22 +461,35 @@ class TrabajadorController extends Controller
         ));
     }
 
-    public function getAddexamen($trabajador_id, $operacion_id,$proyecto)
+    public function getAddvencimiento($type,$trabajador_id, $operacion_id)
     {
-        $examenes =  array('' => '[-- Seleccione un Examen --]') + $this->enumTablesRepository->getExamenesDisponibles($trabajador_id,$operacion_id);
+        if($type == 'examen')
+        {
+            $vencimientos =  array('' => '[-- Seleccione un Examen --]') + $this->enumTablesRepository->getExamenesDisponibles($trabajador_id,$operacion_id);
+            $title = 'Exámen Médico';
+            $label = 'Exámen';
+        }
+        elseif($type == 'documento')
+        {
+            $vencimientos =  array('' => '[-- Seleccione un Documento --]') + $this->enumTablesRepository->getDocumentosDisponibles($trabajador_id);
+            $title = 'Documento';
+            $label = 'Documento';
+        }
 
-        return view('trabajador.addexamen')
-                ->with('examenes',$examenes)
+        return view('trabajador.addvencimiento')
+                ->with('vencimientos',$vencimientos)
                 ->with('trabajador_id',$trabajador_id)
-                ->with('operacion_id',$operacion_id);
+                ->with('operacion_id',$operacion_id)
+                ->with('label',$label)
+                ->with('title',$title);
+
     }
 
-    public function postAddexamen($trabajador_id, $operacion_id)
+    public function postAddvencimiento($trabajador_id, $operacion_id)
     {
         $data['trabajador_id']      = $trabajador_id;
-        $data['operacion_id']       = $operacion_id;
-        $data['vencimiento_id']     = Input::get('examen_id');
-        $data['type']               = 'ExamenMedico';
+        $data['operacion_id']       = $operacion_id == 0 ? null: $operacion_id ;
+        $data['vencimiento_id']     = Input::get('vencimiento_id');
         $data['caduca']             = Input::get('caduca');
         $data['fecha_vencimiento']  = Input::get('fecVencimiento');
         $data['observaciones']      = Input::get('observaciones');
@@ -486,7 +500,7 @@ class TrabajadorController extends Controller
 
         $success = is_null($examen) ? 0 : 1;
 
-        $msg = $success == 1 ? 'El examen se guardo Correctamente' : 'No se pudo guardar el examen' ;
+        $msg = $success == 1 ? 'La información se guardó Correctamente' : 'No se pudo guardar el examen' ;
 
         return Response::json(array(
             'success' => $success,
@@ -494,6 +508,16 @@ class TrabajadorController extends Controller
             'msg' => $msg
         ));
     }
+
+    public  function getDocumentos($trabajador_id)
+    {
+        $query = $this->trabajadorVencimientoRepository->getDocumentos($trabajador_id);
+
+        return view('trabajador.documentos')->with('data',$query)
+            ->with('trabajador_id',$trabajador_id);
+    }
+
+
     /**
      * @param $id
      */

@@ -7,7 +7,9 @@ $(function(){
         size: 7
     });
 
-
+    /*
+    * Inicializacion para los datepicker
+    * */
     $(document).on('focus','*[data-toggle="date"]', function(event) {
         event.preventDefault();
 
@@ -20,6 +22,9 @@ $(function(){
         });
     });
 
+    /*
+    * Cargar el Tab de Contratos
+    * */
     $('#tabTrabajador a[href="#contrato"]').click(function (e) {
         e.preventDefault();
 
@@ -41,6 +46,9 @@ $(function(){
         $(this).tab('show')
     });
 
+    /*
+    * actualizar fecha de vencimiento de los contratos
+    * */
     $(document).on('click','button.update',function(e){
         e.preventDefault();
 
@@ -94,6 +102,9 @@ $(function(){
         });
     });
 
+    /*
+    * mostar popup que permite cambiar de contrato a un trabajador
+    * */
     $(document).on('click','button.change',function(e){
         e.preventDefault();
         var btn = $(this);
@@ -119,6 +130,9 @@ $(function(){
             });
     });
 
+    /*
+    * Logica para asigar para cambiar de contrato a un trabajador
+    * */
     $(document).on('shown.bs.modal','#modalCambiarContratoShow',function(){
 
         $('select').selectpicker({
@@ -203,11 +217,17 @@ $(function(){
 
     });
 
+    /*
+    * Submit a la información del trabajador y contrato cambiado
+    * */
     $(document).on('click','*[data-update="contrato"]',function(e){
         e.preventDefault();
         $('#formUpdateContrato').submit();
     });
 
+    /*
+    * Muestar popup que permite asignar un trabajador a un contrato
+    * */
     $(document).on('click','#asignarContrato',function(e){
         e.preventDefault();
         var btn = $(this);
@@ -227,6 +247,9 @@ $(function(){
             });
     });
 
+    /*
+    * Logica para asignar un trabajor a un contrato
+    * */
     $(document).on('shown.bs.modal','#modalAsignarContratoShow',function(){
 
         $('#btnAsignarContrato').hide();
@@ -364,11 +387,17 @@ $(function(){
         });
     });
 
+    /*
+    * Submit del trabajador en el nuevo contrato
+    * */
     $(document).on('click','#btnAsignarContrato',function(e){
         e.preventDefault();
         $('#formAsignarContrato').submit();
     });
 
+    /*
+    * Mostar sub menu de proyectos en la pestaña Examenes médicos
+    * */
     $('#examenesMedicos').click(function (e) {
         e.preventDefault();
 
@@ -387,6 +416,9 @@ $(function(){
         });
     });
 
+    /*
+     * Mostar examenes medicos segun el proyecto seleccionado del sub menu anterior
+     * */
     $(document).on('click','*[data-examen="true"]',function(){
         var link = this;
 
@@ -400,9 +432,12 @@ $(function(){
 
     });
 
-    $(document).on('click','button.update-examen', function () {
+    /*
+    * Actualizar fecha de vencimiento ya sea de un exemen medico o un documetno
+    * */
+    $(document).on('click','button.update-vencimiento', function () {
         var btn = $(this);
-        var examen = $(btn).data('examen');
+        var vencimiento = $(btn).data('vencimiento');
         var tr = $(btn).closest('tr');
         var fecha = $(tr).find('td').eq(2).find('input').val();
         var caduca = $(tr).find('td').eq(3).find('input[type=checkbox]').is(":checked") ? 1 : 0;
@@ -428,10 +463,10 @@ $(function(){
         }
 
        $.ajax({
-            url: '/trabajador/updateexamen',
+            url: '/trabajador/updatevencimiento',
             type: 'POST',
             dataType: 'json',
-            data: {'examen': examen, 'fecha': fecha, 'obs': obs,'caduca':caduca,'_token': token},
+            data: {'vencimiento': vencimiento, 'fecha': fecha, 'obs': obs,'caduca':caduca,'_token': token},
             beforeSend: function(xhr){
                 $(btn).button('loading');
             },
@@ -451,7 +486,10 @@ $(function(){
         });
     });
 
-    $(document).on('click','#addExamenMedico',function(){
+    /*
+    * Mostar popup para agregr un nuevo vencimento ya sea examen medico o documento
+    * */
+    $(document).on('click','.addVencimiento',function(){
         var link = this;
 
         $.ajax({
@@ -459,27 +497,33 @@ $(function(){
             type: 'GET',
             success: function(data){
                 $('#modalView').append(data);
-                $('#modalAddExamenShow').modal('show');
-                $('#modalAddExamenShow').on('hidden.bs.modal', function (e) {
+                $('#modalAddVencimientoShow').modal('show');
+                $('#modalAddVencimientoShow').on('hidden.bs.modal', function (e) {
                     $(this).remove();
                 });
             }
         })
     });
 
-    $(document).on('click','#btnAddExamen',function(e){
+    /*
+    * Submit de la información del nuevo vencimiento
+    * */
+    $(document).on('click','#btnSaveVencimiento',function(e){
         e.preventDefault();
-        $('#formAddExamen').submit();
+        $('#formAddVencimiento').submit();
     });
 
-    $(document).on('shown.bs.modal','#modalAddExamenShow',function(){
+    /*
+    * logica para guardar un nuevo vencimiento, examen medico o documento
+    * */
+    $(document).on('shown.bs.modal','#modalAddVencimientoShow',function(){
 
-        $('#btnAddExamen').hide();
+        $('#btnSaveVencimiento').hide();
 
-        if($('#examen_id option').size() == 1 )
+        if($('#vencimiento_id option').size() == 1 )
         {
-            $(this).find('option[value=""]').text('NO HAY EXAMENES DISPONIBLES');
-            $('#examen_id').attr('disabled', 'disabled');
+            $(this).find('option[value=""]').text('NO HAY ASIGNACIONES DISPONIBLES');
+            $('#vencimiento_id').attr('disabled', 'disabled');
         }
 
         $('select').selectpicker({
@@ -488,7 +532,7 @@ $(function(){
 
         $('*[data-toggle="date"]').mask("0000-00-00", {placeholder: "yyyy-m-d"});
 
-        $('#formAddExamen').formValidation({
+        $('#formAddVencimiento').formValidation({
             framework: 'bootstrap',
             icon: {
                 valid: 'glyphicon glyphicon-ok',
@@ -496,7 +540,7 @@ $(function(){
                 validating: 'glyphicon glyphicon-refresh'
             },
             fields: {
-                examen_id: {
+                vencimiento_id: {
                     validators: {
                         integer: {
                             message: 'Seleccione un Examen'
@@ -516,16 +560,16 @@ $(function(){
                 }
             }
         })
-            .on('change', '#examen_id', function(e) {
-                $('#examen_id').formValidation('revalidateField', 'examen_id');
+            .on('change', '#vencimiento_id', function(e) {
+                $('#vencimiento_id').formValidation('revalidateField', 'vencimiento_id');
 
                 if($(this).val() > 0)
                 {
-                    $('#btnAddExamen').show();
+                    $('#btnSaveVencimiento').show();
                 }
                 else
                 {
-                    $('#btnAddExamen').hide();
+                    $('#btnSaveVencimiento').hide();
                 }
             })
             .on('success.form.fv', function(e) {
@@ -534,7 +578,7 @@ $(function(){
             var $form = $(e.target),
                 fv    = $(e.target).data('formValidation');
 
-                var examen = $("#examen_id option:selected").text();
+                var vencimiento = $("#vencimiento_id option:selected").text();
 
                 $.ajax({
                     url: $form.attr('action'),
@@ -551,14 +595,14 @@ $(function(){
 
                         if(data.success == 1)
                         {
-                            var rows = $('#gridExamenes > tbody > tr').length;
-                            var table = $('#gridExamenes > tbody');
+                            var rows = $('*[data-toogle="documentos"] > tbody > tr').length;
+                            var table = $('*[data-toogle="documentos"] > tbody');
 
                             var row = $(table).find('tr').last();
                             var newRow = $(row).clone().removeClass('hide').insertBefore(row);
 
                             $(newRow).find('td').eq(0).html(rows);
-                            $(newRow).find('td').eq(1).html(examen);
+                            $(newRow).find('td').eq(1).html(vencimiento);
                             $(newRow).find('td').eq(2).find('input.date').val(data.data.fecha_vencimiento);
                             $(newRow).find('td').eq(4).find('input').val(data.data.observaciones);
                             $(newRow).find('td').eq(5).find('button').attr('data-examen',data.data.id);
@@ -572,9 +616,27 @@ $(function(){
                         $('.mensaje').find('.alert').remove();
                         $('.mensaje').append(alerta);
 
-                        $('#modalAddExamenShow').modal('hide');
+                        $('#modalAddVencimientoShow').modal('hide');
                     }
                 });
         });
     });
+
+    /*
+    * mostar documentos de un trabajador
+    * */
+    $('#tabTrabajador a[href="#documentos"]').click(function (e){
+        e.preventDefault();
+        var link = this;
+
+        $.ajax({
+            url: $(link).data('url'),
+            type: 'GET',
+            success: function(data){
+                $('#documentos').html(data);
+            }
+        })
+
+    });
+
 });

@@ -37,4 +37,17 @@ class TrabajadorVencimientoRepository extends Repository {
 
         return $query;
     }
+
+    public  function getDocumentos($trabajador_id)
+    {
+        $query = TrabajadorVencimiento::join('enum_tables','enum_tables.id','=','trabajador_vencimiento.vencimiento_id')
+            ->where('trabajador_vencimiento.trabajador_id','=',$trabajador_id)
+            ->where('enum_tables.type','=','Documento')
+            ->select('trabajador_vencimiento.*')
+            ->addSelect('enum_tables.name as documento')
+            ->get();
+
+
+        return $query;
+    }
 }

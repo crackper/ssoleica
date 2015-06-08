@@ -16,7 +16,8 @@
         <ul class="dropdown-menu" role="menu" aria-labelledby="myTabDrop1" id="myTabDrop1-contents">
         </ul>
       </li>
-    <li role="presentation"><a href="#documentos" aria-controls="documentos" role="tab" data-toggle="tab">Otros Documentos</a></li>
+    <li role="presentation"><a href="#documentos" aria-controls="documentos" role="tab" data-toggle="tab"
+        data-url="/trabajador/documentos/{!! $id !!}">Otros Documentos</a></li>
 
   </ul>
 {!! $edit->header !!}
