@@ -6,13 +6,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>SSO Leica</title>
 
-	<!--link href="/css/bootstrap.min.css" rel="stylesheet"-->
-    <!--link href="/css/bootstrap-theme.min.css" rel="stylesheet" -->
-
-    {!! Minify::stylesheet('/css/hexagon.theme.css') !!}
-    <link rel="stylesheet" href="/css/hexagon.min.css"/>
-    <!--link href="http://fonts.googleapis.com/css?family=Bitter" rel="stylesheet" type="text/css">
-    <!--link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet"-->
+    {!! Minify::stylesheet(asset('/css/hexagon.theme.css')) !!}
+    <link rel="stylesheet" href="{!! asset('/css/hexagon.min.css') !!}"/>
 
 	@yield('styles')
 	<!-- Fonts -->
@@ -28,7 +23,7 @@
 	<!-- Scripts -->
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-    {!! Minify::javascript('/js/app/hexagon.js') !!}
+    {!! Minify::javascript(asset('/js/app/hexagon.js')) !!}
 
     @yield('scripts')
 

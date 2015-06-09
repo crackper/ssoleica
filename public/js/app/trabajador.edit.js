@@ -425,7 +425,7 @@ $(function(){
         $.getJSON($(link).data('url'), function(data) {
 
             $.each(data, function(index, value){
-                var item = '<li><a href="#examenes" data-examen="true" data-url="/trabajador/examenesmedicos/' + trabajador_id +'/' + index + '/' + value +'" tabindex="-1" role="tab" data-toggle="tab" aria-controls="dropdown1">' + value + '</a></li>';
+                var item = '<li><a href="#examenes" data-examen="true" data-url="/trabajador/examenesmedicos/' + trabajador_id +'/' + index + '/' + value +'" tabindex="-1" role="tab" data-toggle="tab" aria-controls="dropdown1"><span class="glyphicon glyphicon-dashboard"></span> ' + value + '</a></li>';
                 $(ul).append(item);
             });
         });

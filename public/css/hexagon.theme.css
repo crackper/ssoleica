@@ -1,3 +1,4 @@
+/*@import url("//netdna.bootstrapcdn.com/bootstrap/3.0.0-rc2/css/bootstrap-glyphicons.css");*/
 html {
     font-family: sans-serif;
     -ms-text-size-adjust: 100%;
@@ -256,10 +257,16 @@ th {
         border: 1px solid #ddd !important;
     }
 }
+/*/@font-face {
+    font-family: 'Glyphicons Halflings';
+    src: url('http://localhost:8000/fonts/glyphicons-halflings-regular.eot');
+    src: url('http://localhost:8000/fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('http://localhost:8000/fonts/glyphicons-halflings-regular.woff2') format('woff2'), url('http://localhost:8000/fonts/glyphicons-halflings-regular.woff') format('woff'), url('http://localhost:8000/fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('http://localhost:8000/fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
+}*/
+
 @font-face {
     font-family: 'Glyphicons Halflings';
-    src: url('../fonts/glyphicons-halflings-regular.eot');
-    src: url('../fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('../fonts/glyphicons-halflings-regular.woff2') format('woff2'), url('../fonts/glyphicons-halflings-regular.woff') format('woff'), url('../fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('../fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
+    src: url(https://netdna.bootstrapcdn.com/bootstrap/3.0.0/fonts/glyphicons-halflings-regular.eot);
+    src: url(https://netdna.bootstrapcdn.com/bootstrap/3.0.0/fonts/glyphicons-halflings-regular.eot?#iefix) format('embedded-opentype'), url(https://netdna.bootstrapcdn.com/bootstrap/3.0.0/fonts/glyphicons-halflings-regular.svg) format('woff2'), url(https://netdna.bootstrapcdn.com/bootstrap/3.0.0/fonts/glyphicons-halflings-regular.woff) format('woff'), url(https://netdna.bootstrapcdn.com/bootstrap/3.0.0/fonts/glyphicons-halflings-regular.ttf) format('truetype'), url(https://netdna.bootstrapcdn.com/bootstrap/3.0.0/fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular) format('svg');
 }
 
 .glyphicon {

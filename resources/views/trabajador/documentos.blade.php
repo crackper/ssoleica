@@ -7,6 +7,7 @@
             <span class="glyphicon glyphicon-th-list"></span>
             Agregar Documento
          </button>
+          <span class="glyphicon glyphicon-th-list"></span>
     </div>
  </div>
 <br/>
