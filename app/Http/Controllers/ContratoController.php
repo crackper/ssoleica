@@ -272,6 +272,7 @@ class ContratoController extends Controller {
 
         $form->saved(function () use ($form) {
 
+            Session::flash('message', 'La información del Contrato se Registró Correctamente');
             return new RedirectResponse(url('contrato/edit/'.$form->model->id));
         });
 
@@ -303,8 +304,8 @@ class ContratoController extends Controller {
             ->options($trabajadores)
             ->rule('required')
             ->attr('data-live-search','true');
-        $form->add('fecha_inicio','Fecha de Inicio', 'date')->format('d/m/Y', 'it')->rule('required');
-        $form->add('fecha_fin','Fecha de Fin', 'date')->format('d/m/Y', 'it')->rule('required');
+        $form->add('fecha_inicio','Fecha de Inicio', 'date')->format('d/m/Y', 'es')->rule('required');
+        $form->add('fecha_fin','Fecha de Fin', 'date')->format('d/m/Y', 'es')->rule('required');
         $form->add('exist_cphs','CPHS','checkbox');
         $form->add('exist_subcontrato','Sub Contratos','checkbox');
         $form->add('is_activo','Activo','checkbox');
@@ -315,6 +316,7 @@ class ContratoController extends Controller {
 
         $form->saved(function () use ($form) {
 
+            Session::flash('message', 'La información del Contrato se Registró Correctamente');
             return new RedirectResponse(url('contrato/edit/'.$form->model->id));
         });
 

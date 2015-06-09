@@ -2,28 +2,14 @@
 
 @section('content')
 
-<h3>{!! $text !!}</h3>
-@if (Session::has('message'))
-    <div class="alert alert-success alert-dismissible fade in" role="alert">
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-          {{ Session::get('message') }}
-    </div>
-@endif
-<div id="tabTrabajador" role="tabpanel" data-url="/trabajador/proyectos/{!! $id !!}">
+<h3>Registar Nuevo Trabajador</h3>
+{!! $edit->message !!}
+<div id="tabTrabajador" role="tabpanel">
 
   <!-- Nav tabs -->
   <ul class="nav nav-tabs" role="tablist">
     <li role="presentation" class="active"><a href="#general" aria-controls="general" role="tab" data-toggle="tab">Información General</a></li>
     <li role="presentation"><a href="#adicional" aria-controls="adicional" role="tab" data-toggle="tab">Información Adicional</a></li>
-    <li role="presentation"><a href="#contrato" aria-controls="contrato" role="tab" data-toggle="tab">Operación/Contrato</a></li>
-    <li role="presentation" class="dropdown">
-        <a aria-expanded="false" href="#" id="examenesMedicos" data-url="/trabajador/proyectostrabajador/{!! $id !!}"  data-trabajador="{!! $id !!}" class="dropdown-toggle" data-toggle="dropdown" aria-controls="myTabDrop1-contents">Exámenes Medicos <span class="caret"></span></a>
-        <ul class="dropdown-menu" role="menu" aria-labelledby="myTabDrop1" id="myTabDrop1-contents">
-        </ul>
-      </li>
-    <li role="presentation"><a href="#documentos" aria-controls="documentos" role="tab" data-toggle="tab"
-        data-url="/trabajador/documentos/{!! $id !!}">Otros Documentos</a></li>
-
   </ul>
 {!! $edit->header !!}
   <!-- Tab panes -->
@@ -85,11 +71,11 @@
                   {!! $edit->field('sexo') !!}
                 </div>
                 @if($edit->field('sexo')->has_error)
-                     <span class="help-block">
-                         <span class="glyphicon glyphicon-warning-sign"></span>
-                         {!! $edit->field('sexo')->message !!}
-                     </span>
-                 @endif
+                    <span class="help-block">
+                        <span class="glyphicon glyphicon-warning-sign"></span>
+                        {!! $edit->field('sexo')->message !!}
+                    </span>
+                @endif
               </div>
             <div class="form-group @if($edit->field('fecha_nacimiento')->has_error) has-error @endif">
                <label for="fecha_nacimiento" class="col-md-2 control-label required">Fecha de Nacimiento</label>
@@ -103,11 +89,17 @@
                     </span>
                 @endif
              </div>
-            <div class="form-group">
-               <label for="estad0_civil" class="col-md-2 control-label required">Estado Civil</label>
+            <div class="form-group @if($edit->field('estado_civil')->has_error) has-error @endif">
+               <label for="estado_civil" class="col-md-2 control-label required">Estado Civil</label>
                 <div class="col-sm-5">
                   {!! $edit->field('estado_civil') !!}
                 </div>
+                @if($edit->field('estado_civil')->has_error)
+                    <span class="help-block">
+                        <span class="glyphicon glyphicon-warning-sign"></span>
+                        {!! $edit->field('estado_civil')->message !!}
+                    </span>
+                @endif
              </div>
             <div class="form-group">
                <label for="direccion" class="col-md-2 control-label required">Dirección</label>
@@ -121,23 +113,41 @@
                   {!! $edit->field('nro_telefono') !!}
                 </div>
              </div>
-            <div class="form-group">
+            <div class="form-group @if($edit->field('estado_civil')->has_error) has-error @endif">
                <label for="fecha_ingreso" class="col-md-2 control-label required">Fecha de Ingreso</label>
                 <div class="col-sm-5">
                   {!! $edit->field('fecha_ingreso') !!}
                 </div>
+                @if($edit->field('fecha_ingreso')->has_error)
+                    <span class="help-block">
+                        <span class="glyphicon glyphicon-warning-sign"></span>
+                        {!! $edit->field('fecha_ingreso')->message !!}
+                    </span>
+                @endif
              </div>
-            <div class="form-group">
+            <div class="form-group @if($edit->field('profesion_id')->has_error) has-error @endif">
                <label for="profesion_id" class="col-md-2 control-label required">Profesión</label>
                 <div class="col-sm-5">
                   {!! $edit->field('profesion_id') !!}
                 </div>
+                @if($edit->field('profesion_id')->has_error)
+                    <span class="help-block">
+                        <span class="glyphicon glyphicon-warning-sign"></span>
+                        {!! $edit->field('profesion_id')->message !!}
+                    </span>
+                @endif
              </div>
-            <div class="form-group">
+            <div class="form-group @if($edit->field('cargo_id')->has_error) has-error @endif">
                <label for="cargo_id" class="col-md-2 control-label required">Cargo</label>
                 <div class="col-sm-5">
                   {!! $edit->field('cargo_id') !!}
                 </div>
+                @if($edit->field('cargo_id')->has_error)
+                    <span class="help-block">
+                        <span class="glyphicon glyphicon-warning-sign"></span>
+                        {!! $edit->field('cargo_id')->message !!}
+                    </span>
+                @endif
              </div>
         </div>
     </div>
@@ -220,8 +230,6 @@
 
 @section('styles')
     <link rel="stylesheet" href="/css/bootstrap-select.min.css">
-    <link rel="stylesheet" href="/css/formValidation.min.css">
-    <link rel="stylesheet" href="/css/bootstrap-dialog.min.css"/>
 <style type="text/css">
 .has-error .form-control-feedback {
     color: #E74C3C;
@@ -237,20 +245,11 @@
     {!! Rapyd::head() !!}
 <script src="/js/bootstrap-select.min.js"></script>
 <script src="/js/jquery.mask.min.js"></script>
-<script src="/js/formvalidation/formValidation.min.js"></script>
-<script src="/js/formvalidation/framework/bootstrap.min.js"></script>
-<script src="/js/bootstrap-dialog.min.js"></script>
-{!! Minify::javascript('/js/formvalidation/language/es_ES.js') !!}
-{!! Minify::javascript('/js/app/trabajador.edit.js') !!}
-@if (Session::has('message'))
-    <script>
-        $(function(){
-            BootstrapDialog.alert({
-                title:'SSO Leica Geosystems',
-                message: '{{ Session::get('message') }}'
-            });
-        });
-    </script>
-@endif
-
+<script>
+$(function(){
+    $('select').selectpicker({
+        size: 7
+    });
+});
+</script>
 @endsection

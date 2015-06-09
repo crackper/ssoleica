@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Session;
 use SSOLeica\Core\Model\Contrato;
 use SSOLeica\Core\Model\EnumCategories;
+use SSOLeica\Core\Model\Trabajador;
 use SSOLeica\Core\Model\TrabajadorVencimiento;
 use SSOLeica\Core\Repository\ContratoRepository;
 use SSOLeica\Core\Repository\OperacionRepository;
@@ -16,7 +17,6 @@ use SSOLeica\Http\Requests;
 use Nayjest\Grids\EloquentDataProvider;
 use Nayjest\Grids\Grid;
 use Nayjest\Grids\GridConfig;
-use SSOLeica\Core\Repository\TrabajadorRepository as Trabajador;
 use SSOLeica\Core\Repository\EnumTablesRepository;
 use HTML;
 use Nayjest\Grids\FieldConfig;
@@ -41,10 +41,6 @@ use Zofe\Rapyd\DataForm\DataForm;
 
 class TrabajadorController extends Controller
 {
-    /**
-     * @var Trabajador
-     */
-    private $trabajador;
     /**
      * @var EnumTables
      */
@@ -80,8 +76,7 @@ class TrabajadorController extends Controller
      * @param TrabajadorVencimientoRepository $trabajadorVencimientoRepository
      * @internal param EnumTables $enum_tables
      */
-    public function __construct(Trabajador $trabajador,
-                                EnumTablesRepository $enumTablesRepository,
+    public function __construct(EnumTablesRepository $enumTablesRepository,
                                 TrabajadorRepository $trabajadorRepository,
                                 ContratoRepository $contratoRepository,
                                 OperacionRepository $operacionRepository,
@@ -89,7 +84,6 @@ class TrabajadorController extends Controller
     {
         $this->middleware('workspace');
 
-        $this->trabajador = $trabajador;
         $this->trabajadorRepository = $trabajadorRepository;
         $this->contratoRepository = $contratoRepository;
         $this->operacionRepository = $operacionRepository;
@@ -104,7 +98,7 @@ class TrabajadorController extends Controller
      */
     public function getIndex()
     {
-        $query = $this->trabajador->getTrabajadores()->where('pais_id', '=', Session::get('pais_id'));
+        $query = $this->trabajadorRepository->getTrabajadores()->where('pais_id', '=', Session::get('pais_id'));
         //dd($query->get());
         $cargos = array();
 
@@ -285,8 +279,9 @@ class TrabajadorController extends Controller
             $licencias[$row->enum_value_id] = $row->categoria->name;
         }
 
-        $edit = DataForm::source($this->trabajador->find($id));
+        $trabajador = $this->trabajadorRepository->find($id);
 
+        $edit = DataForm::source($trabajador);
 
         $edit->add('dni', 'DNI', 'text')->rule('required|min:8');
         $edit->add('nombre', 'Nombre', 'text')->rule('required|max:100');
@@ -315,7 +310,64 @@ class TrabajadorController extends Controller
         $edit->submit('Guardar');
         $edit->link("/trabajador", "Cancelar");
 
+        $text = $trabajador->nombre.' '.$trabajador->app_paterno.' '.$trabajador->app_materno;
+
         $edit->saved(function () use ($edit) {
+
+            Session::flash('message', 'La información del Trabajador se Registró Correctamente');
+
+            return new RedirectResponse(url('trabajador/edit/' . $edit->model->id));
+            // $edit->message("ok record saved");
+            //$edit->link("/trabajador","Next Step");
+        });
+
+        $edit->built();
+
+        return $edit->view('trabajador.edit', compact('edit','id','text'));
+    }
+
+    public function anyCreate()
+    {
+        $pais = $this->enumTablesRepository->find(Session::get('pais_id'))->load('categorias.categoria');
+
+        $licencias = array();
+        $licencias[] = "[- Seleccione -]";
+        foreach ($pais->categorias as $row) {
+            $licencias[$row->enum_value_id] = $row->categoria->name;
+        }
+
+        $edit = DataForm::source(new Trabajador);
+
+        $edit->add('pais_id', '', 'hidden')->insertValue(Session::get('pais_id'));
+        $edit->add('dni', 'DNI', 'text')->rule('required|min:8');
+        $edit->add('nombre', 'Nombre', 'text')->rule('required|max:100');
+        $edit->add('app_paterno', 'Apellido Paterno', 'text')->rule('required');
+        $edit->add('app_materno', 'Apellido Materno', 'text')->rule('required');
+        $edit->add('sexo', 'Sexo', 'radiogroup')->option('F', 'Femenino')->option('M', 'Masculino')->rule('required');
+        $edit->add('fecha_nacimiento', 'Fecha de Nacimiento', 'date')->format('d/m/Y', 'es')->rule('required');
+        $edit->add('estado_civil', 'Estado Civil', 'select')->options(array('' => '[- Seleccione -]','Soltero' => 'Soltero', 'Casado' => 'Casado', 'Viudo' => 'Viudo', 'Divorciado' => 'Divorciado', 'Conviviente' => 'Conviviente'))->rule('required');
+        $edit->add('direccion', 'Direccion', 'text');
+        $edit->add('email', 'E-mail', 'text')->rule('email');
+        $edit->add('nro_telefono', 'Nro. Telefono', 'text');
+        $edit->add('fecha_ingreso', 'Fecha de Ingreso', 'date')->format('d/m/Y', 'es')->rule('required');
+        $edit->add('profesion_id', 'Profesion', 'select')->options(array('' => '[- Seleccione -]') + $this->enumTablesRepository->getProfesiones()->lists('name', 'id'))->rule('required');
+        $edit->add('cargo_id', 'Cargo', 'select')->options(array('' => '[- Seleccione -]') + $this->enumTablesRepository->getCargos()->lists('name', 'id'))->rule('required');
+        //informacion adicional
+        $edit->add('foto', 'Foto', 'image')->move('uploads/images/')->preview(150, 200);
+        $edit->add('grupo_saguineo', 'Grupo Sanquineo', 'select')->options(array('' => '[- Seleccione -]', 'A+' => 'A+', 'A-' => 'A-', 'B+' => 'B+', 'B-' => 'B-', 'AB+' => 'AB+', 'AB-' => 'AB-', 'O+' => 'O+', 'O-' => 'O-'));
+        $edit->add('lic_conducir', 'Licencia de Conducir', 'text');
+        $edit->add('lic_categoria_id', 'Tipo Licencia', 'select')->options($licencias);
+        $edit->add('em_nombres', 'Nombres', 'text');
+        $edit->add('em_telef_fijo', 'Telefono Fijo', 'text');
+        $edit->add('em_telef_celular', 'Telefono Celular', 'text');
+        $edit->add('em_parentesco', 'Parentesco', 'select')->options(array('' => '[- Seleccione -]', 'Padre' => 'Padre', 'Madre' => 'Madre', 'Esposo(a)' => 'Esposo(a)', 'Hijo(a)' => 'Hijo(a)', 'Hermano(a)' => 'Hermano(a)', 'Otro' => 'Otro'));
+        $edit->add('em_direccion', 'Dirección', 'text');
+
+        $edit->submit('Guardar');
+        $edit->link("/trabajador", "Cancelar");
+
+        $edit->saved(function () use ($edit) {
+            Session::flash('message', 'La información del Trabajador se Registro Correctamente');
 
             return new RedirectResponse(url('trabajador/edit/' . $edit->model->id));
             // $edit->message("ok record saved");
@@ -325,7 +377,7 @@ class TrabajadorController extends Controller
 
         $edit->built();
 
-        return $edit->view('trabajador.edit', compact('edit','id'));
+        return $edit->view('trabajador.create', compact('edit'));
     }
 
     /**

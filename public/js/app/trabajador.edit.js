@@ -2,10 +2,11 @@
  * Created by Samuel on 19/05/15.
  */
 $(function(){
-
     $('select').selectpicker({
         size: 7
     });
+
+    $('.btn-toolbar').first().hide();
 
     /*
     * Inicializacion para los datepicker
@@ -22,11 +23,22 @@ $(function(){
         });
     });
 
+    $('#tabTrabajador a[href="#general"]').click(function (e) {
+        e.preventDefault();
+        $('.btn-toolbar').last().show();
+    });
+
+    $('#tabTrabajador a[href="#adicional"]').click(function (e) {
+        e.preventDefault();
+        $('.btn-toolbar').last().show();
+    });
+
     /*
     * Cargar el Tab de Contratos
     * */
     $('#tabTrabajador a[href="#contrato"]').click(function (e) {
         e.preventDefault();
+        $('.btn-toolbar').hide();
 
         $.ajax({
             url: $('#tabTrabajador').data('url'),
@@ -380,8 +392,11 @@ $(function(){
                     }
 
                     $('#modalAsignarContratoShow').modal('hide');
-                    alert(data.data);
 
+                    BootstrapDialog.alert({
+                        title:'SSO Leica Geosystems',
+                        message: data.data
+                    });
                 }
             });
         });
@@ -420,6 +435,7 @@ $(function(){
      * Mostar examenes medicos segun el proyecto seleccionado del sub menu anterior
      * */
     $(document).on('click','*[data-examen="true"]',function(){
+        $('.btn-toolbar').hide();
         var link = this;
 
         $.ajax({
@@ -627,6 +643,7 @@ $(function(){
     * */
     $('#tabTrabajador a[href="#documentos"]').click(function (e){
         e.preventDefault();
+        $('.btn-toolbar').hide();
         var link = this;
 
         $.ajax({

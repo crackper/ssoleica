@@ -8,3 +8,11 @@
     </div>
 
  @endsection
+  @section('scripts')
+  <script>
+     $(function(){
+         $('.pagination').first().remove();
+     });
+  </script>
+
+  @endsection

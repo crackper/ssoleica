@@ -153,6 +153,7 @@ class OperacionController extends Controller {
 
         $form->saved(function () use ($form) {
 
+            Session::flash('message', 'La información del Proyecto se Registró Correctamente');
             return new RedirectResponse(url('operacion/edit/'.$form->model->id));
         });
 
@@ -207,6 +208,7 @@ class OperacionController extends Controller {
 
         $form->saved(function () use ($form) {
 
+            Session::flash('message', 'La información del Proyecto se Registró Correctamente');
             return new RedirectResponse(url('operacion/edit/'.$form->model->id));
         });
 
