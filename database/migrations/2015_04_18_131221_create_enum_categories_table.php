@@ -17,6 +17,7 @@ class CreateEnumCategoriesTable extends Migration {
 			$table->increments('id');
             $table->integer('enum_value_id');
             $table->integer('category_id');
+            $table->string('updated_by',100)->nullable();
             $table->timestamps();
             $table->softDeletes();
 		});

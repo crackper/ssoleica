@@ -21,6 +21,7 @@ class CreateShiftContratoTrabajadorsTable extends Migration {
             $table->date('fecha_inicio');
             $table->date('fecha_fin')->nullable();
             //auditoria
+            $table->string('updated_by',100)->nullable();
             $table->timestamps();
             $table->softDeletes();
 		});

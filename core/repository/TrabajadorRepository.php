@@ -33,7 +33,8 @@ class TrabajadorRepository extends Repository {
         $query = Trabajador::join('enum_tables','trabajador.cargo_id','=','enum_tables.id')
             ->select('trabajador.*')
             ->addSelect('enum_tables.name as cargo')
-            ->addSelect(DB::raw('CONCAT(trabajador.app_paterno," " ,trabajador.app_materno ,", ", trabajador.nombre) AS full_name'));
+            ->addSelect(DB::raw("(trabajador.app_paterno  || ' ' ||trabajador.app_materno  || ', ' || trabajador.nombre) AS full_name"));
+            //mysql->addSelect(DB::raw('CONCAT(trabajador.app_paterno," " ,trabajador.app_materno ,", ", trabajador.nombre) AS full_name'));
 
         return $query;
     }
@@ -42,7 +43,7 @@ class TrabajadorRepository extends Repository {
     {
         $query = Trabajador::where('pais_id','=',$pais_id)
             ->select('trabajador.id','trabajador.nombre','trabajador.app_paterno','trabajador.app_materno')
-            //->addSelect(DB::raw('CONCAT(trabajador.nombre," ",trabajador.app_paterno," " ,trabajador.app_materno) AS full_name'))
+            //mysql ->addSelect(DB::raw('CONCAT(trabajador.nombre," ",trabajador.app_paterno," " ,trabajador.app_materno) AS full_name'))
             ->orderBy('trabajador.nombre')
             ->get();
 

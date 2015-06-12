@@ -25,6 +25,7 @@ class CreateTrabajadorContratosTable extends Migration {
             $table->boolean('is_activo')->default(1);
             $table->longText('observaciones')->nullable();
             //auditoria
+            $table->string('updated_by',100)->nullable();
             $table->timestamps();
             $table->softDeletes();
 		});

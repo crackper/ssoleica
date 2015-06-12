@@ -1,5 +1,6 @@
 <?php namespace SSOLeica\Http\Controllers;
 
+use Carbon\Carbon;
 use Nayjest\Grids\EloquentDataProvider;
 use Nayjest\Grids\Grid;
 use Nayjest\Grids\GridConfig;
@@ -237,14 +238,46 @@ class HomeController extends Controller {
 
     public function form()
     {
-        $enum = EnumCategories::where('category_id','=',9)->get()->load('categoria');
+        $years = array('39'=>'2015','40'=>'2016','41'=>'2017','42'=>'2018','43'=>'2019','44'=>'2020');
+        $months = array('Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre');
+        $fechas = array();
+
+        foreach( $years as $id => $year)
+        {
+            foreach($months as $key => $value){
+
+                $d = 1;
+                $m = $key + 1;
+                $Y = $year;
+                $primerDia = gmdate("d-m-Y H:i:s", mktime(0, 0, 0,$m, $d-$d +1,$Y));
+                $ultimoDia = gmdate("d-m-Y H:i:s", mktime(11, 59, 59,$m+1,$d-$d,$Y));
+
+                $fechas[] = $primerDia;
+                $fechas[] = $ultimoDia;
+
+            }
+        }
+
+
+        /*$fecha= Carbon::now();
+
+        $fecha= strtotime($fecha); //Recibimos la fecha y la convertimos a tipo fecha
+        $d = date("d",$fecha); //Obtenemos el dia
+        $m = date("m",$fecha); //Obtenemos el mes
+        $Y = date("Y",$fecha); //Obtenemos el año
+        $primerDia = date("d-m-Y H:i:s", mktime(0, 0, 0,$m, $d-$d +1,$Y));
+        $ultimoDia = date("d-m-Y H:i:s", mktime(11, 59, 59,$m+1,$d-$d,$Y));*/
+
+        dd($fechas);
+
+        /*$enum = EnumCategories::where('category_id','=',9)->get()->load('categoria');
         $licencias = array();
 
         foreach($enum as $row){
             $licencias[$row->enum_value_id] = $row->categoria->name;
         }
 
-        dd($licencias);
+        dd($licencias);*/
 
         /*$form = DataForm::source(EnumTables::find(1));
         $form->add('name','Enum Name', 'text')->rule('required|min:5');
@@ -252,4 +285,18 @@ class HomeController extends Controller {
 
         return view('form',compact('form'));*/
     }
+
+    public function fechas(){
+
+        $fecha= Carbon::now();
+
+        $fecha= strtotime($fecha); //Recibimos la fecha y la convertimos a tipo fecha
+        $d = date("d",$fecha); //Obtenemos el dia
+        $m = date("m",$fecha); //Obtenemos el mes
+        $Y = date("Y",$fecha); //Obtenemos el año
+        $primerDia = date("d-m-Y", mktime(0, 0, 0,$m, $d-$d +1,$Y));
+
+        dd($primerDia);
+    }
+
 }

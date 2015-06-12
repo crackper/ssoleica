@@ -26,6 +26,7 @@ class CreateTrabajadorVencimientoTable extends Migration {
             $table->date('fecha_vencimiento');
             $table->longText('observaciones')->nullable();
             //auditoria
+            $table->string('updated_by',100)->nullable();
             $table->timestamps();
             $table->softDeletes();
 		});

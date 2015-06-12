@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateEstadosContratosTable extends Migration {
+class CreateHorasHombresTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,15 +12,17 @@ class CreateEstadosContratosTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('estados_contrato', function(Blueprint $table)
+		Schema::create('horas_hombre', function(Blueprint $table)
 		{
 			$table->increments('id');
+            $table->integer('month_id')->unsigned();
+            $table->foreign('month_id')->references('id')->on('month');
             $table->integer('contrato_id')->unsigned();
             $table->foreign('contrato_id')->references('id')->on('contrato');
-            $table->integer('supervisor_id')->unsigned();
-            $table->integer('asesor_prev_riesgos_id')->unsigned();
-            $table->boolean('exist_cphs');
-            $table->boolean('exist_subcontrato');
+            $table->integer('trabajador_id')->unsigned();
+            $table->foreign('trabajador_id')->references('id')->on('trabajador');
+            $table->integer('horas_trabajadas')->default(0);
+            $table->json('extra')->nullable();
             //auditoria
             $table->string('updated_by',100)->nullable();
             $table->timestamps();
@@ -35,7 +37,7 @@ class CreateEstadosContratosTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('estados_contrato');
+		Schema::drop('horas_hombre');
 	}
 
 }

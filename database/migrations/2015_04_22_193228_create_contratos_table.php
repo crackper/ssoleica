@@ -30,6 +30,7 @@ class CreateContratosTable extends Migration {
             $table->boolean('exist_subcontrato')->default(0);
             $table->longText('observaciones')->nullable();
             //auditoria
+            $table->string('updated_by',100)->nullable();
             $table->timestamps();
             $table->softDeletes();
 		});

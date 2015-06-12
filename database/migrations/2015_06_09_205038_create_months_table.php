@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateOperacionsTable extends Migration {
+class CreateMonthsTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,14 +12,19 @@ class CreateOperacionsTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('operacion', function(Blueprint $table)
+		Schema::create('month', function(Blueprint $table)
 		{
 			$table->increments('id');
-            $table->string('nombre_operacion',100);
-            $table->string('ubicacion',200)->nullable();
-            $table->longText('descripcion')->nullable();
+            $table->string("nombre",50);
+            $table->integer("year");
+            $table->integer('year_id')->unsigned();
+            $table->foreign('year_id')->references('id')->on('enum_tables');
             $table->integer('pais_id')->unsigned();
             $table->foreign('pais_id')->references('id')->on('enum_tables');
+            $table->dateTime('fecha_inicio');
+            $table->dateTime('fecha_fin');
+            $table->integer('plazo')->default(7)->unsigned();
+            $table->jsonb('contratos')->nullable();
             //auditoria
             $table->string('updated_by',100)->nullable();
             $table->timestamps();
@@ -34,7 +39,7 @@ class CreateOperacionsTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('operacion');
+		Schema::drop('month');
 	}
 
 }

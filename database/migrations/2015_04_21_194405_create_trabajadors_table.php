@@ -47,6 +47,7 @@ class CreateTrabajadorsTable extends Migration {
             $table->enum('em_parentesco',['','Padre','Madre','Esposo(a)','Hijo(a)','Hermano(a)','Otro'])->nullable();
             $table->string('em_direccion')->nullable();
             //auditoria
+            $table->string('updated_by',100)->nullable();
             $table->timestamps();
             $table->softDeletes();
 		});

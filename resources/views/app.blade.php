@@ -6,12 +6,10 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>SSO Leica</title>
 
-    {!! Minify::stylesheet(asset('/css/hexagon.theme.css')) !!}
-    <link rel="stylesheet" href="{!! asset('/css/hexagon.min.css') !!}"/>
+    {!! Minify::stylesheet('/css/hexagon.theme.css') !!}
+    <link rel="stylesheet" href="/css/hexagon.min.css"/>
 
 	@yield('styles')
-	<!-- Fonts -->
-	<!--link href='//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'-->
 
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -23,7 +21,7 @@
 	<!-- Scripts -->
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-    {!! Minify::javascript(asset('/js/app/hexagon.js')) !!}
+    {!! Minify::javascript('/js/app/hexagon.js') !!}
 
     @yield('scripts')
 

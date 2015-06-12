@@ -41,10 +41,12 @@ class ContratoRepository extends Repository {
                 ->addSelect('operacion.nombre_operacion as proyecto')
                 ->addSelect('s.nombre as nombre_supervisor')
                 ->addSelect('s.app_paterno as app_paterno_supervisor')
-                ->addSelect(DB::raw('CONCAT(s.nombre, " ", s.app_paterno) AS supervisor'))
+                ->addSelect(DB::raw("(s.nombre || ' ' || s.app_paterno) AS supervisor"))
+                //->addSelect(DB::raw('CONCAT(s.nombre, " ", s.app_paterno) AS supervisor'))
                 ->addSelect('atr.nombre as nombre_atr')
                 ->addSelect('atr.app_paterno as app_paterno_atr')
-                ->addSelect(DB::raw('CONCAT(atr.nombre, " ", atr.app_paterno) AS apr'));
+                ->addSelect(DB::raw("(atr.nombre || ' ' || atr.app_paterno) AS apr"));
+                //->addSelect(DB::raw('CONCAT(atr.nombre, " ", atr.app_paterno) AS apr'));
 
         return $query;
     }

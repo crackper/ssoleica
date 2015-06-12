@@ -26,7 +26,7 @@
                 <h3 class="panel-title">General</h3>
             </div>
             <div class="panel-body">
-                <a href="#">Registrar Nuevo Trabajador</a><br/>
+                <a href="/trabajador/create">Registrar Nuevo Trabajador</a><br/>
                {!! link_to('trabajador/index','Información de Trabajadores') !!}<br/>
 
             </div>
@@ -97,8 +97,7 @@
                         <h3 class="panel-title text-inverse">Repositorio General de Archivos</h3>
                     </div>
                     <div class="panel-body">
-                        {!! link_to('filemanager/repository','Repositorio') !!}
-
+                        <a href="/filemanager/repository">Repositorio</a><br/>
                     </div>
                 </div>
             </div>
@@ -112,6 +111,7 @@
                         <div class="panel-body">
                             <a href="#">Agregar Usuario</a><br/>
                             <a href="#">Gestionar Usuarios</a><br/>
+                            <hr/>
                             <a href="#">Gestionar Meses</a>
                         </div>
                     </div>
