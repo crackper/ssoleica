@@ -19,10 +19,11 @@ class CreateHorasHombresTable extends Migration {
             $table->foreign('month_id')->references('id')->on('month');
             $table->integer('contrato_id')->unsigned();
             $table->foreign('contrato_id')->references('id')->on('contrato');
-            $table->integer('trabajador_id')->unsigned();
-            $table->foreign('trabajador_id')->references('id')->on('trabajador');
-            $table->integer('horas_trabajadas')->default(0);
-            $table->json('extra')->nullable();
+            $table->dateTime('fecha_inicio');
+            $table->dateTime('fecha_fin');
+            $table->boolean('isOpen')->default(1);
+            $table->boolean('conProrroga')->default(0);
+            $table->decimal('total',9,2)->default(0);
             //auditoria
             $table->string('updated_by',100)->nullable();
             $table->timestamps();

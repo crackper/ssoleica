@@ -27,6 +27,11 @@ class Trabajador extends Model {
         return $this->hasMany('SSOLeica\Core\Model\TrabajadorOperacionExamMedico');
     }*/
 
+    public function cargo()
+    {
+        return $this->hasOne('SSOLeica\Core\Model\EnumTables',$foreignKey= 'id',$localKey='cargo_id');//,$foreignKey= 'profesion_id',$localKey='id'
+    }
+
     public function profesion()
     {
         return $this->hasOne('SSOLeica\Core\Model\EnumTables',$foreignKey= 'id',$localKey='profesion_id');//,$foreignKey= 'profesion_id',$localKey='id'

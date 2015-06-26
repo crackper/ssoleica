@@ -36,6 +36,7 @@ class OperacionRepository extends Repository {
         return $query;
     }
 
+
     /**
      * @param $trabajador_id
      * @return array(all table)

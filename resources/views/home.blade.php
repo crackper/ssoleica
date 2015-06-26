@@ -67,8 +67,8 @@
                     <h3 class="panel-title text-inverse">Estadisticas Seguridad</h3>
                 </div>
                 <div class="panel-body">
-                    <a href="#"> Registar Hombre (HHT)</a><br/>
-                    <a href="#">Horas Hombre Trabajadas (HHT)</a><br/>
+                    <a href="/horasHombre/create"> Registar Hombre (HHT)</a><br/>
+                    <a href="/horasHombre/">Horas Hombre Trabajadas (HHT)</a><br/>
                     <a href="#">Registar Estadisticas</a><br/>
                     <a href="#">Historial Estadisticas</a><br/>
                 </div>

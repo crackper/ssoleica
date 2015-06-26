@@ -17,6 +17,6 @@ Burp::get(null, 'ord=(-?)(\w+)', array('as'=>'orderby', function($direction, $fi
 //todo: dataedit  
 
 
-Route::get('rapyd-ajax/{hash}', array('as' => 'rapyd.remote', 'uses' => '\Zofe\Rapyd\Controllers\AjaxController@getRemote'));
-Route::controller('rapyd-demo','\Zofe\Rapyd\Demo\DemoController');
+//Route::get('rapyd-ajax/{hash}', array('as' => 'rapyd.remote', 'uses' => '\Zofe\Rapyd\Controllers\AjaxController@getRemote'));
+//Route::controller('rapyd-demo','\Zofe\Rapyd\Demo\DemoController');
 

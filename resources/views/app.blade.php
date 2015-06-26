@@ -74,8 +74,8 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Estadisticas Seguridad <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="#"> Registar Hombre (HHT)</a></li>
-                            <li> <a href="#">Horas Hombre Trabajadas (HHT)</a></li>
+                            <li><a href="/horasHombre/create"> Registar Hombre (HHT)</a></li>
+                            <li> <a href="/horasHombre/">Horas Hombre Trabajadas (HHT)</a></li>
                             <li class="divider"></li>
                             <li><a href="#">Registar Estadisticas</a></li>
                             <li><a href="#">Historial Estadisticas</a></li>
