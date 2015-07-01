@@ -31,14 +31,40 @@ $(function(){
                 });
 
                 $("#contrato_id").trigger("change");
-                $('#btnLoadTrabajadores').show('slow');
+                //$('#btnLoadTrabajadores').show('slow');
             }
             else{
                 $("#contrato_id").empty();
-                $('#btnLoadTrabajadores').hide('slow');
+                //$('#btnLoadTrabajadores').hide('slow');
             }
 
             $("#contrato_id").selectpicker('refresh');
+
+        });
+    });
+
+    $("#contrato_id").change(function() {
+        $("#month_id").empty();
+        $('#gridTrabajadores').html('');
+
+        $.getJSON("/horasHombre/months/" + $("#contrato_id").val(), function(data) {
+            $("#month_id").empty();
+
+            if(data.length != 0 )
+            {
+                $.each(data, function(index, value) {
+                    $("#month_id").append('<option value="'+index+'">' +value+'</option>');
+                });
+
+                $("#month_id").trigger("change");
+                $('#btnLoadTrabajadores').show('slow');
+            }
+            else{
+                $("#month_id").empty();
+                $('#btnLoadTrabajadores').hide('slow');
+            }
+
+            $("#month_id").selectpicker('refresh');
 
         });
     });
@@ -78,14 +104,7 @@ $(function(){
                     $('#detalle > tbody tr').each(function () {
 
                         var $field = $(this).find('[name="horas[]"]');
-
                         $('#frmRegistrarHorasHombre').formValidation('addField', $field);
-                        /*$('#frmRegistrarHorasHombre')
-                            .formValidation('updateStatus', 'horas[]', 'NOT_VALIDATED')
-                            .formValidation('validateField', 'horas[]');*/
-
-                        //$('#frmRegistrarHorasHombre').data('formValidation').resetForm();
-
                     });
 
                     $('#btnCambiar').show('slow');

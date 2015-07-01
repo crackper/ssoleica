@@ -6,11 +6,6 @@
     <form id="frmRegistrarHorasHombre" action="/horasHombre/create" method="post" role="form">
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <div class="form-inline">
-            <div class="form-group">
-               <label for="month_id">Mes </label>
-               <input type="hidden" id="month" name="month">
-               {!! Form::select('month_id',$months,null,array('id'=>'month_id','class' => 'form-control input-sm','data-toggle' => 'select')) !!}
-              </div>
               <div class="form-group">
                 <label for="proyecto_id">Proyecto</label>
                 <input type="hidden" id="proyecto" name="proyecto">
@@ -22,6 +17,11 @@
                 <select class="form-control input-sm" data-toggle="select" id="contrato_id" name="contrato_id" data-header="Selecciona un Contrato">
                 </select>
               </div>
+              <div class="form-group">
+                <label for="month_id">Mes </label>
+                <input type="hidden" id="month" name="month">
+                <select class="form-control input-sm" data-toggle="select" id="month_id" name="month_id" data-header="Selecciona un Mes"></select>
+               </div>
             <button type="button" id="btnLoadTrabajadores" class="btn btn-primary">Cargar Trabajadores</button>
             <a id="btnCambiar" href="/horasHombre/create" class="btn btn-warning">Cambiar Selección</a>
         </div>

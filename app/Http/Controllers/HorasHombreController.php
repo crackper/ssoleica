@@ -54,6 +54,8 @@ class HorasHombreController extends Controller {
      */
     private $horasHombreRepository;
 
+    private $pais;
+
     /**
      * @param OperacionRepository $operacionRepository
      * @param ContratoRepository $contratoRepository
@@ -66,6 +68,7 @@ class HorasHombreController extends Controller {
         $this->operacionRepository = $operacionRepository;
         $this->contratoRepository = $contratoRepository;
         $this->horasHombreRepository = $horasHombreRepository;
+        $this->pais = Session::get('pais_id');
     }
 
 	/**
@@ -163,8 +166,8 @@ class HorasHombreController extends Controller {
 
                         $horas = $row->getSrc();
 
-                        $icon_edit = "<a href='/horasHombre/edit/$val' data-toggle='tooltip' data-placement='left' title='Editar Horas Hombre'><span class='glyphicon glyphicon-pencil'></span></a>";
-                        $icon_view = "<a href='/horasHombre/show/$val' data-toggle='tooltip' data-placement='left' title='Visualizar Horas Hombre'><span class='glyphicon glyphicon-eye-open'></span></a>";
+                        $icon_edit = "<a href='/horasHombre/edit/$val' data-toggle='tooltip' data-placement='left' title='Editar Horas Hombre'><span class='glyphicon glyphicon-pencil'></span> Editar</a>";
+                        $icon_view = "<a href='/horasHombre/show/$val' data-toggle='tooltip' data-placement='left' title='Visualizar Horas Hombre'><span class='glyphicon glyphicon-eye-open'></span> Visualizar</a>";
 
                         return $horas->isOpen ? $icon_edit : $icon_view;
                     })
@@ -224,13 +227,12 @@ class HorasHombreController extends Controller {
 	 */
 	public function getCreate()
 	{
-        $months = array('' => '[-- Seleccione --]') + Month::where('year','=','2015')->lists('nombre','id');
+
         $proyectos = array('' => '[-- Seleccione --]') + $this->operacionRepository->getOperaciones(Session::get('pais_id'))
                         ->lists('nombre_operacion','id');
 
         //dd($operaciones);
 		return view('horasHombre.create')
-                ->with('months',$months)
                 ->with('proyectos',$proyectos);
 	}
 
@@ -252,6 +254,25 @@ class HorasHombreController extends Controller {
     {
         $query = $this->contratoRepository->getListsContrato($id);
         return  Response::json($query);
+    }
+
+    public function getMonths($id=0)
+    {
+        $query = "select * from month m ";
+        $query .= "where m.pais_id = :pais_id ";
+        $query .= "and now() between m.fecha_inicio and m.fecha_fin + ((m.plazo)::text || ' day')::interval ";
+        $query .= "and id not in (select month_id from horas_hombre where contrato_id = :contrato_id)";
+
+        $data = DB::select(DB::Raw($query),array('pais_id' => $this->pais,'contrato_id'=> $id));
+
+        $months = array();
+
+        foreach($data as  $key => $row)
+        {
+            $months[$row->id] = $row->nombre;
+        }
+
+        return  Response::json($months);
     }
 
     public function getTrabajadorescontrato($contrato_id = 0)
@@ -282,9 +303,9 @@ class HorasHombreController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id)
+	public function getShow($id)
 	{
-		//
+		dd('visualizar horas hombre');
 	}
 
 	/**
@@ -302,6 +323,12 @@ class HorasHombreController extends Controller {
                         ->load('contrato.operacion')
                         ->load('mes')
                         ->first();
+
+        if( is_null($horasHombre))
+            return new RedirectResponse(url('horasHombre/'));
+
+        if(!$horasHombre->isOpen)
+            return new RedirectResponse(url('horasHombre/show/' . $id));
 
         $query = "select case when dhh.id is null then 0 else dhh.id end as id,";
         $query .= "case when hh.id is null then 0 else hh.id end as horas_hombre_id,";

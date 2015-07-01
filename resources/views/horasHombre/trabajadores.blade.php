@@ -26,6 +26,8 @@
         </tbody>
     </table>
 
-    <button type="submit" id="btnRegistrar" class="btn btn-success">Registrar Horas Hombre</button>
+    @if(count($trabajadores) > 0)
+        <button type="submit" id="btnRegistrar" class="btn btn-success">Registrar Horas Hombre</button>
+    @endif
      <a href="/horasHombre" class="btn btn-danger">Cancelar</a>
 </div>
