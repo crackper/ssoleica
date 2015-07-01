@@ -9,6 +9,7 @@
 namespace SSOLeica\Core\Repository;
 
 
+use Illuminate\Contracts\Logging\Log;
 use Illuminate\Support\Facades\DB;
 use SSOLeica\Core\Data\Repository;
 use SSOLeica\Core\Model\DetalleHorasHombre;
@@ -50,7 +51,8 @@ class HorasHombreRepository extends Repository{
             $detalle = array();
             $total = 0;
 
-            for($i = 0; $i < count($trabajadores); $i++){
+            for($i = 0; $i < count($trabajadores); $i++)
+            {
                 $detalle['horas_hombre_id'] = $horasHombre->id;
                 $detalle['trabajador_id'] = $trabajadores[$i];
                 $detalle['horas'] = $horas[$i];
@@ -74,6 +76,57 @@ class HorasHombreRepository extends Repository{
         $msg["success"] = $success;
         $msg["id"] = $horasHombre->id;
         $msg["horasHombre"] = $horasHombre;
+
+        return $msg;
+    }
+
+
+    public function actualizar($horas_hombre_id,$detalles, $trabajadores,$horas)
+    {
+        $success = 0;
+
+        try
+        {
+            DB::connection()->getPdo()->beginTransaction();
+
+            $detalle = array();
+            $total = 0;
+
+            for($i = 0; $i < count($trabajadores); $i++)
+            {
+                $detalle['horas_hombre_id'] = $horas_hombre_id;
+                $detalle['trabajador_id'] = $trabajadores[$i];
+                $detalle['horas'] = $horas[$i];
+
+                if($detalles[$i] == 0)
+                {
+                    $d = DetalleHorasHombre::create($detalle);
+                }
+                else
+                {
+                    DetalleHorasHombre::where('id',$detalles[$i])->update(array('horas'=>$horas[$i]));
+                }
+
+
+                $total += $horas[$i];
+            }
+
+            HorasHombre::where('id','=',$horas_hombre_id)->update(array('total'=>$total));
+
+            DB::connection()->getPdo()->commit();
+            $success = 1;
+        }
+        catch(\PDOException $ex)
+        {
+            DB::connection()->getPdo()->rollback();
+            Log::error('Error al actualizar Horas Hombre: '. $ex);
+
+            //dd($ex);
+            $success = 0;
+        }
+
+        $msg["success"] = $success;
+        $msg["id"] = $horas_hombre_id;
 
         return $msg;
     }

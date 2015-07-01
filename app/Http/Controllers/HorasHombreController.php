@@ -7,6 +7,25 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\View;
+use Nayjest\Grids\Components\Base\RenderableRegistry;
+use Nayjest\Grids\Components\ColumnHeadersRow;
+use Nayjest\Grids\Components\ColumnsHider;
+use Nayjest\Grids\Components\FiltersRow;
+use Nayjest\Grids\Components\HtmlTag;
+use Nayjest\Grids\Components\Laravel5\Pager;
+use Nayjest\Grids\Components\OneCellRow;
+use Nayjest\Grids\Components\RecordsPerPage;
+use Nayjest\Grids\Components\ShowingRecords;
+use Nayjest\Grids\Components\TFoot;
+use Nayjest\Grids\Components\THead;
+use Nayjest\Grids\EloquentDataProvider;
+use Nayjest\Grids\EloquentDataRow;
+use Nayjest\Grids\FieldConfig;
+use Nayjest\Grids\FilterConfig;
+use Nayjest\Grids\Grid;
+use Nayjest\Grids\GridConfig;
+use Nayjest\Grids\IdFieldConfig;
+use Nayjest\Grids\SelectFilterConfig;
 use SSOLeica\Core\Model\DetalleHorasHombre;
 use SSOLeica\Core\Model\HorasHombre;
 use SSOLeica\Core\Model\Month;
@@ -18,6 +37,7 @@ use SSOLeica\Http\Requests;
 use SSOLeica\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class HorasHombreController extends Controller {
 
@@ -55,9 +75,146 @@ class HorasHombreController extends Controller {
 	 */
 	public function getIndex()
 	{
+        $query = HorasHombre::join('contrato','contrato.id','=','horas_hombre.contrato_id')
+                    ->join('month','month.id','=','horas_hombre.month_id')
+                    ->join('operacion','operacion.id','=','contrato.operacion_id')
+                    ->select('horas_hombre.*')
+                    ->addSelect('operacion.nombre_operacion as proyecto')
+                    ->addSelect('contrato.nombre_contrato as contrato')
+                    ->addSelect('month.year')
+                    ->addSelect('month.nombre as mes');
+                    //->orderBy('month.id','desc')
+                    //->orderBy('month.year','desc');
+
+        $months = array('Enero'=>'Enero','Febrero'=>'Febrero','Marzo'=>'Marzo','Abril'=>'Abril','Mayo'=>'Mayo','Junio'=>'Junio','Julio'=>'Julio','Agosto'=>'Agosto','Septiembre'=>'Septiembre','Octubre'=>'Octubre','Noviembre'=>'Noviembre','Diciembre'=>'Diciembre');
 
 
-		dd('index');
+		//dd($query->get());
+
+        $cfg = (new GridConfig())
+            ->setName("gridHorasHombre")
+            ->setDataProvider(
+                new EloquentDataProvider($query)
+            )->setColumns([
+                (new IdFieldConfig)->setLabel('#'),
+                (new FieldConfig)
+                    ->setName('year')
+                    ->setLabel('Año')
+                    ->setSortable(true)
+                    ->addFilter(
+                        (new FilterConfig)->setOperator(FilterConfig::OPERATOR_EQ)
+                    ),
+                (new FieldConfig)
+                    ->setName('mes')
+                    ->setLabel('Mes')
+                    ->setSortable(true)
+                    ->addFilter(
+                        (new SelectFilterConfig)
+                            ->setSubmittedOnChange(true)
+                            ->setOptions($months)
+                            ->setFilteringFunc(function($val,EloquentDataProvider $provider){
+                                $provider->getBuilder()->where('month.nombre','=',$val);
+                            })
+                    ),
+                (new FieldConfig)
+                    ->setName('isOpen')
+                    ->setLabel('Estado')
+                    ->setSortable(true)
+                    ->addFilter(
+                        (new SelectFilterConfig)
+                            ->setSubmittedOnChange(true)
+                            ->setOptions(array('true'=>'Abierto','false'=>'Cerrado'))
+                            ->setFilteringFunc(function($val,EloquentDataProvider $provider){
+                                $provider->getBuilder()->where('isOpen','=',$val);
+                            })
+                    )
+                    ->setCallback(function ($val) {
+                        return $val == true ? "<span class='glyphicon glyphicon-folder-open'></span>  Abierto":"<span class='glyphicon glyphicon-folder-close'></span>  Cerrado";
+                    }),
+                (new FieldConfig)
+                    ->setName('proyecto')
+                    ->setLabel('Proyecto')
+                    ->setSortable(true)
+                    ->addFilter(
+                        (new SelectFilterConfig)
+                            ->setSubmittedOnChange(true)
+                            ->setOptions($this->operacionRepository->getOperaciones(Session::get('pais_id'))->lists('nombre_operacion','id'))
+                            ->setFilteringFunc(function($val, EloquentDataProvider $provider){
+                                $provider->getBuilder()->where('operacion.id','=',$val);
+                            })
+                    ),
+                (new FieldConfig)
+                    ->setName('contrato')
+                    ->setLabel('Contrato')
+                    ->setSortable(true)
+                    ->addFilter(
+                        (new FilterConfig)
+                            ->setOperator(FilterConfig::OPERATOR_LIKE)
+
+                    ),
+                (new FieldConfig)
+                    ->setName('total')
+                    ->setLabel('Total Hs.')
+                    ->setSortable(true),
+                (new FieldConfig())
+                    ->setName('id')
+                    ->setLabel('Acciones')
+                    ->setCallback(function ($val,EloquentDataRow $row) {
+
+                        $horas = $row->getSrc();
+
+                        $icon_edit = "<a href='/horasHombre/edit/$val' data-toggle='tooltip' data-placement='left' title='Editar Horas Hombre'><span class='glyphicon glyphicon-pencil'></span></a>";
+                        $icon_view = "<a href='/horasHombre/show/$val' data-toggle='tooltip' data-placement='left' title='Visualizar Horas Hombre'><span class='glyphicon glyphicon-eye-open'></span></a>";
+
+                        return $horas->isOpen ? $icon_edit : $icon_view;
+                    })
+            ])
+            ->setComponents([
+                (new THead)
+                    ->setComponents([
+                        new ColumnHeadersRow,
+                        new FiltersRow,
+                        (new OneCellRow)
+                            ->setRenderSection(RenderableRegistry::SECTION_BEGIN)
+                            ->setComponents([
+                                (new RecordsPerPage)->setVariants([6,12,24,26,48]),
+                                new ColumnsHider,
+                                (new HtmlTag)
+                                    ->setContent('<span class="glyphicon glyphicon-refresh"></span> Filtrar')
+                                    ->setTagName('button')
+                                    ->setRenderSection(RenderableRegistry::SECTION_END)
+                                    ->setAttributes([
+                                        'class' => 'btn btn-success btn-sm'
+                                    ]),
+                                (new HtmlTag)
+                                    ->setContent('&nbsp;')
+                                    ->setRenderSection(RenderableRegistry::SECTION_END)
+                                    ->setTagName('span'),
+                                (new HtmlTag)
+                                    ->setContent('<span class="glyphicon glyphicon-plus"></span> Registrar Horas Hombre')
+                                    ->setTagName('a')
+                                    ->setRenderSection(RenderableRegistry::SECTION_END)
+                                    ->setAttributes([
+                                        'class' => 'btn btn-warning btn-sm',
+                                        'href' => '/horasHombre/create'
+                                    ])
+                            ])
+                    ]),
+                (new TFoot)
+                    ->addComponents([
+                        new Pager,
+                        (new HtmlTag)
+                            ->setAttributes(['class' => 'pull-right'])
+                            ->addComponent(new ShowingRecords)
+                    ])
+            ])
+            ->setPageSize(12);
+
+        $grid = new Grid($cfg);
+
+        $text = "<h3>Horas Hombre</h3>";
+
+        return view('horasHombre.index', compact('grid', 'text'));
 	}
 
 	/**
@@ -86,7 +243,9 @@ class HorasHombreController extends Controller {
 
         $data = $this->horasHombreRepository->registrar($month_id,$contrato_id,$trabajadores,$horas);
 
-        dd($data);
+        Session::flash('message', 'La información Registró Correctamente');
+
+        return new RedirectResponse(url('horasHombre/edit/' . $data['id']));
     }
 
     public function getContratos($id = 0)
@@ -95,7 +254,8 @@ class HorasHombreController extends Controller {
         return  Response::json($query);
     }
 
-    public function getTrabajadorescontrato($contrato_id = 0){
+    public function getTrabajadorescontrato($contrato_id = 0)
+    {
         $trabajadores = TrabajadorContrato::where('contrato_id','=',$contrato_id)
                         ->where('is_activo','=',true)
                         ->get()->load('trabajador.cargo');
@@ -133,8 +293,11 @@ class HorasHombreController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function getEdit($id=0)
+	public function getEdit($id = 0)
 	{
+        if($id == 0)
+            return new RedirectResponse(url('/horasHombre'));
+
 		$horasHombre = HorasHombre::where('id','=',$id)->get()
                         ->load('contrato.operacion')
                         ->load('mes')
@@ -150,7 +313,7 @@ class HorasHombreController extends Controller {
         $query .= "left join enum_tables c on t.cargo_id = c.id ";
         $query .= "left join horas_hombre hh on tc.contrato_id = hh.contrato_id ";
         $query .= "left join detalle_horas_hombre dhh on hh.id = dhh.horas_hombre_id and t.id = dhh.trabajador_id ";
-        $query .= "where hh.id = :id and tc.is_activo = true";
+        $query .= "where hh.id = :id and tc.is_activo = true order by app_paterno";
 
         $trabajadores = DB::select(DB::Raw($query),array('id' => $id));
 
@@ -167,9 +330,17 @@ class HorasHombreController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function postUpdate($id)
 	{
-		//
+        $detalle = Input::get('detalle');
+        $trabajadores = Input::get('trabajador');
+        $horas = Input::get('horas');
+
+        $data = $this->horasHombreRepository->actualizar($id,$detalle,$trabajadores,$horas);
+
+        Session::flash('message', 'La información Registró Correctamente');
+
+        return new RedirectResponse(url('horasHombre/edit/' . $id));
 	}
 
 	/**

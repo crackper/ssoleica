@@ -61,7 +61,7 @@ class ContratoRepository extends Repository {
      */
     public function getContratosDisponibles($proyecto_id, $contrato_id)
     {
-        $data = Contrato::where('operacion_Id', '=', $proyecto_id)
+        $data = Contrato::where('operacion_id', '=', $proyecto_id)
             ->whereNotIn('id', array($contrato_id))
             ->lists('nombre_contrato', 'id');
 

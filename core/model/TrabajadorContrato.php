@@ -10,7 +10,7 @@ class TrabajadorContrato extends Model {
 
     public function trabajador()
     {
-        return $this->belongsTo('SSOLeica\Core\Model\Trabajador');
+        return $this->belongsTo('SSOLeica\Core\Model\Trabajador')->orderBy('app_paterno','desc');
     }
 
     public function contrato()

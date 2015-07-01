@@ -10,7 +10,7 @@
         @foreach($trabajadores as $key => $row)
             <tr>
                 <td>{!! $key + 1 !!}</td>
-                <td>{!! $row->trabajador->app_paterno.' '.$row->trabajador->app_materno.', '. $row->trabajador->nombre !!}</td>
+                <td>{!! $row->trabajador->fullname !!}</td>
                 <td>{!! $row->trabajador->cargo->name !!}</td>
                 <td>
                     <div>

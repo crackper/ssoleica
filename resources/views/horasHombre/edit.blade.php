@@ -3,6 +3,12 @@
  @section('content')
     <h3>Registrar Horas Hombre</h3>
     <h5>Fecha de Cierre: {!! $horasHombre->fecha_fin !!}</h5>
+    @if (Session::has('message'))
+        <div class="alert alert-success alert-dismissible fade in" role="alert">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+              {{ Session::get('message') }}
+        </div>
+    @endif
     <br/>
     <form id="frmRegistrarHorasHombre" action="/horasHombre/update/{!! $horasHombre->id !!}" method="post" role="form">
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -40,13 +46,12 @@
                             <td>{!! $row->trabajador !!}</td>
                             <td>{!! $row->cargo !!}</td>
                             <td>
-                                <!--div class="form-group"-->
+                                <input type="hidden" id="detalle[]" name="detalle[]" value="{!! $row->id !!}"/>
                                 <input type="hidden" id="trabajador[]" name="trabajador[]" value="{!! $row->trabajador_id !!}"/>
                                 <input type="text" name="horas[]"
                                 class="form-control input-sm horasHombre"
                                 style="width: 10em;"
                                 data-toggle="horas" value="{!! $row->horas !!}"/>
-                                <!--/div-->
                             </td>
                         </tr>
                     @endforeach
@@ -85,4 +90,15 @@
  <script src="/js/formvalidation/framework/bootstrap.min.js"></script>
  <script src="/js/bootstrap-dialog.min.js"></script>
  {!! Minify::javascript('/js/app/horasHombre.edit.js') !!}
+
+ @if (Session::has('message'))
+     <script>
+         $(function(){
+             BootstrapDialog.alert({
+                 title:'SSO Leica Geosystems',
+                 message: '{{ Session::get('message') }}'
+             });
+         });
+     </script>
+@endif
  @endsection

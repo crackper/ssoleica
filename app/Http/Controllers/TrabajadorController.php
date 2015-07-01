@@ -99,7 +99,7 @@ class TrabajadorController extends Controller
     public function getIndex()
     {
         $query = $this->trabajadorRepository->getTrabajadores()->where('pais_id', '=', Session::get('pais_id'));
-        //dd($query->get());
+        //dd($query->first()->fullname);
         $cargos = array();
 
         foreach ($this->enumTablesRepository->getCargos() as $row) {

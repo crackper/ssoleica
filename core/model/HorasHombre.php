@@ -6,7 +6,7 @@ class HorasHombre extends Model {
 
     protected $table = 'horas_hombre';
 
-    protected $fillable = ['month_id', 'contrato_id', 'fecha_inicio','fecha_fin'];
+    protected $fillable = ['month_id', 'contrato_id', 'fecha_inicio','fecha_fin','isOpen'];
 
     public function detalle_horas()
     {
