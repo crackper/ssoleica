@@ -23,7 +23,7 @@ class CreateTrabajadorVencimientoTable extends Migration {
             $table->integer('vencimiento_id')->unsigned();
             $table->foreign('vencimiento_id')->references('id')->on('enum_tables');
             $table->boolean('caduca')->default(false);
-            $table->date('fecha_vencimiento');
+            $table->dateTime('fecha_vencimiento');
             $table->longText('observaciones')->nullable();
             //auditoria
             $table->string('updated_by',100)->nullable();

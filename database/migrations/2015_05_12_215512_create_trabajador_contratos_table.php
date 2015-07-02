@@ -19,9 +19,9 @@ class CreateTrabajadorContratosTable extends Migration {
             $table->foreign('trabajador_id')->references('id')->on('trabajador');
             $table->integer('contrato_id')->unsigned();
             $table->foreign('contrato_id')->references('id')->on('contrato');
-            $table->date('fecha_inicio')->nullable();
+            $table->dateTime('fecha_inicio')->nullable();
             $table->string('nro_fotocheck',50);
-            $table->date('fecha_vencimiento');
+            $table->dateTime('fecha_vencimiento');
             $table->boolean('is_activo')->default(1);
             $table->longText('observaciones')->nullable();
             //auditoria

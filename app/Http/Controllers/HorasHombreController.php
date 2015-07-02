@@ -32,6 +32,7 @@ use SSOLeica\Core\Model\Month;
 use SSOLeica\Core\Model\TrabajadorContrato;
 use SSOLeica\Core\Repository\ContratoRepository;
 use SSOLeica\Core\Repository\HorasHombreRepository;
+use SSOLeica\Core\Repository\MonthRepository;
 use SSOLeica\Core\Repository\OperacionRepository;
 use SSOLeica\Http\Requests;
 use SSOLeica\Http\Controllers\Controller;
@@ -55,20 +56,27 @@ class HorasHombreController extends Controller {
     private $horasHombreRepository;
 
     private $pais;
+    /**
+     * @var MonthRepository
+     */
+    private $monthRepository;
 
     /**
      * @param OperacionRepository $operacionRepository
      * @param ContratoRepository $contratoRepository
      * @param HorasHombreRepository $horasHombreRepository
+     * @param MonthRepository $monthRepository
      */
     public function __construct(OperacionRepository $operacionRepository,
                                 ContratoRepository $contratoRepository,
-                                HorasHombreRepository $horasHombreRepository){
+                                HorasHombreRepository $horasHombreRepository,
+                                MonthRepository $monthRepository){
         $this->middleware('workspace');
         $this->operacionRepository = $operacionRepository;
         $this->contratoRepository = $contratoRepository;
         $this->horasHombreRepository = $horasHombreRepository;
         $this->pais = Session::get('pais_id');
+        $this->monthRepository = $monthRepository;
     }
 
 	/**
@@ -258,12 +266,7 @@ class HorasHombreController extends Controller {
 
     public function getMonths($id=0)
     {
-        $query = "select * from month m ";
-        $query .= "where m.pais_id = :pais_id ";
-        $query .= "and now() between m.fecha_inicio and m.fecha_fin + ((m.plazo)::text || ' day')::interval ";
-        $query .= "and id not in (select month_id from horas_hombre where contrato_id = :contrato_id)";
-
-        $data = DB::select(DB::Raw($query),array('pais_id' => $this->pais,'contrato_id'=> $id));
+        $data = $this->monthRepository->getMesesDisponibles($this->pais,$id);
 
         $months = array();
 

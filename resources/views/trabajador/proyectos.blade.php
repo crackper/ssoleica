@@ -32,7 +32,7 @@
                             <td>{!! $row->nro_fotocheck !!}</td>
                             <td>
                                 <div>
-                                    <input type="text" id="{!! $row->contrato_id!!}"  class="form-control input-sm date" style="width: 7em;" value="{!! date('Y-m-d',strtotime($row->fecha_vencimiento)) !!}" data-toggle="date"></td>
+                                    <input type="text" id="{!! $row->contrato_id!!}"  class="form-control input-sm date" style="width: 7em;" value="{!! SSOLeica\Core\Helpers\Helpers::to_timezone($row->fecha_vencimiento,Session::get('timezone'),'Y-m-d') !!}" data-toggle="date"></td>
                                 </div>
                             <td><input type="text" class="form-control input-sm obs" value="{!! $row->observaciones !!}"></td>
                             <td>

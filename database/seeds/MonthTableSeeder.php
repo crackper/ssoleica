@@ -30,8 +30,15 @@ class MonthTableSeeder extends Seeder {
                     $d = 1;
                     $m = $key + 1;
                     $Y = $year;
-                    $primerDia = gmdate("Y-m-d H:i:s", mktime(0, 0, 0,$m, $d-$d +1,$Y));
-                    $ultimoDia = gmdate("Y-m-d H:i:s", mktime(11, 59, 59,$m+1,$d-$d,$Y));
+                    $utc = 0;
+
+                    /*if($pais == 8)
+                        $utc = 3600*5;
+                    else
+                        $utc = 3600*3;*/
+
+                    $primerDia = gmdate("Y-m-d H:i:s", mktime(0, 0, 0,$m, $d-$d +1,$Y) + $utc);
+                    $ultimoDia = gmdate("Y-m-d H:i:s", mktime(23, 59, 59,$m+1,$d-$d,$Y) + $utc);
 
                     if($cont == 4 || $cont == 5)
                     {

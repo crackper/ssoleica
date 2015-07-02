@@ -40,7 +40,7 @@
                         <td>{!! $row->examen_medico !!}</td>
                         <td class="text-center">
                         <div>
-                            <input type="text" value="{!!$row->fecha_vencimiento !!}" data-toggle="date" class="form-control input-sm date" style="width: 7em;" />
+                            <input type="text" value="{!! SSOLeica\Core\Helpers\Helpers::to_timezone($row->fecha_vencimiento,Session::get('timezone'),'Y-m-d') !!}" data-toggle="date" class="form-control input-sm date" style="width: 7em;" />
                         </div>
                         </td>
                         <td class="text-center">{!! Form::checkbox('caduca', 1, $row->caduca == 1 ? true : false ,array('class'=>'form-control input-sm checkbox')); !!}</td>

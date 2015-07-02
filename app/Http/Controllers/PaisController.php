@@ -3,11 +3,13 @@
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
+use SSOLeica\Core\Helpers\Helpers;
 use SSOLeica\Core\Repository\EnumTablesRepository as EnumTables;
 use SSOLeica\Http\Requests;
 use SSOLeica\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
+use Symfony\Component\Console\Helper\Helper;
 
 class PaisController extends Controller {
     /**
@@ -50,6 +52,16 @@ class PaisController extends Controller {
 
         Session::put('pais_id', $pais_id);
         Session::put('pais_name', $pais->name);
+
+        if($pais_id == 8)
+        {
+            Session::put('timezone', "America/Bogota");
+        }
+        else
+        {
+            Session::put('timezone', "America/Argentina/Buenos_Aires");
+        }
+
 
         return new RedirectResponse(url('/home'));
     }

@@ -5,6 +5,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Session;
+use SSOLeica\Core\Helpers\Helpers;
 use SSOLeica\Core\Model\Contrato;
 use SSOLeica\Core\Model\EnumCategories;
 use SSOLeica\Core\Model\Trabajador;
@@ -66,6 +67,9 @@ class TrabajadorController extends Controller
      */
     private $trabajadorVencimientoRepository;
 
+    private $pais;
+    private $timezone;
+
 
     /**
      * @param Trabajador $trabajador
@@ -89,6 +93,9 @@ class TrabajadorController extends Controller
         $this->operacionRepository = $operacionRepository;
         $this->enumTablesRepository = $enumTablesRepository;
         $this->trabajadorVencimientoRepository = $trabajadorVencimientoRepository;
+
+        $this->pais = Session::get('pais_id');
+        $this->timezone = Session::get('timezone');
     }
 
     /**
@@ -98,7 +105,7 @@ class TrabajadorController extends Controller
      */
     public function getIndex()
     {
-        $query = $this->trabajadorRepository->getTrabajadores()->where('pais_id', '=', Session::get('pais_id'));
+        $query = $this->trabajadorRepository->getTrabajadores()->where('pais_id', '=', $this->pais);
         //dd($query->first()->fullname);
         $cargos = array();
 
@@ -271,7 +278,7 @@ class TrabajadorController extends Controller
      */
     public function anyEdit($id)
     {
-        $pais = $this->enumTablesRepository->find(Session::get('pais_id'))->load('categorias.categoria');
+        $pais = $this->enumTablesRepository->find($this->pais)->load('categorias.categoria');
 
         $licencias = array();
         $licencias[] = "[- Seleccione -]";
@@ -328,7 +335,7 @@ class TrabajadorController extends Controller
 
     public function anyCreate()
     {
-        $pais = $this->enumTablesRepository->find(Session::get('pais_id'))->load('categorias.categoria');
+        $pais = $this->enumTablesRepository->find($this->pais)->load('categorias.categoria');
 
         $licencias = array();
         $licencias[] = "[- Seleccione -]";
@@ -338,7 +345,7 @@ class TrabajadorController extends Controller
 
         $edit = DataForm::source(new Trabajador);
 
-        $edit->add('pais_id', '', 'hidden')->insertValue(Session::get('pais_id'));
+        $edit->add('pais_id', '', 'hidden')->insertValue($this->pais);
         $edit->add('dni', 'DNI', 'text')->rule('required|min:8');
         $edit->add('nombre', 'Nombre', 'text')->rule('required|max:100');
         $edit->add('app_paterno', 'Apellido Paterno', 'text')->rule('required');
@@ -388,7 +395,7 @@ class TrabajadorController extends Controller
         $contrato_id = Input::get('contrato');
 
         $changeContrato = array(
-            'fecha_vencimiento' => Carbon::parse(Input::get('fecha'))->format('Y-m-d'),
+            'fecha_vencimiento' => Helpers::to_utc(Input::get('fecha').' 23:59:59','UTC'),//Carbon::parse(Input::get('fecha'))->format('Y-m-d')
             'observaciones' => Input::get('obs')
         );
 
@@ -426,8 +433,8 @@ class TrabajadorController extends Controller
      */
     public function postSavecontratotrabajador($id)
     {
-        $fechaFin = Input::get('fecFinActual');
-        $data['fecha_inicio'] = Input::get('fecIniCambio');
+        $fechaFin = Helpers::to_utc(Input::get('fecFinActual').' 23:59:59');
+        $data['fecha_inicio'] = Helpers::to_utc(Input::get('fecIniCambio'));
         $data['contrato_id'] = Input::get('contrato_id');
 
         $success = $this->trabajadorRepository->updateContrato($id,$data,$fechaFin);
@@ -442,7 +449,7 @@ class TrabajadorController extends Controller
 
     public function getAsignarcontrato($id)
     {
-        $operaciones = $this->operacionRepository->getOperacionesDiponiblesByTrabajador($id,Session::get('pais_id'));
+        $operaciones = $this->operacionRepository->getOperacionesDiponiblesByTrabajador($id,$this->pais);
 
         $query = array('' => '[-- Seleccione un proyecto--]') + $operaciones;
 
@@ -456,9 +463,9 @@ class TrabajadorController extends Controller
     {
         $data['trabajador_id'] = $id;
         $data['contrato_id'] = Input::get('contrato_id');
-        $data['fecha_inicio'] = Input::get('fecInicio');
+        $data['fecha_inicio'] = Helpers::to_utc(Input::get('fecInicio'));
         $data['nro_fotocheck'] = Input::get('nroFotocheck');
-        $data['fecha_vencimiento'] = Input::get('fecVencimiento');
+        $data['fecha_vencimiento'] = Helpers::to_utc(Input::get('fecVencimiento').' 23:59:59');
 
         $success = $this-> contratoRepository->registarContratoTrabajador($data);
 
@@ -497,7 +504,7 @@ class TrabajadorController extends Controller
     public function postUpdatevencimiento()
     {
         $vencimiento_id             = Input::get('vencimiento');
-        $data['fecha_vencimiento']  = Input::get('fecha');
+        $data['fecha_vencimiento']  = Helpers::to_utc(Input::get('fecha').' 23:59:59');
         $data['caduca']             = Input::get('caduca');
         $data['observaciones']      = Input::get('obs');
 
@@ -543,12 +550,12 @@ class TrabajadorController extends Controller
         $data['operacion_id']       = $operacion_id == 0 ? null: $operacion_id ;
         $data['vencimiento_id']     = Input::get('vencimiento_id');
         $data['caduca']             = Input::get('caduca');
-        $data['fecha_vencimiento']  = Input::get('fecVencimiento');
+        $data['fecha_vencimiento']  = Helpers::to_utc(Input::get('fecVencimiento').' 23:59:59','UTC');
         $data['observaciones']      = Input::get('observaciones');
 
         $examen = $this->trabajadorVencimientoRepository->create($data);
 
-        $examen['fecha_vencimiento'] = Carbon::parse($data['fecha_vencimiento'])->format('Y-m-d');
+        $examen['fecha_vencimiento'] = $data['fecha_vencimiento'];
 
         $success = is_null($examen) ? 0 : 1;
 

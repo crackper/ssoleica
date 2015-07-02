@@ -10,6 +10,7 @@ namespace SSOLeica\Core\Repository;
 
 
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 use SSOLeica\Core\Data\Repository;
 use SSOLeica\Core\Model\Contrato;
 use SSOLeica\Core\Model\ShiftContratoTrabajador;
@@ -83,7 +84,7 @@ class ContratoRepository extends Repository {
             $trabajador_contrato->trabajador_id = $data['trabajador_id'];
             $trabajador_contrato->contrato_id = $data['contrato_id'];
             $trabajador_contrato->fecha_inicio = $data['fecha_inicio'];
-            $trabajador_contrato->nro_fotocheck = $data['nro_fotocheck'];
+            $trabajador_contrato->nro_fotocheck =  $data['nro_fotocheck'];
             $trabajador_contrato->fecha_vencimiento = $data['fecha_vencimiento'];
             $trabajador_contrato->is_activo = 1;
             $success = $trabajador_contrato->save();

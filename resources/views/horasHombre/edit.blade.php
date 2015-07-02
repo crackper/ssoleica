@@ -2,7 +2,8 @@
 
  @section('content')
     <h3>Registrar Horas Hombre</h3>
-    <h5>Fecha de Cierre: {!! $horasHombre->fecha_fin !!}</h5>
+    <h5>Fecha de Cierre: {!! Carbon\Carbon::parse($horasHombre->fecha_fin)->format("d/m/Y h:i:s") !!}</h5>
+
     @if (Session::has('message'))
         <div class="alert alert-success alert-dismissible fade in" role="alert">
               <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
