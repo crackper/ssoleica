@@ -19,6 +19,7 @@ class CreateEnumTablesTable extends Migration {
             $table->string('name');
             $table->string('symbol',50)->nullable();
             $table->integer('attributes')->nullable();
+            $table->json('data')->nullable();
             $table->integer('ordinal')->nullable();
             $table->string('updated_by',100)->nullable();
             $table->timestamps();

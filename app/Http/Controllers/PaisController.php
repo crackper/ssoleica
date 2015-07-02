@@ -49,18 +49,13 @@ class PaisController extends Controller {
         $pais_id = Input::get('pais_id');
 
         $pais = $this->enum_tables->find($pais_id);
+        $data = json_decode($pais->data);
+        
 
         Session::put('pais_id', $pais_id);
         Session::put('pais_name', $pais->name);
-
-        if($pais_id == 8)
-        {
-            Session::put('timezone', "America/Bogota");
-        }
-        else
-        {
-            Session::put('timezone', "America/Argentina/Buenos_Aires");
-        }
+        Session::put('timezone', $data[0]->timezone);
+        Session::put('diff_timezone', $data[0]->diff);
 
 
         return new RedirectResponse(url('/home'));

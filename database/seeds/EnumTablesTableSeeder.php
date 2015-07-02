@@ -25,8 +25,6 @@ class EnumTablesTableSeeder extends \Illuminate\Database\Seeder {
             ['id'=> 5,'type'=>'ExamenMedico','name'=>'Ex. Med. Altura Geográfica (EMAG)','symbol'=>'EMAG','created_at' => new DateTime, 'updated_at' => new DateTime],
             ['id'=> 6,'type'=>'ExamenMedico','name'=>'Ex. Med. Dermatológico','symbol' => '','created_at' => new DateTime, 'updated_at' => new DateTime],
             ['id'=> 7,'type'=>'ExamenMedico','name'=>'Ex. Med. Psicológico','symbol'=>'','created_at' => new DateTime, 'updated_at' => new DateTime],
-            ['id'=> 8,'type'=>'Pais','name'=>'Perú','symbol'=>'PE','created_at' => new DateTime, 'updated_at' => new DateTime],
-            ['id'=> 9,'type'=>'Pais','name'=>'Chile','symbol'=>'CL','created_at' => new DateTime, 'updated_at' => new DateTime],
             ['id'=> 10,'type'=>'Cargo','name'=>'Técnico de Operaciones','symbol'=>'TOP','created_at' => new DateTime, 'updated_at' => new DateTime],
             ['id'=> 11,'type'=>'Cargo','name'=>'Ingeniero de Operacioens','symbol'=>'IOP','created_at' => new DateTime, 'updated_at' => new DateTime],
             ['id'=> 12,'type'=>'Cargo','name'=>'Asesor Prevención de Riesgos','symbol'=>'APR','created_at' => new DateTime, 'updated_at' => new DateTime],
@@ -65,6 +63,12 @@ class EnumTablesTableSeeder extends \Illuminate\Database\Seeder {
         );
         DB::table('enum_tables')->insert($enums);
 
+        $paises = array(
+            ['id'=> 8,'type'=>'Pais','name'=>'Perú','symbol'=>'PE','data'=>json_encode(array(array('timezone'=>'America/Bogota','diff'=>'-5'))),'created_at' => new DateTime, 'updated_at' => new DateTime],
+            ['id'=> 9,'type'=>'Pais','name'=>'Chile','symbol'=>'CL','data'=>json_encode(array(array('timezone'=>'America/Argentina/Buenos_Aires','diff'=>'-3'))),'created_at' => new DateTime, 'updated_at' => new DateTime]
+        );
+
+        DB::table('enum_tables')->insert($paises);
 
         DB::table('enum_categories')->delete();
 
