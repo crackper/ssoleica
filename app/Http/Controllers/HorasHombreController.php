@@ -86,21 +86,9 @@ class HorasHombreController extends Controller {
 	 */
 	public function getIndex()
 	{
-        $query = HorasHombre::join('contrato','contrato.id','=','horas_hombre.contrato_id')
-                    ->join('month','month.id','=','horas_hombre.month_id')
-                    ->join('operacion','operacion.id','=','contrato.operacion_id')
-                    ->select('horas_hombre.*')
-                    ->addSelect('operacion.nombre_operacion as proyecto')
-                    ->addSelect('contrato.nombre_contrato as contrato')
-                    ->addSelect('month.year')
-                    ->addSelect('month.nombre as mes');
-                    //->orderBy('month.id','desc')
-                    //->orderBy('month.year','desc');
+        $query = $this->horasHombreRepository->getQueryHorasHombre();
 
         $months = array('Enero'=>'Enero','Febrero'=>'Febrero','Marzo'=>'Marzo','Abril'=>'Abril','Mayo'=>'Mayo','Junio'=>'Junio','Julio'=>'Julio','Agosto'=>'Agosto','Septiembre'=>'Septiembre','Octubre'=>'Octubre','Noviembre'=>'Noviembre','Diciembre'=>'Diciembre');
-
-
-		//dd($query->get());
 
         $cfg = (new GridConfig())
             ->setName("gridHorasHombre")
@@ -236,7 +224,7 @@ class HorasHombreController extends Controller {
 	public function getCreate()
 	{
 
-        $proyectos = array('' => '[-- Seleccione --]') + $this->operacionRepository->getOperaciones(Session::get('pais_id'))
+        $proyectos = array('' => '[-- Seleccione --]') + $this->operacionRepository->getOperaciones($this->pais)
                         ->lists('nombre_operacion','id');
 
         //dd($operaciones);
@@ -280,9 +268,7 @@ class HorasHombreController extends Controller {
 
     public function getTrabajadorescontrato($contrato_id = 0)
     {
-        $trabajadores = TrabajadorContrato::where('contrato_id','=',$contrato_id)
-                        ->where('is_activo','=',true)
-                        ->get()->load('trabajador.cargo');
+        $trabajadores = $this->contratoRepository->getTrabajadores($contrato_id);
 
         //dd($trabajadores[0]->trabajador->cargo->name);
 
@@ -322,10 +308,7 @@ class HorasHombreController extends Controller {
         if($id == 0)
             return new RedirectResponse(url('/horasHombre'));
 
-		$horasHombre = HorasHombre::where('id','=',$id)->get()
-                        ->load('contrato.operacion')
-                        ->load('mes')
-                        ->first();
+		$horasHombre = $this->horasHombreRepository->getHeadHorasHombre($id);
 
         if( is_null($horasHombre))
             return new RedirectResponse(url('horasHombre/'));
@@ -333,21 +316,8 @@ class HorasHombreController extends Controller {
         if(!$horasHombre->isOpen)
             return new RedirectResponse(url('horasHombre/show/' . $id));
 
-        $query = "select case when dhh.id is null then 0 else dhh.id end as id,";
-        $query .= "case when hh.id is null then 0 else hh.id end as horas_hombre_id,";
-        $query .= "t.id as trabajador_id,";
-        $query .= "(t.app_paterno || t.app_materno || ', ' || t.nombre) as trabajador,c.name as cargo,";
-        $query .= "case when dhh.horas is null then 0 else dhh.horas end as horas ";
-        $query .= "from trabajador_contrato tc ";
-        $query .= "left join trabajador t on tc.trabajador_id = t.id ";
-        $query .= "left join enum_tables c on t.cargo_id = c.id ";
-        $query .= "left join horas_hombre hh on tc.contrato_id = hh.contrato_id ";
-        $query .= "left join detalle_horas_hombre dhh on hh.id = dhh.horas_hombre_id and t.id = dhh.trabajador_id ";
-        $query .= "where hh.id = :id and tc.is_activo = true order by app_paterno";
 
-        $trabajadores = DB::select(DB::Raw($query),array('id' => $id));
-
-       // dd($horasHombre);
+        $trabajadores = $this->horasHombreRepository->getDetalleHorasHombre($id);
 
         return view('horasHombre.edit')
                     ->with('horasHombre',$horasHombre)

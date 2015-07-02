@@ -130,4 +130,49 @@ class HorasHombreRepository extends Repository{
 
         return $msg;
     }
+
+    public function getQueryHorasHombre()
+    {
+        $query = HorasHombre::join('contrato','contrato.id','=','horas_hombre.contrato_id')
+            ->join('month','month.id','=','horas_hombre.month_id')
+            ->join('operacion','operacion.id','=','contrato.operacion_id')
+            ->select('horas_hombre.*')
+            ->addSelect('operacion.nombre_operacion as proyecto')
+            ->addSelect('contrato.nombre_contrato as contrato')
+            ->addSelect('month.year')
+            ->addSelect('month.nombre as mes');
+        //->orderBy('month.id','desc')
+        //->orderBy('month.year','desc');
+
+        return $query;
+    }
+
+    public function getHeadHorasHombre($id)
+    {
+        $horasHombre = HorasHombre::where('id','=',$id)->get()
+            ->load('contrato.operacion')
+            ->load('mes')
+            ->first();
+
+        return $horasHombre;
+    }
+
+    public function getDetalleHorasHombre($horas_hombre_id)
+    {
+        $query = "select case when dhh.id is null then 0 else dhh.id end as id,";
+        $query .= "case when hh.id is null then 0 else hh.id end as horas_hombre_id,";
+        $query .= "t.id as trabajador_id,";
+        $query .= "(t.app_paterno || t.app_materno || ', ' || t.nombre) as trabajador,c.name as cargo,";
+        $query .= "case when dhh.horas is null then 0 else dhh.horas end as horas ";
+        $query .= "from trabajador_contrato tc ";
+        $query .= "left join trabajador t on tc.trabajador_id = t.id ";
+        $query .= "left join enum_tables c on t.cargo_id = c.id ";
+        $query .= "left join horas_hombre hh on tc.contrato_id = hh.contrato_id ";
+        $query .= "left join detalle_horas_hombre dhh on hh.id = dhh.horas_hombre_id and t.id = dhh.trabajador_id ";
+        $query .= "where hh.id = :id and tc.is_activo = true order by app_paterno";
+
+        $trabajadores = DB::select(DB::Raw($query),array('id' => $horas_hombre_id));
+
+        return $trabajadores;
+    }
 }
