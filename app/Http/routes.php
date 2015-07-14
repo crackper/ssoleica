@@ -28,6 +28,7 @@ Route::controller('trabajador','TrabajadorController');
 Route::controller('operacion','OperacionController');
 Route::controller('contrato','ContratoController');
 Route::controller('horasHombre','HorasHombreController');
+Route::controller('estadisticas','EstadisticaSegController');
 
 Route::post('pais/workspace',['as' =>'pais.workspace','uses' =>'PaisController@workspace']);
 Route::resource('pais','PaisController');

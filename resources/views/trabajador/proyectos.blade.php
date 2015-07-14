@@ -1,5 +1,6 @@
- <div class="row">
-    <div class="col-md-12">
+ <div class="row" style="padding: 0px 35px 0px 10px;">
+  <div class="col-md-10"></div>
+    <div class="col-md-2">
          <button id="asignarContrato" data-trabajador-id="{!! $trabajador_id !!}"  type="button" class="btn btn-warning btn-sm">
             <span class="glyphicon glyphicon-link"></span>
             Asignar a nuevo Proyecto
@@ -9,11 +10,11 @@
 <br/>
 @foreach($data as $key => $row)
 
-<div class="row">
-    <div class="col-md-10">
-        <div class="panel panel-success">
-            <div class="panel-heading">
-                <h3 class="panel-title">Proyecto: {!! $row->contrato->operacion->nombre_operacion !!}</h3>
+<div class="row" style="padding: 0px 10px 0px 10px;">
+    <div class="col-md-12">
+        <div class="box box-success">
+            <div class="box-header with-border">
+                <h3 class="box-title">Proyecto: {!! $row->contrato->operacion->nombre_operacion !!}</h3>
             </div>
             <div class="table-responsive">
                 <table class="table">

@@ -21,6 +21,7 @@ class CreateEstadosContratosTable extends Migration {
             $table->integer('asesor_prev_riesgos_id')->unsigned();
             $table->boolean('exist_cphs');
             $table->boolean('exist_subcontrato');
+            $table->json('attributes')->nullable();
             //auditoria
             $table->string('updated_by',100)->nullable();
             $table->timestamps();

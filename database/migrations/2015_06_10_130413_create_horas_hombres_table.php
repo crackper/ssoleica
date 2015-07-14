@@ -24,6 +24,7 @@ class CreateHorasHombresTable extends Migration {
             $table->boolean('isOpen')->default(1);
             $table->boolean('conProrroga')->default(0);
             $table->decimal('total',9,2)->default(0);
+            $table->json('attributes')->nullable();
             //auditoria
             $table->string('updated_by',100)->nullable();
             $table->timestamps();

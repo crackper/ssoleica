@@ -167,6 +167,10 @@ return [
          * Minify
          * */
         'Devfactory\Minify\MinifyServiceProvider',
+        /*
+         * Timezone
+         */
+        'Camroncade\Timezone\TimezoneServiceProvider',
 
 	],
 

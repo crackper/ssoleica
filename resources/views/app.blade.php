@@ -1,123 +1,276 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>SSO Leica</title>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>SSO Leicageosystems</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap 3.3.4 -->
+    {!! Minify::stylesheet('/css/bootstrap.css') !!}
+    <!-- Font Awesome Icons -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <!-- Ionicons -->
+    <link href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css" />
+    <!-- Theme style -->
+    {!! Minify::stylesheet('/css/hexagon.admin.css') !!}
+    {!! Minify::stylesheet('/css/skins/skin-blue.css') !!}
 
-    {!! Minify::stylesheet('/css/hexagon.theme.css') !!}
-    <link rel="stylesheet" href="/css/hexagon.min.css"/>
+    @yield('styles')
 
-	@yield('styles')
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
 
-	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-	<!--[if lt IE 9]>
-	<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-	<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-	<![endif]-->
+    <!-- REQUIRED JS SCRIPTS -->
 
-	<!-- Scripts -->
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-    {!! Minify::javascript('/js/app/hexagon.js') !!}
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <script src="http://code.jquery.com/jquery-migrate-1.1.0.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+        <script src="/js/jquery.slimscroll.min.js"></script>
+        {!! Minify::javascript('/js/app/app.js') !!}
+         @yield('scripts')
+  </head>
 
-    @yield('scripts')
+  <body class="skin-blue fixed">
+    <div class="wrapper">
 
-</head>
-<body>
-	<nav class="navbar navbar-default navbar-fixed-top">
-		<div class="container">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-					<span class="sr-only">Toggle Navigation</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" href="/ ">
-				    SSO Leica
-				    @if(Session::has('pais_name'))
-				        {!! Session::get('pais_name') !!}
-				    @endif
-				</a>
-			</div>
+      <!-- Main Header -->
+      <header class="main-header">
 
-			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-				<ul class="nav navbar-nav">
-					<li class="dropdown">
-                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">General <span class="caret"></span></a>
-                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="/trabajador/create">Registrar Nuevo Trabajador</a></li>
-                            <li><a href="/trabajador">Información de Trabajadores</a></li>
-                            <!--li class="divider"></li-->
+        <!-- Logo -->
+        <a href="/" class="logo">
+          <!-- mini logo for sidebar mini 50x50 pixels -->
+          <span class="logo-mini"><b>SSO</b>L</span>
+          <!-- logo for regular state and mobile devices -->
+          <span class="logo-lg"><b>SSO Leica</b>
+            @if(Session::has('pais_name'))
+                {!! Session::get('pais_name') !!}
+          	@endif
+          </span>
+        </a>
 
-                         </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Programa Mensual SSO <span class="caret"></span></a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a href="#">Registar EHSE Anual</a></li>
-                            <li><a href="#">Registar Cumplimiento EHSE</a></li>
-                            <li class="divider"></li>
-                            <li><a href="#">Reporte Mensual</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Seguridad <span class="caret"></span></a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li> <a href="#">Registar Incidentes</a></li>
-                            <li><a href="#">Archivo Incidentes</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Estadisticas Seguridad <span class="caret"></span></a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a href="/horasHombre/create"> Registar Hombre (HHT)</a></li>
-                            <li> <a href="/horasHombre/">Horas Hombre Trabajadas (HHT)</a></li>
-                            <li class="divider"></li>
-                            <li><a href="#">Registar Estadisticas</a></li>
-                            <li><a href="#">Historial Estadisticas</a></li>
-                        </ul>
-                    </li>
-                   <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Proyectos <span class="caret"></span></a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a href="/operacion/create">Registrar Proyecto</a></li>
-                            <li> <a href="/contrato/create">Registrar Contrato</a></li>
-                            <li class="divider"></li>
-                            <li><a href="/operacion">Información de Proyectos</a></li>
-                            <li><a href="/contrato">Información de Contratos</a></li>
-                        </ul>
-                    </li>
-                    <li>  {!! link_to('/filemanager/repository','Repositorio') !!}</li>
-                    @if (!Auth::guest())
-                        <li>  {!! link_to('filemanager/repository','Repositorio') !!}</li>
-                    @endif
-				</ul>
+        <!-- Header Navbar -->
+        <nav class="navbar navbar-static-top" role="navigation">
+          <!-- Sidebar toggle button-->
+          <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+            <span class="sr-only">Toggle navigation</span>
+          </a>
+          <!-- Navbar Right Menu -->
+          <div class="navbar-custom-menu">
+            <ul class="nav navbar-nav">
+              <!-- Notifications Menu -->
+              <li class="dropdown notifications-menu">
+                <!-- Menu toggle button -->
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  <i class="fa fa-bell-o"></i>
+                  <span class="label label-warning">10</span>
+                </a>
+                <ul class="dropdown-menu">
+                  <li class="header">Tienes 10 Notificaciones</li>
+                  <li>
+                    <!-- Inner Menu: contains the notifications -->
+                    <ul class="menu">
+                      <li><!-- start notification -->
+                        <a href="#">
+                          <i class="fa fa-users text-aqua"></i> 5 examenes que vencen
+                        </a>
+                      </li><!-- end notification -->
+                    </ul>
+                  </li>
+                  <li class="footer"><a href="#">Ver todos</a></li>
+                </ul>
+              </li>
+              <!-- User Account Menu -->
+              <li class="dropdown user user-menu">
+                <!-- Menu Toggle Button -->
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  <!-- The user image in the navbar-->
+                  <img src="/images/user_accounts.png" class="user-image" alt="User Image" />
+                  <!-- hidden-xs hides the username on small devices so only the image appears. -->
+                  <span class="hidden-xs">Usuario SSO</span>
+                </a>
+                <ul class="dropdown-menu">
+                  <!-- The user image in the menu -->
+                  <li class="user-header">
+                    <img src="/images/user_accounts.png" class="img-circle" alt="User Image" />
+                    <p>
+                      Usuario SSO
+                      <small>.....</small>
+                    </p>
+                  </li>
+                  <!-- Menu Body -->
+                  <!--li class="user-body">
+                    <div class="col-xs-4 text-center">
+                      <a href="#">Followers</a>
+                    </div>
+                    <div class="col-xs-4 text-center">
+                      <a href="#">Sales</a>
+                    </div>
+                    <div class="col-xs-4 text-center">
+                      <a href="#">Friends</a>
+                    </div>
+                  </li-->
+                  <!-- Menu Footer-->
+                  <li class="user-footer">
+                    <div class="pull-left">
+                      <a href="#" class="btn btn-default btn-flat">Perfil</a>
+                    </div>
+                    <div class="pull-right">
+                      <a href="#" class="btn btn-default btn-flat">Cerrar Sesión</a>
+                    </div>
+                  </li>
+                </ul>
+              </li>
+              <!-- Control Sidebar Toggle Button -->
+              <li>
+                <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <!-- Left side column. contains the logo and sidebar -->
+      <aside class="main-sidebar">
 
-				<ul class="nav navbar-nav navbar-right">
-					@if (Auth::guest())
-						<li><a href="/auth/login">Login</a></li>
-						<li><a href="/auth/register">Register</a></li>
-					@else
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ Auth::user()->name }} <span class="caret"></span></a>
-							<ul class="dropdown-menu" role="menu">
-								<li><a href="/pais">Cambiar Pais</a></li>
-								<li><a href="/auth/logout">Logout</a></li>
-							</ul>
-						</li>
-					@endif
-				</ul>
-			</div>
-		</div>
-	</nav>
+        <!-- sidebar: style can be found in sidebar.less -->
+        <section class="sidebar">
+          <!-- Sidebar Menu -->
+          <ul class="sidebar-menu">
+            <li class="header">Menu</li>
+            <!-- Optionally, you can add icons to the links -->
+            <li class="active"><a href="/"><i class="fa fa-home"></i> <span>{{ trans('home.home') }}</span></a></li>
+            <li class="treeview">
+              <a href="#"><i class="fa fa-cube"></i> <span>{{ trans('home.general') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li><a href="/trabajador">{{ trans('home.trabajadores') }}</a></li>
+                <li><a href="/trabajador/create">{{ trans('home.trabajadores_create') }}</a></li>
+              </ul>
+            </li>
+            <li class="treeview">
+                <a href="#"><i class="fa fa-database"></i> <span>{{ trans('home.proyectos_title') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
+                 <ul class="treeview-menu">
+                   <li><a href="/operacion">{{ trans('home.proyectos') }}</a></li>
+                   <li><a href="/contrato">{{ trans('home.contratos') }}</a></li>
+                   <li><a href="/operacion/create">{{ trans('home.proyectos_create') }}</a></li>
+                   <li><a href="/contrato/create">{{ trans('home.contratos_create') }}</a></li>
+                 </ul>
+            </li>
+            <li class="treeview">
+                 <a href="#"><i class="fa fa-pie-chart"></i> <span>{{ trans('home.estadisticas_title') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
+                  <ul class="treeview-menu">
+                    <li><a href="/horasHombre">{{ trans('home.horashombre_view') }}</a></li>
+                    <li><a href="/horasHombre/create">{{ trans('home.horashombre_create') }}</a></li>
+                    <li><a href="/estadisticas/create">{{ trans('home.estadisticas_create') }}</a></li>
+                    <li><a href="/estadisticas">{{ trans('home.estadisticas_view') }}</a></li>
+                  </ul>
+             </li>
+            <li><a href="/filemanager/repository"><i class="fa fa-archive"></i> <span>{{ trans('home.repositorio_view') }}</span></a></li>
+          </ul><!-- /.sidebar-menu -->
+        </section>
+        <!-- /.sidebar -->
+      </aside>
 
-	<div class="container">
-	@yield('content')
-	<div>
-</body>
+      <!-- Content Wrapper. Contains page content -->
+      <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+          <h1>
+            @yield('pageheader')
+          </h1>
+          <ol class="breadcrumb">
+            <li><a href="/"><i class="fa fa-home"></i> Home</a></li>
+            @yield('breadcrumb')
+          </ol>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+
+          @yield('content')
+
+        </section><!-- /.content -->
+      </div><!-- /.content-wrapper -->
+
+      <!-- Main Footer -->
+      <footer class="main-footer">
+        <!-- To the right -->
+        <div class="pull-right hidden-xs">
+          Version <b>1.0.0</b>
+        </div>
+        <!-- Default to the left -->
+        <strong>Copyright &copy; 2015 <a href="#">Leica Geosystems</a>.</strong> All rights reserved.
+      </footer>
+
+      <!-- Control Sidebar -->
+      <aside class="control-sidebar control-sidebar-dark">
+        <!-- Create the tabs -->
+        <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
+          <li class="active"><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
+          <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
+        </ul>
+        <!-- Tab panes -->
+        <div class="tab-content">
+          <!-- Home tab content -->
+          <div class="tab-pane active" id="control-sidebar-home-tab">
+            <h3 class="control-sidebar-heading">Recent Activity</h3>
+            <ul class="control-sidebar-menu">
+              <li>
+                <a href="javascript::;">
+                  <i class="menu-icon fa fa-birthday-cake bg-red"></i>
+                  <div class="menu-info">
+                    <h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
+                    <p>Will be 23 on April 24th</p>
+                  </div>
+                </a>
+              </li>
+            </ul><!-- /.control-sidebar-menu -->
+
+            <h3 class="control-sidebar-heading">Tasks Progress</h3>
+            <ul class="control-sidebar-menu">
+              <li>
+                <a href="javascript::;">
+                  <h4 class="control-sidebar-subheading">
+                    Custom Template Design
+                    <span class="label label-danger pull-right">70%</span>
+                  </h4>
+                  <div class="progress progress-xxs">
+                    <div class="progress-bar progress-bar-danger" style="width: 70%"></div>
+                  </div>
+                </a>
+              </li>
+            </ul><!-- /.control-sidebar-menu -->
+
+          </div><!-- /.tab-pane -->
+          <!-- Stats tab content -->
+          <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div><!-- /.tab-pane -->
+          <!-- Settings tab content -->
+          <div class="tab-pane" id="control-sidebar-settings-tab">
+            <form method="post">
+              <h3 class="control-sidebar-heading">General Settings</h3>
+              <div class="form-group">
+                <label class="control-sidebar-subheading">
+                  Report panel usage
+                  <input type="checkbox" class="pull-right" checked />
+                </label>
+                <p>
+                  Some information about this general settings option
+                </p>
+              </div><!-- /.form-group -->
+            </form>
+          </div><!-- /.tab-pane -->
+        </div>
+      </aside><!-- /.control-sidebar -->
+      <!-- Add the sidebar's background. This div must be placed
+           immediately after the control sidebar -->
+      <div class="control-sidebar-bg"></div>
+    </div><!-- ./wrapper -->
+
+    <!-- Optionally, you can add Slimscroll and FastClick plugins.
+          Both of these plugins are recommended to enhance the
+          user experience. Slimscroll is required when using the
+          fixed layout. -->
+  </body>
 </html>
-

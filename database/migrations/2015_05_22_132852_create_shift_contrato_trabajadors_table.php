@@ -18,8 +18,8 @@ class CreateShiftContratoTrabajadorsTable extends Migration {
             $table->integer('trabajador_contrato_id')->unsigned();
             $table->integer('trabajador_id')->unsigned();
             $table->integer('contrato_id')->unsigned();
-            $table->date('fecha_inicio');
-            $table->date('fecha_fin')->nullable();
+            $table->datetime('fecha_inicio');
+            $table->datetime('fecha_fin')->nullable();
             //auditoria
             $table->string('updated_by',100)->nullable();
             $table->timestamps();

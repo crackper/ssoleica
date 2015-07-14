@@ -18,10 +18,12 @@ $(function(){
     });
 
     $("#proyecto_id").change(function() {
+        $("#month_id").empty();
         $("#contrato_id").empty();
         $('#gridTrabajadores').html('');
 
         $.getJSON("/horasHombre/contratos/" + $("#proyecto_id").val(), function(data) {
+            $("#month_id").empty();
             $("#contrato_id").empty();
 
             if(data.length != 0 )
@@ -31,11 +33,12 @@ $(function(){
                 });
 
                 $("#contrato_id").trigger("change");
-                //$('#btnLoadTrabajadores').show('slow');
+                $('#btnLoadTrabajadores').show('slow');
             }
             else{
                 $("#contrato_id").empty();
-                //$('#btnLoadTrabajadores').hide('slow');
+                $("#month_id").empty();
+                $('#btnLoadTrabajadores').hide('slow');
             }
 
             $("#contrato_id").selectpicker('refresh');

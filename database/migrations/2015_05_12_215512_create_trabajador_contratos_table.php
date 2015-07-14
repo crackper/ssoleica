@@ -24,6 +24,7 @@ class CreateTrabajadorContratosTable extends Migration {
             $table->dateTime('fecha_vencimiento');
             $table->boolean('is_activo')->default(1);
             $table->longText('observaciones')->nullable();
+            $table->json('attributes')->nullable();
             //auditoria
             $table->string('updated_by',100)->nullable();
             $table->timestamps();

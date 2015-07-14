@@ -1,10 +1,18 @@
 @extends('app')
 
-@section('content')
+@section('pageheader')
+    Registar Nuevo Trabajador
+@endsection
 
-<h3>Registar Nuevo Trabajador</h3>
+@section('breadcrumb')
+    <li>General</li>
+    <li><a href="/trabajador">Trabajadores</a></li>
+    <li class="active">Registrar</li>
+@endsection
+
+@section('content')
 {!! $edit->message !!}
-<div id="tabTrabajador" role="tabpanel">
+<div id="tabTrabajador" role="tabpanel" class="nav-tabs-custom">
 
   <!-- Nav tabs -->
   <ul class="nav nav-tabs" role="tablist">
@@ -16,7 +24,8 @@
   <div class="tab-content">
 
     <div role="tabpanel" class="tab-pane active" id="general">
-        <div class="row" style="padding: 0px 0px 0px 0px;">
+        <div class="row" style="padding: 0px 10px 0px 10px;">
+            <div class="col-sm-12">
             <div class="form-group @if($edit->field('dni')->has_error) has-error @endif">
                 <label for="dni" class="col-sm-2 control-label required">Dni</label>
                 <div class="col-md-5">
@@ -149,10 +158,12 @@
                     </span>
                 @endif
              </div>
+            </div>
         </div>
     </div>
     <div role="tabpanel" class="tab-pane fade" id="adicional">
-        <div class="row" style="padding: 0px 0px 0px 0px;">
+        <div class="row" style="padding: 0px 10px 0px 10px;">
+            <div class="col-sm-12">
             <div class="form-group">
                <label for="foto" class="col-md-2 control-label required">Foto</label>
                 <div class="col-sm-5">
@@ -216,13 +227,16 @@
                           </div>
                       </div>
             </fielset>
+            </div>
         </div>
     </div>
-    <div role="tabpanel" class="tab-pane fade" id="contrato">...</div>
-    <div role="tabpanel" class="tab-pane fade" id="examenes"><h1>Examenes Medicos</h1></div>
-    <div role="tabpanel" class="tab-pane fade" id="documentos">...</div>
+    <div class="row">
+        <div class="col-sm-12" style="padding: 0px 10px 0px 30px;">
+            {!! $edit->footer !!}
+        </div>
+      </div>
   </div>
-{!! $edit->footer !!}
+
 </div>
 <div id="modalView"></div>
 

@@ -1,5 +1,6 @@
-<div class="row">
-    <div class="col-md-12">
+<div class="row" style="padding: 0px 10px 0px 10px;">
+    <div class="col-md-10"></div>
+    <div class="col-md-2">
          <button id="addExamenMedico"  type="button"
             data-url="/trabajador/addvencimiento/documento/{!! $trabajador_id!!}/0/"
             data-type="documento"
@@ -7,20 +8,19 @@
             <span class="glyphicon glyphicon-th-list"></span>
             Agregar Documento
          </button>
-          <span class="glyphicon glyphicon-th-list"></span>
     </div>
  </div>
 <br/>
-<div class="row">
+<div class="row" style="padding: 0px 10px 0px 10px;">
     <div class="col-md-6 mensaje">
 
     </div>
 </div>
-<div class="row">
-    <div class="col-md-10">
-        <div class="panel panel-warning">
-            <div class="panel-heading">
-                <h3 class="panel-title">Documentos</h3>
+<div class="row" style="padding: 0px 10px 0px 10px;">
+    <div class="col-md-12">
+        <div class="box box-warning">
+            <div class="box-head">
+                <h3 class="box-title">Documentos</h3>
             </div>
             <div class="table-responsive">
                 <table class="table table-striped" data-toogle="documentos">
@@ -44,7 +44,7 @@
                             <input type="text" value="{!! SSOLeica\Core\Helpers\Helpers::to_timezone($row->fecha_vencimiento,Session::get('timezone'),'Y-m-d') !!}" data-toggle="date" class="form-control input-sm date" style="width: 7em;" />
                         </div>
                         </td>
-                        <td class="text-center">{!! Form::checkbox('caduca', 1, $row->caduca == 1 ? true : false ,array('class'=>'form-control input-sm checkbox')); !!}</td>
+                        <td class="text-center">{!! Form::checkbox('caduca', 1, $row->caduca == 1 ? true : false ,array('class'=>'')); !!}</td>
                         <td><input type="text" class="form-control input-sm obs" value="{!! $row->observaciones !!}"></td>
                         <td>
                             <button type="button" class="btn btn-danger btn-sm update-vencimiento" data-loading-text="Actualizando..."  data-vencimiento="{!! $row->id !!}" >
@@ -62,7 +62,7 @@
                         </div>
                         </td>
                         <td class="text-center">
-                            <input type="checkbox" class="form-control input-sm checkbox"/>
+                            <input type="checkbox" class=""/>
                         </td>
                         <td><input type="text" class="form-control input-sm obs"></td>
                         <td>

@@ -35,4 +35,16 @@ class MonthRepository extends Repository {
 
         return $data;
     }
+
+    function getMesesDisponiblesForEstadisticas($pais, $contrato_id)
+    {
+        $query = "select * from month m ";
+        $query .= "where m.pais_id = :pais_id ";
+        $query .= "and now() between m.fecha_inicio and m.fecha_fin + ((m.plazo)::text || ' day')::interval ";
+        $query .= "and id not in (select month_id from estadistica_seguridad where contrato_id = :contrato_id)";
+
+        $data = DB::select(DB::Raw($query),array('pais_id' => $pais,'contrato_id'=> $contrato_id));
+
+        return $data;
+    }
 }

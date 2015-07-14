@@ -46,6 +46,7 @@ class CreateTrabajadorsTable extends Migration {
             $table->string('em_telef_celular')->nullable();
             $table->enum('em_parentesco',['','Padre','Madre','Esposo(a)','Hijo(a)','Hermano(a)','Otro'])->nullable();
             $table->string('em_direccion')->nullable();
+            $table->json('attributes')->nullable();
             //auditoria
             $table->string('updated_by',100)->nullable();
             $table->timestamps();

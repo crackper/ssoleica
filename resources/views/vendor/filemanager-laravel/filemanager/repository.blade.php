@@ -1,5 +1,13 @@
 @extends('app')
 
+   @section('pageheader')
+      Repositorio de Archivos
+   @endsection
+
+  @section('breadcrumb')
+      <li class="active">Repository</li>
+  @endsection
+
 @section('content')
 
 <link rel="stylesheet" type="text/css" href="scripts/jquery.filetree/jqueryFileTree.css" />
@@ -11,7 +19,7 @@
 <!--[if lte IE 8]>
 <link rel="stylesheet" type="text/css" href="styles/ie8.css" />
 <![endif]-->
-<br/>
+
 <div>
 <form id="uploader" method="post">
 <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -54,7 +62,7 @@
 	<li class="delete separator"><a href="#delete"></a></li>
 </ul>
 
-<script type="text/javascript" src="scripts/jquery-1.8.3.min.js"></script>
+<!--script type="text/javascript" src="scripts/jquery-1.8.3.min.js"></script-->
 <script type="text/javascript" src="scripts/jquery.form-3.24.js"></script>
 <script type="text/javascript" src="scripts/jquery.splitter/jquery.splitter-1.5.1.js"></script>
 <script type="text/javascript" src="scripts/jquery.filetree/jqueryFileTree.js"></script>
@@ -62,4 +70,10 @@
 <script type="text/javascript" src="scripts/jquery.impromptu-3.2.min.js"></script>
 <script type="text/javascript" src="scripts/jquery.tablesorter-2.7.2.min.js"></script>
 <script type="text/javascript" src="scripts/filemanager.js"></script>
+
 @endsection
+
+@section('scripts')
+
+
+ @endsection

@@ -1,11 +1,26 @@
-@extends('app')
+ @extends('app')
+
+ @section('pageheader')
+    Registrar nuevo Proyecto
+ @endsection
+            
+@section('breadcrumb')
+    <li>Proyectos</li>
+    <li><a href="/operacion">Proyectos</a></li>
+    <li class="active">Registrar</li>
+@endsection
 
 @section('content')
-
+<div class="row">
     <div class="col-md-10">
-        <h3>Registrar nuevo Proyecto</h3>
-        {!! $form !!}
+        <div class="box box-primary">
+            <div class="box-body" >
+               {!! $form !!}
+            </div>
+        </div>
+
     </div>
+</div>
 
 @endsection
 

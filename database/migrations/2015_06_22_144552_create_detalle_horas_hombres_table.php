@@ -20,7 +20,8 @@ class CreateDetalleHorasHombresTable extends Migration {
             $table->integer('trabajador_id')->unsigned();
             $table->foreign('trabajador_id')->references('id')->on('trabajador');
             $table->decimal('horas',9,2)->default(0);
-            $table->json('extra')->nullable();
+            //$table->json('extra')->nullable();
+            $table->json('attributes')->nullable();
             //auditoria
             $table->string('updated_by',100)->nullable();
             $table->timestamps();

@@ -26,4 +26,17 @@ class Helpers {
         return $carbon->format($format);
     }
 
+    /*public static  function convertFromUTC($timestamp, $timezone, $format = 'Y-m-d H:i:s')
+    {
+        $date = new DateTime($timestamp, new DateTimeZone('UTC'));
+        $date->setTimezone(new DateTimeZone($timezone));
+        return $date->format($format);
+    }
+    public static  function convertToUTC($timestamp, $timezone, $format = 'Y-m-d H:i:s')
+    {
+        $date = new DateTime($timestamp, new DateTimeZone($timezone));
+        $date->setTimezone(new DateTimeZone('UTC'));
+        return $date->format($format);
+    }**/
+
 } 

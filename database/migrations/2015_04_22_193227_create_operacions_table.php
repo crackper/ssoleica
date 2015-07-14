@@ -20,6 +20,7 @@ class CreateOperacionsTable extends Migration {
             $table->longText('descripcion')->nullable();
             $table->integer('pais_id')->unsigned();
             $table->foreign('pais_id')->references('id')->on('enum_tables');
+            $table->json('attributes')->nullable();
             //auditoria
             $table->string('updated_by',100)->nullable();
             $table->timestamps();

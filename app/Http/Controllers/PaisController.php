@@ -50,7 +50,7 @@ class PaisController extends Controller {
 
         $pais = $this->enum_tables->find($pais_id);
         $data = json_decode($pais->data);
-        
+
 
         Session::put('pais_id', $pais_id);
         Session::put('pais_name', $pais->name);

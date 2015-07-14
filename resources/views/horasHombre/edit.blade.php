@@ -1,17 +1,29 @@
 @extends('app')
 
- @section('content')
-    <h3>Registrar Horas Hombre</h3>
-    <h5>Fecha de Cierre: {!! Carbon\Carbon::parse($horasHombre->fecha_fin)->format("d/m/Y h:i:s") !!}</h5>
+  @section('pageheader')
+     Registrar Horas Hombre
+     <small>Fecha de Cierre: {!! Carbon\Carbon::parse($horasHombre->fecha_fin)->format("d/m/Y h:i:s") !!}</small>
+  @endsection
 
-    @if (Session::has('message'))
-        <div class="alert alert-success alert-dismissible fade in" role="alert">
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-              {{ Session::get('message') }}
-        </div>
-    @endif
-    <br/>
-    <form id="frmRegistrarHorasHombre" action="/horasHombre/update/{!! $horasHombre->id !!}" method="post" role="form">
+ @section('breadcrumb')
+     <li>Estadisticas Seguridad</li>
+     <li><a href="/horasHombre">Horas Hombre</a></li>
+     <li class="active">Editar</li>
+ @endsection
+
+ @section('content')
+  <div class="row">
+     <div class="col-sm-12">
+         <div class="box box-primary">
+             <div class="box-body" >
+                @if (Session::has('message'))
+                    <div class="alert alert-success alert-dismissible fade in" role="alert">
+                          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                          {{ Session::get('message') }}
+                    </div>
+                @endif
+                <br/>
+                <form id="frmRegistrarHorasHombre" action="/horasHombre/update/{!! $horasHombre->id !!}" method="post" role="form">
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <div class="form-inline">
             <div class="form-group">
@@ -64,6 +76,10 @@
             </div>
         </div>
     </form>
+             </div>
+         </div>
+     </div>
+   </div>
  @endsection
 
  @section('styles')

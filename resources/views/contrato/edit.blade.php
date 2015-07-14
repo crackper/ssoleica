@@ -1,18 +1,34 @@
 @extends('app')
 
+ @section('pageheader')
+    Información del Contrato
+ @endsection
+
+@section('breadcrumb')
+    <li>Proyectos</li>
+    <li><a href="/contrato">Contratos</a></li>
+    <li class="active">Editar</li>
+@endsection
+
 @section('content')
 
-
+<div class="row">
     <div class="col-md-10">
-        <h3>Información del Contrato</h3>
         @if (Session::has('message'))
             <div class="alert alert-success alert-dismissible fade in" role="alert">
-                  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-                  {{ Session::get('message') }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                {{ Session::get('message') }}
             </div>
         @endif
-        {!! $form !!}
+
+        <div class="box box-primary">
+            <div class="box-body" >
+               {!! $form !!}
+            </div>
+        </div>
+
     </div>
+</div>
 
 @endsection
 
@@ -31,6 +47,9 @@
             $('select').selectpicker({
             		size: 7
             });
+
+            $(':checkbox').removeClass('form-control input-sm checkbox');
+
             $('.btn-toolbar').first().hide();
             @if (Session::has('message'))
                 BootstrapDialog.alert({

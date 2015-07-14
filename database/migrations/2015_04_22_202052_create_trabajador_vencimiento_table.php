@@ -25,6 +25,7 @@ class CreateTrabajadorVencimientoTable extends Migration {
             $table->boolean('caduca')->default(false);
             $table->dateTime('fecha_vencimiento');
             $table->longText('observaciones')->nullable();
+            $table->json('attributes')->nullable();
             //auditoria
             $table->string('updated_by',100)->nullable();
             $table->timestamps();

@@ -1,18 +1,40 @@
  @extends('app')
 
- @section('content')
+ @section('pageheader')
     {!! $text !!}
-
-    <div class="table-responsive">
-         {!! $grid !!}
-    </div>
-
  @endsection
-  @section('scripts')
-  <script>
-     $(function(){
-         $('.pagination').first().remove();
 
+ @section('breadcrumb')
+     <li>Proyectos</li>
+     <li class="active">Contratos</li>
+ @endsection
+
+ @section('content')
+
+<div class="box box-primary">
+    <div class="box-body" >
+        <div class="table-responsive">
+             {!! $grid !!}
+        </div>
+    </div>
+</div>
+ @endsection
+
+@section('styles')
+     <link rel="stylesheet" href="/css/bootstrap-select.min.css">
+ @endsection
+
+ @section('scripts')
+ <script src="/js/bootstrap-select.min.js"></script>
+ <script>
+ $(function(){
+     $('select').selectpicker({
+         size: 7
      });
-  </script>
-  @endsection
+
+     $('.grids-control-records-per-page ').width('70px');
+
+     $('.pagination').first().remove();
+ });
+ </script>
+ @endsection

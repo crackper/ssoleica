@@ -1,9 +1,21 @@
  @extends('app')
 
+  @section('pageheader')
+     Registrar Horas Hombre
+  @endsection
+
+ @section('breadcrumb')
+     <li>Estadisticas Seguridad</li>
+     <li><a href="/horasHombre">Horas Hombre</a></li>
+     <li class="active">Registrar</li>
+ @endsection
+
  @section('content')
-    <h3>Registrar Horas Hombre</h3>
-    <br/>
-    <form id="frmRegistrarHorasHombre" action="/horasHombre/create" method="post" role="form">
+ <div class="row">
+    <div class="col-sm-12">
+        <div class="box box-primary">
+            <div class="box-body" >
+                <form id="frmRegistrarHorasHombre" action="/horasHombre/create" method="post" role="form">
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <div class="form-inline">
               <div class="form-group">
@@ -28,6 +40,10 @@
         <br/><br/>
         <div id="gridTrabajadores" class="col-sm-10"></div>
     </form>
+            </div>
+        </div>
+    </div>
+  </div>
  @endsection
 
  @section('styles')

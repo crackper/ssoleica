@@ -1,17 +1,34 @@
 @extends('app')
 
+ @section('pageheader')
+    Información del Proyecto
+ @endsection
+
+@section('breadcrumb')
+    <li>Proyectos</li>
+    <li><a href="/operacion">Proyectos</a></li>
+    <li class="active">Editar</li>
+@endsection
+
 @section('content')
 
+<div class="row">
     <div class="col-md-10">
-        <h3>Información del Proyecto</h3>
         @if (Session::has('message'))
             <div class="alert alert-success alert-dismissible fade in" role="alert">
-                  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-                  {{ Session::get('message') }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                {{ Session::get('message') }}
             </div>
         @endif
-        {!! $form !!}
+
+        <div class="box box-primary">
+            <div class="box-body" >
+               {!! $form !!}
+            </div>
+        </div>
+
     </div>
+</div>
 
 @endsection
 

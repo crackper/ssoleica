@@ -18,6 +18,7 @@ class CreateCargosTrabajadorsTable extends Migration {
             $table->integer('trabajador_id')->unsigned();
             $table->foreign('trabajador_id')->references('id')->on('trabajador');
             $table->integer('cargo_id')->unsigned();
+            $table->json('attributes')->nullable();
             //auditoria
             $table->string('updated_by',100)->nullable();
             $table->timestamps();
