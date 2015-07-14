@@ -24,6 +24,7 @@ use Nayjest\Grids\SelectFilterConfig;
 use SSOLeica\Core\Helpers\Timezone;
 use SSOLeica\Core\Model\EstadisticaSeguridad;
 use SSOLeica\Core\Repository\ContratoRepository;
+use SSOLeica\Core\Repository\EstadisticasRepository;
 use SSOLeica\Core\Repository\MonthRepository;
 use SSOLeica\Core\Repository\OperacionRepository;
 use SSOLeica\Http\Requests;
@@ -50,15 +51,21 @@ class EstadisticaSegController extends Controller {
      * @var MonthRepository
      */
     private $monthRepository;
+    /**
+     * @var EstadisticasRepository
+     */
+    private $estadisticasRepository;
 
     /**
      * @param OperacionRepository $operacionRepository
      * @param ContratoRepository $contratoRepository
      * @param MonthRepository $monthRepository
+     * @param EstadisticasRepository $estadisticasRepository
      */
     public function __construct(OperacionRepository $operacionRepository,
                                 ContratoRepository $contratoRepository,
-                                MonthRepository $monthRepository)
+                                MonthRepository $monthRepository,
+                                EstadisticasRepository $estadisticasRepository)
     {
         $this->middleware('workspace');
         $this->pais = Session::get('pais_id');
@@ -66,6 +73,7 @@ class EstadisticaSegController extends Controller {
         $this->operacionRepository = $operacionRepository;
         $this->contratoRepository = $contratoRepository;
         $this->monthRepository = $monthRepository;
+        $this->estadisticasRepository = $estadisticasRepository;
     }
 
 	/**
@@ -75,14 +83,7 @@ class EstadisticaSegController extends Controller {
 	 */
 	public function getIndex()
 	{
-        $query = EstadisticaSeguridad::join('contrato','contrato.id','=','estadistica_seguridad.contrato_id')
-            ->join('month','month.id','=','estadistica_seguridad.month_id')
-            ->join('operacion','operacion.id','=','contrato.operacion_id')
-            ->select('estadistica_seguridad.*')
-            ->addSelect('operacion.nombre_operacion as proyecto')
-            ->addSelect('contrato.nombre_contrato as contrato')
-            ->addSelect('month.year')
-            ->addSelect('month.nombre as mes');
+        $query = $this->estadisticasRepository->getQueryEstadisticasSeguridad($this->pais);
 
         $months = array('Enero'=>'Enero','Febrero'=>'Febrero','Marzo'=>'Marzo','Abril'=>'Abril','Mayo'=>'Mayo','Junio'=>'Junio','Julio'=>'Julio','Agosto'=>'Agosto','Septiembre'=>'Septiembre','Octubre'=>'Octubre','Noviembre'=>'Noviembre','Diciembre'=>'Diciembre');
 
@@ -271,7 +272,7 @@ class EstadisticaSegController extends Controller {
         $data['inc_stp'] = Input::get('stp');
         $data['inc_ctp'] = Input::get('ctp');
 
-        $create = EstadisticaSeguridad::create($data);
+        $create = $this->estadisticasRepository->create($data);
 
         Session::flash('message', 'La información Registró Correctamente');
 
@@ -320,10 +321,11 @@ class EstadisticaSegController extends Controller {
         if($id == 0)
             return new RedirectResponse(url('/estadisticas'));
 
-        $std = EstadisticaSeguridad::where('id','=',$id)->get()
-            ->load('contrato.operacion')
-            ->load('mes')
-            ->first();
+        $std = $this->estadisticasRepository->getEstadistica($id);
+
+        if(is_null($std))
+            return new RedirectResponse(url('/estadisticas'));
+
 
         return view('estadisticaseg.edit')
                 ->with('std',$std);
@@ -345,7 +347,7 @@ class EstadisticaSegController extends Controller {
 
         //dd($data);
 
-        EstadisticaSeguridad::where('id',$id)->update($data);
+        $this->estadisticasRepository->update($data,$id);
 
         Session::flash('message', 'La información Registró Correctamente');
 

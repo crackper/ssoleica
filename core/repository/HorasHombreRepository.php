@@ -131,11 +131,12 @@ class HorasHombreRepository extends Repository{
         return $msg;
     }
 
-    public function getQueryHorasHombre()
+    public function getQueryHorasHombre($pais_id)
     {
         $query = HorasHombre::join('contrato','contrato.id','=','horas_hombre.contrato_id')
             ->join('month','month.id','=','horas_hombre.month_id')
             ->join('operacion','operacion.id','=','contrato.operacion_id')
+            ->where('operacion.pais_id',$pais_id)
             ->select('horas_hombre.*')
             ->addSelect('operacion.nombre_operacion as proyecto')
             ->addSelect('contrato.nombre_contrato as contrato')
