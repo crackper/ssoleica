@@ -38,6 +38,9 @@
      $('.grids-control-records-per-page ').width('70px');
 
      $('.pagination').first().remove();
+
+     $('table').addClass('table-condensed');
+
  });
  </script>
  @endsection

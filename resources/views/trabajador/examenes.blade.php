@@ -19,11 +19,11 @@
 <div class="row" style="padding: 0px 10px 0px 10px;">
     <div class="col-md-12">
         <div class="box box-info">
-            <div class="box-head">
+            <div class="box-header with-border">
                 <h3 class="box-title">Proyecto: {!! $proyecto !!}</h3>
             </div>
             <div class="table-responsive">
-                <table class="table table-striped" data-toogle="documentos">
+                <table class="table table-striped table-condensed" data-toogle="documentos">
                 <thead>
                     <tr>
                         <th>#</th>

@@ -1,5 +1,6 @@
 <?php namespace SSOLeica\Http\Controllers;
 
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Input;
 use Nayjest\Grids\Components\Base\RenderableRegistry;
 use Nayjest\Grids\Components\ColumnHeadersRow;
@@ -272,7 +273,9 @@ class EstadisticaSegController extends Controller {
 
         $create = EstadisticaSeguridad::create($data);
 
-        dd($create);
+        Session::flash('message', 'La información Registró Correctamente');
+
+        return new RedirectResponse(url('/estadisticas/edit/' . $create->id));
 	}
 
     public function getContratos($id = 0)
@@ -312,9 +315,18 @@ class EstadisticaSegController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($id)
+	public function getEdit($id=0)
 	{
-		//
+        if($id == 0)
+            return new RedirectResponse(url('/estadisticas'));
+
+        $std = EstadisticaSeguridad::where('id','=',$id)->get()
+            ->load('contrato.operacion')
+            ->load('mes')
+            ->first();
+
+        return view('estadisticaseg.edit')
+                ->with('std',$std);
 	}
 
 	/**
@@ -323,9 +335,21 @@ class EstadisticaSegController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function postUpdate($id)
 	{
-		//
+
+        $data['dotacion'] = Input::get('dotacion');
+        $data['dias_perdidos'] = Input::get('cantDiasPerdidos');
+        $data['inc_stp'] = Input::get('stp');
+        $data['inc_ctp'] = Input::get('ctp');
+
+        //dd($data);
+
+        EstadisticaSeguridad::where('id',$id)->update($data);
+
+        Session::flash('message', 'La información Registró Correctamente');
+
+        return new RedirectResponse(url('/estadisticas/edit/' . $id));
 	}
 
 	/**

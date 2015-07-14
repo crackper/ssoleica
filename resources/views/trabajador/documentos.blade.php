@@ -19,10 +19,10 @@
 <div class="row" style="padding: 0px 10px 0px 10px;">
     <div class="col-md-12">
         <div class="box box-warning">
-            <div class="box-head">
+            <div class="box-header">
                 <h3 class="box-title">Documentos</h3>
             </div>
-            <div class="table-responsive">
+            <div class="table-responsive table-condensed">
                 <table class="table table-striped" data-toogle="documentos">
                 <thead>
                     <tr>

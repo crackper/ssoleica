@@ -17,7 +17,7 @@
                 <h3 class="box-title">Proyecto: {!! $row->contrato->operacion->nombre_operacion !!}</h3>
             </div>
             <div class="table-responsive">
-                <table class="table">
+                <table class="table table-condensed">
                     <thead>
                         <tr>
                             <th>Contrato</th>
