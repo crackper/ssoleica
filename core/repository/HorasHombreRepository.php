@@ -12,6 +12,7 @@ namespace SSOLeica\Core\Repository;
 use Illuminate\Contracts\Logging\Log;
 use Illuminate\Support\Facades\DB;
 use SSOLeica\Core\Data\Repository;
+use SSOLeica\Core\Helpers\Timezone;
 use SSOLeica\Core\Model\DetalleHorasHombre;
 use SSOLeica\Core\Model\HorasHombre;
 use SSOLeica\Core\Model\Month;
@@ -28,7 +29,7 @@ class HorasHombreRepository extends Repository{
         return 'SSOLeica\Core\Model\HorasHombre';
     }
 
-    public function registrar($month_id,$contrato_id,$trabajadores,$horas)
+    public function registrar($month_id,$contrato_id,$trabajadores,$horas,$timezone)
     {
         $success = 0;
 
@@ -41,10 +42,11 @@ class HorasHombreRepository extends Repository{
 
             $month = Month::find($month_id);
 
-            $data['fecha_inicio'] = new \DateTime($month->fecha_inicio);
+            $data['fecha_inicio'] =  Timezone::toUTC($month->fecha_inicio,$timezone);
 
-            $fechaFin = new \DateTime($month->fecha_fin);
-            $data['fecha_fin'] = $fechaFin->add(new \DateInterval('P'.$month->plazo.'D'));
+            $fechaFin = Timezone::toUTC($month->fecha_fin,$timezone);
+
+            $data['fecha_fin'] = Timezone::addTime($fechaFin,'P'.$month->plazo.'D');
 
             $horasHombre = HorasHombre::create($data);
 

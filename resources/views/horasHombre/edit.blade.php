@@ -2,7 +2,7 @@
 
   @section('pageheader')
      Registrar Horas Hombre
-     <small>Fecha de Cierre: {!! Carbon\Carbon::parse($horasHombre->fecha_fin)->format("d/m/Y h:i:s") !!}</small>
+     <small>Fecha de Cierre: {!! SSOLeica\Core\Helpers\Timezone::toLocal($horasHombre->fecha_fin,Session::get('timezone'),"d/m/Y h:i:s") !!}</small>
   @endsection
 
  @section('breadcrumb')

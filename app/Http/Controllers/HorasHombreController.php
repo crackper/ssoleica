@@ -56,6 +56,7 @@ class HorasHombreController extends Controller {
     private $horasHombreRepository;
 
     private $pais;
+    private $timezone;
     /**
      * @var MonthRepository
      */
@@ -76,6 +77,7 @@ class HorasHombreController extends Controller {
         $this->contratoRepository = $contratoRepository;
         $this->horasHombreRepository = $horasHombreRepository;
         $this->pais = Session::get('pais_id');
+        $this->timezone = Session::get('timezone');
         $this->monthRepository = $monthRepository;
     }
 
@@ -240,7 +242,7 @@ class HorasHombreController extends Controller {
         $month_id = Input::get('month');
         $contrato_id = Input::get('contrato');
 
-        $data = $this->horasHombreRepository->registrar($month_id,$contrato_id,$trabajadores,$horas);
+        $data = $this->horasHombreRepository->registrar($month_id,$contrato_id,$trabajadores,$horas,$this->timezone);
 
         Session::flash('message', 'La información Registró Correctamente');
 
@@ -255,7 +257,7 @@ class HorasHombreController extends Controller {
 
     public function getMonths($id=0)
     {
-        $data = $this->monthRepository->getMesesDisponibles($this->pais,$id);
+        $data = $this->monthRepository->getMesesDisponibles($this->timezone,$id);
 
         $months = array();
 

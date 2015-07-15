@@ -264,7 +264,7 @@ class EstadisticaSegController extends Controller {
 
         $month = $this->monthRepository->find(Input::get('month_id'));
 
-        $data['fecha_inicio'] = new \DateTime($month->fecha_inicio);
+        $data['fecha_inicio'] = Timezone::toUTC($month->fecha_inicio,$this->timezone);
 
         $fechaFin = Timezone::toUTC($month->fecha_fin,$this->timezone);
 
@@ -289,7 +289,7 @@ class EstadisticaSegController extends Controller {
 
     public function getMonths($id=0)
     {
-        $data = $this->monthRepository->getMesesDisponiblesForEstadisticas($this->pais,$id);
+        $data = $this->monthRepository->getMesesDisponiblesForEstadisticas($this->timezone,$id);
 
         $months = array();
 

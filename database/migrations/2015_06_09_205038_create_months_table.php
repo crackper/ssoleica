@@ -17,10 +17,6 @@ class CreateMonthsTable extends Migration {
 			$table->increments('id');
             $table->string("nombre",50);
             $table->integer("year");
-            $table->integer('year_id')->unsigned();
-            $table->foreign('year_id')->references('id')->on('enum_tables');
-            $table->integer('pais_id')->unsigned();
-            $table->foreign('pais_id')->references('id')->on('enum_tables');
             $table->dateTime('fecha_inicio');
             $table->dateTime('fecha_fin');
             $table->integer('plazo')->default(7)->unsigned();

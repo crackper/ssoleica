@@ -53,13 +53,7 @@ class EnumTablesTableSeeder extends \Illuminate\Database\Seeder {
             ['id'=> 35,'type'=>'Documento','name'=>'Antecedentes Penales','symbol'=>'','created_at' => new DateTime, 'updated_at' => new DateTime],
             ['id'=> 36,'type'=>'Documento','name'=>'Antecedentes Judiciales','symbol'=>'','created_at' => new DateTime, 'updated_at' => new DateTime],
             ['id'=> 37,'type'=>'Documento','name'=>'Carnet de Extranjeria','symbol'=>'','created_at' => new DateTime, 'updated_at' => new DateTime],
-            ['id'=> 38,'type'=>'Documento','name'=>'Licencia de Conducir','symbol'=>'','created_at' => new DateTime, 'updated_at' => new DateTime],
-            ['id'=> 39,'type'=>'Year','name'=>'2015','symbol'=>'2015','created_at' => new DateTime, 'updated_at' => new DateTime],
-            ['id'=> 40,'type'=>'Year','name'=>'2016','symbol'=>'2016','created_at' => new DateTime, 'updated_at' => new DateTime],
-            ['id'=> 41,'type'=>'Year','name'=>'2017','symbol'=>'2017','created_at' => new DateTime, 'updated_at' => new DateTime],
-            ['id'=> 42,'type'=>'Year','name'=>'2018','symbol'=>'2018','created_at' => new DateTime, 'updated_at' => new DateTime],
-            ['id'=> 43,'type'=>'Year','name'=>'2019','symbol'=>'2019','created_at' => new DateTime, 'updated_at' => new DateTime],
-            ['id'=> 44,'type'=>'Year','name'=>'2020','symbol'=>'2020','created_at' => new DateTime, 'updated_at' => new DateTime]
+            ['id'=> 38,'type'=>'Documento','name'=>'Licencia de Conducir','symbol'=>'','created_at' => new DateTime, 'updated_at' => new DateTime]
         );
         DB::table('enum_tables')->insert($enums);
 
