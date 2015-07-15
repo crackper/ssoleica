@@ -145,7 +145,9 @@ class EstadisticaSegController extends Controller {
                     ->setSortable(true)
                     ->addFilter(
                         (new FilterConfig)
-                            ->setOperator(FilterConfig::OPERATOR_LIKE)
+                            ->setFilteringFunc(function($val, EloquentDataProvider $provider){
+                                $provider->getBuilder()->where('contrato.nombre_contrato','like','%'.$val.'%');
+                            })
 
                     ),
                 (new FieldConfig)

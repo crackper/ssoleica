@@ -133,7 +133,17 @@
       </header>
       <!-- Left side column. contains the logo and sidebar -->
       <aside class="main-sidebar">
-
+           <!-- Sidebar user panel (optional) -->
+          <!--div class="user-panel" style="height: 3em;">
+            <div class="pull-left info">
+              <p>
+                <span class="glyphicon glyphicon-calendar"></span>
+                <span id="fecha">04/07/2105</span>
+                <span id="hora">15:00:00</span>
+              </p>
+              <!-- Status -->
+            <!--/div>
+          </div->
         <!-- sidebar: style can be found in sidebar.less -->
         <section class="sidebar">
           <!-- Sidebar Menu -->
