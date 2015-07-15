@@ -464,7 +464,7 @@ class TrabajadorController extends Controller
     {
         $data['trabajador_id'] = $id;
         $data['contrato_id'] = Input::get('contrato_id');
-        $data['fecha_inicio'] = Timezone::toUTC(nput::get('fecInicio'),$this->timezone);
+        $data['fecha_inicio'] = Timezone::toUTC(input::get('fecInicio'),$this->timezone);
         $data['nro_fotocheck'] = Input::get('nroFotocheck');
         $data['fecha_vencimiento'] = Timezone::toUTC(Input::get('fecVencimiento').' 23:59:59',$this->timezone);
 
