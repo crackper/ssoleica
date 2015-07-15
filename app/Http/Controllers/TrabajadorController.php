@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Session;
 use SSOLeica\Core\Helpers\Helpers;
+use SSOLeica\Core\Helpers\Timezone;
 use SSOLeica\Core\Model\Contrato;
 use SSOLeica\Core\Model\EnumCategories;
 use SSOLeica\Core\Model\Trabajador;
@@ -395,7 +396,7 @@ class TrabajadorController extends Controller
         $contrato_id = Input::get('contrato');
 
         $changeContrato = array(
-            'fecha_vencimiento' => Helpers::to_utc(Input::get('fecha').' 23:59:59','UTC'),//Carbon::parse(Input::get('fecha'))->format('Y-m-d')
+            'fecha_vencimiento' => Timezone::toUTC(Input::get('fecha').' 23:59:59',$this->timezone),
             'observaciones' => Input::get('obs')
         );
 
@@ -433,8 +434,8 @@ class TrabajadorController extends Controller
      */
     public function postSavecontratotrabajador($id)
     {
-        $fechaFin = Helpers::to_utc(Input::get('fecFinActual').' 23:59:59');
-        $data['fecha_inicio'] = Helpers::to_utc(Input::get('fecIniCambio'));
+        $fechaFin = Timezone::toUTC(Input::get('fecFinActual').' 23:59:59',$this->timezone);
+        $data['fecha_inicio'] = Timezone::toUTC(Input::get('fecIniCambio'),$this->timezone);
         $data['contrato_id'] = Input::get('contrato_id');
 
         $success = $this->trabajadorRepository->updateContrato($id,$data,$fechaFin);
@@ -463,9 +464,9 @@ class TrabajadorController extends Controller
     {
         $data['trabajador_id'] = $id;
         $data['contrato_id'] = Input::get('contrato_id');
-        $data['fecha_inicio'] = Helpers::to_utc(Input::get('fecInicio'));
+        $data['fecha_inicio'] = Timezone::toUTC(nput::get('fecInicio'),$this->timezone);
         $data['nro_fotocheck'] = Input::get('nroFotocheck');
-        $data['fecha_vencimiento'] = Helpers::to_utc(Input::get('fecVencimiento').' 23:59:59');
+        $data['fecha_vencimiento'] = Timezone::toUTC(Input::get('fecVencimiento').' 23:59:59',$this->timezone);
 
         $success = $this-> contratoRepository->registarContratoTrabajador($data);
 
@@ -504,7 +505,7 @@ class TrabajadorController extends Controller
     public function postUpdatevencimiento()
     {
         $vencimiento_id             = Input::get('vencimiento');
-        $data['fecha_vencimiento']  = Helpers::to_utc(Input::get('fecha').' 23:59:59');
+        $data['fecha_vencimiento']  = Timezone::toUTC(Input::get('fecha').' 23:59:59',$this->timezone);
         $data['caduca']             = Input::get('caduca');
         $data['observaciones']      = Input::get('obs');
 
@@ -550,7 +551,7 @@ class TrabajadorController extends Controller
         $data['operacion_id']       = $operacion_id == 0 ? null: $operacion_id ;
         $data['vencimiento_id']     = Input::get('vencimiento_id');
         $data['caduca']             = Input::get('caduca');
-        $data['fecha_vencimiento']  = Helpers::to_utc(Input::get('fecVencimiento').' 23:59:59','UTC');
+        $data['fecha_vencimiento']  = Timezone::toUTC(Input::get('fecVencimiento').' 23:59:59',$this->timezone);
         $data['observaciones']      = Input::get('observaciones');
 
         $examen = $this->trabajadorVencimientoRepository->create($data);
