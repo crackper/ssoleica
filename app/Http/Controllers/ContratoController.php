@@ -56,6 +56,7 @@ class ContratoController extends Controller {
      */
     public function __construct(TrabajadorRepository $trabajador_repository, OperacionRepository $operacion_repository, ContratoRepository $contrato_repository)
     {
+        $this->middleware('auth');
         $this->middleware('workspace');
         $this->trabajador_repository = $trabajador_repository;
         $this->operacion_repository = $operacion_repository;

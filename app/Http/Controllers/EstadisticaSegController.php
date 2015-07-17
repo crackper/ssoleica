@@ -67,6 +67,7 @@ class EstadisticaSegController extends Controller {
                                 MonthRepository $monthRepository,
                                 EstadisticasRepository $estadisticasRepository)
     {
+        $this->middleware('auth');
         $this->middleware('workspace');
         $this->pais = Session::get('pais_id');
         $this->timezone = Session::get('timezone');

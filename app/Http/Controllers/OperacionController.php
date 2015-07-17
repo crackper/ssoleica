@@ -37,6 +37,7 @@ class OperacionController extends Controller {
 
     public function __construct(OperacionRepository $operacion_repository)
     {
+        $this->middleware('auth');
         $this->middleware('workspace');
         $this->operacion_repository = $operacion_repository;
     }

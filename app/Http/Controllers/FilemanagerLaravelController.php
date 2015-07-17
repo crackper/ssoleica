@@ -6,7 +6,7 @@ use Pqb\FilemanagerLaravel\FilemanagerLaravel;
 
 class FilemanagerLaravelController extends Controller {
 	public function __construct(){
-		// $this->middleware('auth');
+		$this->middleware('auth');
 		
 	}
 	public function getShow()

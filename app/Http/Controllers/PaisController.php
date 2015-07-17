@@ -23,7 +23,7 @@ class PaisController extends Controller {
      */
     public function __construct(EnumTables $enum_tables)
     {
-
+        $this->middleware('auth');
         $this->enum_tables = $enum_tables;
     }
 

@@ -72,6 +72,7 @@ class HorasHombreController extends Controller {
                                 ContratoRepository $contratoRepository,
                                 HorasHombreRepository $horasHombreRepository,
                                 MonthRepository $monthRepository){
+        $this->middleware('auth');
         $this->middleware('workspace');
         $this->operacionRepository = $operacionRepository;
         $this->contratoRepository = $contratoRepository;

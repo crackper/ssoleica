@@ -87,6 +87,7 @@ class TrabajadorController extends Controller
                                 OperacionRepository $operacionRepository,
                                 TrabajadorVencimientoRepository $trabajadorVencimientoRepository)
     {
+        $this->middleware('auth');
         $this->middleware('workspace');
 
         $this->trabajadorRepository = $trabajadorRepository;
