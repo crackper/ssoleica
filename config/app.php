@@ -171,6 +171,10 @@ return [
          * Timezone
          */
         'Camroncade\Timezone\TimezoneServiceProvider',
+        /*
+        * Zizaco\Entrust
+        */
+        'Zizaco\Entrust\EntrustServiceProvider'
 
 	],
 
@@ -234,6 +238,10 @@ return [
          * Minify
          * */
         'Minify'        => 'Devfactory\Minify\Facades\MinifyFacade',
+        /*
+       * Zizaco\Entrust
+       */
+        'Entrust' => 'Zizaco\Entrust\EntrustFacade'
 
 	],
 

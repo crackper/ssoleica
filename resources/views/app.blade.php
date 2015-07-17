@@ -89,15 +89,15 @@
                   <!-- The user image in the navbar-->
                   <img src="/images/user_accounts.png" class="user-image" alt="User Image" />
                   <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                  <span class="hidden-xs">Usuario SSO</span>
+                  <span class="hidden-xs">Bienvenido,  {{ Auth::user()->name }} !</span>
                 </a>
                 <ul class="dropdown-menu">
                   <!-- The user image in the menu -->
                   <li class="user-header">
                     <img src="/images/user_accounts.png" class="img-circle" alt="User Image" />
                     <p>
-                      Usuario SSO
-                      <small>.....</small>
+                      {{ Auth::user()->name }}
+                      <small>{{ Auth::user()->email }}</small>
                     </p>
                   </li>
                   <!-- Menu Body -->
@@ -118,7 +118,7 @@
                       <a href="#" class="btn btn-default btn-flat">Perfil</a>
                     </div>
                     <div class="pull-right">
-                      <a href="#" class="btn btn-default btn-flat">Cerrar Sesión</a>
+                      <a href="/auth/logout" class="btn btn-default btn-flat">Cerrar Sesión</a>
                     </div>
                   </li>
                 </ul>

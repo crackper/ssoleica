@@ -1,61 +1,98 @@
-@extends('app')
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>SSO Leica | Log in</title>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    {!! Minify::stylesheet('/css/bootstrap.css') !!}
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    {!! Minify::stylesheet('/css/hexagon.admin.css') !!}
+    <!-- iCheck -->
+    <link href="{{  url('/css/plugins/iCheck/square/blue.css') }}" rel="stylesheet" type="text/css" />
 
-@section('content')
-<div class="container-fluid">
-	<div class="row">
-		<div class="col-md-8 col-md-offset-2">
-			<div class="panel panel-primary">
-				<div class="panel-heading">Login</div>
-				<div class="panel-body">
-					@if (count($errors) > 0)
-						<div class="alert alert-danger">
-							<strong>Whoops!</strong> There were some problems with your input.<br><br>
-							<ul>
-								@foreach ($errors->all() as $error)
-									<li>{{ $error }}</li>
-								@endforeach
-							</ul>
-						</div>
-					@endif
+    <link rel="stylesheet" href="/css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="/css/formValidation.min.css">
+         <style type="text/css">
+         #frmRegistrarHorasHombre .selectContainer .form-control-feedback {
+             /* Adjust feedback icon position */
+             right: -15px;
+         }
+         .has-error .form-control-feedback {
+            color: #E74C3C;
+         }
+         .has-success .form-control-feedback {
+            color: #18BCA0;
+         }
+         </style>
 
-					<form class="form-horizontal" role="form" method="POST" action="{{ url('/auth/login') }}">
-						<input type="hidden" name="_token" value="{{ csrf_token() }}">
-
-						<div class="form-group">
-							<label class="col-md-4 control-label">E-Mail Address</label>
-							<div class="col-md-6">
-								<input type="email" class="form-control" name="email" value="{{ old('email') }}">
-							</div>
-						</div>
-
-						<div class="form-group">
-							<label class="col-md-4 control-label">Password</label>
-							<div class="col-md-6">
-								<input type="password" class="form-control" name="password">
-							</div>
-						</div>
-
-						<div class="form-group">
-							<div class="col-md-6 col-md-offset-4">
-								<div class="checkbox">
-									<label>
-										<input type="checkbox" name="remember"> Remember Me
-									</label>
-								</div>
-							</div>
-						</div>
-
-						<div class="form-group">
-							<div class="col-md-6 col-md-offset-4">
-								<button type="submit" class="btn btn-primary">Login</button>
-
-								<a class="btn btn-link" href="{{ url('/password/email') }}">Forgot Your Password?</a>
-							</div>
-						</div>
-					</form>
-				</div>
-			</div>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body class="login-page">
+    <div class="login-box">
+      <div class="login-logo">
+        <b>SSO</b>Leica
+      </div><!-- /.login-logo -->
+      <div class="login-box-body">
+        <p class="login-box-msg">Inicia sesión para empezar</p>
+       @if (count($errors) > 0)
+	    <div class="alert alert-danger">
+	        <strong>Whoops!</strong> hay problemas conn tus datos.<br><br>
+		        <ul>
+				    @foreach ($errors->all() as $error)
+					    <li>{{ $error }}</li>
+					@endforeach
+				</ul>
 		</div>
-	</div>
-</div>
-@endsection
+		@endif
+
+        <form id="frmLogin" action="{{ url('/auth/login') }}" method="post">
+          <input type="hidden" name="_token" value="{{ csrf_token() }}">
+          <div class="form-group has-feedback">
+            <input type="email" id="email" name="email" class="form-control" placeholder="Email" value="{{ old('email') }}" />
+            <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+          </div>
+          <div class="form-group has-feedback">
+            <input type="password" id="password" name="password" class="form-control" placeholder="Password" />
+            <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+          </div>
+          <div class="row">
+            <div class="col-xs-8">
+              <div class="checkbox icheck">
+                <label>
+                  <input type="checkbox" name="remember" id="remember" value="true" > Recuerdame
+                </label>
+              </div>
+            </div><!-- /.col -->
+            <div class="col-xs-4">
+              <button type="submit" class="btn btn-primary btn-block btn-flat">Acceder</button>
+
+            </div><!-- /.col -->
+          </div>
+        </form>
+        <a href="{{ url('/password/email') }}">Recuperar mi password</a><br>
+      </div><!-- /.login-box-body -->
+    </div><!-- /.login-box -->
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <script src="/js/formvalidation/formValidation.min.js"></script>
+     <script src="/js/formvalidation/framework/bootstrap.min.js"></script>
+     {!! Minify::javascript('/js/app/login.js') !!}
+
+    <script src="{{ url('/js/plugins/icheck.min.js') }}" type="text/javascript"></script>
+    <script>
+      $(function () {
+        $('input').iCheck({
+          checkboxClass: 'icheckbox_square-blue',
+          radioClass: 'iradio_square-blue',
+          increaseArea: '20%' // optional
+        });
+      });
+    </script>
+  </body>
+</html>
