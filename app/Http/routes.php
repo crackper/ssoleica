@@ -11,6 +11,10 @@
 |
 */
 
+Route::group(['middleware' => ['entrust', 'auth'], 'roles' => 'admin'], function(){
+    Route::get('/auth/register', 'Auth\AuthController@register');
+    Route::post('auth/register', 'Auth\AuthController@postRegister');
+});
 Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController'

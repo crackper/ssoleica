@@ -64,6 +64,11 @@ class EntrustMiddleware
      */
     protected function analiceWithRole($request, $next)
     {
+        if ($this->auth->guest())
+        {
+            return redirect()->guest('auth/login');
+        }
+
         if ($this->auth->user()->hasRole($this->roles)) {
             if ($this->needsPerms) {
                 return $this->analiceWithPerms($request, $next);
@@ -87,7 +92,12 @@ class EntrustMiddleware
      */
     protected function analiceWithPerms($request, $next)
     {
-        if ($this->auth->user()->can($this->permissions)) {
+        if ($this->auth->guest())
+        {
+            return redirect()->guest('auth/login');
+
+        }
+            if ($this->auth->user()->can($this->permissions)) {
             return $next($request);
         } else {
             //Flash::warning('No Tiene acceso a este recurso.');
