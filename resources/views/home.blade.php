@@ -14,9 +14,10 @@
 
 @section('content')
 <div class="row">
+
     <div class="col-lg-3 col-xs-12">
 
-
+    @if(Auth::user()->hasRole(['admin','apr']))
         <div class="box box-primary">
             <div class="box-header with-border">
                 <h3 class="box-title">General</h3>
@@ -31,6 +32,8 @@
             </div>
 
         </div>
+    @endif
+
 
          <div class="box box-warning">
             <div class="box-header with-border">
@@ -40,17 +43,22 @@
                 </div>
             </div>
             <div class="box-body">
+                @if(Auth::user()->hasRole(['admin','apr']))
                 <a href="#">Registar EHSE Anual</a><br/>
                 <a href="#">Registar Cumplimiento EHSE</a><br/>
                 <a href="#">Registar EHSE Personalizado</a><br/>
                 <a href="#">Registar Indicadores de Eficacia</a><br/>
                 <a href="#">Registar Indicadores de Eficiencia</a><br/>
                 <a href="#">% Cumplimiento EHSE</a><br/>
-                <a href="#">Reporte Mensual</a><br/>
+                @endif
+                @if(Auth::user()->hasRole(['admin','apr','joperaciones','gerente']))
+                    <a href="#">Reporte Mensual</a><br/>
+                @endif
             </div>
          </div>
 
     </div>
+    @if(Auth::user()->hasRole(['admin','apr']))
     <div class="col-lg-3 col-xs-12">
 
                 <div class="box box-success">
@@ -83,9 +91,11 @@
 
 
     </div>
+    @endif
+
 
     <div class="col-lg-3 col-xs-12">
-
+        @if(Auth::user()->hasRole(['admin','apr']))
             <div class="box box-info">
                 <div class="box-header">
                     <h3 class="box-title">Proyectos</h3>
@@ -100,7 +110,8 @@
                     <a href="/contrato">Información de Contratos</a>
                 </div>
             </div>
-
+        @endif
+        @if(Auth::user()->hasRole(['admin','apr','joperaciones','gerente']))
                 <div class="box box-danger">
                     <div class="box-header">
                         <h3 class="box-title">Repositorio Archivos</h3>
@@ -112,26 +123,28 @@
                         <a href="/filemanager/repository">Repositorio</a><br/>
                     </div>
                 </div>
-
+        @endif
     </div>
+
+
+    @if(Auth::user()->hasRole('admin'))
     <div class="col-lg-3 col-xs-12">
 
                     <div class="box box-default">
                         <div class="box-header">
-                            <h3 class="box-title">Administracion</h3>
+                            <h3 class="box-title">{{ trans('home.admin_title') }}</h3>
                             <div class="box-tools pull-right">
                                 <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
                             </div>
                         </div>
                         <div class="box-body">
-                            <a href="#">Agregar Usuario</a><br/>
-                            <a href="#">Gestionar Usuarios</a><br/>
-                            <hr/>
-                            <a href="#">Gestionar Meses</a>
+                            <a href="/user/create">{{ trans('home.user_create') }}</a><br/>
+                            <a href="/user">{{ trans('home.user_view') }}</a><br/>
+                            <a href="#">{{ trans('home.meses_view') }}</a>
                         </div>
                     </div>
 
     </div>
-
+    @endif
 </div>
 @endsection

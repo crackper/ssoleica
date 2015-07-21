@@ -33,6 +33,12 @@ return [
     'horashombre_view'=>'Horas Hombre Trabajadas (HHT)',
     'horashombre_create' => 'Registar Hombre (HHT)',
     'estadisticas_view'=> 'Historial Estadisticas',
-    'estadisticas_create'=>'Registar Estadisticas'
+    'estadisticas_create'=>'Registar Estadisticas',
+    'administracion_title'=>'Administración',
+    'admin_title' => 'Usuarios',
+    'user_view'=>'Usuarios',
+    'user_create'=>'Registar Usuario',
+    'roles_view'=>'Roles',
+    'roles_create'=>'Registrar Rol'
 
 ];

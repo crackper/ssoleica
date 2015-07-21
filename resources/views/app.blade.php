@@ -151,6 +151,7 @@
             <li class="header">Menu</li>
             <!-- Optionally, you can add icons to the links -->
             <li class="active"><a href="/"><i class="fa fa-home"></i> <span>{{ trans('home.home') }}</span></a></li>
+            @if(Auth::user()->hasRole(['admin','apr']))
             <li class="treeview">
               <a href="#"><i class="fa fa-cube"></i> <span>{{ trans('home.general') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
               <ul class="treeview-menu">
@@ -176,7 +177,17 @@
                     <li><a href="/estadisticas">{{ trans('home.estadisticas_view') }}</a></li>
                   </ul>
              </li>
+            @endif
             <li><a href="/filemanager/repository"><i class="fa fa-archive"></i> <span>{{ trans('home.repositorio_view') }}</span></a></li>
+            @if(Auth::user()->hasRole('admin'))
+            <li class="header">{{ trans('home.administracion_title') }}</li>
+            <li class="treeview">
+                 <a href="#"><i class="fa fa-cubes"></i> <span>{{ trans('home.admin_title') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
+                  <ul class="treeview-menu">
+                    <li><a href="/user">{{ trans('home.user_view') }}</a></li>
+                  </ul>
+             </li>
+             @endif
           </ul><!-- /.sidebar-menu -->
         </section>
         <!-- /.sidebar -->

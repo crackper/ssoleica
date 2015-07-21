@@ -25,6 +25,7 @@
 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 	<button id="home" name="home" type="button" value="Home">&nbsp;</button>
     <h1></h1>
+    @if(Auth::user()->can('upload_file'))
 	<div id="uploadresponse"></div>
 	<input id="mode" name="mode" type="hidden" value="add" />
 	<input id="currentpath" name="currentpath" type="hidden" />
@@ -35,7 +36,12 @@
 		<input	id="newfile" name="newfile" type="file" />
 	</div>
 	<button id="upload" name="upload" type="submit" value="Upload"></button>
-	<button id="newfolder" name="newfolder" type="button" value="New Folder"></button>
+    @endif
+
+	@if(Auth::user()->can('create_folder'))
+	    <button id="newfolder" name="newfolder" type="button" value="New Folder"></button>
+	@endif
+
 	<button id="grid" class="ON" type="button">&nbsp;</button>
 	<button id="list" type="button">&nbsp;</button>
 </form>

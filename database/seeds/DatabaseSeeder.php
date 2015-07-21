@@ -14,7 +14,7 @@ class DatabaseSeeder extends Seeder {
 	{
 		Model::unguard();
 
-		// $this->call('UserTableSeeder');
+		$this->call('Database\Seeds\UserTableSeeder');
         $this->call('Database\Seeds\EnumAttributesTableSeeder');
         $this->call('Database\Seeds\EnumTablesTableSeeder');
         $this->call('Database\Seeds\TrabajadorTableSeeder');

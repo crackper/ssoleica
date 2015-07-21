@@ -18,6 +18,9 @@ class CreateUsersTable extends Migration {
 			$table->string('name');
 			$table->string('email')->unique();
 			$table->string('password', 60);
+            $table->boolean('active')->defaulf(true);
+            $table->integer('trabajador_id')->nullable()->unsigned();
+            $table->integer('pais_id')->nullable()->unsigned();
 			$table->rememberToken();
             $table->json('attributes')->nullable();
 

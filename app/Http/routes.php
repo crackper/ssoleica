@@ -13,34 +13,40 @@
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',
-	'password' => 'Auth\PasswordController',
-    'user' => 'UserController'
+	'password' => 'Auth\PasswordController'
 ]);
 
+Route::group(['middleware' => ['entrust', 'auth'], 'roles' => 'admin'], function(){
+    Route::controller('user','UserController');
+});
+
 Route::get('/', 'WelcomeController@index');
+
 
 Route::get('home', 'HomeController@index');
 Route::get('grid','HomeController@grid');
 Route::get('form','HomeController@form');
 
-//Route::get('trabajador','TrabajadorController@index');
-Route::get('trabajador/{id}/delete',['as'=>'index.delete','uses'=>'TrabajadorController@delete']);
-Route::controller('trabajador','TrabajadorController');
+Route::group(['middleware' => ['entrust', 'auth'], 'roles' => array('admin','apr')], function(){
+    Route::controller('operacion','OperacionController');
+    Route::controller('contrato','ContratoController');
+    Route::controller('horasHombre','HorasHombreController');
+    Route::controller('estadisticas','EstadisticaSegController');
+    Route::get('trabajador/{id}/delete',['as'=>'index.delete','uses'=>'TrabajadorController@delete']);
+    Route::controller('trabajador','TrabajadorController');
+});
 
-Route::controller('operacion','OperacionController');
-Route::controller('contrato','ContratoController');
-Route::controller('horasHombre','HorasHombreController');
-Route::controller('estadisticas','EstadisticaSegController');
+Route::group(['middleware' => ['entrust', 'auth'], 'roles' => array('admin','apr','joperaciones','gerente')], function(){
+    Route::get('repository', 'FilemanagerLaravelController@getRepository');
+    Route::get('connectors', 'FilemanagerLaravelController@getConnectors');
+    Route::post('connectors', 'FilemanagerLaravelController@postConnectors');
+});
+
 
 Route::post('pais/workspace',['as' =>'pais.workspace','uses' =>'PaisController@workspace']);
 Route::resource('pais','PaisController');
 
-//Route::group(array('middleware' => 'auth'), function(){
-    Route::get('repository', 'FilemanagerLaravelController@getRepository');
-    Route::get('connectors', 'FilemanagerLaravelController@getConnectors');
-    Route::post('connectors', 'FilemanagerLaravelController@postConnectors');
-    //Route::controller('filemanager', 'FilemanagerLaravelController');
-//});
+
 
 //filtro para el ajax
 Route::filter('csrf', function() {
@@ -48,5 +54,6 @@ Route::filter('csrf', function() {
     if (Session::token() != $token)
         throw new Illuminate\Session\TokenMismatchException;
 });
+
 
 
