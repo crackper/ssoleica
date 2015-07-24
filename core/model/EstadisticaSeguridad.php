@@ -1,8 +1,11 @@
 <?php namespace SSOLeica\Core\Model;
 
 use Illuminate\Database\Eloquent\Model;
+use SSOLeica\Core\Traits\UpdatedBy;
 
 class EstadisticaSeguridad extends Model {
+
+    use UpdatedBy;
 
     protected $table = 'estadistica_seguridad';
 
@@ -16,5 +19,12 @@ class EstadisticaSeguridad extends Model {
     public function contrato()
     {
         return $this->hasOne('SSOLeica\Core\Model\Contrato',$foreingKey='id',$localKey='contrato_id');
+    }
+
+    public function save(array $options = array())
+    {
+        $this->attributes['updated_by'] = $this->getUpdated();
+
+        return parent::save($options);
     }
 }

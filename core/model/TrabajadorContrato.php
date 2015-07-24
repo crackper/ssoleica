@@ -1,8 +1,11 @@
 <?php namespace SSOLeica\Core\Model;
 
 use Illuminate\Database\Eloquent\Model;
+use SSOLeica\Core\Traits\UpdatedBy;
 
 class TrabajadorContrato extends Model {
+
+    use UpdatedBy;
 
     protected $table = 'trabajador_contrato';
 
@@ -16,6 +19,13 @@ class TrabajadorContrato extends Model {
     public function contrato()
     {
         return $this->belongsTo('SSOLeica\Core\Model\Contrato');
+    }
+
+    public function save(array $options = array())
+    {
+        $this->attributes['updated_by'] = $this->getUpdated();
+
+        return parent::save($options);
     }
 
 }

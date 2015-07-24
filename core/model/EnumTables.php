@@ -1,8 +1,11 @@
 <?php namespace SSOLeica\Core\Model;
 
 use Illuminate\Database\Eloquent\Model;
+use SSOLeica\Core\Traits\UpdatedBy;
 
 class EnumTables extends Model {
+
+    use UpdatedBy;
 
 	protected $table = 'enum_tables';
 
@@ -14,6 +17,13 @@ class EnumTables extends Model {
     public function categorias()
     {
         return $this->hasMany('SSOLeica\Core\Model\EnumCategories',$foreignKey = 'category_id',$localKey='id');
+    }
+
+    public function save(array $options = array())
+    {
+        $this->attributes['updated_by'] = $this->getUpdated();
+
+        return parent::save($options);
     }
 
 }

@@ -1,20 +1,25 @@
 <?php namespace SSOLeica\Core\Model;
 
 use Illuminate\Database\Eloquent\Model;
+use SSOLeica\Core\Traits\UpdatedBy;
 use SSOLeica\Events\ContratoWasSaved;
 
 class Contrato extends Model {
+
+    use UpdatedBy;
 
     protected $table = 'contrato';
 
     public function save(array $options = array())
     {
-        parent::save($options);
+        $this->attributes['updated_by'] = $this->getUpdated();
+        $val = parent::save($options);
 
         \Event::fire(new ContratoWasSaved($this));
 
-        return true;
+        return $val;
     }
+
 
     public function trabajadores()
     {
