@@ -27,6 +27,7 @@ class UserTableSeeder extends \Illuminate\Database\Seeder{
 
         DB::table('users')->insert($users);
 
+        DB::statement('ALTER SEQUENCE users_id_seq RESTART WITH 6');
         //----------------------------------------
 
         DB::table('roles')->delete();
@@ -40,6 +41,7 @@ class UserTableSeeder extends \Illuminate\Database\Seeder{
 
         DB::table('roles')->insert($roles);
 
+        DB::statement('ALTER SEQUENCE roles_id_seq RESTART WITH 5');
         //----------------------------------------
 
         DB::table('role_user')->delete();
@@ -64,6 +66,7 @@ class UserTableSeeder extends \Illuminate\Database\Seeder{
         );
 
         DB::table('permissions')->insert($permissions);
+        DB::statement('ALTER SEQUENCE permissions_id_seq RESTART WITH 3');
 
         //-------------------------------------------
 

@@ -26,6 +26,8 @@ class EnumAttributesTableSeeder extends \Illuminate\Database\Seeder {
         );
         DB::table('enum_attributes')->insert($enums);
 
+        DB::statement('ALTER SEQUENCE enum_attributes_id_seq RESTART WITH 9');
+
         $faker = Faker::create();
 
         for($i = 9; $i<19;$i++)

@@ -9,8 +9,17 @@
 namespace SSOLeica\Http\Controllers;
 
 
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Session;
+use SSOLeica\Core\Model\Trabajador;
+use Validator;
 use Nayjest\Grids\Components\Base\RenderableRegistry;
 use Nayjest\Grids\Components\ColumnHeadersRow;
 use Nayjest\Grids\Components\ColumnsHider;
@@ -30,15 +39,29 @@ use Nayjest\Grids\Grid;
 use Nayjest\Grids\GridConfig;
 use Nayjest\Grids\IdFieldConfig;
 use Nayjest\Grids\SelectFilterConfig;
+use SSOLeica\Core\Model\EnumTables;
+use SSOLeica\Core\Model\Role;
 use SSOLeica\Core\Model\User;
+use SSOLeica\Core\Repository\EnumTablesRepository;
+use Illuminate\Http\Request;
+
 
 class UserController extends Controller {
 
-    public function __construct()
+    /**
+     * @var enumTablesRepository
+     */
+    private $enumTablesRepository;
+
+    /**
+     * @param EnumTablesRepository $enumTablesRepository
+     */
+    public function __construct(EnumTablesRepository $enumTablesRepository)
     {
         $this->middleware('auth');
         $this->middleware('workspace');
         $this->beforeFilter('access_usuarios', array('only' => 'index') );
+        $this->enumTablesRepository = $enumTablesRepository;
     }
 
     public function getIndex()
@@ -163,4 +186,160 @@ class UserController extends Controller {
 
         return view('user.index', compact('grid', 'text'));
     }
-} 
+
+
+    public function getCreate()
+    {
+        $text = 'Registrar Usuario';
+
+        $roles = Role::all()->lists('display_name','id');
+
+        $paises = array('' => '[-- Seleccione un Pais --]') + $this->enumTablesRepository->getPaises()->lists('name','id');
+
+
+
+        return view('user.create')
+            ->with('text',$text)
+            ->with('roles',$roles)
+            ->with('paises',$paises);
+    }
+
+    public function postCreate(Request $request)
+    {
+
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|max:255',
+            'email' => 'required|email|max:255|unique:users',
+            'password' => 'required|confirmed|min:6',
+            'pais_id' => 'required',
+            'trabajador_id' => 'required'
+        ]);
+
+
+        if ($validator->fails()) {
+            return Redirect::back()
+                ->withErrors($validator)
+                ->withInput(Input::all());
+        }
+
+        $user = $request->only('name','email','password','pais_id','active','trabajador_id');
+        $user['active'] = $request->has('active') ? true : false;
+        $user['password'] = Hash::make($user['password']);
+
+
+        $new_user = User::create($user);
+
+
+        if($request->has('roles'))
+        {
+            foreach($request->get('roles') as $rol)
+            {
+                $new_user->attachRole(Role::find($rol));
+            }
+        }
+
+
+        Session::flash('message', 'El Usuario se registro Correctamente');
+
+        return new RedirectResponse(url('/user/index'));
+    }
+
+    public function getTrabajadores($key = '')
+    {
+        $query = Trabajador::where(DB::raw("upper(nombre) like '%'|| upper('".$key."') || '%' or upper(app_paterno) like '%'|| upper('".$key."') || '%'"))
+                ->orderBy('nombre', 'asc')
+                ->skip(0)->take(10)->get();
+
+        $data = array();
+        foreach($query as $trabajador)
+        {
+            $data[] = array('id' => $trabajador->id, 'name' =>  $trabajador->nombre .' '. $trabajador->app_paterno, 'email' => $trabajador->email );
+        }
+
+        return Response::json($data);
+    }
+
+    public function getEdit($id)
+    {
+        $text = 'Registrar Usuario';
+
+        $user = User::find($id);
+
+        $in_rol=array();
+
+        $roles = Role::all();
+
+        foreach($roles as $rol)
+        {
+            $in_rol[] = (object)array('id' =>$rol->id, 'name'=>$rol->display_name, 'to_user'=> $user->hasRole($rol->name));
+        }
+
+
+        $paises = array('' => '[-- Seleccione un Pais --]') + $this->enumTablesRepository->getPaises()->lists('name','id');
+
+        return view('user.edit')
+            ->with('text',$text)
+            ->with('user',$user)
+            ->with('roles',$in_rol)
+            ->with('paises',$paises);
+    }
+
+    public function postUpdate($id,Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|max:255',
+            'roles' => 'required',
+            'pais_id' => 'required',
+        ]);
+
+
+        if ($validator->fails()) {
+            return Redirect::back()
+                ->withErrors($validator)
+                ->withInput(Input::all());
+        }
+
+        $user = User::find($id);
+
+        $user->name = $request->get('name');
+        $user->pais_id = $request->get('pais_id');
+        $user->active = $request->has('active');
+
+        if($request->password != '')
+            $user->password =   Hash::make($request->get('password'));
+
+        $user->save();
+
+        if($request->has('roles'))
+        {
+            $user->roles()->detach();
+
+            foreach($request->get('roles') as $rol)
+            {
+                $user->attachRole(Role::find($rol));
+            }
+        }
+
+        dd($user);
+
+    }
+
+    public function getDelete($id)
+    {
+        if($id == 1)
+        {
+            Session::flash('message', 'Este usuario no puede ser eliminado');
+
+            return new RedirectResponse(url('/user/index'));
+        }
+
+        $user = User::find($id);
+
+        $user->delete();
+
+        Session::flash('message', 'El Usuario fue eliminado Correctamente');
+
+        return new RedirectResponse(url('/user/index'));
+    }
+
+}
