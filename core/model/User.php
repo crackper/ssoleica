@@ -5,13 +5,14 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
+use SSOLeica\Core\Traits\UpdatedBy;
 use Zizaco\Entrust\Traits\EntrustUserTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Role;
 
 class User extends Model implements AuthenticatableContract, CanResetPasswordContract {
 
-	use Authenticatable, CanResetPassword, EntrustUserTrait, SoftDeletes;
+	use Authenticatable, CanResetPassword, EntrustUserTrait, SoftDeletes, UpdatedBy;
 
 	/**
 	 * The database table used by the model.
@@ -37,5 +38,14 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
 
     protected $dates = ['deleted_at'];
+
+
+    public function save(array $options = array())
+    {
+        $this->attributes['updated_by'] = $this->getUpdated();
+
+        return parent::save($options);
+
+    }
 
 }

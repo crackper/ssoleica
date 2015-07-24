@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Session;
 use SSOLeica\Core\Model\Trabajador;
+use SSOLeica\Core\Traits\UpdatedBy;
 use Validator;
 use Nayjest\Grids\Components\Base\RenderableRegistry;
 use Nayjest\Grids\Components\ColumnHeadersRow;
@@ -48,7 +49,7 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller {
 
-    private $updated_by;
+    use UpdatedBy;
 
     /**
      * @var enumTablesRepository
@@ -62,9 +63,7 @@ class UserController extends Controller {
     {
         $this->middleware('auth');
         $this->middleware('workspace');
-        $this->beforeFilter('access_usuarios', array('only' => 'index') );
         $this->enumTablesRepository = $enumTablesRepository;
-        $this->updated_by = Session::get('updated_by');
     }
 
     public function getIndex()
@@ -228,7 +227,7 @@ class UserController extends Controller {
         $user = $request->only('name','email','password','pais_id','active','trabajador_id');
         $user['active'] = $request->has('active') ? true : false;
         $user['password'] = Hash::make($user['password']);
-        $user['updated_by'] = $this->updated_by;
+        //$user['updated_by'] = $this->updated_by;
 
 
         $new_user = User::create($user);
@@ -311,7 +310,7 @@ class UserController extends Controller {
         $user->name = $request->get('name');
         $user->pais_id = $request->get('pais_id');
         $user->active = $request->has('active');
-        $user->updated_by = $this->updated_by;
+        //$user->updated_by = $this->updated_by;
 
         if($request->password != '')
             $user->password =   Hash::make($request->get('password'));
@@ -344,7 +343,11 @@ class UserController extends Controller {
         }
 
         $user = User::find($id);
-        $user->updated_by = $this->updated_by;
+
+        if(is_null($user))
+            return new RedirectResponse(url('/user/index'));
+
+        $user->updated_by = $this->getUpdated();
         $user->save();
         $user->delete();
 

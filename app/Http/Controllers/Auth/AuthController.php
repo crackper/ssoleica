@@ -80,9 +80,9 @@ class AuthController extends Controller {
                 Session::forget('timezone');
             }
 
-            $updated_by = json_encode(array('id' => Auth::user()->id,'name'=>Auth::user()->name,'email'=>Auth::user()->email,'trabjador_id'=>Auth::user()->trabajador_id));
+           // $updated_by = json_encode(array('id' => Auth::user()->id,'name'=>Auth::user()->name,'email'=>Auth::user()->email,'trabjador_id'=>Auth::user()->trabajador_id));
 
-            Session::put('updated_by',$updated_by);
+           // Session::put('updated_by',$updated_by);
 
             return redirect()->intended($this->redirectPath());
         }
