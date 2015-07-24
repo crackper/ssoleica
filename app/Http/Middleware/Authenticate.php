@@ -2,6 +2,7 @@
 
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
+use Illuminate\Support\Facades\Auth;
 
 class Authenticate {
 
@@ -43,6 +44,11 @@ class Authenticate {
 				return redirect()->guest('auth/login');
 			}
 		}
+
+        //if(!$this->auth->check())
+        //{
+            //$request->attributes->add(['update_by',json_encode(Auth::user())]);
+        //}
 
 		return $next($request);
 	}

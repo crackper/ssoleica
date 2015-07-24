@@ -1,6 +1,7 @@
 <?php namespace SSOLeica\Http\Controllers;
 
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
 use SSOLeica\Core\Helpers\Helpers;
@@ -35,7 +36,6 @@ class PaisController extends Controller {
 	public function index()
 	{
 
-
         $data['paises'] = $this->enum_tables->getPaises()->lists('name','id');
 
 		return view('pais.index',$data);
@@ -54,9 +54,7 @@ class PaisController extends Controller {
 
         Session::put('pais_id', $pais_id);
         Session::put('pais_name', $pais->name);
-        Session::put('timezone', $data[0]->timezone);
-        Session::put('diff_timezone', $data[0]->diff);
-
+        Session::put('timezone', $data->timezone);
 
         return new RedirectResponse(url('/home'));
     }

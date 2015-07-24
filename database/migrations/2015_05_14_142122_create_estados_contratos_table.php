@@ -23,7 +23,7 @@ class CreateEstadosContratosTable extends Migration {
             $table->boolean('exist_subcontrato');
             $table->json('attributes')->nullable();
             //auditoria
-            $table->string('updated_by',100)->nullable();
+            $table->json('updated_by')->nullable();
             $table->timestamps();
             $table->softDeletes();
 		});

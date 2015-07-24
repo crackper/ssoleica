@@ -48,6 +48,8 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller {
 
+    private $updated_by;
+
     /**
      * @var enumTablesRepository
      */
@@ -62,6 +64,7 @@ class UserController extends Controller {
         $this->middleware('workspace');
         $this->beforeFilter('access_usuarios', array('only' => 'index') );
         $this->enumTablesRepository = $enumTablesRepository;
+        $this->updated_by = Session::get('updated_by');
     }
 
     public function getIndex()
@@ -225,6 +228,7 @@ class UserController extends Controller {
         $user = $request->only('name','email','password','pais_id','active','trabajador_id');
         $user['active'] = $request->has('active') ? true : false;
         $user['password'] = Hash::make($user['password']);
+        $user['updated_by'] = $this->updated_by;
 
 
         $new_user = User::create($user);
@@ -241,7 +245,7 @@ class UserController extends Controller {
 
         Session::flash('message', 'El Usuario se registro Correctamente');
 
-        return new RedirectResponse(url('/user/index'));
+        return new RedirectResponse(url('/user/edit/'.$new_user->id));
     }
 
     public function getTrabajadores($key = '')
@@ -264,6 +268,9 @@ class UserController extends Controller {
         $text = 'Registrar Usuario';
 
         $user = User::find($id);
+
+        if(is_null($user))
+            return new RedirectResponse(url('/user/index'));
 
         $in_rol=array();
 
@@ -304,6 +311,7 @@ class UserController extends Controller {
         $user->name = $request->get('name');
         $user->pais_id = $request->get('pais_id');
         $user->active = $request->has('active');
+        $user->updated_by = $this->updated_by;
 
         if($request->password != '')
             $user->password =   Hash::make($request->get('password'));
@@ -320,7 +328,9 @@ class UserController extends Controller {
             }
         }
 
-        dd($user);
+        Session::flash('message', 'El Usuario se registro Correctamente');
+
+        return new RedirectResponse(url('/user/edit/'. $id));
 
     }
 
@@ -334,7 +344,8 @@ class UserController extends Controller {
         }
 
         $user = User::find($id);
-
+        $user->updated_by = $this->updated_by;
+        $user->save();
         $user->delete();
 
         Session::flash('message', 'El Usuario fue eliminado Correctamente');

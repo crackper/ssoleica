@@ -48,7 +48,7 @@ class CreateTrabajadorsTable extends Migration {
             $table->string('em_direccion')->nullable();
             $table->json('attributes')->nullable();
             //auditoria
-            $table->string('updated_by',100)->nullable();
+            $table->json('updated_by')->nullable();
             $table->timestamps();
             $table->softDeletes();
 		});

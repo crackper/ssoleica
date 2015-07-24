@@ -14,6 +14,12 @@
 <div class="container-fluid">
 	<div class="row">
     <div class="col-md-12">
+        @if (Session::has('message'))
+            <div class="alert alert-success alert-dismissible fade in" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                {{ Session::get('message') }}
+            </div>
+        @endif
         <div class="box box-primary">
             <div class="box-body" >
 					@if (count($errors) > 0)
@@ -83,7 +89,7 @@
 							<div class="col-md-6">
                                 <div class="checkbox">
                                   <label>
-                                    <input type="checkbox" name="active" id="active" value="1" checked>
+                                    {!! Form::checkbox('active', true, $user->active )  !!}
                                     Activo
                                   </label>
                                 </div>
@@ -95,6 +101,7 @@
 								<button type="submit" class="btn btn-primary">
 									Registrar
 								</button>
+								<a href="/user" class="btn btn-primary">Cancelar</a>
 							</div>
 						</div>
 					</form>
@@ -110,6 +117,7 @@
     <link href="{{  url('/css/plugins/iCheck/square/blue.css') }}" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="/css/bootstrap-select.min.css">
     <link rel="stylesheet" href="/css/formValidation.min.css">
+    <link rel="stylesheet" href="/css/bootstrap-dialog.min.css"/>
          <style type="text/css">
          #frmRegistrarHorasHombre .selectContainer .form-control-feedback {
              /* Adjust feedback icon position */
@@ -128,6 +136,19 @@
 <script src="/js/bootstrap-select.min.js"></script>
  <script src="/js/formvalidation/formValidation.min.js"></script>
  <script src="/js/formvalidation/framework/bootstrap.min.js"></script>
+ <script src="/js/bootstrap-dialog.min.js"></script>
 {!! Minify::javascript('/js/app/user.edit.js') !!}
+    <script>
+        $(function(){
+            $('.btn-toolbar').first().hide();
+
+            @if (Session::has('message'))
+                BootstrapDialog.alert({
+                    title:'SSO Leica Geosystems',
+                    message: '{{ Session::get('message') }}'
+                 });
+            @endif
+        });
+    </script>
 
 @endsection

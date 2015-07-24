@@ -60,8 +60,8 @@ class EnumTablesTableSeeder extends \Illuminate\Database\Seeder {
         DB::statement('ALTER SEQUENCE enum_tables_id_seq RESTART WITH 39');
 
         $paises = array(
-            ['id'=> 8,'type'=>'Pais','name'=>'Perú','symbol'=>'PE','data'=>json_encode(array(array('timezone'=>'America/Bogota','diff'=>'-5'))),'created_at' => new DateTime, 'updated_at' => new DateTime],
-            ['id'=> 9,'type'=>'Pais','name'=>'Chile','symbol'=>'CL','data'=>json_encode(array(array('timezone'=>'America/Argentina/Buenos_Aires','diff'=>'-3'))),'created_at' => new DateTime, 'updated_at' => new DateTime]
+            ['id'=> 8,'type'=>'Pais','name'=>'Perú','symbol'=>'PE','data'=>json_encode(array('timezone'=>'America/Bogota')),'created_at' => new DateTime, 'updated_at' => new DateTime],
+            ['id'=> 9,'type'=>'Pais','name'=>'Chile','symbol'=>'CL','data'=>json_encode(array('timezone'=>'America/Argentina/Buenos_Aires')),'created_at' => new DateTime, 'updated_at' => new DateTime]
         );
 
         DB::table('enum_tables')->insert($paises);

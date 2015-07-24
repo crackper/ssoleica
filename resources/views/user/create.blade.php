@@ -95,6 +95,7 @@
 								<button type="submit" class="btn btn-primary">
 									Registrar
 								</button>
+								<a href="/user" class="btn btn-primary">Cancelar</a>
 							</div>
 						</div>
 					</form>

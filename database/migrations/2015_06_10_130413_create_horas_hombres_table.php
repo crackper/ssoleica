@@ -26,7 +26,7 @@ class CreateHorasHombresTable extends Migration {
             $table->decimal('total',9,2)->default(0);
             $table->json('attributes')->nullable();
             //auditoria
-            $table->string('updated_by',100)->nullable();
+            $table->json('updated_by')->nullable();
             $table->timestamps();
             $table->softDeletes();
 		});
