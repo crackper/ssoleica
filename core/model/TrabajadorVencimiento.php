@@ -21,11 +21,4 @@ class TrabajadorVencimiento extends Model {
         return $this->hasOne('SSOLeica\Core\Model\EnumTables',$foreignKey= 'id',$localKey='vencimiento_id');
     }*/
 
-    public function save(array $options = array())
-    {
-        $this->attributes['updated_by'] = $this->getUpdated();
-
-        return parent::save($options);
-    }
-
 }

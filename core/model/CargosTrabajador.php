@@ -9,12 +9,4 @@ class CargosTrabajador extends Model {
 
     protected $table = 'cargos_trabajador';
 
-    public function save(array $options = array())
-    {
-        $this->attributes['updated_by'] = $this->getUpdated();
-
-        return parent::save($options);
-
-    }
-
 }

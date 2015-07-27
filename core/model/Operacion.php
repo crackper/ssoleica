@@ -13,12 +13,4 @@ class Operacion extends Model {
     {
         return $this->hasMany('SSOLeica\Core\Model\Contrato');//,$foreingKey='id',$localKey='trabajador_id');
     }
-
-    public function save(array $options = array())
-    {
-        $this->attributes['updated_by'] = $this->getUpdated();
-
-        return parent::save($options);
-    }
-
 }

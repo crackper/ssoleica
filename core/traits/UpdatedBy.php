@@ -29,4 +29,12 @@ trait UpdatedBy {
         return $updated_by;
     }
 
+    public function save(array $options = array())
+    {
+        $this->attributes['updated_by'] = $this->getUpdated();
+
+        return parent::save($options);
+
+    }
+
 } 

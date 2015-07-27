@@ -9,11 +9,4 @@ class ShiftContratoTrabajador extends Model {
 
 	protected $table = 'shift_contrato_trabajador';
 
-    public function save(array $options = array())
-    {
-        $this->attributes['updated_by'] = $this->getUpdated();
-
-        return parent::save($options);
-    }
-
 }

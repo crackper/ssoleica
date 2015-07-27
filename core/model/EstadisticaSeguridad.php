@@ -20,11 +20,4 @@ class EstadisticaSeguridad extends Model {
     {
         return $this->hasOne('SSOLeica\Core\Model\Contrato',$foreingKey='id',$localKey='contrato_id');
     }
-
-    public function save(array $options = array())
-    {
-        $this->attributes['updated_by'] = $this->getUpdated();
-
-        return parent::save($options);
-    }
 }

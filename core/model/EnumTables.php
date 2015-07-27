@@ -19,11 +19,4 @@ class EnumTables extends Model {
         return $this->hasMany('SSOLeica\Core\Model\EnumCategories',$foreignKey = 'category_id',$localKey='id');
     }
 
-    public function save(array $options = array())
-    {
-        $this->attributes['updated_by'] = $this->getUpdated();
-
-        return parent::save($options);
-    }
-
 }

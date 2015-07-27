@@ -20,12 +20,4 @@ class TrabajadorContrato extends Model {
     {
         return $this->belongsTo('SSOLeica\Core\Model\Contrato');
     }
-
-    public function save(array $options = array())
-    {
-        $this->attributes['updated_by'] = $this->getUpdated();
-
-        return parent::save($options);
-    }
-
 }

@@ -39,13 +39,4 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
     protected $dates = ['deleted_at'];
 
-
-    public function save(array $options = array())
-    {
-        $this->attributes['updated_by'] = $this->getUpdated();
-
-        return parent::save($options);
-
-    }
-
 }
