@@ -23,7 +23,7 @@ class EnumTablesTableSeeder extends \Illuminate\Database\Seeder {
             ['id'=> 3,'type'=>'ExamenMedico','name'=>'Ex. Med. Pre. Ocupacional (EMPO)','symbol'=>'EMPO','created_at' => new DateTime, 'updated_at' => new DateTime],
             ['id'=> 4,'type'=>'ExamenMedico','name'=>'Ex. Med. Altura Física (EMAF)','symbol'=>'EMAF','created_at' => new DateTime, 'updated_at' => new DateTime],
             ['id'=> 5,'type'=>'ExamenMedico','name'=>'Ex. Med. Altura Geográfica (EMAG)','symbol'=>'EMAG','created_at' => new DateTime, 'updated_at' => new DateTime],
-            ['id'=> 6,'type'=>'ExamenMedico','name'=>'Ex. Med. Dermatológico','symbol' => '','created_at' => new DateTime, 'updated_at' => new DateTime],
+            ['id'=> 6,'type'=>'ExamenMedico','name'=>'Ex. Med. Dermatológico (FOTOTIPO)','symbol' => 'FOTOTIPO','created_at' => new DateTime, 'updated_at' => new DateTime],
             ['id'=> 7,'type'=>'ExamenMedico','name'=>'Ex. Med. Psicológico','symbol'=>'','created_at' => new DateTime, 'updated_at' => new DateTime],
             ['id'=> 10,'type'=>'Cargo','name'=>'Técnico de Operaciones','symbol'=>'TOP','created_at' => new DateTime, 'updated_at' => new DateTime],
             ['id'=> 11,'type'=>'Cargo','name'=>'Ingeniero de Operacioens','symbol'=>'IOP','created_at' => new DateTime, 'updated_at' => new DateTime],
@@ -53,11 +53,34 @@ class EnumTablesTableSeeder extends \Illuminate\Database\Seeder {
             ['id'=> 35,'type'=>'Documento','name'=>'Antecedentes Penales','symbol'=>'','created_at' => new DateTime, 'updated_at' => new DateTime],
             ['id'=> 36,'type'=>'Documento','name'=>'Antecedentes Judiciales','symbol'=>'','created_at' => new DateTime, 'updated_at' => new DateTime],
             ['id'=> 37,'type'=>'Documento','name'=>'Carnet de Extranjeria','symbol'=>'','created_at' => new DateTime, 'updated_at' => new DateTime],
-            ['id'=> 38,'type'=>'Documento','name'=>'Licencia de Conducir','symbol'=>'','created_at' => new DateTime, 'updated_at' => new DateTime]
+            ['id'=> 38,'type'=>'Documento','name'=>'Licencia de Conducir','symbol'=>'','created_at' => new DateTime, 'updated_at' => new DateTime],
+            ['id'=> 39,'type'=>'Entidad','name'=>'LEICA','symbol'=>'','created_at' => new DateTime, 'updated_at' => new DateTime],
+            ['id'=> 40,'type'=>'Entidad','name'=>'Contratista','symbol'=>'','created_at' => new DateTime, 'updated_at' => new DateTime],
+            ['id'=> 41,'type'=>'Entidad','name'=>'Cliente','symbol'=>'','created_at' => new DateTime, 'updated_at' => new DateTime],
+            ['id'=> 42,'type'=>'Entidad','name'=>'Otro','symbol'=>'','created_at' => new DateTime, 'updated_at' => new DateTime],
+            ['id'=> 43,'type'=>'Consecuencia','name'=>'1os Auxilios','symbol'=>'','created_at' => new DateTime, 'updated_at' => new DateTime],
+            ['id'=> 44,'type'=>'Consecuencia','name'=>'Sin pérdida de días','symbol'=>'','created_at' => new DateTime, 'updated_at' => new DateTime],
+            ['id'=> 45,'type'=>'Consecuencia','name'=>'Tarea restringida','symbol'=>'','created_at' => new DateTime, 'updated_at' => new DateTime],
+            ['id'=> 46,'type'=>'Consecuencia','name'=>'Con pérdida de días','symbol'=>'','created_at' => new DateTime, 'updated_at' => new DateTime],
+            ['id'=> 47,'type'=>'Consecuencia','name'=>'Muerte','symbol'=>'','created_at' => new DateTime, 'updated_at' => new DateTime],
+            ['id'=> 48,'type'=>'ParteAfectada','name'=>'NINGUNA','symbol'=>'','created_at' => new DateTime, 'updated_at' => new DateTime],
+            ['id'=> 49,'type'=>'ParteAfectada','name'=>'Cabeza','symbol'=>'','created_at' => new DateTime, 'updated_at' => new DateTime],
+            ['id'=> 50,'type'=>'ParteAfectada','name'=>'Cuello','symbol'=>'','created_at' => new DateTime, 'updated_at' => new DateTime],
+            ['id'=> 51,'type'=>'ParteAfectada','name'=>'Brazos','symbol'=>'','created_at' => new DateTime, 'updated_at' => new DateTime],
+            ['id'=> 52,'type'=>'ParteAfectada','name'=>'Espalda','symbol'=>'','created_at' => new DateTime, 'updated_at' => new DateTime],
+            ['id'=> 53,'type'=>'ParteAfectada','name'=>'Dedos','symbol'=>'','created_at' => new DateTime, 'updated_at' => new DateTime],
+            ['id'=> 54,'type'=>'ParteAfectada','name'=>'Ojo','symbol'=>'','created_at' => new DateTime, 'updated_at' => new DateTime],
+            ['id'=> 55,'type'=>'ParteAfectada','name'=>'Pie','symbol'=>'','created_at' => new DateTime, 'updated_at' => new DateTime],
+            ['id'=> 56,'type'=>'ParteAfectada','name'=>'Manos','symbol'=>'','created_at' => new DateTime, 'updated_at' => new DateTime],
+            ['id'=> 57,'type'=>'ParteAfectada','name'=>'Oídos','symbol'=>'','created_at' => new DateTime, 'updated_at' => new DateTime],
+            ['id'=> 58,'type'=>'ParteAfectada','name'=>'Tobillos','symbol'=>'','created_at' => new DateTime, 'updated_at' => new DateTime],
+            ['id'=> 59,'type'=>'ParteAfectada','name'=>'Hombro','symbol'=>'','created_at' => new DateTime, 'updated_at' => new DateTime],
+            ['id'=> 60,'type'=>'ParteAfectada','name'=>'Antebrazo','symbol'=>'','created_at' => new DateTime, 'updated_at' => new DateTime],
+            ['id'=> 61,'type'=>'Cargo','name'=>'Practicante','symbol'=>'PRACT','created_at' => new DateTime, 'updated_at' => new DateTime]
         );
         DB::table('enum_tables')->insert($enums);
 
-        DB::statement('ALTER SEQUENCE enum_tables_id_seq RESTART WITH 39');
+        DB::statement('ALTER SEQUENCE enum_tables_id_seq RESTART WITH 62');
 
         $paises = array(
             ['id'=> 8,'type'=>'Pais','name'=>'Perú','symbol'=>'PE','data'=>json_encode(array('timezone'=>'America/Bogota')),'created_at' => new DateTime, 'updated_at' => new DateTime],

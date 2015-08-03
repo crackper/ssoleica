@@ -25,7 +25,7 @@ class TrabajadorTableSeeder extends Seeder {
         for($i = 0; $i<50; $i++)
         {
            $profesion_id = DB::table('enum_tables')->insertGetId(array(
-                'id'            => 45 + $i,
+                //'id'            => 45 + $i,
                 'type'          =>  'Profesion',
                 'name'          =>  $faker->name,
                 'symbol'        =>  $faker->countryCode,
