@@ -18,6 +18,7 @@ class TrabajadorTableSeeder extends Seeder {
 
     public function run(){
 
+        DB::table('cargos_trabajador')->delete();
         DB::table('trabajador')->delete();
 
         $faker = Faker::create();
@@ -45,8 +46,10 @@ class TrabajadorTableSeeder extends Seeder {
             $grupo = array('A+','A-','B+','B-','AB+','AB-','O+','O-');
             $parentesco = array('Padre','Madre','Esposo(a)','Hijo(a)','Hermano(a)','Otro');
             $sexo = array('M','F');
+            $cargo_id = rand(10,16);
+            $fecha_ingreso = $faker->dateTimeBetween($startDate = '-7 years', $endDate = 'now');
 
-            DB::table('trabajador')->insert(array(
+            $trabajador_id = DB::table('trabajador')->insertGetId(array(
                 'pais_id'           =>  rand(8,9),
                 'dni'               =>  $faker->randomNumber($nbDigits = 8),
                 'nombre'            =>  $faker->name,
@@ -58,9 +61,10 @@ class TrabajadorTableSeeder extends Seeder {
                 'direccion'         =>  $faker->address,
                 'email'             =>  $faker->companyEmail,
                 'nro_telefono'      =>  $faker->phoneNumber,
-                'fecha_ingreso'     =>  $faker->dateTimeBetween($startDate = '-7 years', $endDate = 'now'),
+                'fecha_ingreso'     =>  $fecha_ingreso,
                 'profesion_id'      =>  $profesion_id,
-                'cargo_id'          =>  rand(10,16),
+                'cargo_id'          =>  $cargo_id,
+                'fecha_ini_cargo'   =>  $fecha_ingreso,
                 'foto'              =>  'people.jpeg',
                 'grupo_saguineo'    =>   $grupo[rand(0,7)],
                 'em_nombres'        =>  $faker->name.' '.$faker->lastName,
@@ -68,6 +72,14 @@ class TrabajadorTableSeeder extends Seeder {
                 'em_telef_celular'  =>  $faker->phoneNumber,
                 'em_parentesco'     =>  $parentesco[rand(0,5)],
                 'em_direccion'      =>  $faker->address,
+                'created_at'        => new DateTime,
+                'updated_at'        => new DateTime
+            ));
+
+            DB::table('cargos_trabajador')->insert(array(
+                'trabajador_id' => $trabajador_id,
+                'cargo_id' => $cargo_id,
+                'inicio' => $fecha_ingreso,
                 'created_at'        => new DateTime,
                 'updated_at'        => new DateTime
             ));

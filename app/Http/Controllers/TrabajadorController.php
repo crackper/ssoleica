@@ -305,6 +305,7 @@ class TrabajadorController extends Controller
         $edit->add('fecha_ingreso', 'Fecha de Ingreso', 'date')->format('d/m/Y', 'it')->rule('required');
         $edit->add('profesion_id', 'Profesion', 'select')->options($this->enumTablesRepository->getProfesiones()->lists('name', 'id'));
         $edit->add('cargo_id', 'Cargo', 'select')->options($this->enumTablesRepository->getCargos()->lists('name', 'id'));
+        $edit->add('fecha_ini_cargo', 'Fecha Inicio Cargo', 'date')->format('d/m/Y', 'es')->rule('required');
         //informacion adicional
         $edit->add('foto', 'Foto', 'image')->move('uploads/images/')->preview(150, 200);
         $edit->add('grupo_saguineo', 'Grupo Sanquineo', 'select')->options(array('' => '[- Seleccione -]', 'A+' => 'A+', 'A-' => 'A-', 'B+' => 'B+', 'B-' => 'B-', 'AB+' => 'AB+', 'AB-' => 'AB-', 'O+' => 'O+', 'O-' => 'O-'));
@@ -348,7 +349,7 @@ class TrabajadorController extends Controller
         $edit = DataForm::source(new Trabajador);
 
         $edit->add('pais_id', '', 'hidden')->insertValue($this->pais);
-        $edit->add('dni', 'DNI', 'text')->rule('required|min:8');
+        $edit->add('dni', 'DNI', 'text')->rule('required|min:8|unique:trabajador');
         $edit->add('nombre', 'Nombre', 'text')->rule('required|max:100');
         $edit->add('app_paterno', 'Apellido Paterno', 'text')->rule('required');
         $edit->add('app_materno', 'Apellido Materno', 'text')->rule('required');
@@ -361,6 +362,7 @@ class TrabajadorController extends Controller
         $edit->add('fecha_ingreso', 'Fecha de Ingreso', 'date')->format('d/m/Y', 'es')->rule('required');
         $edit->add('profesion_id', 'Profesion', 'select')->options(array('' => '[- Seleccione -]') + $this->enumTablesRepository->getProfesiones()->lists('name', 'id'))->rule('required');
         $edit->add('cargo_id', 'Cargo', 'select')->options(array('' => '[- Seleccione -]') + $this->enumTablesRepository->getCargos()->lists('name', 'id'))->rule('required');
+        $edit->add('fecha_ini_cargo', 'Fecha Inicio Cargo', 'date')->format('d/m/Y', 'es')->rule('required');
         //informacion adicional
         $edit->add('foto', 'Foto', 'image')->move('uploads/images/')->preview(150, 200);
         $edit->add('grupo_saguineo', 'Grupo Sanquineo', 'select')->options(array('' => '[- Seleccione -]', 'A+' => 'A+', 'A-' => 'A-', 'B+' => 'B+', 'B-' => 'B-', 'AB+' => 'AB+', 'AB-' => 'AB-', 'O+' => 'O+', 'O-' => 'O-'));

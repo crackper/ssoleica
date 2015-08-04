@@ -131,11 +131,17 @@
                       {!! $edit->field('nro_telefono') !!}
                     </div>
                  </div>
-                <div class="form-group">
+                <div class="form-group @if($edit->field('fecha_ingreso')->has_error) has-error @endif">
                    <label for="fecha_ingreso" class="col-md-2 control-label required">Fecha de Ingreso</label>
                     <div class="col-sm-5">
                       {!! $edit->field('fecha_ingreso') !!}
                     </div>
+                    @if($edit->field('fecha_ingreso')->has_error)
+                        <span class="help-block">
+                            <span class="glyphicon glyphicon-warning-sign"></span>
+                            {!! $edit->field('fecha_ingreso')->message !!}
+                        </span>
+                    @endif
                  </div>
                 <div class="form-group">
                    <label for="profesion_id" class="col-md-2 control-label required">Profesión</label>
@@ -148,6 +154,18 @@
                     <div class="col-sm-5">
                       {!! $edit->field('cargo_id') !!}
                     </div>
+                 </div>
+                <div class="form-group @if($edit->field('fecha_ini_cargo')->has_error) has-error @endif">
+                   <label for="fecha_ini_cargo" class="col-md-2 control-label required">Fecha Inicio Cargo</label>
+                    <div class="col-sm-5">
+                      {!! $edit->field('fecha_ini_cargo') !!}
+                    </div>
+                    @if($edit->field('fecha_ini_cargo')->has_error)
+                        <span class="help-block">
+                            <span class="glyphicon glyphicon-warning-sign"></span>
+                            {!! $edit->field('fecha_ini_cargo')->message !!}
+                        </span>
+                    @endif
                  </div>
             </div>
         </div>

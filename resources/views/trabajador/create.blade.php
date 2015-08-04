@@ -122,7 +122,7 @@
                   {!! $edit->field('nro_telefono') !!}
                 </div>
              </div>
-            <div class="form-group @if($edit->field('estado_civil')->has_error) has-error @endif">
+            <div class="form-group @if($edit->field('fecha_ingreso')->has_error) has-error @endif">
                <label for="fecha_ingreso" class="col-md-2 control-label required">Fecha de Ingreso</label>
                 <div class="col-sm-5">
                   {!! $edit->field('fecha_ingreso') !!}
@@ -155,6 +155,18 @@
                     <span class="help-block">
                         <span class="glyphicon glyphicon-warning-sign"></span>
                         {!! $edit->field('cargo_id')->message !!}
+                    </span>
+                @endif
+             </div>
+            <div class="form-group @if($edit->field('fecha_ini_cargo')->has_error) has-error @endif">
+               <label for="fecha_ini_cargo" class="col-md-2 control-label required">Fecha Inicio Cargo</label>
+                <div class="col-sm-5">
+                  {!! $edit->field('fecha_ini_cargo') !!}
+                </div>
+                @if($edit->field('fecha_ini_cargo')->has_error)
+                    <span class="help-block">
+                        <span class="glyphicon glyphicon-warning-sign"></span>
+                        {!! $edit->field('fecha_ini_cargo')->message !!}
                     </span>
                 @endif
              </div>

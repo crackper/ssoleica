@@ -39,7 +39,7 @@ class HandleTrabajadorWasSaved {
     private function addCartoTrabajador()
     {
         $old_cargo = CargosTrabajador::where('trabajador_id','=',$this->trabajador->id)
-                        ->orderBy('updated_at','Desc')->first();
+                        ->orderBy('inicio','Desc')->first();
 
         if(!$old_cargo)
         {
@@ -49,6 +49,12 @@ class HandleTrabajadorWasSaved {
         {
             $this->saveCargo();
         }
+        elseif($old_cargo->inicio != $this->trabajador->fecha_ini_cargo)
+        {
+            $cargo = CargosTrabajador::find($old_cargo->id);
+            $cargo->inicio = $this->trabajador->fecha_ini_cargo;
+            $cargo->save();
+        }
     }
 
     private function saveCargo()
@@ -56,6 +62,7 @@ class HandleTrabajadorWasSaved {
         $cargo = new CargosTrabajador;
         $cargo->trabajador_id = $this->trabajador->id;
         $cargo->cargo_id = $this->trabajador->cargo_id;
+        $cargo->inicio = $this->trabajador->fecha_ini_cargo;
 
         $cargo->save();
     }

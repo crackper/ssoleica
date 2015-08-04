@@ -38,6 +38,7 @@ Route::group(['middleware' => ['entrust', 'auth'], 'roles' => array('admin','apr
     Route::controller('estadisticas','EstadisticaSegController');
     Route::get('trabajador/{id}/delete',['as'=>'index.delete','uses'=>'TrabajadorController@delete']);
     Route::controller('trabajador','TrabajadorController');
+    Route::controller('incidente','IncidenteController');
 });
 
 Route::group(['middleware' => ['entrust', 'auth'], 'roles' => array('admin','apr','joperaciones','gerente')], function(){

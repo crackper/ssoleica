@@ -31,6 +31,7 @@ class CreateTrabajadorsTable extends Migration {
             $table->foreign('profesion_id')->references('id')->on('enum_tables');
             $table->integer('cargo_id')->unsigned();
             $table->foreign('cargo_id')->references('id')->on('enum_tables');
+            $table->date('fecha_ini_cargo');
             $table->integer('pais_id')->unsigned();
             $table->foreign('pais_id')->references('id')->on('enum_tables');
 
