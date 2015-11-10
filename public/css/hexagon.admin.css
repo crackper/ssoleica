@@ -892,6 +892,7 @@ a:focus {
 .dropdown-menu {
   box-shadow: none;
   border-color: #eee;
+  z-index: 1050;
 }
 .dropdown-menu > li > a {
   color: #777;

@@ -22,8 +22,10 @@ class CreateIncidentesTable extends Migration {
             //general
             $table->integer('contrato_id')->unsigned();
             $table->foreign('contrato_id')->references('id')->on('contrato');
-            $table->string('tipo_informe',50);
-            $table->string('tipo_incidente',50);
+            $table->integer('tipo_informe_id')->unsigned();
+            $table->foreign('tipo_informe_id')->references('id')->on('enum_tables');
+            $table->integer('tipo_incidente_id')->unsigned();
+            $table->foreign('tipo_incidente_id')->references('id')->on('enum_tables');
             $table->dateTime('fecha');
             $table->string("lugar");
             $table->string("punto");

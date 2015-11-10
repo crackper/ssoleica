@@ -185,7 +185,7 @@
                  <a href="#"><i class="fa fa-cubes"></i> <span>{{ trans('home.admin_title') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
                   <ul class="treeview-menu">
                     <li><a href="/user/create">{{ trans('home.user_create') }}</a></li>
-                     <li><a href="/user">{{ trans('home.user_view') }}</a></li>
+                    <li><a href="/user">{{ trans('home.user_view') }}</a></li>
                   </ul>
              </li>
              @endif

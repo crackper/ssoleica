@@ -31,7 +31,7 @@
                     <div class="form-group">
                         <label for="proyecto_id" class="form-label col-sm-4">Proyecto</label>
                         <div class="col-sm-8">
-                            <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+                        {!! Form::select('proyecto_id',$proyectos,null,array('id'=> 'proyecto_id', 'class' => 'form-control input-sm','data-toggle' => 'select')) !!}
                         </div>
                     </div>
                     <div class="form-group">
@@ -44,21 +44,27 @@
                     <div class="form-group">
                         <label for="tipo_informe" class="form-label col-sm-4">Tipo Informe</label>
                         <div class="col-sm-8">
-                            <select class="form-control input-sm" data-toggle="select" id="tipo_informe" name="tipo_informe">
-                             </select>
-                        </div>
+                            {!! Form::select('tipo_informe',$tipo_informe,null,array('id'=> 'tipo_informe', 'class' => 'form-control input-sm','data-toggle' => 'select')) !!}
+                            </div>
+
                     </div>
                     <div class="form-group">
                         <label for="tipo_incidente" class="form-label col-sm-4">Tipo Incidente</label>
                         <div class="col-sm-8">
-                            <select class="form-control input-sm" data-toggle="select" id="tipo_incidente" name="tipo_incidente">
-                             </select>
+                            {!! Form::select('tipo_incidente',$tipo_incidente,null,array('id'=> 'tipo_incidente', 'class' => 'form-control input-sm','data-toggle' => 'select')) !!}
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="fecha" class="form-label col-sm-4">Fecha y Hora</label>
                         <div class="col-sm-8">
-                            <input type="text" id="fecha" name="fecha" class="form-control input-sm"/>
+                            <div class='input-group date' id='datetimepicker1'>
+                                <input type="text" id="fecha" name="fecha" class="form-control input-sm input-append"/>
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar">
+                                    </span>
+                                </span>
+                            </div>
+                            <!--input type="text" id="fecha" name="fecha" class="form-control input-sm"/-->
                         </div>
                     </div>
                     <div class="form-group">
@@ -94,8 +100,7 @@
                     <div class="form-group">
                         <label for="responsable" class="form-label col-sm-4">Jefe Responsable</label>
                         <div class="col-sm-8">
-                            <select class="form-control input-sm" data-toggle="select" id="responsable" name="responsable">
-                             </select>
+                            {!! Form::select('responsables',$trabajadores,null,array('id'=> 'responsables', 'class' => 'form-control input-sm','data-live-search'=>'true','data-toggle' => 'select')) !!}
                         </div>
                     </div>
                 </div>
@@ -106,7 +111,7 @@
                     <h3 class="box-title">Trabajadores Afectados</h3>
                     <div class="box-tools pull-right">
                       <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                      <button id="btnAddAfectado" class="btn btn-box-tool" data-toggle="tooltip" title="Agregar Trabajador" data-widget="chat-pane-toggle"><i class="fa fa-user-plus"></i></button>
+                      <button type="button" id="btnAddAfectado" class="btn btn-box-tool" data-toggle="tooltip" title="Agregar Trabajador" data-widget="chat-pane-toggle"><i class="fa fa-user-plus"></i></button>
                     </div>
                   </div><!-- /.box-header -->
                   <div class="box-body no-padding">
@@ -133,7 +138,7 @@
                     <h3 class="box-title">Trabajadores Involucradros</h3>
                     <div class="box-tools pull-right">
                       <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                      <button id="btnAddInvolucrado" class="btn btn-box-tool" data-toggle="tooltip" title="Agregar Trabajador" data-widget="chat-pane-toggle"><i class="fa fa-user-plus"></i></button>
+                      <button type="button" id="btnAddInvolucrado" class="btn btn-box-tool" data-toggle="tooltip" title="Agregar Trabajador" data-widget="chat-pane-toggle"><i class="fa fa-user-plus"></i></button>
                     </div>
                   </div><!-- /.box-header -->
                   <div class="box-body no-padding">
@@ -173,6 +178,7 @@
         </div>
     </div>
   </div>
+  <button type="submit" class="btn btn-primary">Guardar</button>
   </form>
 </div>
 <div id="modalView"></div>
@@ -180,7 +186,12 @@
 @endsection
 
 @section('styles')
+
     <link rel="stylesheet" href="/css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="/css/formValidation.min.css">
+     <link rel="stylesheet" href="/plugins/datetimepicker/css/bootstrap-datetimepicker.css">
+
+
 <style type="text/css">
 .has-error .form-control-feedback {
     color: #E74C3C;
@@ -192,14 +203,14 @@
 @endsection
 
 @section('scripts')
-
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.js"></script>
 <script src="/js/bootstrap-select.min.js"></script>
 <script src="/js/jquery.mask.min.js"></script>
+ <script src="/js/formvalidation/formValidation.min.js"></script>
+ <script src="/js/formvalidation/framework/bootstrap.min.js"></script>
+<script type="text/javascript" src="/plugins/datetimepicker/js/bootstrap-datetimepicker.js"></script>
+{!! Minify::javascript('/js/app/incidente.create.js') !!}
 <script>
-$(function(){
-    $('select').selectpicker({
-        size: 7
-    });
-});
+
 </script>
 @endsection

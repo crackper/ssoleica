@@ -26,7 +26,7 @@ class EnumTablesTableSeeder extends \Illuminate\Database\Seeder {
             ['id'=> 6,'type'=>'ExamenMedico','name'=>'Ex. Med. Dermatológico (FOTOTIPO)','symbol' => 'FOTOTIPO','created_at' => new DateTime, 'updated_at' => new DateTime],
             ['id'=> 7,'type'=>'ExamenMedico','name'=>'Ex. Med. Psicológico','symbol'=>'','created_at' => new DateTime, 'updated_at' => new DateTime],
             ['id'=> 10,'type'=>'Cargo','name'=>'Técnico de Operaciones','symbol'=>'TOP','created_at' => new DateTime, 'updated_at' => new DateTime],
-            ['id'=> 11,'type'=>'Cargo','name'=>'Ingeniero de Operacioens','symbol'=>'IOP','created_at' => new DateTime, 'updated_at' => new DateTime],
+            ['id'=> 11,'type'=>'Cargo','name'=>'Ingeniero de Operaciones','symbol'=>'IOP','created_at' => new DateTime, 'updated_at' => new DateTime],
             ['id'=> 12,'type'=>'Cargo','name'=>'Asesor Prevención de Riesgos','symbol'=>'APR','created_at' => new DateTime, 'updated_at' => new DateTime],
             ['id'=> 13,'type'=>'Cargo','name'=>'Jefe de Operaciones','symbol'=>'JOP','created_at' => new DateTime, 'updated_at' => new DateTime],
             ['id'=> 14,'type'=>'Cargo','name'=>'Gerente de Operaciones','symbol'=>'GOP','created_at' => new DateTime, 'updated_at' => new DateTime],
@@ -76,11 +76,18 @@ class EnumTablesTableSeeder extends \Illuminate\Database\Seeder {
             ['id'=> 58,'type'=>'ParteAfectada','name'=>'Tobillos','symbol'=>'','created_at' => new DateTime, 'updated_at' => new DateTime],
             ['id'=> 59,'type'=>'ParteAfectada','name'=>'Hombro','symbol'=>'','created_at' => new DateTime, 'updated_at' => new DateTime],
             ['id'=> 60,'type'=>'ParteAfectada','name'=>'Antebrazo','symbol'=>'','created_at' => new DateTime, 'updated_at' => new DateTime],
-            ['id'=> 61,'type'=>'Cargo','name'=>'Practicante','symbol'=>'PRACT','created_at' => new DateTime, 'updated_at' => new DateTime]
+            ['id'=> 61,'type'=>'Cargo','name'=>'Practicante','symbol'=>'PRACT','created_at' => new DateTime, 'updated_at' => new DateTime],
+            ['id'=> 62,'type'=>'Incidente','name'=>'Seguridad','symbol'=>'','created_at' => new DateTime, 'updated_at' => new DateTime],
+            ['id'=> 63,'type'=>'Incidente','name'=>'Salud Ocupacional','symbol'=>'','created_at' => new DateTime, 'updated_at' => new DateTime],
+            ['id'=> 64,'type'=>'Incidente','name'=>'Medio Ambiente','symbol'=>'','created_at' => new DateTime, 'updated_at' => new DateTime],
+            ['id'=> 65,'type'=>'Incidente','name'=>'Operacional','symbol'=>'','created_at' => new DateTime, 'updated_at' => new DateTime],
+            ['id'=> 66,'type'=>'Informe','name'=>'Preliminar','symbol'=>'','created_at' => new DateTime, 'updated_at' => new DateTime],
+            ['id'=> 67,'type'=>'Informe','name'=>'Definitivo','symbol'=>'','created_at' => new DateTime, 'updated_at' => new DateTime]
         );
+
         DB::table('enum_tables')->insert($enums);
 
-        DB::statement('ALTER SEQUENCE enum_tables_id_seq RESTART WITH 62');
+        DB::statement('ALTER SEQUENCE enum_tables_id_seq RESTART WITH 68');
 
         $paises = array(
             ['id'=> 8,'type'=>'Pais','name'=>'Perú','symbol'=>'PE','data'=>json_encode(array('timezone'=>'America/Bogota')),'created_at' => new DateTime, 'updated_at' => new DateTime],

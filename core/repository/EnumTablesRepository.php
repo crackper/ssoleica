@@ -45,6 +45,13 @@ class EnumTablesRepository extends Repository {
         return $query;
     }
 
+    function getEnumTables($type = "%")
+    {
+        $query = EnumTables::where('type','like',$type)->get();
+
+        return $query;
+    }
+
     public function getExamenesDisponibles($trabajador_id, $operacion_id)
     {
         $in_examen = TrabajadorVencimiento::where('trabajador_vencimiento.trabajador_id','=',$trabajador_id)
