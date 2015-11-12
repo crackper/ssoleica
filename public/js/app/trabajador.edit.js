@@ -216,13 +216,12 @@ $(function(){
                         $(contrat).closest('.table-responsive').find('.change').data('contrato',$(cbContratos).text());
 
                         $(contrat).closest('.table-responsive').append(alerta);
+                        $('#modalCambiarContratoShow').modal('hide');
                     }
                     else
                     {
-                        $(contrat).closest('.table-responsive').append(alerta);
+                        $("#formUpdateContrato").closest('div').append(alerta);
                     }
-
-                    $('#modalCambiarContratoShow').modal('hide');
                 }
             });
         });
@@ -380,18 +379,17 @@ $(function(){
                     alerta += data.data;
                     alerta += '</div>';
 
-                    $("#btnAsignarContrato").closest('div').find('.alert').remove();
+                    $("#formAsignarContrato").closest('div').find('.alert').remove();
 
                     if(data.success == true)
                     {
                         $('#tabTrabajador a[href="#contrato"]').trigger('click');
+                        $('#modalAsignarContratoShow').modal('hide');
                     }
                     else
                     {
-                        $("#btnAsignarContrato").closest('div').append(alerta);
+                        $("#formAsignarContrato").closest('div').append(alerta);
                     }
-
-                    $('#modalAsignarContratoShow').modal('hide');
 
                     BootstrapDialog.alert({
                         title:'SSO Leica Geosystems',

@@ -18,7 +18,7 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="fecInicio" class="control-label">Fecha Inicio Contrato:</label>
+                    <label for="fecInicio" class="control-label">Fecha Inicio en el Contrato:</label>
                     <input type="text" id="fecInicio" name="fecInicio" class="form-control input-sm date" data-toggle="date" required>
                 </div>
                 <div class="form-group">

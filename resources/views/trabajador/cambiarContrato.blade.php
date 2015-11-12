@@ -29,7 +29,7 @@
                     @endif
                 </div>
                 <div class="form-group">
-                    <label for="fecIniCambio" class="control-label">Fecha Inicio:</label>
+                    <label for="fecIniCambio" class="control-label">Fecha Inicio en Contrato:</label>
                     <input type="text" id="fecIniCambio" name="fecIniCambio" class="form-control input-sm date" data-toggle="date" required>
                 </div>
             </form>

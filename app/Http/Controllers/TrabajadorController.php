@@ -441,13 +441,25 @@ class TrabajadorController extends Controller
         $data['fecha_inicio'] = Timezone::toUTC(Input::get('fecIniCambio'),$this->timezone);
         $data['contrato_id'] = Input::get('contrato_id');
 
-        $success = $this->trabajadorRepository->updateContrato($id,$data,$fechaFin);
+        $contrato = $this->contratoRepository->find($data['contrato_id']);
 
-        $data = $success == 1 ? 'La información se actualizó correctamente' : "Error: No se puedo actualizar el contrato";
+        $success = 0;
+        $msg = "";
+
+        if($contrato->fecha_inicio > $data['fecha_inicio'])
+        {
+            $msg = "La fecha de inicio del trabajador es anterior a la fecha de incio del contrato.";
+        }
+        else
+        {
+            $success = $this->trabajadorRepository->updateContrato($id,$data,$fechaFin);
+
+            $msg = $success == 1 ? 'La información se actualizó correctamente' : "Error: No se puedo actualizar el contrato";
+        }
 
         return Response::json(array(
             'success' => $success,
-            'data'   => $data
+            'data'   => $msg
         ));
     }
 
@@ -471,13 +483,24 @@ class TrabajadorController extends Controller
         $data['nro_fotocheck'] = Input::get('nroFotocheck');
         $data['fecha_vencimiento'] = Timezone::toUTC(Input::get('fecVencimiento').' 23:59:59',$this->timezone);
 
-        $success = $this-> contratoRepository->registarContratoTrabajador($data);
+        $contrato = $this->contratoRepository->find($data['contrato_id']);
 
-        $data = $success ? "La informacion de guardo correctamente." : "Error: No se pudo guardar la información";
+        $success = 0;
+        $msg = "";
+
+        if($contrato->fecha_inicio > $data['fecha_inicio'])
+        {
+            $msg = "La fecha de inicio del trabajador es anterior a la fecha de incio del contrato.";
+        }
+        else
+        {
+            $success = $this->contratoRepository->registarContratoTrabajador($data);
+            $msg = $success ? "La informacion de guardo correctamente." : "Error: No se pudo guardar la información";
+        }
 
         return Response::json(array(
             'success' => $success,
-            'data'   => $data
+            'data'   => $msg
         ));
 
     }
