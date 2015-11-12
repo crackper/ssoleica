@@ -4,7 +4,13 @@
 
 $(function(){
 
-    $('*[data-toggle="horas"]').mask("000.00",{reverse: true,selectOnFocus: true,placeholder: "000.00"});
+    //$('*[data-toggle="horas"]').mask("000.00",{reverse: true,selectOnFocus: true,placeholder: "000.00"});
+
+    $(document).on('focus','*[data-toggle="horas"]', function(event) {
+        event.preventDefault();
+
+        $(this).mask("000",{reverse: true,selectOnFocus: true,placeholder: "000"});//, {reverse: true,selectOnFocus: true}
+    });
 
     $('#frmRegistrarHorasHombre').formValidation({
         framework: 'bootstrap',
@@ -46,6 +52,19 @@ $(function(){
                     numeric:{
                         message: 'Ingrese las Horas Hombre',
                         separator:'.'
+                    },
+                    callback: {
+                        message: "El valor exede el maximo permitido",
+                        callback: function(value, validator, $field) {
+                            validator.options.message = "El Maximo de Horas es de " + $field.data('hrsmax');
+
+                            if(value <= $field.data('hrsmax'))
+                            {
+                                return true
+                            }
+
+                            return false;
+                        }
                     }
                 }
             }

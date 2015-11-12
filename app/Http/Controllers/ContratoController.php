@@ -253,6 +253,14 @@ class ContratoController extends Controller {
         $form->add('operacion_id', 'Proyecto','select')->option('','[-- Seleccione --]')->options($this->operacion_repository->getOperaciones(Session::get('pais_id'))->lists('nombre_operacion','id'))->rule('required');
         $form->add('nombre_contrato','Nombre Contrato','text')->rule('required|min:5');
         $form->add('gerencia','Gerencia','text')->rule('required|min:5');
+        $form->add('jorn_max_trabajador','Hrs. Jornada Maxima/Mes','text')->rule('required|integer');
+        $form->add('dias_trabajo','Dias de Trabajo.','text')->rule('required|integer');
+        $form->add('hrs_max_dia','Hrs. Maximo/Dia.','text')->rule('required|integer');
+        $form->add('dias_descanso','Dias de Descanso.','text')->rule('required|integer');
+        $form->add('adm_contrato_id','Adm. de Contrato','select')
+            ->options($trabajadores)
+            ->rule('required')
+            ->attr('data-live-search','true');
         $form->add('supervisor_id','Ingeniero/Supervisor','select')
             ->options($trabajadores)
             ->rule('required')
@@ -297,6 +305,14 @@ class ContratoController extends Controller {
         $form->add('operacion_id', 'Proyecto','select')->option('','[-- Seleccione --]')->options($this->operacion_repository->getOperaciones(Session::get('pais_id'))->lists('nombre_operacion','id'))->rule('required');
         $form->add('nombre_contrato','Nombre Contrato','text')->rule('required|min:5');
         $form->add('gerencia','Gerencia','text')->rule('required|min:5');
+        $form->add('jorn_max_trabajador','Hrs. Jornada Maxima/Mes','text')->rule('required|integer');
+        $form->add('dias_trabajo','Dias de Trabajo.','text')->rule('required|integer');
+        $form->add('hrs_max_dia','Hrs. Maximo/Dia.','text')->rule('required|integer');
+        $form->add('dias_descanso','Dias de Descanso.','text')->rule('required|integer');
+        $form->add('adm_contrato_id','Adm. de Contrato','select')
+            ->options($trabajadores)
+            ->rule('required')
+            ->attr('data-live-search','true');
         $form->add('supervisor_id','Ingeniero/Supervisor','select')
             ->options($trabajadores)
             ->rule('required')

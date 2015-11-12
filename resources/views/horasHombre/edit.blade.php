@@ -51,6 +51,7 @@
                         <th>Trabajador</th>
                         <th>Cargo</th>
                         <th>Horas/Mes</th>
+                        <th></th>
                     </thead>
                     <tbody>
                     @foreach($trabajadores as $key => $row)
@@ -63,9 +64,11 @@
                                 <input type="hidden" id="trabajador[]" name="trabajador[]" value="{!! $row->trabajador_id !!}"/>
                                 <input type="text" name="horas[]"
                                 class="form-control input-sm horasHombre"
-                                style="width: 10em;"
-                                data-toggle="horas" value="{!! $row->horas !!}"/>
+                                style="width: 6em;"
+                                data-toggle="horas" value="{!! $row->horas !!}"
+                                data-hrsmax ="{!! $row->jorn_max_trabajador !!}"/>
                             </td>
+                            <td><small>Max. {!! $row->jorn_max_trabajador !!} Hrs.</small></td>
                         </tr>
                     @endforeach
                     </tbody>

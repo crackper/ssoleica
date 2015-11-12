@@ -270,11 +270,15 @@ class HorasHombreController extends Controller {
         return  Response::json($months);
     }
 
-    public function getTrabajadorescontrato($contrato_id = 0)
+    public function getTrabajadorescontrato($contrato_id = 0,$mes_id = 0)
     {
-        $trabajadores = $this->contratoRepository->getTrabajadores($contrato_id);
+        //$trabajadores = $this->contratoRepository->getTrabajadores($contrato_id);
 
         //dd($trabajadores[0]->trabajador->cargo->name);
+
+        $trabajadores = $this->horasHombreRepository->getDetalleHoras($this->timezone ,$mes_id,$contrato_id);
+
+        //dd($trabajadores);
 
         return view('horasHombre.trabajadores')
             ->with('trabajadores',$trabajadores);
@@ -321,7 +325,7 @@ class HorasHombreController extends Controller {
             return new RedirectResponse(url('horasHombre/show/' . $id));
 
 
-        $trabajadores = $this->horasHombreRepository->getDetalleHorasHombre($id);
+        $trabajadores = $this->horasHombreRepository->getDetalleHorasHombre($id,$this->timezone);
 
         return view('horasHombre.edit')
                     ->with('horasHombre',$horasHombre)

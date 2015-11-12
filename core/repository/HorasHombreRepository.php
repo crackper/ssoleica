@@ -160,21 +160,53 @@ class HorasHombreRepository extends Repository{
         return $horasHombre;
     }
 
-    public function getDetalleHorasHombre($horas_hombre_id)
+    public function getDetalleHorasHombre($horas_hombre_id,$timezone)
     {
         $query = "select case when dhh.id is null then 0 else dhh.id end as id,";
         $query .= "case when hh.id is null then 0 else hh.id end as horas_hombre_id,";
         $query .= "t.id as trabajador_id,";
         $query .= "(t.app_paterno || t.app_materno || ', ' || t.nombre) as trabajador,c.name as cargo,";
-        $query .= "case when dhh.horas is null then 0 else dhh.horas end as horas ";
+        $query .= "case when dhh.horas is null then 0 else dhh.horas::integer end as horas, ";
+        $query .= "case when tc.fecha_inicio between (m.fecha_inicio at time zone 'UTC' at time zone '". $timezone ."') and m.fecha_fin ";//inicio
+        $query .= "then ";
+        $query .= "case when tc.fecha_inicio at time zone 'UTC' = m.fecha_inicio then cc.jorn_max_trabajador ";
+        $query .= "when date_part('day',m.fecha_fin  - tc.fecha_inicio at time zone 'UTC' at time zone '". $timezone ."' ) > 20 then cc.jorn_max_trabajador ";
+        $query .= "else  ";
+        $query .= "cc.hrs_max_dia  * (date_part('day',m.fecha_fin  - tc.fecha_inicio at time zone 'UTC' at time zone '". $timezone ."' )+1) end ";
+        $query .= "else cc.jorn_max_trabajador end as jorn_max_trabajador ";//fin
         $query .= "from trabajador_contrato tc ";
         $query .= "left join trabajador t on tc.trabajador_id = t.id ";
         $query .= "left join enum_tables c on t.cargo_id = c.id ";
         $query .= "left join horas_hombre hh on tc.contrato_id = hh.contrato_id ";
         $query .= "left join detalle_horas_hombre dhh on hh.id = dhh.horas_hombre_id and t.id = dhh.trabajador_id ";
+        $query .= "left join month m on hh.month_id = m.id ";
+        $query .= "left join contrato cc on tc.contrato_id = cc.id ";
         $query .= "where hh.id = :id and tc.is_activo = true order by app_paterno";
 
         $trabajadores = DB::select(DB::Raw($query),array('id' => $horas_hombre_id));
+
+        return $trabajadores;
+    }
+
+     public function getDetalleHoras($timezone,$mes_id,$contrato_id)
+    {
+        $query = "select tc.trabajador_id,(t.nombre || t.app_paterno || t.app_materno) as trabajador ,cr.name as cargo,";
+        $query .= "tc.fecha_inicio  at time zone 'UTC' at time zone '". $timezone ."' as inicio_contrato,";
+        $query .= "case when tc.fecha_inicio between (m.fecha_inicio at time zone 'UTC' at time zone '". $timezone ."') and m.fecha_fin ";
+        $query .= "then ";
+        $query .= "case when tc.fecha_inicio at time zone 'UTC' = m.fecha_inicio then c.jorn_max_trabajador ";
+        $query .= "when date_part('day',m.fecha_fin  - tc.fecha_inicio at time zone 'UTC' at time zone '". $timezone ."' ) > 20 then c.jorn_max_trabajador ";
+        $query .= "else  ";
+        $query .= "c.hrs_max_dia  * (date_part('day',m.fecha_fin  - tc.fecha_inicio at time zone 'UTC' at time zone '". $timezone ."' )+1) end ";
+        $query .= "else c.jorn_max_trabajador end as jorn_max_trabajador ";
+        $query .= "from trabajador_contrato tc  ";
+        $query .= "inner join contrato c on tc.contrato_id = c.id ";
+        $query .= "inner join trabajador t on tc.trabajador_id = t.id ";
+        $query .= "inner join enum_tables cr on t.cargo_id = cr.id ";
+        $query .= "inner join month m on m.id = :mes_id ";
+        $query .= "where tc.contrato_id = :contrato_id and tc.is_activo = '1'";
+
+        $trabajadores = DB::select(DB::Raw($query),array('mes_id' => $mes_id,'contrato_id' => $contrato_id));
 
         return $trabajadores;
     }

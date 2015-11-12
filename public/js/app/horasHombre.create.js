@@ -84,7 +84,7 @@ $(function(){
             $('#contrato').val($("#contrato_id").val());
 
             $.ajax({
-                url: '/horasHombre/trabajadorescontrato/' + $("#contrato_id").val(),
+                url: '/horasHombre/trabajadorescontrato/' + $("#contrato_id").val() + '/' +$("#month_id").val(),
                 type: 'GET'
             })
                 .done(function (data) {
@@ -162,9 +162,38 @@ $(function(){
                     },
                     numeric:{
                         message: 'Ingrese las Horas Hombre',
-                        separator:'.'
+                        separator:'.',
+                        max: 'hrsmax'
+                    },
+                    callback: {
+                        message: "El valor exede el maximo permitido",
+                        callback: function(value, validator, $field) {
+                            //var hrs = validator.getFieldElements('horas[]').val();
+                            validator.options.message = "El Maximo de Horas es de " + $field.data('hrsmax');
+                            /*console.log(value);
+                            console.log(validator.options.message);
+                            console.log(validator);
+                            console.log($field.data('hrsmax'));*/
+
+                            if(value <= $field.data('hrsmax'))
+                            {
+                                return true
+                            }
+
+                            return false;
+                        }
                     }
                 }
+                /*onSuccess: function(e, data) {
+                    if (!data.fv.isValidField('horas[]')) {
+                        // Revalidate it
+                        data.fv.revalidateField('horas[]');
+                    }
+                    data.fv.revalidateField('horas[]');
+                    console.log('Valor de e: ');
+                    console.log(data.element);
+                },*/
+
             }
 
         }
@@ -174,6 +203,6 @@ $(function(){
     $(document).on('focus','*[data-toggle="horas"]', function(event) {
         event.preventDefault();
 
-        $(this).mask("000.00",{reverse: true,selectOnFocus: true,placeholder: "000.00"});//, {reverse: true,selectOnFocus: true}
+        $(this).mask("000",{reverse: true,selectOnFocus: true,placeholder: "000"});//, {reverse: true,selectOnFocus: true}
     });
 });

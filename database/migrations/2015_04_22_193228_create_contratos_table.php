@@ -19,10 +19,16 @@ class CreateContratosTable extends Migration {
             $table->string('gerencia',200);
             $table->integer('operacion_id')->unsigned();
             $table->foreign('operacion_id')->references('id')->on('operacion');
+            $table->integer('adm_contrato_id')->unsigned();
+            $table->foreign('adm_contrato_id')->references('id')->on('trabajador');
             $table->integer('supervisor_id')->unsigned();
             $table->foreign('supervisor_id')->references('id')->on('trabajador');
             $table->integer('asesor_prev_riesgos_id')->unsigned();
             $table->foreign('asesor_prev_riesgos_id')->references('id')->on('trabajador');
+            $table->integer('jorn_max_trabajador');
+            $table->integer('dias_trabajo');
+            $table->integer('hrs_max_dia');
+            $table->integer('dias_descanso');
             $table->dateTime('fecha_inicio')->nullable();
             $table->dateTime('fecha_fin')->nullable();
             $table->boolean('is_activo')->default(1);
