@@ -2,6 +2,7 @@
 
 use Carbon\Carbon;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Mail;
 use SSOLeica\Core\Model\EnumTables;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
@@ -66,13 +67,14 @@ class CerrarHrsHombre extends Command {
             $rows = DB::statement(DB::Raw($query),array('id' => $pais->id,'updated_by' => $updated_by, 'now' => new \DateTime()));
 
             $this->info($rows == 1 ? "OK": "NOK");
-
-            foreach(DB::getQueryLog() as $log)
-            {
-                $this->info($log);
-            }
-
         }
+
+        /*Mail::send('emails.password', ['token' => '324242423234'], function($message)
+        {
+            $message->to('samuel.mestanza@hotmail.com', 'John Smith')
+                ->cc("Samuel.Alcantara@hexagonmining.com","Samuel Mestanza")
+                ->subject('Welcome!');
+        });*/
 	}
 
 	/**

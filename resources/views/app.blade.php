@@ -65,21 +65,41 @@
                 <!-- Menu toggle button -->
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   <i class="fa fa-bell-o"></i>
-                  <span class="label label-warning">10</span>
+                  @if(Session::get('total_n') > 0)
+                    <span class="label label-warning">{!! Session::get('total_n') !!}</span>
+                  @endif
                 </a>
                 <ul class="dropdown-menu">
-                  <li class="header">Tienes 10 Notificaciones</li>
+                  <li class="header">Tienes {!! Session::get('total_n') !!} Alertas</li>
                   <li>
                     <!-- Inner Menu: contains the notifications -->
                     <ul class="menu">
-                      <li><!-- start notification -->
+                      <!-- start notification -->
+                      @if(Session::has('cant_f') && Session::get('cant_f') > 0)
+                      <li>
                         <a href="#">
-                          <i class="fa fa-users text-aqua"></i> 5 examenes que vencen
+                            <i class="fa fa-users text-aqua"></i> <b>{!! Session::get('cant_f') !!}</b> Fotocheck(s) vence(n) este mes
                         </a>
-                      </li><!-- end notification -->
+                      </li>
+                      @endif
+                      @if(Session::has('cant_e') && Session::get('cant_e') > 0)
+                      <li>
+                        <a href="#">
+                            <i class="fa fa-users text-aqua"></i> <b>{!! Session::get('cant_e') !!}</b> Exam. Medico(s) vence(n) este mes
+                        </a>
+                      </li>
+                       @endif
+                      @if(Session::has('cant_d') && Session::get('cant_d') > 0)
+                      <li>
+                        <a href="#">
+                            <i class="fa fa-users text-aqua"></i> <b>{!! Session::get('cant_d') !!}</b> Otro(s) documento(s) vence(n) este mes
+                        </a>
+                      </li>
+                      @endif
+                       <!-- end notification -->
                     </ul>
                   </li>
-                  <li class="footer"><a href="#">Ver todos</a></li>
+                  <!--li class="footer"><a href="#">Ver todos</a></li-->
                 </ul>
               </li>
               <!-- User Account Menu -->

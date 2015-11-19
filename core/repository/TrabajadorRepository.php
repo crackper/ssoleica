@@ -80,6 +80,7 @@ class TrabajadorRepository extends Repository {
             else
             {
                 $old_contrato = $contrato->first();
+                //$contrato->update(array('is_activo' => true));
 
                 $success = $contrato->update($data);
 
