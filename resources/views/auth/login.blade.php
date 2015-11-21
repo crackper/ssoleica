@@ -6,9 +6,9 @@
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     {!! Minify::stylesheet('/css/bootstrap.css') !!}
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-    {!! HTML::style('/css/hexagon.admin.css') !!}
+    {!! Minify::stylesheet('/css/hexagon.admin.css') !!}
     <!-- iCheck -->
-    <link href="{{  url('/css/plugins/iCheck/square/blue.css') }}" rel="stylesheet" type="text/css" />
+    {!! Minify::stylesheet('/css/plugins/iCheck/square/blue.css') !!}
 
     <link rel="stylesheet" href="{{ url('/css/bootstrap-select.min.css') }}">
     <link rel="stylesheet" href="{{ url('/css/formValidation.min.css') }}">
@@ -80,8 +80,8 @@
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-    {!! HTML::script('/js/formvalidation/formValidation.min.js') !!}
-    {!! HTML::script('/js/formvalidation/framework/bootstrap.min.js') !!}
+    {!! HTML::script('/js/plugins/formValidation.min.js') !!}
+    {!! HTML::script('/js/plugins/bootstrap.min.js') !!}
     {!! Minify::javascript('/js/app/login.js') !!}
     {!! HTML::script('/js/plugins/icheck.min.js') !!}
     <script>
