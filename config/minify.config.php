@@ -29,6 +29,7 @@ return array(
     */
 
     'css_build_path' => '/css/min/',
+    'css_url_path' => '/css/min/',
 
     /*
     |--------------------------------------------------------------------------
@@ -43,6 +44,7 @@ return array(
     */
 
     'js_build_path' => '/js/min/',
+    'js_url_path' => '/js/min/',
 
 	/*
     |--------------------------------------------------------------------------
@@ -53,5 +55,5 @@ return array(
 	| value. By default if empty HTTP_HOST would be used.
     |
     */
-	'base_url' => '/public'
+	'base_url' => ''
 );
