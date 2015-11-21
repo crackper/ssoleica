@@ -53,5 +53,5 @@ return array(
 	| value. By default if empty HTTP_HOST would be used.
     |
     */
-	'base_url' => ''
+	'base_url' => '/public'
 );
