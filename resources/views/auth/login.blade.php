@@ -8,8 +8,7 @@
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
     {!! Minify::stylesheet('/css/hexagon.admin.css') !!}
     <!-- iCheck -->
-    {!! Minify::stylesheet('/css/plugins/iCheck/square/blue.css') !!}
-
+    <link rel="stylesheet" href="{{ url('/css/plugins/iCheck/square/blue.css') }}">
     <link rel="stylesheet" href="{{ url('/css/bootstrap-select.min.css') }}">
     <link rel="stylesheet" href="{{ url('/css/formValidation.min.css') }}">
          <style type="text/css">
