@@ -82,7 +82,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
     <script src="{{ url('/js/formvalidation/formValidation.min.js')  }}"></script>
      <script src="{{ url('/js/formvalidation/framework/bootstrap.min.js')  }}"></script>
-     {!! URL::asset('/js/app/login.js') !!}
+     {!! HTML::script('/js/app/login.js') !!}
 
     <script src="{{ url('/js/plugins/icheck.min.js') }}" type="text/javascript"></script>
     <script>
