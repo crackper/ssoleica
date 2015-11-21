@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <title>SSO Leica | Log in</title>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    {!! Minify::stylesheet('/css/bootstrap.css') !!}
+    {!! HTML::style('/css/bootstrap.css') !!}
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-    {!! Minify::stylesheet('/css/hexagon.admin.css') !!}
+    {!! HTML::style('/css/hexagon.admin.css') !!}
     <!-- iCheck -->
     <link href="{{  url('/css/plugins/iCheck/square/blue.css') }}" rel="stylesheet" type="text/css" />
 
@@ -82,7 +82,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
     <script src="/js/formvalidation/formValidation.min.js"></script>
      <script src="/js/formvalidation/framework/bootstrap.min.js"></script>
-     {!! Minify::javascript('/js/app/login.js') !!}
+     {!! Minify::javascript(url('/js/app/login.js')) !!}
 
     <script src="{{ url('/js/plugins/icheck.min.js') }}" type="text/javascript"></script>
     <script>
