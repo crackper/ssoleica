@@ -10,8 +10,8 @@
     <!-- iCheck -->
     <link href="{{  url('/css/plugins/iCheck/square/blue.css') }}" rel="stylesheet" type="text/css" />
 
-    <link rel="stylesheet" href="/css/bootstrap-select.min.css">
-    <link rel="stylesheet" href="/css/formValidation.min.css">
+    <link rel="stylesheet" href="¨{{ url('/css/bootstrap-select.min.css') }}">
+    <link rel="stylesheet" href="{{ url('/css/formValidation.min.css') }}">
          <style type="text/css">
          #frmRegistrarHorasHombre .selectContainer .form-control-feedback {
              /* Adjust feedback icon position */
@@ -80,9 +80,9 @@
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-    <script src="/js/formvalidation/formValidation.min.js"></script>
-     <script src="/js/formvalidation/framework/bootstrap.min.js"></script>
-     {!! Minify::javascript(url('/js/app/login.js')) !!}
+    <script src="{{ url('/js/formvalidation/formValidation.min.js')  }}"></script>
+     <script src="{{ url('/js/formvalidation/framework/bootstrap.min.js')  }}"></script>
+     {!! URL::asset('/js/app/login.js') !!}
 
     <script src="{{ url('/js/plugins/icheck.min.js') }}" type="text/javascript"></script>
     <script>
