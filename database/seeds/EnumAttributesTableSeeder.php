@@ -28,7 +28,7 @@ class EnumAttributesTableSeeder extends \Illuminate\Database\Seeder {
 
         DB::statement('ALTER SEQUENCE enum_attributes_id_seq RESTART WITH 9');
 
-        $faker = Faker::create();
+        /*$faker = Faker::create();
 
         for($i = 9; $i<19;$i++)
         {
@@ -38,7 +38,7 @@ class EnumAttributesTableSeeder extends \Illuminate\Database\Seeder {
                 'created_at' => new DateTime,
                 'updated_at' => new DateTime
             ));
-        }
+        }*/
 
     }
 } 

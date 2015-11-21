@@ -10,7 +10,6 @@
 
 use Illuminate\Support\Facades\DB;
 use DateTime;
-use Faker\Factory as Faker;
 
 class EnumTablesTableSeeder extends \Illuminate\Database\Seeder {
     public function run(){
