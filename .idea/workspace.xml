@@ -32,24 +32,24 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="repository.blade.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="repository.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/vendor/filemanager-laravel/filemanager/repository.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6782178" vertical-offset="759" max-vertical-offset="1365">
+            <state vertical-scroll-proportion="-17.125" vertical-offset="759" max-vertical-offset="1365">
               <caret line="78" column="135" selection-start-line="78" selection-start-column="135" selection-end-line="78" selection-end-column="135" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="filemanager.remote.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="filemanager.remote.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/filemanager/scripts/filemanager.remote.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-18.461538" vertical-offset="0" max-vertical-offset="25260">
-              <caret line="32" column="66" selection-start-line="32" selection-start-column="66" selection-end-line="32" selection-end-column="66" />
+            <state vertical-scroll-proportion="-0.01655629" vertical-offset="18865" max-vertical-offset="25260">
+              <caret line="1257" column="66" selection-start-line="1257" selection-start-column="66" selection-end-line="1257" selection-end-column="66" />
               <folding>
-                <marker date="1448160993000" expanded="false" signature="34775:34790" placeholder="..." />
-                <marker date="1448160993000" expanded="false" signature="47895:47909" placeholder="..." />
+                <marker date="1448161330000" expanded="false" signature="34775:34790" placeholder="..." />
+                <marker date="1448161330000" expanded="false" signature="47907:47921" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -162,9 +162,9 @@
         <option value="$PROJECT_DIR$/public/filemanager/scripts/filemanager.js" />
         <option value="$PROJECT_DIR$/public/filemanager/scripts/filemanager.config.js" />
         <option value="$PROJECT_DIR$/public/filemanager/scripts/filemanager.config.remote.js" />
-        <option value="$PROJECT_DIR$/public/filemanager/scripts/filemanager.remote.js" />
         <option value="$PROJECT_DIR$/.env" />
         <option value="$PROJECT_DIR$/resources/views/vendor/filemanager-laravel/filemanager/repository.blade.php" />
+        <option value="$PROJECT_DIR$/public/filemanager/scripts/filemanager.remote.js" />
       </list>
     </option>
   </component>
@@ -237,46 +237,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SSOLeicaDev" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SSOLeicaDev" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="filemanager" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SSOLeicaDev" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SSOLeicaDev" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="filemanager" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="scripts" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -839,17 +799,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/filemanager/scripts/filemanager.remote.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-18.461538" vertical-offset="0" max-vertical-offset="25260">
-          <caret line="32" column="66" selection-start-line="32" selection-start-column="66" selection-end-line="32" selection-end-column="66" />
-          <folding>
-            <marker date="1448160993000" expanded="false" signature="34775:34790" placeholder="..." />
-            <marker date="1448160993000" expanded="false" signature="47895:47909" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.env">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="435">
@@ -860,9 +809,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/vendor/filemanager-laravel/filemanager/repository.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6782178" vertical-offset="759" max-vertical-offset="1365">
+        <state vertical-scroll-proportion="-17.125" vertical-offset="759" max-vertical-offset="1365">
           <caret line="78" column="135" selection-start-line="78" selection-start-column="135" selection-end-line="78" selection-end-column="135" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/filemanager/scripts/filemanager.remote.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.01655629" vertical-offset="18865" max-vertical-offset="25260">
+          <caret line="1257" column="66" selection-start-line="1257" selection-start-column="66" selection-end-line="1257" selection-end-column="66" />
+          <folding>
+            <marker date="1448161330000" expanded="false" signature="34775:34790" placeholder="..." />
+            <marker date="1448161330000" expanded="false" signature="47907:47921" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>

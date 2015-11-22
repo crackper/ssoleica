@@ -1259,7 +1259,7 @@ var getFolderInfo = function(path) {
 	setUploader(path);
 
 	// Display an activity indicator.
-	$('#fileinfo').html('<img id="activity" src="images/wait30trans.gif" width="30" height="30" />');
+	$('#fileinfo').html('<img id="activity" src="filemanager/images/wait30trans.gif" width="30" height="30" />');
 
 	// Retrieve the data and generate the markup.
 	var d = new Date(); // to prevent IE cache issues
