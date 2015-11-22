@@ -255,7 +255,7 @@
 
 @section('styles')
     <link rel="stylesheet" href="/css/bootstrap-select.min.css">
-    <link rel="stylesheet" href="/css/formValidation.min.css">
+    <link rel="stylesheet" href="{{ url('/css/formValidation.min.css') }}">
     <link rel="stylesheet" href="/css/bootstrap-dialog.min.css"/>
 <style type="text/css">
 .has-error .form-control-feedback {
@@ -272,8 +272,8 @@
     {!! Rapyd::head() !!}
 <script src="/js/bootstrap-select.min.js"></script>
 <script src="/js/jquery.mask.min.js"></script>
-<script src="/js/formvalidation/formValidation.min.js"></script>
-<script src="/js/formvalidation/framework/bootstrap.min.js"></script>
+{!! HTML::script('/js/plugins/formValidation.min.js') !!}
+ {!! HTML::script('/js/plugins/bootstrap.min.js') !!}
 <script src="/js/bootstrap-dialog.min.js"></script>
 {!! Minify::javascript('/js/formvalidation/language/es_ES.js') !!}
 {!! Minify::javascript('/js/app/trabajador.edit.js') !!}

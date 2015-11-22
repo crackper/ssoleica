@@ -110,7 +110,7 @@
 @section('styles')
     <link href="{{  url('/css/plugins/iCheck/square/blue.css') }}" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="/css/bootstrap-select.min.css">
-    <link rel="stylesheet" href="/css/formValidation.min.css">
+    <link rel="stylesheet" href="{{ url('/css/formValidation.min.css') }}">
     <link rel="stylesheet" href="{{ url('/packages/zofe/rapyd/assets/autocomplete/autocomplete.css') }}"/>
     <link rel="stylesheet" href="{{ url('/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css') }}"/>
          <style type="text/css">
@@ -129,8 +129,8 @@
 
 @section('scripts')
 <script src="/js/bootstrap-select.min.js"></script>
- <script src="/js/formvalidation/formValidation.min.js"></script>
- <script src="/js/formvalidation/framework/bootstrap.min.js"></script>
+ {!! HTML::script('/js/plugins/formValidation.min.js') !!}
+  {!! HTML::script('/js/plugins/bootstrap.min.js') !!}
 
  <script src="{{ url('/packages/zofe/rapyd/assets/autocomplete/typeahead.bundle.min.js') }}"> </script>
  <script src="{{ url('/packages/zofe/rapyd/assets/template/handlebars.js') }}"></script>

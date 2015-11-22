@@ -256,20 +256,21 @@
         <div class="tab-content">
           <!-- Home tab content -->
           <div class="tab-pane active" id="control-sidebar-home-tab">
-            <h3 class="control-sidebar-heading">Recent Activity</h3>
+            <h3 class="control-sidebar-heading">Otras Actividades</h3>
             <ul class="control-sidebar-menu">
               <li>
-                <a href="javascript::;">
+                <!--a href="javascript::;">
                   <i class="menu-icon fa fa-birthday-cake bg-red"></i>
                   <div class="menu-info">
                     <h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
                     <p>Will be 23 on April 24th</p>
                   </div>
-                </a>
+                </a-->
+                <a href="{{ url('/pais') }}"> Cambiar de Pais</a>
               </li>
             </ul><!-- /.control-sidebar-menu -->
 
-            <h3 class="control-sidebar-heading">Tasks Progress</h3>
+            <!--h3 class="control-sidebar-heading">Tasks Progress</h3>
             <ul class="control-sidebar-menu">
               <li>
                 <a href="javascript::;">
@@ -282,16 +283,20 @@
                   </div>
                 </a>
               </li>
-            </ul><!-- /.control-sidebar-menu -->
+            </ul--><!-- /.control-sidebar-menu -->
 
           </div><!-- /.tab-pane -->
           <!-- Stats tab content -->
+          @if(Auth::user()->hasRole(['admin']))
           <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div><!-- /.tab-pane -->
           <!-- Settings tab content -->
           <div class="tab-pane" id="control-sidebar-settings-tab">
             <form method="post">
-              <h3 class="control-sidebar-heading">General Settings</h3>
-              <div class="form-group">
+              <h3 class="control-sidebar-heading">Configuración General</h3>
+              <ul class="control-sidebar-menu">
+                <li><a href="{{ url('/logs') }}">Monitorear Sistema</a></li>
+              </ul>
+              <!--div class="form-group">
                 <label class="control-sidebar-subheading">
                   Report panel usage
                   <input type="checkbox" class="pull-right" checked />
@@ -299,10 +304,11 @@
                 <p>
                   Some information about this general settings option
                 </p>
-              </div><!-- /.form-group -->
+              </div--><!-- /.form-group -->
             </form>
           </div><!-- /.tab-pane -->
         </div>
+        @endif
       </aside><!-- /.control-sidebar -->
       <!-- Add the sidebar's background. This div must be placed
            immediately after the control sidebar -->

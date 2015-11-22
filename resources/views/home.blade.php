@@ -120,7 +120,7 @@
                         </div>
                     </div>
                     <div class="box-body">
-                        <a href="/filemanager/repository">Repositorio</a><br/>
+                        <a href="<a href="{!! env('URL_FILEMANAGER', '/repository') !!}">">Repositorio</a><br/>
                     </div>
                 </div>
         @endif
