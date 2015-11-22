@@ -10,14 +10,14 @@
 
 @section('content')
 
-<link rel="stylesheet" type="text/css" href="scripts/jquery.filetree/jqueryFileTree.css" />
-<link rel="stylesheet" type="text/css" href="scripts/jquery.contextmenu/jquery.contextMenu-1.01.css" />
-<link rel="stylesheet" type="text/css" href="styles/repository.css" />
+<link rel="stylesheet" type="text/css" href="{{ url('scripts/jquery.filetree/jqueryFileTree.css') }}" />
+<link rel="stylesheet" type="text/css" href="{{ url('scripts/jquery.contextmenu/jquery.contextMenu-1.01.css') }}" />
+<link rel="stylesheet" type="text/css" href="{{ url('styles/repository.css') }}" />
 <!--[if IE 9]>
-<link rel="stylesheet" type="text/css" href="styles/ie9.css" />
+<link rel="stylesheet" type="text/css" href="{{ url('styles/ie9.css') }}" />
 <![endif]-->
 <!--[if lte IE 8]>
-<link rel="stylesheet" type="text/css" href="styles/ie8.css" />
+<link rel="stylesheet" type="text/css" href="{{ url('styles/ie8.css') }}" />
 <![endif]-->
 
 <div>
@@ -70,13 +70,13 @@
 
 <!--script type="text/javascript" src="scripts/jquery-1.8.3.min.js"></script-->
 <script src="http://code.jquery.com/jquery-migrate-1.1.0.js"></script>
-<script type="text/javascript" src="scripts/jquery.form-3.24.js"></script>
-<script type="text/javascript" src="scripts/jquery.splitter/jquery.splitter-1.5.1.js"></script>
-<script type="text/javascript" src="scripts/jquery.filetree/jqueryFileTree.js"></script>
-<script type="text/javascript" src="scripts/jquery.contextmenu/jquery.contextMenu-1.01.js"></script>
-<script type="text/javascript" src="scripts/jquery.impromptu-3.2.min.js"></script>
-<script type="text/javascript" src="scripts/jquery.tablesorter-2.7.2.min.js"></script>
-<script type="text/javascript" src="scripts/filemanager.js"></script>
+<script type="text/javascript" src="{{ url('scripts/jquery.form-3.24.js')  }}"></script>
+<script type="text/javascript" src="{{ url('scripts/jquery.splitter/jquery.splitter-1.5.1.js') }}"></script>
+<script type="text/javascript" src="{{ url('scripts/jquery.filetree/jqueryFileTree.js') }}"></script>
+<script type="text/javascript" src="{{ url('scripts/jquery.contextmenu/jquery.contextMenu-1.01.js') }}"></script>
+<script type="text/javascript" src="{{ url('scripts/jquery.impromptu-3.2.min.js') }}"></script>
+<script type="text/javascript" src="{{ url('scripts/jquery.tablesorter-2.7.2.min.js') }}"></script>
+<script type="text/javascript" src="{{ url('scripts/filemanager.js') }}"></script>
 
 @endsection
 
