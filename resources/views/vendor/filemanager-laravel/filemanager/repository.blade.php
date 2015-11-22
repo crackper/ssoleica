@@ -76,7 +76,7 @@
 <script type="text/javascript" src="{{ url(env('PATH_FILEMANAGER', 'filemanager/').'scripts/jquery.contextmenu/jquery.contextMenu-1.01.js') }}"></script>
 <script type="text/javascript" src="{{ url(env('PATH_FILEMANAGER', 'filemanager/').'scripts/jquery.impromptu-3.2.min.js') }}"></script>
 <script type="text/javascript" src="{{ url(env('PATH_FILEMANAGER', 'filemanager/').'scripts/jquery.tablesorter-2.7.2.min.js') }}"></script>
-<script type="text/javascript" src="{{ url(env('PATH_FILEMANAGER', 'filemanager/').'scripts/filemanager.js') }}"></script>
+<script type="text/javascript" src="{{ url(env('PATH_FILEMANAGER', 'filemanager/').'scripts/'.env('JS_FILEMANAGER', 'filemanager.remote.js')) }}"></script>
 
 @endsection
 
