@@ -70,7 +70,7 @@
 
 <!--script type="text/javascript" src="scripts/jquery-1.8.3.min.js"></script-->
 <script src="http://code.jquery.com/jquery-migrate-1.1.0.js"></script>
-<script type="text/javascript" src="{{ url('scripts/jquery.form-3.24.js')  }}"></script>
+<script type="text/javascript" src="{{ url(env('PATH_FILEMANAGER', 'filemanager/').'scripts/jquery.form-3.24.js')  }}"></script>
 <script type="text/javascript" src="{{ url('scripts/jquery.splitter/jquery.splitter-1.5.1.js') }}"></script>
 <script type="text/javascript" src="{{ url('scripts/jquery.filetree/jqueryFileTree.js') }}"></script>
 <script type="text/javascript" src="{{ url('scripts/jquery.contextmenu/jquery.contextMenu-1.01.js') }}"></script>
