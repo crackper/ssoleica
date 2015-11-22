@@ -22,11 +22,13 @@ class FilemanagerLaravelController extends Controller {
 	public function getConnectors()
 	{
 		$f = FilemanagerLaravel::Filemanager();
+        $f->connector_url = url('/').env('URL_CONNECTOR', '/connectors');
 		$f->run();
 	}
 	public function postConnectors()
 	{
 		$f = FilemanagerLaravel::Filemanager();
+        $f->connector_url = url('/').env('URL_CONNECTOR', '/connectors');
 		$f->run();
 	}
 
