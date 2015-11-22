@@ -1468,7 +1468,7 @@ $(function(){
 	}
 
 	if(!config.options.fileRoot) {
-		fileRoot = '/' + document.location.pathname.substring(1, document.location.pathname.lastIndexOf('/') + 1) + 'userfiles/';
+		fileRoot = '/' + document.location.pathname.substring(1, document.location.pathname.lastIndexOf('/') + 1) + 'filemanager/userfiles/';
 	} else {
 		if(!config.options.serverRoot) {
 			fileRoot = config.options.fileRoot;
