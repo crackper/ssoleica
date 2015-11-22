@@ -47,8 +47,8 @@
       <file leaf-file-name="ReadMe.md" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/filemanager/ReadMe.md">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="141.1" vertical-offset="6663" max-vertical-offset="6900">
-              <caret line="162" column="43" selection-start-line="162" selection-start-column="43" selection-end-line="162" selection-end-column="43" />
+            <state vertical-scroll-proportion="8.366667" vertical-offset="3176" max-vertical-offset="6900">
+              <caret line="195" column="34" selection-start-line="195" selection-start-column="34" selection-end-line="195" selection-end-column="34" />
               <folding />
             </state>
           </provider>
@@ -77,12 +77,61 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name=".env" pinned="false" current-in-tab="true">
+      <file leaf-file-name=".env" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.env">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.71910113" vertical-offset="168" max-vertical-offset="450">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="450">
               <caret line="24" column="14" selection-start-line="24" selection-start-column="14" selection-end-line="24" selection-end-column="14" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ReadMe.md" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vendor/pqb/filemanager-laravel/public/filemanager/ReadMe.md">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-4.133333" vertical-offset="2801" max-vertical-offset="6900">
+              <caret line="195" column="45" selection-start-line="195" selection-start-column="34" selection-end-line="195" selection-end-column="45" />
+              <folding />
+            </state>
+          </provider>
+          <provider editor-type-id="MarkdownPreviewEditor">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="filemanager.config.remote.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/public/filemanager/scripts/filemanager.config.remote.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.38037866" vertical-offset="79" max-vertical-offset="2040">
+              <caret line="20" column="32" selection-start-line="20" selection-start-column="32" selection-end-line="20" selection-end-column="32" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="filemanager.config.js.default" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/filemanager/scripts/filemanager.config.js.default">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="47.766666" vertical-offset="1433" max-vertical-offset="2010">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+          <provider editor-type-id="com.intellij.database.editor.CsvTableFileEditorProvider">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="filemanager.remote.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/filemanager/scripts/filemanager.remote.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-7.423077" vertical-offset="8237" max-vertical-offset="25260">
+              <caret line="562" column="29" selection-start-line="562" selection-start-column="22" selection-end-line="562" selection-end-column="29" />
+              <folding>
+                <marker date="1448164396000" expanded="false" signature="34775:34790" placeholder="..." />
+                <marker date="1448164396000" expanded="false" signature="47907:47921" placeholder="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -147,12 +196,12 @@
         <option value="$PROJECT_DIR$/resources/views/app.blade.php" />
         <option value="$PROJECT_DIR$/public/filemanager/scripts/filemanager.js" />
         <option value="$PROJECT_DIR$/public/filemanager/scripts/filemanager.config.js" />
-        <option value="$PROJECT_DIR$/public/filemanager/scripts/filemanager.config.remote.js" />
         <option value="$PROJECT_DIR$/resources/views/vendor/filemanager-laravel/filemanager/repository.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/routes.php" />
         <option value="$PROJECT_DIR$/public/filemanager/scripts/filemanager.remote.js" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/FilemanagerLaravelController.php" />
         <option value="$PROJECT_DIR$/.env" />
+        <option value="$PROJECT_DIR$/public/filemanager/scripts/filemanager.config.remote.js" />
       </list>
     </option>
   </component>
@@ -224,7 +273,47 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="config" />
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SSOLeicaDev" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SSOLeicaDev" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="filemanager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SSOLeicaDev" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SSOLeicaDev" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="filemanager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="scripts" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -340,7 +429,7 @@
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32892805" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32892805" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.5330396" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5330396" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.11793215" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
@@ -393,14 +482,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/database/seeds/TrabajadorTableSeeder.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="14.125" vertical-offset="339" max-vertical-offset="1305">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/database/seeds/DatabaseSeeder.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-11.25" vertical-offset="0" max-vertical-offset="435">
@@ -590,14 +671,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/filemanager/scripts/filemanager.config.remote.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1433" max-vertical-offset="2040">
-          <caret line="50" column="19" selection-start-line="50" selection-start-column="19" selection-end-line="50" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/filemanager/scripts/CodeMirror/doc/internals.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-7.781893" vertical-offset="4591" max-vertical-offset="7620">
@@ -670,17 +743,6 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/pqb/filemanager-laravel/public/filemanager/ReadMe.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="5.615251" vertical-offset="45" max-vertical-offset="6900">
-          <caret line="219" column="47" selection-start-line="219" selection-start-column="44" selection-end-line="219" selection-end-column="47" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="MarkdownPreviewEditor">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/vendor/pqb/filemanager-laravel/src/Pqb/FilemanagerLaravel/user.config.php">
@@ -771,28 +833,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/filemanager/scripts/filemanager.remote.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.50187266" vertical-offset="21901" max-vertical-offset="25260">
-          <caret line="1469" column="23" selection-start-line="1469" selection-start-column="23" selection-end-line="1469" selection-end-column="31" />
-          <folding>
-            <marker date="1448164396000" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1448164396000" expanded="false" signature="-1:-1" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/filemanager/ReadMe.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="141.1" vertical-offset="6663" max-vertical-offset="6900">
-          <caret line="162" column="43" selection-start-line="162" selection-start-column="43" selection-end-line="162" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="MarkdownPreviewEditor">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/vendor/pqb/filemanager-laravel/src/controllers/FilemanagerLaravelController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-5.625" vertical-offset="240" max-vertical-offset="540">
@@ -829,8 +869,60 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/.env">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.71910113" vertical-offset="168" max-vertical-offset="450">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="450">
           <caret line="24" column="14" selection-start-line="24" selection-start-column="14" selection-end-line="24" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/pqb/filemanager-laravel/public/filemanager/ReadMe.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.133333" vertical-offset="2801" max-vertical-offset="6900">
+          <caret line="195" column="45" selection-start-line="195" selection-start-column="34" selection-end-line="195" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="MarkdownPreviewEditor">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/filemanager/ReadMe.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="8.366667" vertical-offset="3176" max-vertical-offset="6900">
+          <caret line="195" column="34" selection-start-line="195" selection-start-column="34" selection-end-line="195" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="MarkdownPreviewEditor">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/filemanager/scripts/filemanager.config.js.default">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="47.766666" vertical-offset="1433" max-vertical-offset="2010">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="com.intellij.database.editor.CsvTableFileEditorProvider">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/filemanager/scripts/filemanager.remote.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.423077" vertical-offset="8237" max-vertical-offset="25260">
+          <caret line="562" column="29" selection-start-line="562" selection-start-column="22" selection-end-line="562" selection-end-column="29" />
+          <folding>
+            <marker date="1448164396000" expanded="false" signature="34775:34790" placeholder="..." />
+            <marker date="1448164396000" expanded="false" signature="47907:47921" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/filemanager/scripts/filemanager.config.remote.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.38037866" vertical-offset="79" max-vertical-offset="2040">
+          <caret line="20" column="32" selection-start-line="20" selection-start-column="32" selection-end-line="20" selection-end-column="32" />
           <folding />
         </state>
       </provider>

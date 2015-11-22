@@ -18,7 +18,7 @@
         "dateFormat": "d M Y H:i",
         "serverRoot": true,
         "fileRoot": false,
-        "relPath": false,
+        "relPath": "filemanager/",
         "logger": false,
         "capabilities": ["select", "download", "rename", "delete"],
         "plugins": []
