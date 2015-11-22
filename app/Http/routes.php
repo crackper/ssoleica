@@ -22,6 +22,7 @@ Route::controllers([
 
 Route::group(['middleware' => ['entrust', 'auth'], 'roles' => 'admin'], function(){
     Route::controller('user','UserController');
+    Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 });
 
 Route::get('/', 'WelcomeController@index');

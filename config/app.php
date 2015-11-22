@@ -174,7 +174,11 @@ return [
         /*
         * Zizaco\Entrust
         */
-        'Zizaco\Entrust\EntrustServiceProvider'
+        'Zizaco\Entrust\EntrustServiceProvider',
+        /*
+         * LogViewer
+         */
+        'Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider'
 
 	],
 
