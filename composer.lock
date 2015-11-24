@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "4effe737e591f32b8b8bb12bf953746f",
-    "content-hash": "8dc788c4cbd649c38dc29eda12977074",
+    "hash": "f2b62158644676ed89eb369cddf83bce",
+    "content-hash": "edfdcd618686f8bb2f6d862f5cdbdf7f",
     "packages": [
         {
             "name": "barryvdh/laravel-debugbar",
@@ -363,16 +363,16 @@
         },
         {
             "name": "devfactory/minify",
-            "version": "1.0.5",
+            "version": "1.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/DevFactoryCH/minify.git",
-                "reference": "9961a8ff01939baeb05e046e694cdd9ba99052a7"
+                "reference": "e040a63403858e49198ac03e7f0db3bff70c062b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/DevFactoryCH/minify/zipball/9961a8ff01939baeb05e046e694cdd9ba99052a7",
-                "reference": "9961a8ff01939baeb05e046e694cdd9ba99052a7",
+                "url": "https://api.github.com/repos/DevFactoryCH/minify/zipball/e040a63403858e49198ac03e7f0db3bff70c062b",
+                "reference": "e040a63403858e49198ac03e7f0db3bff70c062b",
                 "shasum": ""
             },
             "require": {
@@ -407,7 +407,7 @@
                 "laravel5",
                 "minify"
             ],
-            "time": "2015-09-18 13:16:47"
+            "time": "2015-10-12 18:55:40"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -4552,6 +4552,8 @@
     },
     "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": [],
+    "platform": {
+        "ext-gd": "*"
+    },
     "platform-dev": []
 }
