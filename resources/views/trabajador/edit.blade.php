@@ -275,7 +275,7 @@
 {!! HTML::script('/js/plugins/formValidation.min.js') !!}
  {!! HTML::script('/js/plugins/bootstrap.min.js') !!}
 <script src="/js/bootstrap-dialog.min.js"></script>
-{!! Minify::javascript('/js/formvalidation/language/es_ES.js') !!}
+{!! Minify::javascript('/js/plugins/formValidation.es_ES.js') !!}
 {!! Minify::javascript('/js/app/trabajador.edit.js') !!}
 @if (Session::has('message'))
     <script>
