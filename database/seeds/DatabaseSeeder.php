@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder {
 		$this->call('Database\Seeds\UserTableSeeder');
         $this->call('Database\Seeds\EnumAttributesTableSeeder');
         $this->call('Database\Seeds\EnumTablesTableSeeder');
-        //$this->call('Database\Seeds\TrabajadorTableSeeder');
+        $this->call('Database\Seeds\TrabajadorTableSeeder');
         $this->call('Database\Seeds\MonthTableSeeder');
 	}
 

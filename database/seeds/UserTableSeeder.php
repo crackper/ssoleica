@@ -22,12 +22,14 @@ class UserTableSeeder extends \Illuminate\Database\Seeder{
             ['id'=> 2,'name'=>'APR','email' => 'apr@hotmail.com','password' => Hash::make( '1234567' ),'active'=>true,'created_at' => new DateTime, 'updated_at' => new DateTime],
             ['id'=> 3,'name'=>'JOperaciones','email' => 'joperciones@hotmail.com','password' => Hash::make( '1234567' ),'active'=>true,'created_at' => new DateTime, 'updated_at' => new DateTime],
             ['id'=> 4,'name'=>'Gerente','email' => 'gerente@hotmail.com','password' => Hash::make( '1234567' ),'active'=>true,'created_at' => new DateTime, 'updated_at' => new DateTime],
-            ['id'=> 5,'name'=>'Demo','email' => 'demo@hotmail.com','password' => Hash::make( '1234567' ),'active'=>false,'created_at' => new DateTime, 'updated_at' => new DateTime]
+            ['id'=> 5,'name'=>'Demo','email' => 'demo@hotmail.com','password' => Hash::make( '1234567' ),'active'=>true,'created_at' => new DateTime, 'updated_at' => new DateTime],
+            ['id'=> 6,'name'=>'Fredy Novoa','email' => 'fredy.novoa@hexagonmining.com','password' => Hash::make( '1234567' ),'active'=>true,'created_at' => new DateTime, 'updated_at' => new DateTime],
+            ['id'=> 7,'name'=>'Marvick Aliaga','email' => 'marvick.aliaga@hexagonmining.com','password' => Hash::make( '1234567' ),'active'=>true,'created_at' => new DateTime, 'updated_at' => new DateTime]
         );
 
         DB::table('users')->insert($users);
 
-        DB::statement('ALTER SEQUENCE users_id_seq RESTART WITH 6');
+        DB::statement('ALTER SEQUENCE users_id_seq RESTART WITH 8');
         //----------------------------------------
 
         DB::table('roles')->delete();
@@ -51,7 +53,9 @@ class UserTableSeeder extends \Illuminate\Database\Seeder{
             ['user_id'=> 2,'role_id'=>2],
             ['user_id'=> 3,'role_id'=>3],
             ['user_id'=> 4,'role_id'=>4],
-            ['user_id'=> 5,'role_id'=>1]
+            ['user_id'=> 5,'role_id'=>1],
+            ['user_id'=> 6,'role_id'=>1],
+            ['user_id'=> 7,'role_id'=>1]
         );
 
         DB::table('role_user')->insert($role_user);
