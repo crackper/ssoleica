@@ -84,14 +84,14 @@
                       @endif
                       @if(Session::has('cant_e') && Session::get('cant_e') > 0)
                       <li>
-                        <a href="#">
+                        <a href="{!! url('/alertas#examenes')!!}">
                             <i class="fa fa-users text-aqua"></i> <b>{!! Session::get('cant_e') !!}</b> Exam. Medico(s) vence(n) este mes
                         </a>
                       </li>
                        @endif
                       @if(Session::has('cant_d') && Session::get('cant_d') > 0)
                       <li>
-                        <a href="#">
+                        <a href="{!! url('/alertas#documentos')!!}">
                             <i class="fa fa-users text-aqua"></i> <b>{!! Session::get('cant_d') !!}</b> Otro(s) documento(s) vence(n) este mes
                         </a>
                       </li>

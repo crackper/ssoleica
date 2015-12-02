@@ -40,6 +40,8 @@ class AlertasController extends Controller {
 		$proyectos = $this->operacionRepository->getOperaciones($this->pais)->get();
 
         $data_f = array();
+        $data_e = array();
+        $data_d = array();
 
         foreach($proyectos as $key=>$row)
         {
@@ -66,9 +68,62 @@ class AlertasController extends Controller {
         }
 
 
-        //dd($data);
 
-        return view('alertas.index')->with('data_f',$data_f);
+        foreach($proyectos as $key=>$row)
+        {
+            //examenes
+            $query_e = "select p.name as  pais,o.nombre_operacion as operacion,v.type, ";
+            $query_e .= "(t.nombre ||' '|| t.app_paterno ||' '|| t.app_materno) as trabajador, ";
+            $query_e .= "v.name as vencimiento, ";
+            $query_e .= "tv.fecha_vencimiento at time zone 'utc' at time zone (p.data->>'timezone')::text as fecha_vencimiento ";
+            $query_e .= "from trabajador_vencimiento tv ";
+            $query_e .= "inner join enum_tables v on tv.vencimiento_id = v.id ";
+            $query_e .= "inner join trabajador t on tv.trabajador_id = t.id ";
+            $query_e .= "inner join operacion o on tv.operacion_id = o.id ";
+            $query_e .= "inner join enum_tables p on o.pais_id = p.id ";
+            $query_e .= "where tv.caduca = true and v.type = 'ExamenMedico' ";
+            $query_e .= "and (tv.fecha_vencimiento  between (DATE_TRUNC('month', now()) at time zone 'utc') and  ((DATE_TRUNC('month', now())  at time zone 'utc') + '1 month')) ";
+            $query_e .= "and p.id = :pais_id and o.id = :operacion_id ";
+            $query_e .= "order by o.nombre_operacion,tv.fecha_vencimiento,t.app_paterno";
+
+            $examenes = DB::select(DB::Raw($query_e),array('pais_id' => $this->pais,'operacion_id'=>$row->id));
+
+            if(count($examenes)>0)
+            {
+                $proyecto_e["proyecto"] = $row->nombre_operacion;
+                $proyecto_e["examenes"]= $examenes;
+                $data_e[]=$proyecto_e;
+            }
+        }
+
+
+        //documentos
+        $query_d = "select p.name as  pais,v.type, ";
+        $query_d .= "(t.nombre ||' '|| t.app_paterno ||' '|| t.app_materno) as trabajador, ";
+        $query_d .= "v.name as vencimiento, ";
+        $query_d .= "tv.fecha_vencimiento at time zone 'utc' at time zone (p.data->>'timezone')::text as fecha_vencimiento ";
+        $query_d .= "from trabajador_vencimiento tv ";
+        $query_d .= "inner join enum_tables v on tv.vencimiento_id = v.id ";
+        $query_d .= "inner join trabajador t on tv.trabajador_id = t.id ";
+        $query_d .= "inner join enum_tables p on t.pais_id = p.id ";
+        $query_d .= "where tv.caduca = true and v.type = 'Documento' ";
+        $query_d .= "and (tv.fecha_vencimiento  between (DATE_TRUNC('month', now()) at time zone 'utc') and  ((DATE_TRUNC('month', now())  at time zone 'utc') + '1 month')) ";
+        $query_d .= "and p.id = :pais_id ";
+        $query_d .= "order by tv.fecha_vencimiento,t.app_paterno ";
+
+        $documentos = DB::select(DB::Raw($query_d),array('pais_id' => $this->pais));
+
+        if(count($documentos) > 0)
+        {
+            $proyecto_d["proyecto"] = "Otros Documentos";
+            $proyecto_d["documentos"]= $documentos;
+            $data_d[]=$proyecto_d;
+        }
+
+        return view('alertas.index')
+            ->with('data_f',$data_f)
+            ->with('data_e',$data_e)
+            ->with('data_d',$data_d);
 	}
 
 	/**
