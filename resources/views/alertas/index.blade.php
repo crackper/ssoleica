@@ -63,7 +63,7 @@
     <ul class="nav nav-tabs">
         @foreach($data_e as $key => $row)
             <li  class = "@if(  $key == 0) active @endif" >
-                <a aria-expanded="true" href="#tab_{!! $key !!}" data-toggle="tab">
+                <a aria-expanded="true" href="#tab_{!! ($key+1)*5 !!}" data-toggle="tab">
                     {!! $row["proyecto"] !!} &nbsp; <span class="badge bg-red pull-right">{!! count($row["examenes"])!!}</span>
                 </a>
             </li>
@@ -71,7 +71,8 @@
     </ul>
     <div class="tab-content">
          @foreach($data_e as $key => $row)
-            <div class="tab-pane @if(  $key == 0) active @endif" id="tab_{!! $key !!}">
+            <div class="tab-pane @if(  $key == 0) active @endif" id="tab_{!! ($key+1)*5 !!}">
+                {!! $row["proyecto"] !!}
                 <div class="table-responsive">
                 <table class="table table-striped table-hover">
                     <thead>
@@ -107,7 +108,7 @@
     <ul class="nav nav-tabs">
         @foreach($data_d as $key => $row)
             <li  class = "@if(  $key == 0) active @endif" >
-                <a aria-expanded="true" href="#tab_{!! $key !!}" data-toggle="tab">
+                <a aria-expanded="true" href="#tab_{!! ($key+1)*7 !!}" data-toggle="tab">
                     {!! $row["proyecto"] !!} &nbsp; <span class="badge bg-red pull-right">{!! count($row["documentos"])!!} </span>
                 </a>
             </li>
@@ -115,7 +116,7 @@
     </ul>
     <div class="tab-content">
          @foreach($data_d as $key => $row)
-            <div class="tab-pane @if(  $key == 0) active @endif" id="tab_{!! $key !!}">
+            <div class="tab-pane @if(  $key == 0) active @endif" id="tab_{!! ($key+1)*7 !!}">
                 <div class="table-responsive">
                 <table class="table table-striped table-hover">
                     <thead>
