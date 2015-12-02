@@ -437,7 +437,7 @@ class TrabajadorController extends Controller
      */
     public function postSavecontratotrabajador($id)
     {
-        $fechaFin = Timezone::toUTC(Input::get('fecFinActual').' 23:59:59',$this->timezone);
+        $fechaFin = Timezone::toUTC(Input::get('fecFinActual').' 00:00:00',$this->timezone);
         $data['fecha_inicio'] = Timezone::toUTC(Input::get('fecIniCambio'),$this->timezone);
         $data['contrato_id'] = Input::get('contrato_id');
 
@@ -481,7 +481,7 @@ class TrabajadorController extends Controller
         $data['contrato_id'] = Input::get('contrato_id');
         $data['fecha_inicio'] = Timezone::toUTC(input::get('fecInicio'),$this->timezone);
         $data['nro_fotocheck'] = Input::get('nroFotocheck');
-        $data['fecha_vencimiento'] = Timezone::toUTC(Input::get('fecVencimiento').' 23:59:59',$this->timezone);
+        $data['fecha_vencimiento'] = Timezone::toUTC(Input::get('fecVencimiento').' 00:00:00',$this->timezone);
 
         $contrato = $this->contratoRepository->find($data['contrato_id']);
 
@@ -531,7 +531,7 @@ class TrabajadorController extends Controller
     public function postUpdatevencimiento()
     {
         $vencimiento_id             = Input::get('vencimiento');
-        $data['fecha_vencimiento']  = Timezone::toUTC(Input::get('fecha').' 23:59:59',$this->timezone);
+        $data['fecha_vencimiento']  = Timezone::toUTC(Input::get('fecha').' 00:00:00',$this->timezone);
         $data['caduca']             = Input::get('caduca');
         $data['observaciones']      = Input::get('obs');
 
@@ -577,7 +577,7 @@ class TrabajadorController extends Controller
         $data['operacion_id']       = $operacion_id == 0 ? null: $operacion_id ;
         $data['vencimiento_id']     = Input::get('vencimiento_id');
         $data['caduca']             = Input::get('caduca');
-        $data['fecha_vencimiento']  = Timezone::toUTC(Input::get('fecVencimiento').' 23:59:59',$this->timezone);
+        $data['fecha_vencimiento']  = Timezone::toUTC(Input::get('fecVencimiento').' 00:00:00',$this->timezone);
         $data['observaciones']      = Input::get('observaciones');
 
         $examen = $this->trabajadorVencimientoRepository->create($data);
