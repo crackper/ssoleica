@@ -42,7 +42,7 @@
                              <td>{!! $k+1 !!}</td>
                              <td>{!! $f->trabajador !!}</td>
                              <td>{!! $f->fotocheck !!}</td>
-                             <td>{!! date_format(new DateTime($f->fecha_vencimiento),'d/m/Y') !!}</td>
+                             <td>{!! date_format(new DateTime($f->fecha_vencimiento),'d/m/Y') !!}  - {{ $f->fecha_vencimiento }} </td>
                          </tr>
                         @endforeach
                     </tbody>
@@ -86,7 +86,7 @@
                              <td>{!! $k+1 !!}</td>
                              <td>{!! $f->trabajador !!}</td>
                              <td>{!! $f->vencimiento !!}</td>
-                             <td>{!! date_format(new DateTime($f->fecha_vencimiento),'d/m/Y') !!}</td>
+                             <td>{!! date_format(new DateTime($f->fecha_vencimiento),'d/m/Y') !!}  - {{ $f->fecha_vencimiento }}</td>
                          </tr>
                         @endforeach
                     </tbody>
@@ -108,7 +108,7 @@
         @foreach($data_d as $key => $row)
             <li  class = "@if(  $key == 0) active @endif" >
                 <a aria-expanded="true" href="#tab_{!! $key !!}" data-toggle="tab">
-                    {!! $row["proyecto"] !!} &nbsp; <span class="badge bg-red pull-right">{!! count($row["documentos"])!!}</span>
+                    {!! $row["proyecto"] !!} &nbsp; <span class="badge bg-red pull-right">{!! count($row["documentos"])!!}  - {{ $f->fecha_vencimiento }} </span>
                 </a>
             </li>
         @endforeach
@@ -130,7 +130,7 @@
                              <td>{!! $k+1 !!}</td>
                              <td>{!! $f->trabajador !!}</td>
                              <td>{!! $f->vencimiento !!}</td>
-                             <td>{!! date_format(new DateTime($f->fecha_vencimiento),'d/m/Y') !!}</td>
+                             <td>{!! date_format(new DateTime($f->fecha_vencimiento),'d/m/Y') !!} - {{ $f->fecha_vencimiento }}</td>
                          </tr>
                         @endforeach
                     </tbody>
