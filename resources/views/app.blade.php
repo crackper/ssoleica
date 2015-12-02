@@ -77,7 +77,7 @@
                       <!-- start notification -->
                       @if(Session::has('cant_f') && Session::get('cant_f') > 0)
                       <li>
-                        <a href="#">
+                        <a href="{!! url('/alertas#fotochecks')!!}">
                             <i class="fa fa-users text-aqua"></i> <b>{!! Session::get('cant_f') !!}</b> Fotocheck(s) vence(n) este mes
                         </a>
                       </li>
@@ -99,7 +99,7 @@
                        <!-- end notification -->
                     </ul>
                   </li>
-                  <!--li class="footer"><a href="#">Ver todos</a></li-->
+                  <li class="footer"><a href="{!! url('/alertas') !!}">Ver todos</a></li>
                 </ul>
               </li>
               <!-- User Account Menu -->

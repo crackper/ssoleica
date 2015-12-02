@@ -46,6 +46,7 @@ Route::group(['middleware' => ['entrust', 'auth'], 'roles' => array('admin','apr
     Route::get('repository', 'FilemanagerLaravelController@getRepository');
     Route::get('connectors', 'FilemanagerLaravelController@getConnectors');
     Route::post('connectors', 'FilemanagerLaravelController@postConnectors');
+    Route::controller('alertas','AlertasController');
 });
 
 
