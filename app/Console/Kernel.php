@@ -13,6 +13,7 @@ class Kernel extends ConsoleKernel {
 	protected $commands = [
 		'SSOLeica\Console\Commands\Inspire',
         'SSOLeica\Console\Commands\CerrarHrsHombre',
+        'SSOLeica\Console\Commands\AlertasMes',
 	];
 
 	/**
