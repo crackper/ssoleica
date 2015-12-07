@@ -1,6 +1,7 @@
 <?php namespace SSOLeica\Http\Controllers;
 
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use Nayjest\Grids\Components\Base\RenderableRegistry;
 use Nayjest\Grids\Components\ColumnHeadersRow;
@@ -147,7 +148,7 @@ class EstadisticaSegController extends Controller {
                     ->addFilter(
                         (new FilterConfig)
                             ->setFilteringFunc(function($val, EloquentDataProvider $provider){
-                                $provider->getBuilder()->where('contrato.nombre_contrato','like','%'.$val.'%');
+                                $provider->getBuilder()->where(DB::raw('upper(contrato.nombre_contrato)'),'like','%'.strtoupper($val).'%');
                             })
 
                     ),

@@ -1,6 +1,7 @@
 <?php namespace SSOLeica\Http\Controllers;
 
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Nayjest\Grids\Components\Base\RenderableRegistry;
 use Nayjest\Grids\Components\ColumnHeader;
@@ -65,7 +66,10 @@ class OperacionController extends Controller {
                     ->setSortable(true)
                     ->addFilter(
                         (new FilterConfig)
-                            ->setOperator(FilterConfig::OPERATOR_LIKE)
+                            ->setFilteringFunc(function ($val, EloquentDataProvider $provider) {
+                                $provider->getBuilder()
+                                    ->where(DB::raw('upper(nombre_operacion)'), 'like', '%' . strtoupper($val) . '%');
+                            })
                     ),
                 (new FieldConfig)
                     ->setName('ubicacion')
@@ -73,7 +77,10 @@ class OperacionController extends Controller {
                     ->setSortable(true)
                     ->addFilter(
                         (new FilterConfig)
-                            ->setOperator(FilterConfig::OPERATOR_LIKE)
+                            ->setFilteringFunc(function ($val, EloquentDataProvider $provider) {
+                                $provider->getBuilder()
+                                    ->where(DB::raw('upper(ubicacion)'), 'like', '%' . strtoupper($val) . '%');
+                            })
                     ),
                 (new FieldConfig())
                     ->setName('id')

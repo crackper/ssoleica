@@ -1,6 +1,7 @@
 <?php namespace SSOLeica\Http\Controllers;
 
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Session;
@@ -98,7 +99,10 @@ class ContratoController extends Controller {
                     ->setSortable(true)
                     ->addFilter(
                         (new FilterConfig)
-                            ->setOperator(FilterConfig::OPERATOR_LIKE)
+                            ->setFilteringFunc(function ($val, EloquentDataProvider $provider) {
+                                $provider->getBuilder()
+                                    ->where(DB::raw('upper(nombre_contrato)'), 'like', '%' . strtoupper($val) . '%');
+                            })
                     ),
                 (new FieldConfig)
                     ->setName('gerencia')
@@ -106,7 +110,10 @@ class ContratoController extends Controller {
                     ->setSortable(true)
                     ->addFilter(
                         (new FilterConfig)
-                            ->setOperator(FilterConfig::OPERATOR_LIKE)
+                            ->setFilteringFunc(function ($val, EloquentDataProvider $provider) {
+                                $provider->getBuilder()
+                                    ->where(DB::raw('upper(gerencia)'), 'like', '%' . strtoupper($val) . '%');
+                            })
                     ),
                 (new FieldConfig)
                     ->setName('supervisor')
@@ -116,8 +123,8 @@ class ContratoController extends Controller {
                         (new FilterConfig)
                             ->setFilteringFunc(function($val, EloquentDataProvider $provider) {
                                 $provider->getBuilder()
-                                    ->where('s.app_paterno', 'like', '%'.$val.'%')
-                                    ->orWhere('s.nombre', 'like', '%'.$val.'%');
+                                    ->where(DB::raw('upper(s.app_paterno)'), 'like', '%'. strtoupper( $val) .'%')
+                                    ->orWhere(DB::raw('upper(s.nombre)'), 'like', '%'. strtoupper( $val) .'%');
                             })
                     )
                 ,
@@ -129,8 +136,8 @@ class ContratoController extends Controller {
                         (new FilterConfig)
                             ->setFilteringFunc(function($val, EloquentDataProvider $provider) {
                                 $provider->getBuilder()
-                                    ->where('atr.app_paterno', 'like', '%'.$val.'%')
-                                    ->orWhere('atr.nombre', 'like', '%'.$val.'%');
+                                    ->where(DB::raw('upper(atr.app_paterno)'), 'like', '%'. strtoupper( $val) .'%')
+                                    ->orWhere(DB::raw('upper(atr.nombre)'), 'like', '%'. strtoupper( $val) .'%');
                             })
                     )
                 ,

@@ -27,7 +27,7 @@ class MonthRepository extends Repository {
     function getMesesDisponibles($timezone, $contrato_id)
     {
         $query = "select * from month m ";
-        $query .= "where now()::timestamptz at time zone 'UTC' between (m.fecha_inicio at time zone '". $timezone ."' at time zone 'UTC')";
+        $query .= "where now() at time zone 'UTC' between (m.fecha_inicio at time zone '". $timezone ."' at time zone 'UTC')";
         $query .= "and ((m.fecha_fin + ((m.plazo)::text || ' day')::interval) at time zone '". $timezone ."' at time zone 'UTC')  ";
         $query .= "and id not in (select month_id from horas_hombre where contrato_id = :contrato_id)";
 

@@ -152,7 +152,7 @@ class HorasHombreController extends Controller {
                     ->addFilter(
                         (new FilterConfig)
                             ->setFilteringFunc(function($val, EloquentDataProvider $provider){
-                                $provider->getBuilder()->where('contrato.nombre_contrato','like','%'.$val.'%');
+                                $provider->getBuilder()->where(DB::raw('upper(contrato.nombre_contrato)'),'like','%'.strtoupper($val).'%');
                             })
                     ),
                 (new FieldConfig)

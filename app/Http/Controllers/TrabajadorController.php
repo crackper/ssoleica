@@ -2,6 +2,7 @@
 
 use Carbon\Carbon;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Session;
@@ -143,9 +144,9 @@ class TrabajadorController extends Controller
                         (new FilterConfig)
                             ->setFilteringFunc(function ($val, EloquentDataProvider $provider) {
                                 $provider->getBuilder()
-                                    ->where('app_paterno', 'like', '%' . $val . '%')
-                                    ->orWhere('app_materno', 'like', '%' . $val . '%')
-                                    ->orWhere('nombre', 'like', '%' . $val . '%');
+                                    ->where(DB::raw('upper(app_paterno)'), 'like', '%' . strtoupper($val) . '%')
+                                    ->orWhere(DB::raw('upper(app_materno)'), 'like', '%' . strtoupper($val) . '%')
+                                    ->orWhere(DB::raw('upper(nombre)'), 'like', '%' . strtoupper($val) . '%');
                             })
                     )
                 ,

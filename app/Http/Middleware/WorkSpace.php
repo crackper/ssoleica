@@ -16,7 +16,7 @@ class WorkSpace {
 	 */
 	public function handle($request, Closure $next)
 	{
-        if (!Session::has('pais_id') &&  !Session::has('pais_name'))
+        if (!Session::has('pais_id') ||  !Session::has('pais_name')  || !Session::has('timezone') )
         {
             return new RedirectResponse(url('/pais'));
 
