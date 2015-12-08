@@ -204,7 +204,14 @@ class OperacionController extends Controller {
 	 */
 	public function anyEdit($id)
 	{
-        $form = DataForm::source($this->operacion_repository->find($id));
+        $operacion = $this->operacion_repository->find($id);
+
+        $form = DataForm::source($operacion);
+
+        if( is_null($operacion) || $operacion->pais_id != Session::get('pais_id'))
+        {
+            return new RedirectResponse(url('/operacion'));
+        }
 
         $form->add('pais_id', '', 'hidden')->insertValue(Session::get('pais_id'));
         $form->add('nombre_operacion','Nombre Proyecto', 'text')->rule('required|min:4');

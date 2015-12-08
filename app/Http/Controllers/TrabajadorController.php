@@ -281,6 +281,13 @@ class TrabajadorController extends Controller
      */
     public function anyEdit($id)
     {
+        $trabajador = $this->trabajadorRepository->find($id);
+
+        if( is_null($trabajador) || $trabajador->pais_id != $this->pais)
+        {
+            return new RedirectResponse(url('/trabajador'));
+        }
+
         $pais = $this->enumTablesRepository->find($this->pais)->load('categorias.categoria');
 
         $licencias = array();
@@ -288,8 +295,6 @@ class TrabajadorController extends Controller
         foreach ($pais->categorias as $row) {
             $licencias[$row->enum_value_id] = $row->categoria->name;
         }
-
-        $trabajador = $this->trabajadorRepository->find($id);
 
         $edit = DataForm::source($trabajador);
 

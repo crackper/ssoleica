@@ -303,11 +303,25 @@ class ContratoController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function anyEdit($id)
+	public function anyEdit($id = 0)
 	{
+        if($id == 0)
+            return new RedirectResponse(url('/contrato'));
+
+        $contrato= $this->contrato_repository->getContrato($id,Session::get('pais_id'));
+
+        //dd($contrato);
+
+        //$contrato = $this->contrato_repository->find($id);
+
+        if(is_null($contrato))
+        {
+            return new RedirectResponse(url('/contrato'));
+        }
+
         $trabajadores = $this->GetTrabajadores();
 
-        $form = DataForm::source($this->contrato_repository->find($id));
+        $form = DataForm::source($contrato);
 
         $form->add('operacion_id', 'Proyecto','select')->option('','[-- Seleccione --]')->options($this->operacion_repository->getOperaciones(Session::get('pais_id'))->lists('nombre_operacion','id'))->rule('required');
         $form->add('nombre_contrato','Nombre Contrato','text')->rule('required|min:5');

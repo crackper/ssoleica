@@ -52,6 +52,16 @@ class ContratoRepository extends Repository {
         return $query;
     }
 
+    function getContrato($id,$pais_id)
+    {
+        $query = Contrato::join('operacion','contrato.operacion_id','=','operacion.id')
+            ->where('operacion.pais_id',$pais_id)
+            ->where('contrato.id',$id)
+            ->select('contrato.*');
+
+        return $query->first();
+    }
+
     /**
      * Devuelve contratos diponibles para un trabajador en funcion al contrato
      * ya asignado
