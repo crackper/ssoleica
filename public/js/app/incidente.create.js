@@ -3,7 +3,7 @@
  */
 $(function(){
 
-    Handlebars.setDelimiter('[',']');
+    Handlebars.setDelimiter('[!','!]');
 
     $('select').selectpicker({
         size: 7
@@ -83,7 +83,7 @@ $(function(){
                     callback: {
                         message: 'Ingrese una fecha y hora válida',
                         callback: function (value, validator) {
-                            var d = new moment(value, 'YYYY-MM-d HH:mm', true);
+                            var d = new moment(value, 'Y-mm-d HH:mm', true);
                             return d.isValid()
                         }
                     }
@@ -128,8 +128,25 @@ $(function(){
         this.tagsinput('input').typeahead('val', '');
     }, $('#trbAfectados')));
 
+    $('#trbAfectados').on('itemAdded', function(event) {
+
+        console.log(event.item.id);
+
+        $('input[name="trbAfectado[]"]').each(function() {
+            if($(this).val() == event.item.id)
+            {
+                console.log('remove: ' + event.item.id);
+                $('#trbAfectados').tagsinput('remove', {id : event.item.id});
+                $('#trbAfectados').tagsinput('refresh');
+            }
+        });
+
+        $('#frmIncidente').formValidation('validateField', 'fecha');
+        //$(".twitter-typeahead").css('display', 'inline');
+    });
+
     $('#btnAddAfectado').on('click',function(){
-        if($('#trbAfectados').val() != ''&& $('#fecha').val() != '' ){
+        if($('#trbAfectados').val() != '' && $('#fecha').val() != '' ){
             var trabajadores = $('#trbAfectados').val().split(',');
 
             trabajadores.forEach(function(val){
@@ -143,7 +160,6 @@ $(function(){
                         var li = Handlebars.compile(source);
                         var html = li(data);
 
-
                         $('#ulAfectados').append(html);
                         $("#trbAfectados").tagsinput('removeAll');
                         $("#trbAfectados").tagsinput('focus');
@@ -153,5 +169,19 @@ $(function(){
                 });
             });
         }
+        else{
+            $('#frmIncidente').formValidation('validateField', 'fecha');
+        }
+    });
+
+    $('#btnRemoveAfectados').on('click',function(){
+        var checkboxValues = new Array();
+        $('input[name="removeAfectado[]"]:checked').each(function() {
+            checkboxValues.push($(this).val());
+        });
+
+        checkboxValues.forEach(function(val){
+            console.log(val);
+        });
     });
 });

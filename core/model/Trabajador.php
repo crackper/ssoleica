@@ -51,4 +51,8 @@ class Trabajador extends Model {
         return $this->app_paterno.' '.$this->app_materno .', '.$this->nombre;
     }
 
+    public function getFullName1Attribute(){
+        return $this->nombre.' '. $this->app_paterno.' '.$this->app_materno;
+    }
+
 }

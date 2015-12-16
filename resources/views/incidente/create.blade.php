@@ -111,7 +111,7 @@
                     <h3 class="box-title" id="listAfectados" data-url="/incidente/trabajadorcargo/">Trabajadores Afectados</h3>
                     <div class="box-tools pull-right">
                       <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                      <button type="button" class="btn btn-box-tool" data-toggle="tooltip" title="Agregar Trabajador" data-widget="chat-pane-toggle"><i class="fa fa-user-plus"></i></button>
+                      <button type="button" id="btnRemoveAfectados" class="btn btn-box-tool" data-toggle="tooltip" title="Quitar Trabajadores" data-widget="chat-pane-toggle"><i class="fa fa-user-times"></i></button>
                     </div>
                   </div><!-- /.box-header -->
                   <div class="box-body no-padding">
@@ -119,11 +119,13 @@
                     </ul>
                   </div>
                   <div class="box-footer">
-                    <div class="input-group">
-                      <input id="trbAfectados" placeholder="Apellidos o Nombres ..." class="form-control autocompleter" type="text">
-                      <span class="input-group-btn">
-                        <button type="button" id="btnAddAfectado" class="btn btn-danger btn-flat">Agregar</button>
-                      </span>
+                    <div class="form-horizontal">
+                        <div class="input-group">
+                          <div class="col-sm-10">
+                            <input id="trbAfectados" placeholder="Apellidos o Nombres ..." class="form-control autocompleter" type="text">
+                          </div>
+                          <button type="button" id="btnAddAfectado" class="btn btn-danger btn-flat">Agregar</button>
+                        </div>
                     </div>
                   </div><!-- /.box-footer-->
                 </div>

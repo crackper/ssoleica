@@ -144,7 +144,7 @@ class IncidenteController extends Controller {
             $data['status']         = true;
             $data['cargo_id']       = $query->id;
             $data['trabajador_id']  = $query->trabajador->id;
-            $data['trabajador']     = $query->trabajador->FullName;
+            $data['trabajador']     = $query->trabajador->FullName1;
             $data['dni']            = $query->trabajador->dni;
             $data['cargo']          = $query->cargo->name;
             $data['fecha_ingreso']  = Carbon::parse($query->inicio)->format('d/m/Y');
@@ -160,7 +160,7 @@ class IncidenteController extends Controller {
             $data['status']         = false;
             $data['cargo_id']       = $query->id;
             $data['trabajador_id']  = $query->trabajador->id;
-            $data['trabajador']     = $query->trabajador->FullName;
+            $data['trabajador']     = $query->trabajador->FullName1;
             $data['dni']            = $query->trabajador->dni;
             $data['cargo']          = $query->cargo->name;
             $data['fecha_ingreso']  = Carbon::parse($query->inicio)->format('d/m/Y');
