@@ -83,7 +83,7 @@ $(function(){
                     callback: {
                         message: 'Ingrese una fecha y hora válida',
                         callback: function (value, validator) {
-                            var d = new moment(value, 'Y-mm-d HH:mm', true);
+                            var d = new moment(value, 'YYYY-MM-d HH:mm', true);
                             return d.isValid()
                         }
                     }
@@ -180,14 +180,21 @@ $(function(){
             checkboxValues.push($(this).val());
         });
 
-        checkboxValues.forEach(function(val){
-            $('input[name="trAfeCargo[]"]').each(function() {
-                if($(this).val() == val)
-                {
-                    console.log('quitando: ' + val);
-                    $(this).closest('li').fadeOut('slow',function(){ $(this).remove(); });
+        if(checkboxValues.length > 0)
+        {
+            BootstrapDialog.confirm('Desea quitar los trabajadores seleccionados', function(result){
+                if(result) {
+                    checkboxValues.forEach(function(val){
+                        $('input[name="trAfeCargo[]"]').each(function() {
+                            if($(this).val() == val)
+                            {
+                                console.log('quitando: ' + val);
+                                $(this).closest('li').fadeOut('slow',function(){ $(this).remove(); });
+                            }
+                        });
+                    });
                 }
             });
-        });
+        }
     });
 });

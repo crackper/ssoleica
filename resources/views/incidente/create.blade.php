@@ -186,6 +186,7 @@
     <link rel="stylesheet" href="/css/bootstrap-select.min.css">
     <link rel="stylesheet" href="/css/formValidation.min.css">
      <link rel="stylesheet" href="/plugins/datetimepicker/css/bootstrap-datetimepicker.css">
+     <link rel="stylesheet" href="/css/bootstrap-dialog.min.css"/>
 <link rel="stylesheet" href="{{ url('/packages/zofe/rapyd/assets/autocomplete/autocomplete.css') }}"/>
     <link rel="stylesheet" href="{{ url('/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css') }}"/>
 
@@ -210,6 +211,7 @@
 <script src="{{ url('/packages/zofe/rapyd/assets/template/handlebars.js') }}"></script>
 <script src="{{ url('/plugins/bootstrap-tagsinput/bootstrap-tagsinput.min.js') }}"></script>
 <script src="{{ url('/js/plugins/handlebars-v4.0.5.js') }}"></script>
+<script src="/js/bootstrap-dialog.min.js"></script>
 {!! Minify::javascript('/js/app/incidente.create.js') !!}
 
 @include('incidente.afectados')
