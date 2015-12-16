@@ -160,7 +160,7 @@ $(function(){
                         var li = Handlebars.compile(source);
                         var html = li(data);
 
-                        $('#ulAfectados').append(html);
+                        $('#ulAfectados').append(html).hide().fadeIn('slow');
                         $("#trbAfectados").tagsinput('removeAll');
                         $("#trbAfectados").tagsinput('focus');
                     }
