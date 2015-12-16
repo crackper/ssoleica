@@ -201,8 +201,8 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.js"></script>
 <script src="/js/bootstrap-select.min.js"></script>
 <script src="/js/jquery.mask.min.js"></script>
- <script src="/js/formvalidation/formValidation.min.js"></script>
- <script src="/js/formvalidation/framework/bootstrap.min.js"></script>
+{!! HTML::script('/js/plugins/formValidation.min.js') !!}
+ {!! HTML::script('/js/plugins/bootstrap.min.js') !!}
 <script type="text/javascript" src="/plugins/datetimepicker/js/bootstrap-datetimepicker.js"></script>
 <script src="{{ url('/packages/zofe/rapyd/assets/autocomplete/typeahead.bundle.min.js') }}"> </script>
 <script src="{{ url('/packages/zofe/rapyd/assets/template/handlebars.js') }}"></script>

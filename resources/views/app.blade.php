@@ -189,6 +189,13 @@
                  </ul>
             </li>
             <li class="treeview">
+                 <a href="#"><i class="fa fa-rebel"></i> <span>{{ trans('home.seguridad_title') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
+                  <ul class="treeview-menu">
+                    <li><a href="/incidente">{{ trans('home.seguridad_view') }}</a></li>
+                    <li><a href="/incidente/create">{{ trans('home.seguridad_create') }}</a></li>
+                  </ul>
+             </li>
+            <li class="treeview">
                  <a href="#"><i class="fa fa-pie-chart"></i> <span>{{ trans('home.estadisticas_title') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
                   <ul class="treeview-menu">
                     <li><a href="/horasHombre">{{ trans('home.horashombre_view') }}</a></li>

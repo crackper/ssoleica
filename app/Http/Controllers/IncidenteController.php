@@ -65,7 +65,7 @@ class IncidenteController extends Controller {
 	 */
 	public function getIndex()
 	{
-		return view("incidente.create");
+		return view("home");
 	}
 
 	/**

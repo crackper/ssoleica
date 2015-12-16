@@ -63,14 +63,14 @@
 
                 <div class="box box-success">
                     <div class="box-header">
-                        <h3 class="box-title">Seguridad</h3>
+                        <h3 class="box-title">{{ trans('home.seguridad_title') }}</h3>
                         <div class="box-tools pull-right">
                             <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
                         </div>
                     </div>
                     <div class="box-body">
-                        <a href="#">Registar Incidentes</a><br/>
-                        <a href="#">Archivo Incidentes</a><br/>
+                        <a href="/incidente/create">{{ trans('home.seguridad_create') }}</a><br/>
+                        <a href="/incidente">{{ trans('home.seguridad_view') }}</a>
                     </div>
                 </div>
 
