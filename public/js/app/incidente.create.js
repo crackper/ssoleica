@@ -152,7 +152,10 @@ $(function(){
             trabajadores.forEach(function(val){
                 $.ajax({
                     url: $('#listAfectados').data('url') + val + '/'+ $('#fecha').val() ,
-                    type: 'GET'
+                    type: 'GET',
+                    beforeSend: function(xhr){
+                        $('#btnAddAfectado').button('loading');
+                    }
                 }).done(function(data) {
                     if(data.status == true)
                     {
@@ -160,12 +163,12 @@ $(function(){
                         var li = Handlebars.compile(source);
                         var html = li(data);
 
-                        $('#ulAfectados').append(html).hide().fadeIn('slow');
+                        //$('#ulAfectados').append(html);
+                        $(html).appendTo('#ulAfectados').fadeOut().fadeIn('slow');
                         $("#trbAfectados").tagsinput('removeAll');
                         $("#trbAfectados").tagsinput('focus');
                     }
-                    console.log(data);
-                    console.log("success");
+                    $('#btnAddAfectado').button('reset');
                 });
             });
         }

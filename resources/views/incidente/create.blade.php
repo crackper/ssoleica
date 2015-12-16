@@ -124,7 +124,7 @@
                           <div class="col-sm-10">
                             <input id="trbAfectados" placeholder="Apellidos o Nombres ..." class="form-control autocompleter" type="text">
                           </div>
-                          <button type="button" id="btnAddAfectado" class="btn btn-danger btn-flat">Agregar</button>
+                          <button type="button" id="btnAddAfectado" class="btn btn-danger btn-flat" data-loading-text="Agregando...">Agregar</button>
                         </div>
                     </div>
                   </div><!-- /.box-footer-->
