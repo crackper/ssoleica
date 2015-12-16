@@ -57,13 +57,14 @@
                     <div class="form-group">
                         <label for="fecha" class="form-label col-sm-4">Fecha y Hora</label>
                         <div class="col-sm-8">
-                            <div class='input-group date' id='datetimepicker1'>
+                            <!--div class='input-group date' id='datetimepicker1'>
                                 <input type="text" id="fecha" name="fecha" class="form-control input-sm input-append"/>
                                 <span class="input-group-addon">
                                     <span class="glyphicon glyphicon-calendar">
                                     </span>
                                 </span>
-                            </div>
+                            </div-->
+                            <input type='text' class="form-control input-sm" id='fecha' name="fecha" />
                             <!--input type="text" id="fecha" name="fecha" class="form-control input-sm"/-->
                         </div>
                     </div>

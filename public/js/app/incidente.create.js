@@ -9,10 +9,13 @@ $(function(){
         size: 7
     });
 
-    $('#datetimepicker1').datetimepicker({
+    $('#fecha').datetimepicker({
         sideBySide:true,
-        locale: 'es',
-        format: 'YYYY-MM-d HH:mm'
+        locale: 'en',
+        format: 'YYYY-MM-D HH:mm'
+    }).on('dp.change',function(){
+        $('#frmIncidente').formValidation('updateStatus', 'fecha', 'NOT_VALIDATED');
+        $('#frmIncidente').formValidation('validateField', 'fecha');
     });
 
     $("#proyecto_id").change(function() {
@@ -83,7 +86,11 @@ $(function(){
                     callback: {
                         message: 'Ingrese una fecha y hora válida',
                         callback: function (value, validator) {
-                            var d = new moment(value, 'YYYY-MM-d HH:mm', true);
+                            var d = moment(value, 'YYYY-MM-DD HH:mm');
+
+                            console.log(d);
+                            console.log(d.isValid());
+
                             return d.isValid()
                         }
                     }
@@ -141,6 +148,7 @@ $(function(){
             }
         });
 
+        $('#frmIncidente').formValidation('updateStatus', 'fecha', 'NOT_VALIDATED');
         $('#frmIncidente').formValidation('validateField', 'fecha');
         //$(".twitter-typeahead").css('display', 'inline');
     });
