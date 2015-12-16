@@ -181,7 +181,13 @@ $(function(){
         });
 
         checkboxValues.forEach(function(val){
-            console.log(val);
+            $('input[name="trAfeCargo[]"]').each(function() {
+                if($(this).val() == val)
+                {
+                    console.log('quitando: ' + val);
+                    $(this).closest('li').fadeOut('slow',function(){ $(this).remove(); });
+                }
+            });
         });
     });
 });

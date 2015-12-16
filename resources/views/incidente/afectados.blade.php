@@ -2,7 +2,7 @@
  <li>
     <!--hidden-->
     <input type="hidden" name="trbAfectado[]" value="[!{trabajador_id}!]"/>
-    <input type="hidden" name="trAfeCargo[]" value="[!{contrato_id}!]"/>
+    <input type="hidden" name="trAfeCargo[]" value="[!{cargo_id}!]"/>
     <!--hidden-->
     <a data-toggle="collapse" data-target="#[!{dni}!]" aria-expanded="false" aria-controls="[!{dni}!]">
         <i class="fa fa-caret-right"></i> [!{trabajador}!]

@@ -44,11 +44,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="incidente.create.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="incidente.create.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/js/app/incidente.create.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1837" max-vertical-offset="2580">
-              <caret line="183" column="29" selection-start-line="183" selection-start-column="29" selection-end-line="183" selection-end-column="29" />
+            <state vertical-scroll-proportion="0.72434914" vertical-offset="2017" max-vertical-offset="2670">
+              <caret line="187" column="86" selection-start-line="187" selection-start-column="86" selection-end-line="187" selection-end-column="86" />
               <folding>
                 <element signature="e#326#924#0" expanded="false" />
               </folding>
@@ -68,11 +68,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="afectados.blade.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="afectados.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/incidente/afectados.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.19077902" vertical-offset="0" max-vertical-offset="629">
-              <caret line="8" column="94" selection-start-line="8" selection-start-column="94" selection-end-line="8" selection-end-column="94" />
+            <state vertical-scroll-proportion="-2.5" vertical-offset="0" max-vertical-offset="405">
+              <caret line="4" column="41" selection-start-line="4" selection-start-column="31" selection-end-line="4" selection-end-column="41" />
               <folding />
             </state>
           </provider>
@@ -154,8 +154,8 @@
         <option value="$PROJECT_DIR$/core/model/Trabajador.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/IncidenteController.php" />
         <option value="$PROJECT_DIR$/resources/views/incidente/create.blade.php" />
-        <option value="$PROJECT_DIR$/public/js/app/incidente.create.js" />
         <option value="$PROJECT_DIR$/resources/views/incidente/afectados.blade.php" />
+        <option value="$PROJECT_DIR$/public/js/app/incidente.create.js" />
       </list>
     </option>
   </component>
@@ -820,6 +820,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/incidente/afectados.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.5" vertical-offset="0" max-vertical-offset="405">
+          <caret line="4" column="41" selection-start-line="4" selection-start-column="31" selection-end-line="4" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/public/js/app/user.create.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="615" max-vertical-offset="1290">
@@ -832,19 +840,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/js/app/incidente.create.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1837" max-vertical-offset="2580">
-          <caret line="183" column="29" selection-start-line="183" selection-start-column="29" selection-end-line="183" selection-end-column="29" />
+        <state vertical-scroll-proportion="0.72434914" vertical-offset="2017" max-vertical-offset="2670">
+          <caret line="187" column="86" selection-start-line="187" selection-start-column="86" selection-end-line="187" selection-end-column="86" />
           <folding>
             <element signature="e#326#924#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/incidente/afectados.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.19077902" vertical-offset="0" max-vertical-offset="629">
-          <caret line="8" column="94" selection-start-line="8" selection-start-column="94" selection-end-line="8" selection-end-column="94" />
-          <folding />
         </state>
       </provider>
     </entry>
