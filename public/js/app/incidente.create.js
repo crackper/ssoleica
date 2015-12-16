@@ -2,6 +2,9 @@
  * Created by Samuel on 4/08/15.
  */
 $(function(){
+
+    Handlebars.setDelimiter('[',']');
+
     $('select').selectpicker({
         size: 7
     });
@@ -98,4 +101,57 @@ $(function(){
         console.log('validando');
         $('#frmIncidente').formValidation('validateField', 'fecha');
      });
+
+    var blod_name = new Bloodhound({
+        datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
+        queryTokenizer: Bloodhound.tokenizers.whitespace,
+        remote: '/incidente/trabajador/%QUERY'
+    });
+
+    blod_name.initialize();
+
+    $('#trbAfectados').tagsinput({
+        itemValue: 'id',
+        itemText: 'name',
+        maxTags: 5,
+        tagClass:'label label-primary'
+    });
+
+    $('#trbAfectados').tagsinput('input').typeahead(null, {
+        name: 'name',
+        displayKey: 'name',
+        highlight: true,
+        minLength: 2,
+        source: blod_name.ttAdapter()
+    }).bind('typeahead:selected', $.proxy(function (obj, data) {
+        this.tagsinput('add', data);
+        this.tagsinput('input').typeahead('val', '');
+    }, $('#trbAfectados')));
+
+    $('#btnAddAfectado').on('click',function(){
+        if($('#trbAfectados').val() != ''&& $('#fecha').val() != '' ){
+            var trabajadores = $('#trbAfectados').val().split(',');
+
+            trabajadores.forEach(function(val){
+                $.ajax({
+                    url: $('#listAfectados').data('url') + val + '/'+ $('#fecha').val() ,
+                    type: 'GET'
+                }).done(function(data) {
+                    if(data.status == true)
+                    {
+                        var source   = $("#afectado-template").html();
+                        var li = Handlebars.compile(source);
+                        var html = li(data);
+
+
+                        $('#ulAfectados').append(html);
+                        $("#trbAfectados").tagsinput('removeAll');
+                        $("#trbAfectados").tagsinput('focus');
+                    }
+                    console.log(data);
+                    console.log("success");
+                });
+            });
+        }
+    });
 });

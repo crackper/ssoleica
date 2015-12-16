@@ -178,7 +178,11 @@ return [
         /*
          * LogViewer
          */
-        'Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider'
+        'Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider',
+        /*
+         * Template JS
+         */
+        //'ProAI\Handlebars\HandlebarsServiceProvider'
 
 	],
 

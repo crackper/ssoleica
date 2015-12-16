@@ -9,4 +9,14 @@ class CargosTrabajador extends Model {
 
     protected $table = 'cargos_trabajador';
 
+    public function trabajador()
+    {
+        return $this->hasOne('SSOLeica\Core\Model\Trabajador',$foreingKey='id',$localKey='trabajador_id');
+    }
+
+    public function cargo()
+    {
+        return $this->hasOne('SSOLeica\Core\Model\EnumTables',$foreingKey='id',$localKey='cargo_id');
+    }
+
 }

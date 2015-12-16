@@ -1,6 +1,10 @@
 <?php namespace SSOLeica\Http\Controllers;
 
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+use SSOLeica\Core\Model\CargosTrabajador;
+use SSOLeica\Core\Model\Trabajador;
 use SSOLeica\Core\Repository\ContratoRepository;
 use SSOLeica\Core\Repository\EnumTablesRepository;
 use SSOLeica\Core\Repository\OperacionRepository;
@@ -109,6 +113,61 @@ class IncidenteController extends Controller {
             $trabajadores[$row->id] = $row->nombre . " " . $row->app_paterno . " " . $row->app_materno;
         }
         return $trabajadores;
+    }
+
+    public function getTrabajador($key = '')
+    {
+        $query = Trabajador::where(DB::raw("upper(nombre) like '%'|| upper('".$key."') || '%' or upper(app_paterno) like '%'|| upper('".$key."') || '%'"))
+            ->where("pais_id",$this->pais)
+            ->orderBy('nombre', 'asc')
+            ->skip(0)->take(10)->get();
+
+        $data = array();
+        foreach($query as $trabajador)
+        {
+            $data[] = array('id' => $trabajador->id, 'name' =>  $trabajador->nombre .' '. $trabajador->app_paterno, 'email' => $trabajador->email );
+        }
+
+        return Response::json($data);
+    }
+
+    public function getTrabajadorcargo($trabajador_id = 0,$fecha = '')
+    {
+        $query = CargosTrabajador::where('trabajador_id',$trabajador_id)
+                ->where('inicio','<=',$fecha)->get()
+                ->load('trabajador')
+                ->load('cargo')
+                ->first();
+
+        if(!is_null($query))
+        {
+            $data['status']         = true;
+            $data['cargo_id']       = $query->id;
+            $data['trabajador_id']  = $query->trabajador->id;
+            $data['trabajador']     = $query->trabajador->FullName;
+            $data['dni']            = $query->trabajador->dni;
+            $data['cargo']          = $query->cargo->name;
+            $data['fecha_ingreso']  = Carbon::parse($query->inicio)->format('d/m/Y');
+            $data['fecha_cargo']    = Carbon::parse($query->inicio)->format('d/m/Y');
+        }
+        else
+        {
+            $query = CargosTrabajador::where('trabajador_id',$trabajador_id)->get()
+                ->load('trabajador')
+                ->load('cargo')
+                ->first();
+
+            $data['status']         = false;
+            $data['cargo_id']       = $query->id;
+            $data['trabajador_id']  = $query->trabajador->id;
+            $data['trabajador']     = $query->trabajador->FullName;
+            $data['dni']            = $query->trabajador->dni;
+            $data['cargo']          = $query->cargo->name;
+            $data['fecha_ingreso']  = Carbon::parse($query->inicio)->format('d/m/Y');
+            $data['fecha_cargo']    = Carbon::parse($query->inicio)->format('d/m/Y');
+        }
+
+        Return Response::json($data);
     }
 
 	/**
