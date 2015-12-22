@@ -96,6 +96,13 @@ $(function(){
                     }
                 }
             },
+            /*fecha_i: {
+                validators: {
+                    notEmpty: {
+                        message: 'Seleccione la fecha y hora del incidente'
+                    }
+                }
+            },*/
             lugar:{
                 validators:{
                     notEmpty: {
@@ -155,6 +162,10 @@ $(function(){
 
     $('#btnAddAfectado').on('click',function(){
         if($('#trbAfectados').val() != '' && $('#fecha').val() != '' ){
+
+            $('#fecha_i').val($('#fecha').val());
+            $("#fecha").attr('readonly', 'readonly');
+
             var trabajadores = $('#trbAfectados').val().split(',');
 
             trabajadores.forEach(function(val){
@@ -171,7 +182,6 @@ $(function(){
                         var li = Handlebars.compile(source);
                         var html = li(data);
 
-                        //$('#ulAfectados').append(html);
                         $(html).appendTo('#ulAfectados').fadeOut().fadeIn('slow');
                         $("#trbAfectados").tagsinput('removeAll');
                         $("#trbAfectados").tagsinput('focus');
@@ -197,6 +207,108 @@ $(function(){
                 if(result) {
                     checkboxValues.forEach(function(val){
                         $('input[name="trAfeCargo[]"]').each(function() {
+                            if($(this).val() == val)
+                            {
+                                console.log('quitando: ' + val);
+                                $(this).closest('li').fadeOut('slow',function(){ $(this).remove(); });
+                            }
+                        });
+                    });
+                }
+            });
+        }
+    });
+
+    /**
+     * Trabajadores Invlucrados
+     * */
+
+    $('#trbInvolucrados').tagsinput({
+        itemValue: 'id',
+        itemText: 'name',
+        maxTags: 5,
+        tagClass:'label label-primary'
+    });
+
+    $('#trbInvolucrados').tagsinput('input').typeahead(null, {
+        name: 'name',
+        displayKey: 'name',
+        highlight: true,
+        minLength: 2,
+        source: blod_name.ttAdapter()
+    }).bind('typeahead:selected', $.proxy(function (obj, data) {
+        this.tagsinput('add', data);
+        this.tagsinput('input').typeahead('val', '');
+    }, $('#trbInvolucrados')));
+
+    $('#trbInvolucrados').on('itemAdded', function(event) {
+
+        console.log(event.item.id);
+
+        $('input[name="trbInvolucrado[]"]').each(function() {
+            if($(this).val() == event.item.id)
+            {
+                console.log('remove: ' + event.item.id);
+                $('#trbInvolucrados').tagsinput('remove', {id : event.item.id});
+                $('#trbInvolucrados').tagsinput('refresh');
+            }
+        });
+
+        $('#frmIncidente').formValidation('updateStatus', 'fecha', 'NOT_VALIDATED');
+        $('#frmIncidente').formValidation('validateField', 'fecha');
+
+    });
+
+    $('#btnAddInvolucrado').on('click',function(){
+        $('#fecha_i').val($('#fecha').val());
+        $("#fecha").attr('readonly', 'readonly');
+
+        if($('#trbInvolucrados').val() != '' && $('#fecha').val() != '' ){
+            var trabajadores = $('#trbInvolucrados').val().split(',');
+
+            trabajadores.forEach(function(val){
+                $.ajax({
+                    url: $('#listInvolucrados').data('url') + val + '/'+ $('#fecha').val() ,
+                    type: 'GET',
+                    beforeSend: function(xhr){
+                        $('#btnAddInvolucrado').button('loading');
+                    }
+                }).done(function(data) {
+                    if(data.status == true)
+                    {
+                        var source   = $("#involucrado-template").html();
+                        var li = Handlebars.compile(source);
+                        var html = li(data);
+
+                        //$('#ulAfectados').append(html);
+                        $(html).appendTo('#ulInvolucrados').fadeOut().fadeIn('slow');
+                        $("#trbInvolucrados").tagsinput('removeAll');
+                        $("#trbInvolucrados").tagsinput('focus');
+                    }
+                    $('#btnAddInvolucrado').button('reset');
+                });
+            });
+        }
+        else{
+            $('#frmIncidente').formValidation('validateField', 'fecha');
+        }
+    });
+
+    $('#btnRemoveInvolucrados').on('click',function(){
+
+        console.log('click remove remove');
+
+        var checkboxValues = new Array();
+        $('input[name="removeInvolucrado[]"]:checked').each(function() {
+            checkboxValues.push($(this).val());
+        });
+
+        if(checkboxValues.length > 0)
+        {
+            BootstrapDialog.confirm('Desea quitar los trabajadores seleccionados', function(result){
+                if(result) {
+                    checkboxValues.forEach(function(val){
+                        $('input[name="trInvolucrado[]"]').each(function() {
                             if($(this).val() == val)
                             {
                                 console.log('quitando: ' + val);

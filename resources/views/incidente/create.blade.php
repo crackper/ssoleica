@@ -57,15 +57,8 @@
                     <div class="form-group">
                         <label for="fecha" class="form-label col-sm-4">Fecha y Hora</label>
                         <div class="col-sm-8">
-                            <!--div class='input-group date' id='datetimepicker1'>
-                                <input type="text" id="fecha" name="fecha" class="form-control input-sm input-append"/>
-                                <span class="input-group-addon">
-                                    <span class="glyphicon glyphicon-calendar">
-                                    </span>
-                                </span>
-                            </div-->
+                            <input type="hidden" id="fecha_i" name="fecha_i"/>
                             <input type='text' class="form-control input-sm" id='fecha' name="fecha" />
-                            <!--input type="text" id="fecha" name="fecha" class="form-control input-sm"/-->
                         </div>
                     </div>
                     <div class="form-group">
@@ -131,30 +124,26 @@
                   </div><!-- /.box-footer-->
                 </div>
                 <div class="box box-warning">
-                  <div class="box-header with-border">
-                    <h3 class="box-title">Trabajadores Involucradros</h3>
+                   <div class="box-header with-border">
+                    <h3 class="box-title" id="listInvolucrados" data-url="/incidente/trabajadorcargo/">Trabajadores Involucrados</h3>
                     <div class="box-tools pull-right">
                       <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                      <button type="button" id="btnAddInvolucrado" class="btn btn-box-tool" data-toggle="tooltip" title="Agregar Trabajador" data-widget="chat-pane-toggle"><i class="fa fa-user-plus"></i></button>
+                      <button type="button" id="btnRemoveInvolucrados" class="btn btn-box-tool" data-toggle="tooltip" title="Quitar Trabajadores" data-widget="chat-pane-toggle"><i class="fa fa-user-times"></i></button>
                     </div>
                   </div><!-- /.box-header -->
                   <div class="box-body no-padding">
-                    <ul class="nav nav-pills nav-stacked">
-                        <li><a href="#" data-toggle="collapse" data-target="#masInfo2" aria-expanded="false" aria-controls="masInfo2"><i class="fa fa-caret-right"></i> Sent
-                            <button class="label btn btn-box-tool pull-right" data-toggle="tooltip" title="Quitar Trabajador" data-widget="chat-pane-toggle"><i class="fa fa-user-times"></i> </button></a>
-                            <div class="collapse" id="masInfo2">
-                              <div class="" style="padding: 5px 5px 0px 5px;">
-                                    <ul class="list-group">
-                                      <li class="list-group-item">Antiguedad Cargo: 10/10/2010</li>
-                                      <li class="list-group-item">Antiguedad Empresa: 15/10/2011</li>
-                                    </ul>
-                              </div>
-                            </div>
-                        </li>
-                        <li><a href="#"><i class="fa fa-caret-right"></i> Sent <button class="label btn btn-box-tool pull-right" data-toggle="tooltip" title="Quitar Trabajador" data-widget="chat-pane-toggle"><i class="fa fa-user-times"></i> </button></a></li>
-                        <li><a href="#"><i class="fa fa-caret-right"></i> Sent <button class="label btn btn-box-tool pull-right" data-toggle="tooltip" title="Quitar Trabajador" data-widget="chat-pane-toggle"><i class="fa fa-user-times"></i> </button></a></li>
+                    <ul id="ulInvolucrados" class="nav nav-pills nav-stacked">
                     </ul>
                   </div>
+                  <div class="box-footer">
+                    <div class="form-horizontal">
+                        <div class="input-group">
+                          <div class="col-sm-10">
+                            <input id="trbInvolucrados" placeholder="Apellidos o Nombres ..." class="form-control autocompleter" type="text">
+                          </div>
+                          <button type="button" id="btnAddInvolucrado" class="btn btn-warning btn-flat" data-loading-text="Agregando...">Agregar</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
