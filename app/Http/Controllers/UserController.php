@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Session;
 use SSOLeica\Core\Model\Trabajador;
-use SSOLeica\Core\Traits\UpdatedBy;
+//use SSOLeica\Core\Traits\UpdatedBy;
 use Validator;
 use Nayjest\Grids\Components\Base\RenderableRegistry;
 use Nayjest\Grids\Components\ColumnHeadersRow;
@@ -40,7 +40,6 @@ use Nayjest\Grids\Grid;
 use Nayjest\Grids\GridConfig;
 use Nayjest\Grids\IdFieldConfig;
 use Nayjest\Grids\SelectFilterConfig;
-use SSOLeica\Core\Model\EnumTables;
 use SSOLeica\Core\Model\Role;
 use SSOLeica\Core\Model\User;
 use SSOLeica\Core\Repository\EnumTablesRepository;
@@ -49,7 +48,7 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller {
 
-    use UpdatedBy;
+    //use UpdatedBy;
 
     /**
      * @var enumTablesRepository
@@ -347,7 +346,7 @@ class UserController extends Controller {
         if(is_null($user))
             return new RedirectResponse(url('/user/index'));
 
-        $user->updated_by = $this->getUpdated();
+        //$user->updated_by = $this->getUpdated();
         $user->save();
         $user->delete();
 

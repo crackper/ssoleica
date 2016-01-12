@@ -52,6 +52,28 @@ class EnumTablesRepository extends Repository {
         return $query;
     }
 
+    function getPartesAfectadas()
+    {
+        $query = EnumTables::where('type','=','ParteAfectada')->get();
+
+        return $query;
+    }
+
+    function getConsecuencias()
+    {
+        $query = EnumTables::where('type','=','Consecuencia')->get();
+
+        return $query;
+    }
+
+    function getEntidades()
+    {
+        $query = EnumTables::where('type','=','Entidad')->get();
+
+        return $query;
+    }
+
+
     public function getExamenesDisponibles($trabajador_id, $operacion_id)
     {
         $in_examen = TrabajadorVencimiento::where('trabajador_vencimiento.trabajador_id','=',$trabajador_id)

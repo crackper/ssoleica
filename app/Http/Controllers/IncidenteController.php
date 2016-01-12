@@ -2,11 +2,13 @@
 
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
 use SSOLeica\Core\Model\CargosTrabajador;
 use SSOLeica\Core\Model\Trabajador;
 use SSOLeica\Core\Repository\ContratoRepository;
 use SSOLeica\Core\Repository\EnumTablesRepository;
+use SSOLeica\Core\Repository\IncidenteRepository;
 use SSOLeica\Core\Repository\OperacionRepository;
 use SSOLeica\Core\Repository\TrabajadorRepository;
 use SSOLeica\Http\Requests;
@@ -36,17 +38,23 @@ class IncidenteController extends Controller {
      * @var EnumTablesRepository
      */
     private $enumTablesRepository;
+    /**
+     * @var IncidenteRepository
+     */
+    private $incidenteRepository;
 
     /**
      * @param OperacionRepository $operacionRepository
      * @param ContratoRepository $contratoRepository
      * @param TrabajadorRepository $trabajadorRepository
      * @param EnumTablesRepository $enumTablesRepository
+     * @param IncidenteRepository $incidenteRepository
      */
     public function __construct(OperacionRepository $operacionRepository,
                                 ContratoRepository $contratoRepository,
                                 TrabajadorRepository $trabajadorRepository,
-                                EnumTablesRepository $enumTablesRepository)
+                                EnumTablesRepository $enumTablesRepository,
+                                IncidenteRepository $incidenteRepository)
     {
         $this->middleware('auth');
         $this->middleware('workspace');
@@ -56,6 +64,7 @@ class IncidenteController extends Controller {
         $this->contratoRepository = $contratoRepository;
         $this->trabajadorRepository = $trabajadorRepository;
         $this->enumTablesRepository = $enumTablesRepository;
+        $this->incidenteRepository = $incidenteRepository;
     }
 
 	/**
@@ -84,13 +93,73 @@ class IncidenteController extends Controller {
         $tipo_informe =  array('' => '[-- Seleccione --]') + $this->enumTablesRepository->getEnumTables('Informe')
                 ->lists('name','id');
 
+        $consecuencias = $this->enumTablesRepository->getConsecuencias()
+                ->lists('name','id');
+
+        $partes_afectadas = $this->enumTablesRepository->getPartesAfectadas();
+            //->lists('name','id');
+
+        $entidades = $this->enumTablesRepository->getEntidades()
+            ->lists('name','id');
+
+        //dd($partes_afectadas);
 
         return view("incidente.create")
                     ->with('proyectos',$proyectos)
                     ->with('tipo_incidente',$tipo_incidiente)
                     ->with('tipo_informe',$tipo_informe)
+                    ->with('consecuencias',$consecuencias)
+                    ->with('partes_afectadas',$partes_afectadas)
+                    ->with('entidades',$entidades)
                     ->with('trabajadores',$this->getTrabajadores());
 	}
+
+    public function postCreate(Request $request){
+
+        $data['pais_id'] = $this->pais;
+        $data['contrato_id'] = Input::get('contrato_id');
+        $data['tipo_informe_id'] = Input::get('tipo_informe');
+        $data['tipo_incidente_id'] = Input::get('tipo_incidente');
+        $data['fecha'] = Input::get('fecha');
+        $data['lugar'] = Input::get('lugar');
+        $data['punto'] = Input::get('punto');
+        $data['equipos'] = Input::get('equipos');
+        $data['parte'] = Input::get('parte');
+        $data['sector'] = Input::get('sector');
+
+        if(Input::get('responsables') != '')
+            $data['responsable_id'] = Input::get('responsables');
+
+        $trb = array();
+
+        if($request->has('trbAfectado') && $request->has('trAfeCargo'))
+        {
+            for($i = 0; $i < count($request->get('trbAfectado')); $i++)
+            {
+                $trb[] = array('trabajador_id'=>$request->get('trbAfectado')[$i], 'cargo_id' => $request->get('trAfeCargo')[$i]);
+            }
+
+            $data['tr_afectados'] = json_encode($trb);
+        }
+
+
+        $tr = array();
+
+        if($request->has('trbInvolucrado') && $request->has('trInvolucrado'))
+        {
+            for($i = 0; $i < count($request->get('trbInvolucrado')); $i++)
+            {
+                $tr[] = array('trabajador_id'=>$request->get('trbInvolucrado')[$i], 'cargo_id' => $request->get('trInvolucrado')[$i]);
+            }
+
+            $data['tr_involucrados'] = json_encode($tr);
+        }
+
+        $ok = $this->incidenteRepository->create($data);
+
+        dd($ok);
+        dd($data);
+    }
 
     public function getContratos($id = 0)
     {

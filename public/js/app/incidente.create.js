@@ -96,17 +96,17 @@ $(function(){
                     }
                 }
             },
-            /*fecha_i: {
-                validators: {
-                    notEmpty: {
-                        message: 'Seleccione la fecha y hora del incidente'
-                    }
-                }
-            },*/
             lugar:{
                 validators:{
                     notEmpty: {
                         message: 'Ingrese el lugar del Incidente'
+                    }
+                }
+            },
+            responsables: {
+                validators: {
+                    notEmpty: {
+                        message: 'Seleccione el Jefe Responsable'
                     }
                 }
             }
