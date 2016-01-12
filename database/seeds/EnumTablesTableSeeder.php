@@ -81,12 +81,42 @@ class EnumTablesTableSeeder extends \Illuminate\Database\Seeder {
             ['id'=> 64,'type'=>'Incidente','name'=>'Medio Ambiente','symbol'=>'','created_at' => new DateTime, 'updated_at' => new DateTime],
             ['id'=> 65,'type'=>'Incidente','name'=>'Operacional','symbol'=>'','created_at' => new DateTime, 'updated_at' => new DateTime],
             ['id'=> 66,'type'=>'Informe','name'=>'Preliminar','symbol'=>'','created_at' => new DateTime, 'updated_at' => new DateTime],
-            ['id'=> 67,'type'=>'Informe','name'=>'Definitivo','symbol'=>'','created_at' => new DateTime, 'updated_at' => new DateTime]
+            ['id'=> 67,'type'=>'Informe','name'=>'Definitivo','symbol'=>'','created_at' => new DateTime, 'updated_at' => new DateTime],
+            ['id'=> 68,'type'=>'Cargo','name'=>'Técnico de Electronico','symbol'=>'','created_at' => new DateTime, 'updated_at' => new DateTime],
+            ['id'=> 69,'type'=>'Cargo','name'=>'TOOLS AND MACHINE CONTROL DIVISION','symbol'=>'','created_at' => new DateTime, 'updated_at' => new DateTime],
+            ['id'=> 70,'type'=>'Cargo','name'=>'VICE PRESIDENT SOUTHAMERICA & GENERAL MANAGER GLOBAL SALES','symbol'=>'','created_at' => new DateTime, 'updated_at' => new DateTime],
+            ['id'=> 71,'type'=>'Cargo','name'=>'PREVENCIONISTA DE RIESGOS','symbol'=>'','created_at' => new DateTime, 'updated_at' => new DateTime],
+            ['id'=> 72,'type'=>'Cargo','name'=>'INGENIERO SAFETY','symbol'=>'','created_at' => new DateTime, 'updated_at' => new DateTime],
+            ['id'=> 73,'type'=>'Cargo','name'=>'INGENIERO DE VENTAS ','symbol'=>'','created_at' => new DateTime, 'updated_at' => new DateTime],
+            ['id'=> 74,'type'=>'Cargo','name'=>'INGENIERO DE SOPORTE','symbol'=>'','created_at' => new DateTime, 'updated_at' => new DateTime],
+            ['id'=> 75,'type'=>'Cargo','name'=>'INGENIERO DE PROYECTOS','symbol'=>'','created_at' => new DateTime, 'updated_at' => new DateTime],
+            ['id'=> 76,'type'=>'Cargo','name'=>'GERENTE MANTEN. Y SOPORTE','symbol'=>'','created_at' => new DateTime, 'updated_at' => new DateTime],
+            ['id'=> 77,'type'=>'Cargo','name'=>'GERENTE GENERAL','symbol'=>'','created_at' => new DateTime, 'updated_at' => new DateTime],
+            ['id'=> 78,'type'=>'Cargo','name'=>'ESPECIALISTA TECNICO','symbol'=>'','created_at' => new DateTime, 'updated_at' => new DateTime],
+            ['id'=> 79,'type'=>'Cargo','name'=>'CONTROLLER','symbol'=>'','created_at' => new DateTime, 'updated_at' => new DateTime],
+            ['id'=> 80,'type'=>'Cargo','name'=>'CONTADOR GENERAL','symbol'=>'','created_at' => new DateTime, 'updated_at' => new DateTime],
+            ['id'=> 81,'type'=>'Cargo','name'=>'CONTADOR','symbol'=>'','created_at' => new DateTime, 'updated_at' => new DateTime],
+            ['id'=> 82,'type'=>'Cargo','name'=>'ASISTENTE OFICINA','symbol'=>'','created_at' => new DateTime, 'updated_at' => new DateTime],
+            ['id'=> 83,'type'=>'Cargo','name'=>'ASISTENTE','symbol'=>'','created_at' => new DateTime, 'updated_at' => new DateTime],
+            ['id'=> 84,'type'=>'Cargo','name'=>'Support Chief','symbol'=>'','created_at' => new DateTime, 'updated_at' => new DateTime],
+            ['id'=> 85,'type'=>'Cargo','name'=>'Support Engineer','symbol'=>'','created_at' => new DateTime, 'updated_at' => new DateTime],
+            ['id'=> 86,'type'=>'Cargo','name'=>'Product Especialist','symbol'=>'','created_at' => new DateTime, 'updated_at' => new DateTime],
+            ['id'=> 87,'type'=>'Cargo','name'=>'Support Engineer','symbol'=>'','created_at' => new DateTime, 'updated_at' => new DateTime],
+            ['id'=> 88,'type'=>'Cargo','name'=>'Ingeniero Prevencion de Riesgos','symbol'=>'','created_at' => new DateTime, 'updated_at' => new DateTime],
+            ['id'=> 89,'type'=>'Cargo','name'=>'Tecnico de Laboratorio','symbol'=>'','created_at' => new DateTime, 'updated_at' => new DateTime],
+            ['id'=> 90,'type'=>'Cargo','name'=>'Tecnico Comunicaciones y Redes','symbol'=>'','created_at' => new DateTime, 'updated_at' => new DateTime],
+            ['id'=> 91,'type'=>'Cargo','name'=>'Ingeniero Residente','symbol'=>'','created_at' => new DateTime, 'updated_at' => new DateTime],
+            ['id'=> 92,'type'=>'Cargo','name'=>'Ingeniero Operaciones Senior','symbol'=>'','created_at' => new DateTime, 'updated_at' => new DateTime],
+            ['id'=> 93,'type'=>'Cargo','name'=>'Ingeniero de Redes','symbol'=>'','created_at' => new DateTime, 'updated_at' => new DateTime],
+            ['id'=> 94,'type'=>'Cargo','name'=>'Expeditor','symbol'=>'','created_at' => new DateTime, 'updated_at' => new DateTime],
+            ['id'=> 95,'type'=>'Cargo','name'=>'Administrativo','symbol'=>'','created_at' => new DateTime, 'updated_at' => new DateTime],
+            ['id'=> 96,'type'=>'Profesion','name'=>'Otro','symbol'=>'','created_at' => new DateTime, 'updated_at' => new DateTime]
+
         );
 
         DB::table('enum_tables')->insert($enums);
 
-        DB::statement('ALTER SEQUENCE enum_tables_id_seq RESTART WITH 68');
+        DB::statement('ALTER SEQUENCE enum_tables_id_seq RESTART WITH 97');
 
         $paises = array(
             ['id'=> 8,'type'=>'Pais','name'=>'Perú','symbol'=>'PE','data'=>json_encode(array('timezone'=>'America/Bogota')),'created_at' => new DateTime, 'updated_at' => new DateTime],
