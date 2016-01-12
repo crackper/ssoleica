@@ -20,7 +20,7 @@ class CreateMonthsTable extends Migration {
             $table->dateTime('fecha_inicio');
             $table->dateTime('fecha_fin');
             $table->integer('plazo')->default(7)->unsigned();
-            $table->jsonb('contratos')->nullable();
+            $table->json('contratos')->nullable();
             $table->json('attributes')->nullable();
             //auditoria
             $table->json('updated_by')->nullable();
