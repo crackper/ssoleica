@@ -289,6 +289,56 @@ class UserController extends Controller {
             ->with('paises',$paises);
     }
 
+    public function profile()
+    {
+        $text = 'Perfil Usuario';
+
+        $user = User::find(Auth::user()->id);
+
+        if(is_null($user))
+            return new RedirectResponse(url('/'));
+
+        $paises = array('' => '[-- Seleccione un Pais --]') + $this->enumTablesRepository->getPaises()->lists('name','id');
+
+        return view('user.profile')
+            ->with('text',$text)
+            ->with('user',$user)
+            ->with('paises',$paises);
+
+
+    }
+
+    public function postProfile($id,Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|max:255',
+            'pais_id' => 'required',
+        ]);
+
+
+        if ($validator->fails()) {
+            return Redirect::back()
+                ->withErrors($validator)
+                ->withInput(Input::all());
+        }
+
+        $user = User::find($id);
+
+        $user->name = $request->get('name');
+        $user->pais_id = $request->get('pais_id');
+
+        if($request->password != '')
+            $user->password =   Hash::make($request->get('password'));
+
+        $user->save();
+
+
+        Session::flash('message', 'El perfil de Usuario se Actualizo correctamente');
+
+        return new RedirectResponse(url('/profile'));
+
+    }
+
     public function postUpdate($id,Request $request)
     {
         $validator = Validator::make($request->all(), [

@@ -31,6 +31,7 @@ Route::get('/', 'WelcomeController@index');
 Route::get('home', 'HomeController@index');
 Route::get('grid','HomeController@grid');
 Route::get('form','HomeController@form');
+Route::get('profile', 'UserController@profile');
 
 Route::group(['middleware' => ['entrust', 'auth'], 'roles' => array('admin','apr')], function(){
     Route::controller('operacion','OperacionController');
