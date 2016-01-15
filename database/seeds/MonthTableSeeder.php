@@ -33,7 +33,9 @@ class MonthTableSeeder extends Seeder {
                     $primerDia = gmdate("Y-m-d H:i:s", mktime(0, 0, 0,$m, $d-$d +1,$Y) + $utc);
                     $ultimoDia = gmdate("Y-m-d H:i:s", mktime(23, 59, 59,$m+1,$d-$d,$Y) + $utc);
 
-                    if($cont == 7 || $cont == 8)
+                    DB::table('month')->insert(array('nombre' => $month,'year' => $year,'fecha_inicio' => $primerDia, 'fecha_fin' => $ultimoDia,'created_at' => new DateTime, 'updated_at' => new DateTime));
+
+                    /*if($cont == 7 || $cont == 8)
                     {
                         $contratos[] = array('contrato'=>1,"extra"=>5,'comentario'=>'nok','created_at' => new DateTime, 'updated_at' => new DateTime, 'created_by' =>'samuel');
                         $contratos[] = array('contrato'=>2,"extra"=>5,'comentario'=>'ok','created_at' => new DateTime, 'updated_at' => new DateTime, 'created_by' =>'samuel');
@@ -43,7 +45,7 @@ class MonthTableSeeder extends Seeder {
                     else
                     {
                         DB::table('month')->insert(array('nombre' => $month,'year' => $year,'fecha_inicio' => $primerDia, 'fecha_fin' => $ultimoDia,'created_at' => new DateTime, 'updated_at' => new DateTime));
-                    }
+                    }*/
 
                     $cont++;
                 }
