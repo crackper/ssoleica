@@ -15,7 +15,7 @@
 <div class="box box-primary">
     <div class="box-body" >
         <div class="table-responsive">
-            <iframe src='https://onedrive.live.com/embed?cid=77A404DF5CAA830E&resid=77A404DF5CAA830E%2110544&authkey=AEPwkI714YiqwWc&em=2&wdAr=1.3333333333333333&wdEaa=0' width='610px' height='481px' frameborder='0'>Esto es un documento de <a target='_blank' href='http://office.com'>Microsoft Office</a> incrustado con tecnología de <a target='_blank' href='http://office.com/webapps'>Office Online</a>.</iframe>
+            <iframe src='https://onedrive.live.com/embed?cid=77A404DF5CAA830E&resid=77A404DF5CAA830E%2110546&authkey=ABeJEK3S5q-iKts&em=2&wdAr=1.3333333333333333' width='610px' height='481px' frameborder='0'>Esto es un documento de <a target='_blank' href='http://office.com'>Microsoft Office</a> incrustado con tecnología de <a target='_blank' href='http://office.com/webapps'>Office Online</a>.</iframe>
         </div>
     </div>
 </div>
