@@ -206,6 +206,7 @@
              </li>
             @endif
             <li><a href="{!! env('URL_FILEMANAGER', '/repository') !!}"><i class="fa fa-archive"></i> <span>{{ trans('home.repositorio_view') }}</span></a></li>
+            <li><a href="{!! url('/help') !!}"><i class="fa fa-question-circle"></i> <span>{{ trans('home.help_view') }}</span></a></li>
             @if(Auth::user()->hasRole('admin'))
             <li class="header">{{ trans('home.administracion_title') }}</li>
             <li class="treeview">

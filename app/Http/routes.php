@@ -29,6 +29,7 @@ Route::get('/', 'WelcomeController@index');
 
 
 Route::get('home', 'HomeController@index');
+Route::get('help/{seccion?}', 'HomeController@help');
 Route::get('grid','HomeController@grid');
 Route::get('form','HomeController@form');
 Route::get('profile', 'UserController@profile');

@@ -35,58 +35,8 @@
       <file leaf-file-name="app.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/app.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="4434" max-vertical-offset="5040">
-              <caret line="137" column="39" selection-start-line="137" selection-start-column="39" selection-end-line="137" selection-end-column="39" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MonthTableSeeder.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/database/seeds/MonthTableSeeder.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="227" max-vertical-offset="810">
-              <caret line="35" column="205" selection-start-line="35" selection-start-column="205" selection-end-line="35" selection-end-column="205" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="2015_06_10_130413_create_horas_hombres_table.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/database/migrations/2015_06_10_130413_create_horas_hombres_table.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="750">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="2016_01_14_012508_create_incidente_fotos_table.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/database/migrations/2016_01_14_012508_create_incidente_fotos_table.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="285" max-vertical-offset="690">
-              <caret line="20" column="39" selection-start-line="20" selection-start-column="39" selection-end-line="20" selection-end-column="39" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Incidente.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/model/Incidente.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="120" max-vertical-offset="285">
-              <caret line="9" column="24" selection-start-line="9" selection-start-column="24" selection-end-line="9" selection-end-column="33" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="profile.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/user/profile.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1396" max-vertical-offset="2130">
-              <caret line="121" column="44" selection-start-line="121" selection-start-column="44" selection-end-line="121" selection-end-column="44" />
+            <state vertical-scroll-proportion="-13.375" vertical-offset="2799" max-vertical-offset="5055">
+              <caret line="208" column="40" selection-start-line="208" selection-start-column="40" selection-end-line="208" selection-end-column="40" />
               <folding />
             </state>
           </provider>
@@ -95,47 +45,86 @@
       <file leaf-file-name="2015_08_03_155354_create_incidentes_table.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/database/migrations/2015_08_03_155354_create_incidentes_table.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="722" max-vertical-offset="1305">
+            <state vertical-scroll-proportion="-18.041666" vertical-offset="722" max-vertical-offset="1305">
               <caret line="78" column="8" selection-start-line="78" selection-start-column="8" selection-end-line="78" selection-end-column="34" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="2016_01_14_025125_update_incidente_table.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/database/migrations/2016_01_14_025125_update_incidente_table.php">
+      <file leaf-file-name="HomeController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/HomeController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5145798" vertical-offset="180" max-vertical-offset="1395">
-              <caret line="33" column="67" selection-start-line="33" selection-start-column="67" selection-end-line="33" selection-end-column="67" />
+            <state vertical-scroll-proportion="-12.5" vertical-offset="1005" max-vertical-offset="4020">
+              <caret line="122" column="28" selection-start-line="122" selection-start-column="28" selection-end-line="122" selection-end-column="28" />
               <folding>
-                <marker date="1452898713000" expanded="true" signature="248:269" placeholder="ALTER TABLE incidente..." />
-                <marker date="1452898713000" expanded="true" signature="332:353" placeholder="ALTER TABLE incidente..." />
-                <marker date="1452898713000" expanded="true" signature="416:437" placeholder="ALTER TABLE incidente..." />
-                <marker date="1452898713000" expanded="true" signature="502:523" placeholder="ALTER TABLE incidente..." />
-                <marker date="1452898713000" expanded="true" signature="586:607" placeholder="ALTER TABLE incidente..." />
-                <marker date="1452898713000" expanded="true" signature="671:692" placeholder="ALTER TABLE incidente..." />
-                <marker date="1452898713000" expanded="true" signature="762:783" placeholder="ALTER TABLE incidente..." />
-                <marker date="1452898713000" expanded="true" signature="856:877" placeholder="ALTER TABLE incidente..." />
-                <marker date="1452898713000" expanded="true" signature="945:966" placeholder="ALTER TABLE incidente..." />
-                <marker date="1452898713000" expanded="true" signature="1033:1054" placeholder="ALTER TABLE incidente..." />
-                <marker date="1452898713000" expanded="true" signature="1118:1139" placeholder="ALTER TABLE incidente..." />
-                <marker date="1452898713000" expanded="true" signature="1209:1230" placeholder="ALTER TABLE incidente..." />
-                <marker date="1452898713000" expanded="true" signature="1296:1317" placeholder="ALTER TABLE incidente..." />
-                <marker date="1452898713000" expanded="true" signature="1388:1409" placeholder="ALTER TABLE incidente..." />
-                <marker date="1452898713000" expanded="true" signature="1481:1502" placeholder="ALTER TABLE incidente..." />
-                <marker date="1452898713000" expanded="true" signature="1567:1588" placeholder="ALTER TABLE incidente..." />
-                <marker date="1452898713000" expanded="true" signature="1658:1679" placeholder="ALTER TABLE incidente..." />
-                <marker date="1452898713000" expanded="true" signature="1750:1771" placeholder="ALTER TABLE incidente..." />
-                <marker date="1452898713000" expanded="true" signature="1836:1857" placeholder="ALTER TABLE incidente..." />
-                <marker date="1452898713000" expanded="true" signature="1927:1990" placeholder="ALTER TABLE incidente..." />
-                <marker date="1452898713000" expanded="true" signature="2018:2039" placeholder="ALTER TABLE incidente..." />
-                <marker date="1452898713000" expanded="true" signature="2110:2131" placeholder="ALTER TABLE incidente..." />
-                <marker date="1452898713000" expanded="true" signature="2205:2226" placeholder="ALTER TABLE incidente..." />
-                <marker date="1452898713000" expanded="true" signature="2294:2315" placeholder="ALTER TABLE incidente..." />
-                <marker date="1452898713000" expanded="true" signature="2388:2409" placeholder="ALTER TABLE incidente..." />
-                <marker date="1452898713000" expanded="true" signature="2483:2504" placeholder="ALTER TABLE incidente..." />
-                <marker date="1452898713000" expanded="true" signature="2578:2599" placeholder="ALTER TABLE incidente..." />
+                <element signature="e#10627#17158#0#PHP" expanded="false" />
+                <element signature="e#17164#17558#0#PHP" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="IncidenteController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/IncidenteController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-10.625" vertical-offset="525" max-vertical-offset="3750">
+              <caret line="67" column="5" selection-start-line="67" selection-start-column="5" selection-end-line="67" selection-end-column="5" />
+              <folding>
+                <element signature="e#6657#8299#0#PHP" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="routes.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-11.25" vertical-offset="60" max-vertical-offset="975">
+              <caret line="31" column="26" selection-start-line="31" selection-start-column="26" selection-end-line="31" selection-end-column="26" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.blade.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/resources/views/help/index.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.42079207" vertical-offset="0" max-vertical-offset="606">
+              <caret line="17" column="44" selection-start-line="17" selection-start-column="44" selection-end-line="17" selection-end-column="44" />
+              <folding>
+                <element signature="e#367#396#0#HTML" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="home.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/lang/en/home.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-20.875" vertical-offset="99" max-vertical-offset="720">
+              <caret line="45" column="23" selection-start-line="45" selection-start-column="23" selection-end-line="45" selection-end-column="23" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="introduccion.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/help/introduccion.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-4.375" vertical-offset="0" max-vertical-offset="555">
+              <caret line="7" column="33" selection-start-line="0" selection-start-column="0" selection-end-line="31" selection-end-column="12" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="repository.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/help/repository.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-19.375" vertical-offset="0" max-vertical-offset="555">
+              <caret line="31" column="11" selection-start-line="31" selection-start-column="11" selection-end-line="31" selection-end-column="11" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -165,10 +154,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/resources/views/alertas/index.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/emails/template.html" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/AlertasController.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" />
         <option value="$PROJECT_DIR$/app/Console/Kernel.php" />
         <option value="$PROJECT_DIR$/resources/views/emails/alertas.blade.php" />
         <option value="$PROJECT_DIR$/app/Console/Commands/AlertasMes.php" />
@@ -188,7 +173,6 @@
         <option value="$PROJECT_DIR$/resources/views/incidente/afectados.hbs" />
         <option value="$PROJECT_DIR$/config/app.php" />
         <option value="$PROJECT_DIR$/public/js/plugins/handlebars-v4.0.5.js" />
-        <option value="$PROJECT_DIR$/resources/lang/en/home.php" />
         <option value="$PROJECT_DIR$/resources/views/home.blade.php" />
         <option value="$PROJECT_DIR$/core/model/Trabajador.php" />
         <option value="$PROJECT_DIR$/resources/views/incidente/afectados.blade.php" />
@@ -203,8 +187,6 @@
         <option value="$PROJECT_DIR$/database/migrations/2015_06_09_205038_create_months_table.php" />
         <option value="$PROJECT_DIR$/database/seeds/EnumTablesTableSeeder.php" />
         <option value="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" />
-        <option value="$PROJECT_DIR$/app/Http/routes.php" />
-        <option value="$PROJECT_DIR$/resources/views/app.blade.php" />
         <option value="$PROJECT_DIR$/public/js/app/user.profile.js" />
         <option value="$PROJECT_DIR$/resources/views/user/profile.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/UserController.php" />
@@ -216,6 +198,13 @@
         <option value="$PROJECT_DIR$/database/migrations/2016_01_14_025123_update_incidente_table.php" />
         <option value="$PROJECT_DIR$/database/migrations/2016_01_14_025124_update_incidente_table.php" />
         <option value="$PROJECT_DIR$/database/migrations/2016_01_14_025125_update_incidente_table.php" />
+        <option value="$PROJECT_DIR$/app/Http/routes.php" />
+        <option value="$PROJECT_DIR$/resources/views/help/introduccion.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/help/repository.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" />
+        <option value="$PROJECT_DIR$/resources/views/app.blade.php" />
+        <option value="$PROJECT_DIR$/resources/lang/en/home.php" />
+        <option value="$PROJECT_DIR$/resources/views/help/index.blade.php" />
       </list>
     </option>
   </component>
@@ -288,7 +277,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -302,25 +295,15 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
+              <option name="myItemId" value="resources" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="uploads" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SSOLeicaDev" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SSOLeicaDev" />
+              <option name="myItemId" value="views" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="database" />
+              <option name="myItemId" value="help" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -334,11 +317,101 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="database" />
+              <option name="myItemId" value="resources" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="migrations" />
+              <option name="myItemId" value="lang" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SSOLeicaDev" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SSOLeicaDev" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="lang" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="en" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SSOLeicaDev" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SSOLeicaDev" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SSOLeicaDev" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SSOLeicaDev" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SSOLeicaDev" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SSOLeicaDev" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Http" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SSOLeicaDev" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SSOLeicaDev" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Http" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Controllers" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -492,62 +565,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/database/migrations/2015_04_22_202052_create_trabajador_vencimiento_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.79787236" vertical-offset="225" max-vertical-offset="795">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2015_05_12_215512_create_trabajador_contratos_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.7446808" vertical-offset="210" max-vertical-offset="750">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2015_05_14_142122_create_estados_contratos_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.5638298" vertical-offset="159" max-vertical-offset="705">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2015_05_14_200918_create_cargos_trabajadors_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.9148936" vertical-offset="258" max-vertical-offset="675">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2015_05_22_132852_create_shift_contrato_trabajadors_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.3723404" vertical-offset="105" max-vertical-offset="675">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/trabajador/index.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="765">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/app/incidente.create.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.10273973" vertical-offset="1365" max-vertical-offset="4620">
-          <caret line="108" column="64" selection-start-line="108" selection-start-column="64" selection-end-line="108" selection-end-column="64" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/repository/EnumTablesRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-18.041666" vertical-offset="512" max-vertical-offset="1515">
-          <caret line="70" column="54" selection-start-line="70" selection-start-column="54" selection-end-line="70" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/incidente/general_c.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="90" max-vertical-offset="1920">
@@ -583,13 +600,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/IncidenteController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.5" vertical-offset="1290" max-vertical-offset="3975">
-          <caret line="98" column="77" selection-start-line="98" selection-start-column="77" selection-end-line="98" selection-end-column="77" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/incidente/create.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="119" max-vertical-offset="1365">
@@ -615,6 +625,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="630">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -711,20 +722,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/HomeController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="40.625" vertical-offset="975" max-vertical-offset="5760">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.42925277" vertical-offset="90" max-vertical-offset="960">
-          <caret line="33" column="45" selection-start-line="33" selection-start-column="45" selection-end-line="33" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/user/edit.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="2400">
@@ -750,6 +747,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-17.458334" vertical-offset="2686" max-vertical-offset="3315">
           <caret line="337" column="49" selection-start-line="337" selection-start-column="49" selection-end-line="337" selection-end-column="49" />
+          <folding>
+            <element signature="e#129#166#0#PHP" expanded="false" />
+            <element signature="e#1471#1515#0#PHP" expanded="false" />
+            <element signature="e#1556#1624#0#PHP" expanded="false" />
+            <element signature="e#1854#7412#0#PHP" expanded="false" />
+            <element signature="e#11596#12735#0#PHP" expanded="false" />
+            <element signature="e#12741#13323#0#PHP" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -764,14 +769,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="630">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/app.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="4434" max-vertical-offset="5040">
-          <caret line="137" column="39" selection-start-line="137" selection-start-column="39" selection-end-line="137" selection-end-column="39" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -831,7 +828,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/database/migrations/2015_08_03_155354_create_incidentes_table.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="722" max-vertical-offset="1305">
+        <state vertical-scroll-proportion="-18.041666" vertical-offset="722" max-vertical-offset="1305">
           <caret line="78" column="8" selection-start-line="78" selection-start-column="8" selection-end-line="78" selection-end-column="34" />
           <folding />
         </state>
@@ -852,38 +849,141 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/horasHombre/index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="720">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="42" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/OperacionController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.5763292" vertical-offset="1502" max-vertical-offset="3540">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/AlertasController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.077186964" vertical-offset="1710" max-vertical-offset="2895">
+          <caret line="123" column="36" selection-start-line="123" selection-start-column="12" selection-end-line="123" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/WelcomeController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.10634648" vertical-offset="62" max-vertical-offset="645">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/database/migrations/2016_01_14_025125_update_incidente_table.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5145798" vertical-offset="180" max-vertical-offset="1395">
+        <state vertical-scroll-proportion="-5.0" vertical-offset="360" max-vertical-offset="1395">
           <caret line="33" column="67" selection-start-line="33" selection-start-column="67" selection-end-line="33" selection-end-column="67" />
           <folding>
-            <marker date="1452898713000" expanded="true" signature="248:269" placeholder="ALTER TABLE incidente..." />
-            <marker date="1452898713000" expanded="true" signature="332:353" placeholder="ALTER TABLE incidente..." />
-            <marker date="1452898713000" expanded="true" signature="416:437" placeholder="ALTER TABLE incidente..." />
-            <marker date="1452898713000" expanded="true" signature="502:523" placeholder="ALTER TABLE incidente..." />
-            <marker date="1452898713000" expanded="true" signature="586:607" placeholder="ALTER TABLE incidente..." />
-            <marker date="1452898713000" expanded="true" signature="671:692" placeholder="ALTER TABLE incidente..." />
-            <marker date="1452898713000" expanded="true" signature="762:783" placeholder="ALTER TABLE incidente..." />
-            <marker date="1452898713000" expanded="true" signature="856:877" placeholder="ALTER TABLE incidente..." />
-            <marker date="1452898713000" expanded="true" signature="945:966" placeholder="ALTER TABLE incidente..." />
-            <marker date="1452898713000" expanded="true" signature="1033:1054" placeholder="ALTER TABLE incidente..." />
-            <marker date="1452898713000" expanded="true" signature="1118:1139" placeholder="ALTER TABLE incidente..." />
-            <marker date="1452898713000" expanded="true" signature="1209:1230" placeholder="ALTER TABLE incidente..." />
-            <marker date="1452898713000" expanded="true" signature="1296:1317" placeholder="ALTER TABLE incidente..." />
-            <marker date="1452898713000" expanded="true" signature="1388:1409" placeholder="ALTER TABLE incidente..." />
-            <marker date="1452898713000" expanded="true" signature="1481:1502" placeholder="ALTER TABLE incidente..." />
-            <marker date="1452898713000" expanded="true" signature="1567:1588" placeholder="ALTER TABLE incidente..." />
-            <marker date="1452898713000" expanded="true" signature="1658:1679" placeholder="ALTER TABLE incidente..." />
-            <marker date="1452898713000" expanded="true" signature="1750:1771" placeholder="ALTER TABLE incidente..." />
-            <marker date="1452898713000" expanded="true" signature="1836:1857" placeholder="ALTER TABLE incidente..." />
-            <marker date="1452898713000" expanded="true" signature="1927:1990" placeholder="ALTER TABLE incidente..." />
-            <marker date="1452898713000" expanded="true" signature="2018:2039" placeholder="ALTER TABLE incidente..." />
-            <marker date="1452898713000" expanded="true" signature="2110:2131" placeholder="ALTER TABLE incidente..." />
-            <marker date="1452898713000" expanded="true" signature="2205:2226" placeholder="ALTER TABLE incidente..." />
-            <marker date="1452898713000" expanded="true" signature="2294:2315" placeholder="ALTER TABLE incidente..." />
-            <marker date="1452898713000" expanded="true" signature="2388:2409" placeholder="ALTER TABLE incidente..." />
-            <marker date="1452898713000" expanded="true" signature="2483:2504" placeholder="ALTER TABLE incidente..." />
-            <marker date="1452898713000" expanded="true" signature="2578:2599" placeholder="ALTER TABLE incidente..." />
+            <marker date="1452898713000" expanded="true" signature="-1:-1" placeholder="ALTER TABLE incidente..." />
+            <marker date="1452898713000" expanded="true" signature="-1:-1" placeholder="ALTER TABLE incidente..." />
+            <marker date="1452898713000" expanded="true" signature="-1:-1" placeholder="ALTER TABLE incidente..." />
+            <marker date="1452898713000" expanded="true" signature="-1:-1" placeholder="ALTER TABLE incidente..." />
+            <marker date="1452898713000" expanded="true" signature="-1:-1" placeholder="ALTER TABLE incidente..." />
+            <marker date="1452898713000" expanded="true" signature="-1:-1" placeholder="ALTER TABLE incidente..." />
+            <marker date="1452898713000" expanded="true" signature="-1:-1" placeholder="ALTER TABLE incidente..." />
+            <marker date="1452898713000" expanded="true" signature="-1:-1" placeholder="ALTER TABLE incidente..." />
+            <marker date="1452898713000" expanded="true" signature="-1:-1" placeholder="ALTER TABLE incidente..." />
+            <marker date="1452898713000" expanded="true" signature="-1:-1" placeholder="ALTER TABLE incidente..." />
+            <marker date="1452898713000" expanded="true" signature="-1:-1" placeholder="ALTER TABLE incidente..." />
+            <marker date="1452898713000" expanded="true" signature="-1:-1" placeholder="ALTER TABLE incidente..." />
+            <marker date="1452898713000" expanded="true" signature="-1:-1" placeholder="ALTER TABLE incidente..." />
+            <marker date="1452898713000" expanded="true" signature="-1:-1" placeholder="ALTER TABLE incidente..." />
+            <marker date="1452898713000" expanded="true" signature="-1:-1" placeholder="ALTER TABLE incidente..." />
+            <marker date="1452898713000" expanded="true" signature="-1:-1" placeholder="ALTER TABLE incidente..." />
+            <marker date="1452898713000" expanded="true" signature="-1:-1" placeholder="ALTER TABLE incidente..." />
+            <marker date="1452898713000" expanded="true" signature="-1:-1" placeholder="ALTER TABLE incidente..." />
+            <marker date="1452898713000" expanded="true" signature="-1:-1" placeholder="ALTER TABLE incidente..." />
+            <marker date="1452898713000" expanded="true" signature="-1:-1" placeholder="ALTER TABLE incidente..." />
+            <marker date="1452898713000" expanded="true" signature="-1:-1" placeholder="ALTER TABLE incidente..." />
+            <marker date="1452898713000" expanded="true" signature="-1:-1" placeholder="ALTER TABLE incidente..." />
+            <marker date="1452898713000" expanded="true" signature="-1:-1" placeholder="ALTER TABLE incidente..." />
+            <marker date="1452898713000" expanded="true" signature="-1:-1" placeholder="ALTER TABLE incidente..." />
+            <marker date="1452898713000" expanded="true" signature="-1:-1" placeholder="ALTER TABLE incidente..." />
+            <marker date="1452898713000" expanded="true" signature="-1:-1" placeholder="ALTER TABLE incidente..." />
+            <marker date="1452898713000" expanded="true" signature="-1:-1" placeholder="ALTER TABLE incidente..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/IncidenteController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-10.625" vertical-offset="525" max-vertical-offset="3750">
+          <caret line="67" column="5" selection-start-line="67" selection-start-column="5" selection-end-line="67" selection-end-column="5" />
+          <folding>
+            <element signature="e#6657#8299#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-11.25" vertical-offset="60" max-vertical-offset="975">
+          <caret line="31" column="26" selection-start-line="31" selection-start-column="26" selection-end-line="31" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/help/introduccion.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.375" vertical-offset="0" max-vertical-offset="555">
+          <caret line="7" column="33" selection-start-line="0" selection-start-column="0" selection-end-line="31" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/help/repository.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-19.375" vertical-offset="0" max-vertical-offset="555">
+          <caret line="31" column="11" selection-start-line="31" selection-start-column="11" selection-end-line="31" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/HomeController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-12.5" vertical-offset="1005" max-vertical-offset="4020">
+          <caret line="122" column="28" selection-start-line="122" selection-start-column="28" selection-end-line="122" selection-end-column="28" />
+          <folding>
+            <element signature="e#10627#17158#0#PHP" expanded="false" />
+            <element signature="e#17164#17558#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/app.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-13.375" vertical-offset="2799" max-vertical-offset="5055">
+          <caret line="208" column="40" selection-start-line="208" selection-start-column="40" selection-end-line="208" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/lang/en/home.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-20.875" vertical-offset="99" max-vertical-offset="720">
+          <caret line="45" column="23" selection-start-line="45" selection-start-column="23" selection-end-line="45" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/help/index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.42079207" vertical-offset="0" max-vertical-offset="606">
+          <caret line="17" column="44" selection-start-line="17" selection-start-column="44" selection-end-line="17" selection-end-column="44" />
+          <folding>
+            <element signature="e#367#396#0#HTML" expanded="true" />
           </folding>
         </state>
       </provider>

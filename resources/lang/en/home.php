@@ -42,6 +42,7 @@ return [
     'user_view'=>'Usuarios',
     'user_create'=>'Registar Usuario',
     'roles_view'=>'Roles',
-    'roles_create'=>'Registrar Rol'
+    'roles_create'=>'Registrar Rol',
+    'help_view'=>'Ayuda'
 
 ];

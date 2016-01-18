@@ -105,6 +105,46 @@ class HomeController extends Controller {
         //dd($this->trabajador->find('1')->load('profesion'));
 	}
 
+    public function help($seccion=null)
+    {
+        switch($seccion)
+        {
+            case "introduccion":
+
+                $text = "<h1>Introdución</h1>";
+                $breadcrumb = "Introdución";
+
+                return view('help.introduccion')
+                    ->with('text',$text)
+                    ->with('breadcrumb',$breadcrumb);
+
+                break;
+
+            case "repository":
+
+                $text = "<h1>Repositorio</h1>";
+                $breadcrumb = "Repositorio";
+
+                return view('help.repository')
+                    ->with('text',$text)
+                    ->with('breadcrumb',$breadcrumb);
+
+                break;
+
+            default:
+
+                $text = "<h1>Ayuda</h1>";
+                $breadcrumb = "";
+
+                return view('help.index')
+                    ->with('text',$text)
+                    ->with('breadcrumb',$breadcrumb);
+
+                break;
+        }
+
+    }
+
     public function grid()
     {
 
