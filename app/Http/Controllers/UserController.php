@@ -335,7 +335,7 @@ class UserController extends Controller {
 
         Session::flash('message', 'El perfil de Usuario se Actualizo correctamente');
 
-        return new RedirectResponse(url('/profile'));
+        return new RedirectResponse(url('/user/edit/'. $id));
 
     }
 

@@ -131,6 +131,17 @@ class HomeController extends Controller {
 
                 break;
 
+            case "proyectos":
+
+                $text = "<h1>Proyectos y Contratos</h1>";
+                $breadcrumb = "Proyectos y Contratos";
+
+                return view('help.proyectos')
+                    ->with('text',$text)
+                    ->with('breadcrumb',$breadcrumb);
+
+                break;
+
             default:
 
                 $text = "<h1>Ayuda</h1>";

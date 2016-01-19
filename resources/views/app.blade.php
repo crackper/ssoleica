@@ -210,7 +210,7 @@
             @if(Auth::user()->hasRole('admin'))
             <li class="header">{{ trans('home.administracion_title') }}</li>
             <li class="treeview">
-                 <a href="#"><i class="fa fa-cubes"></i> <span>{{ trans('home.admin_title') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
+                 <a href="#"><i class="fa fa-cubes"></i> <span>{{ trans('home.user_title') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
                   <ul class="treeview-menu">
                     <li><a href="/user/create">{{ trans('home.user_create') }}</a></li>
                     <li><a href="/user">{{ trans('home.user_view') }}</a></li>
