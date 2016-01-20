@@ -19,6 +19,7 @@
                 <li><i class="fa fa-comments-o"></i> <a href="{{ url('/help/introduccion') }}">Introducción</a></li>
                 <li><i class="fa fa-comments-o"></i> <a href="{{ url('/help/repository') }}">Repositorio de Archivos</a></li>
                 <li><i class="fa fa-comments-o"></i> <a href="{{ url('/help/proyectos') }}">Proyectos y Contratos</a></li>
+                <li><i class="fa fa-comments-o"></i> <a href="{{ url('/help/admin-trabajadores') }}">Administración de trabajadores</a></li>
             </ul>
         </div>
     </div>

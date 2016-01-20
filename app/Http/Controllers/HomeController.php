@@ -142,6 +142,17 @@ class HomeController extends Controller {
 
                 break;
 
+            case "admin-trabajadores":
+
+                $text = "<h1>Admin. Trabajadores</h1>";
+                $breadcrumb = "Admin. Trabajadores";
+
+                return view('help.admin_trabajadores')
+                    ->with('text',$text)
+                    ->with('breadcrumb',$breadcrumb);
+
+                break;
+
             default:
 
                 $text = "<h1>Ayuda</h1>";
