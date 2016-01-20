@@ -654,4 +654,12 @@ $(function(){
 
     });
 
+    /*
+    * Borrar fecha de incio en el cargo si cambia el cargo
+    * */
+
+
+    $('#cargo_id').on('change',function(){
+        $('#fecha_ini_cargo').val('');
+    });
 });

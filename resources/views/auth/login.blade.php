@@ -43,7 +43,11 @@
 	        <strong>Whoops!</strong> hay problemas conn tus datos.<br><br>
 		        <ul>
 				    @foreach ($errors->all() as $error)
-					    <li>{{ $error }}</li>
+					    @if($error == 'These credentials do not match our records.')
+					        <li>Estas credenciales no son correctas</li>
+					    @else
+					        <li>{{ $error }}</li>
+					    @endif
 					@endforeach
 				</ul>
 		</div>
