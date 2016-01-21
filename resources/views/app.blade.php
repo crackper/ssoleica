@@ -78,28 +78,51 @@
                       @if(Session::has('cant_f') && Session::get('cant_f') > 0)
                       <li>
                         <a href="{!! url('/alertas#fotochecks')!!}">
-                            <i class="fa fa-users text-aqua"></i> <b>{!! Session::get('cant_f') !!}</b> Fotocheck(s) vence(n) este mes
+                            <i class="fa fa-check text-aqua"></i> <b>{!! Session::get('cant_f') !!}</b> <small>Fotocheck(s) vence(n) este mes</small>
                         </a>
                       </li>
                       @endif
                       @if(Session::has('cant_e') && Session::get('cant_e') > 0)
                       <li>
                         <a href="{!! url('/alertas#examenes')!!}">
-                            <i class="fa fa-users text-aqua"></i> <b>{!! Session::get('cant_e') !!}</b> Exam. Medico(s) vence(n) este mes
+                            <i class="fa fa-check text-aqua"></i> <b>{!! Session::get('cant_e') !!}</b> <small>Exam. Medico(s) vence(n) este mes</small>
                         </a>
                       </li>
                        @endif
                       @if(Session::has('cant_d') && Session::get('cant_d') > 0)
                       <li>
                         <a href="{!! url('/alertas#documentos')!!}">
-                            <i class="fa fa-users text-aqua"></i> <b>{!! Session::get('cant_d') !!}</b> Otro(s) documento(s) vence(n) este mes
+                            <i class="fa fa-check text-aqua"></i> <b>{!! Session::get('cant_d') !!}</b> <small>Otro(s) documento(s) vence(n) este mes</small>
+                        </a>
+                      </li>
+                      @endif
+                      <!-- proximo mes -->
+                      @if(Session::has('cant_f_nxm') && Session::get('cant_f_nxm') > 0)
+                      <li>
+                        <a href="{!! url('/alertas/next-mes#fotochecks')!!}">
+                            <i class="fa fa-reply-all text-aqua"></i> <b>{!! Session::get('cant_f_nxm') !!}</b> <small>Fotocheck(s) vence(n) el próximo mes</small>
+                        </a>
+                      </li>
+                      @endif
+                      @if(Session::has('cant_e_nxm') && Session::get('cant_e_nxm') > 0)
+                      <li>
+                        <a href="{!! url('/alertas/next-mes#examenes')!!}">
+                            <i class="fa fa-reply-all text-aqua"></i> <b>{!! Session::get('cant_e_nxm') !!}</b> <small>Exam. Medico(s) vence(n) el próximo mes</small>
+                        </a>
+                      </li>
+                       @endif
+                      @if(Session::has('cant_d_nxm') && Session::get('cant_d_nxm') > 0)
+                      <li>
+                        <a href="{!! url('/alertas/next-mes#documentos')!!}">
+                            <i class="fa fa-reply-all text-aqua"></i> <b>{!! Session::get('cant_d_nxm') !!}</b> <small>Otro(s) documento(s) vence(n) el próximo mes</small>
                         </a>
                       </li>
                       @endif
                        <!-- end notification -->
                     </ul>
                   </li>
-                  <li class="footer"><a href="{!! url('/alertas') !!}">Ver todos</a></li>
+                  <li class="footer"><a href="{!! url('/alertas') !!}">Ver todo este mes</a></li>
+                  <li class="footer"><a href="{!! url('/alertas/next-mes') !!}">Ver todo próximo mes</a></li>
                 </ul>
               </li>
               <!-- User Account Menu -->
