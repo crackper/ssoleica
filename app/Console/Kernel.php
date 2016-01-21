@@ -14,6 +14,7 @@ class Kernel extends ConsoleKernel {
 		'SSOLeica\Console\Commands\Inspire',
         'SSOLeica\Console\Commands\CerrarHrsHombre',
         'SSOLeica\Console\Commands\AlertasMes',
+        'SSOLeica\Console\Commands\AlertasNextMes',
 	];
 
 	/**

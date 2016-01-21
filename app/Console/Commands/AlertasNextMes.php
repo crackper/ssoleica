@@ -9,21 +9,21 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
 use Illuminate\Support\Facades\Mail;
 
-class AlertasMes extends Command {
+class AlertasNextMes extends Command {
 
 	/**
 	 * The console command name.
 	 *
 	 * @var string
 	 */
-	protected $name = 'alertas:mes';
+	protected $name = 'alertas:nextmes';
 
 	/**
 	 * The console command description.
 	 *
 	 * @var string
 	 */
-	protected $description = 'Envio de E-mails con alertas del presente mes';
+	protected $description = 'Envio de E-mails con alertas del proximo mes';
 
 	/**
 	 * Create a new command instance.
@@ -42,7 +42,7 @@ class AlertasMes extends Command {
 	 */
 	public function fire()
 	{
-        $this->info("Enviando Alertas del Mes");
+        $this->info("Enviando Alertas Próximo Mes");
         $this->info("-----------------------------");
 
         $paises = EnumTables::where("type",'Pais')->get();
@@ -68,7 +68,7 @@ class AlertasMes extends Command {
                 $query_f .= "inner join contrato c on tc.contrato_id = c.id ";
                 $query_f .= "inner join operacion o on c.operacion_id = o.id ";
                 $query_f .= "inner join enum_tables p on o.pais_id = p.id ";
-                $query_f .= "where (tc.fecha_vencimiento  between (DATE_TRUNC('month', now()) at time zone 'utc') and  ((DATE_TRUNC('month', now())  at time zone 'utc') + '1 month')) ";
+                $query_f .= "where (tc.fecha_vencimiento  between (DATE_TRUNC('month', nextmes()) at time zone 'utc') and  ((DATE_TRUNC('month', nextmes())  at time zone 'utc') + '1 month')) ";
                 $query_f .= "and p.id = :pais_id and operacion_id = :operacion_id order by tc.fecha_vencimiento";
 
                 $fotochecks = DB::select(DB::Raw($query_f),array('pais_id' => $pais->id,'operacion_id'=>$proyecto->id));
@@ -98,7 +98,7 @@ class AlertasMes extends Command {
                 $query_e .= "inner join operacion o on tv.operacion_id = o.id ";
                 $query_e .= "inner join enum_tables p on o.pais_id = p.id ";
                 $query_e .= "where tv.caduca = true and v.type = 'ExamenMedico' ";
-                $query_e .= "and (tv.fecha_vencimiento  between (DATE_TRUNC('month', now()) at time zone 'utc') and  ((DATE_TRUNC('month', now())  at time zone 'utc') + '1 month')) ";
+                $query_e .= "and (tv.fecha_vencimiento  between (DATE_TRUNC('month', nextmes()) at time zone 'utc') and  ((DATE_TRUNC('month', nextmes())  at time zone 'utc') + '1 month')) ";
                 $query_e .= "and p.id = :pais_id and o.id = :operacion_id ";
                 $query_e .= "order by o.nombre_operacion,tv.fecha_vencimiento,t.app_paterno";
 
@@ -126,7 +126,7 @@ class AlertasMes extends Command {
             $query_d .= "inner join trabajador t on tv.trabajador_id = t.id ";
             $query_d .= "inner join enum_tables p on t.pais_id = p.id ";
             $query_d .= "where tv.caduca = true and v.type = 'Documento' ";
-            $query_d .= "and (tv.fecha_vencimiento  between (DATE_TRUNC('month', now()) at time zone 'utc') and  ((DATE_TRUNC('month', now())  at time zone 'utc') + '1 month')) ";
+            $query_d .= "and (tv.fecha_vencimiento  between (DATE_TRUNC('month', nextmes()) at time zone 'utc') and  ((DATE_TRUNC('month', nextmes())  at time zone 'utc') + '1 month')) ";
             $query_d .= "and p.id = :pais_id ";
             $query_d .= "order by tv.fecha_vencimiento,t.app_paterno ";
 
@@ -152,28 +152,28 @@ class AlertasMes extends Command {
                         Mail::send('emails.alertas', ['pais'=>'Perú','subject'=>'Samuel','data_f'=>$data_f,'data_e'=>$data_e,'data_d'=>$data_d],
                             function($message)
                             {
-                                $message->to('Samuel.Alcantara@hexagonmining.com', 'Samuel Mestanza')->subject('Documentos que vencen este mes.');
+                                $message->to('Samuel.Alcantara@hexagonmining.com', 'Samuel Mestanza')->subject('Documentos que vencen el próximo mes.');
                                 $this->info("Correo enviado a: Samuel.Alcantara@hexagonmining.com");
                             });
 
-                       Mail::send('emails.alertas', ['pais'=>'Perú','subject'=>'Marvick','data_f'=>$data_f,'data_e'=>$data_e,'data_d'=>$data_d],
+                        Mail::send('emails.alertas', ['pais'=>'Perú','subject'=>'Marvick','data_f'=>$data_f,'data_e'=>$data_e,'data_d'=>$data_d],
                             function($message)
                             {
-                                $message->to('Marvick.Aliaga@hexagonmining.com', 'Marvick Aliaga')->subject('Documentos que vencen este mes.');
+                                $message->to('Marvick.Aliaga@hexagonmining.com', 'Marvick Aliaga')->subject('Documentos que vencen el próximo mes.');
                                 $this->info("Correo enviado a: Marvick.Aliaga@hexagonmining.com");
                             });
 
                         Mail::send('emails.alertas', ['pais'=>'Perú','subject'=>'Marilyn','data_f'=>$data_f,'data_e'=>$data_e,'data_d'=>$data_d],
                             function($message)
                             {
-                                $message->to('Marilyn.Castillo@hexagonmining.com', 'Marilyn Castillo')->subject('Documentos que vencen este mes.');
+                                $message->to('Marilyn.Castillo@hexagonmining.com', 'Marilyn Castillo')->subject('Documentos que vencen el próximo mes.');
                                 $this->info("Correo enviado a: Marilyn.Castillo@hexagonmining.com");
                             });
 
                         Mail::send('emails.alertas', ['pais'=>'Perú','subject'=>'Fredy','data_f'=>$data_f,'data_e'=>$data_e,'data_d'=>$data_d],
                             function($message)
                             {
-                                $message->to('fredy.novoa@hexagonmining.com', 'Fredy Novoa')->subject('Documentos que vencen este mes.');
+                                $message->to('fredy.novoa@hexagonmining.com', 'Fredy Novoa')->subject('Documentos que vencen el próximo mes.');
                                 $this->info("Correo enviado a: fredy.novoa@hexagonmining.com");
                             });
 
@@ -185,14 +185,14 @@ class AlertasMes extends Command {
                         Mail::send('emails.alertas', ['pais'=>'Chile','subject'=>'Samuel','data_f'=>$data_f,'data_e'=>$data_e,'data_d'=>$data_d],
                             function($message)
                             {
-                                $message->to('Samuel.Alcantara@hexagonmining.com', 'Samuel Mestanza')->subject('Documentos que vencen este mes.');
+                                $message->to('Samuel.Alcantara@hexagonmining.com', 'Samuel Mestanza')->subject('Documentos que vencen el próximo mes.');
                                 $this->info("Correo enviado a: Samuel.Alcantara@hexagonmining.com");
                             });
 
                         Mail::send('emails.alertas', ['pais'=>'Chile','subject'=>'José','data_f'=>$data_f,'data_e'=>$data_e,'data_d'=>$data_d],
                             function($message)
                             {
-                                $message->to('jose.arevalo@hexagonmining.com', 'José Arévalo')->subject('Documentos que vencen este mes.');
+                                $message->to('jose.arevalo@hexagonmining.com', 'José Arévalo')->subject('Documentos que vencen el próximo mes.');
                                 $this->info("Correo enviado a: jose.arevalo@hexagonmining.com");
                             });
 
@@ -206,7 +206,7 @@ class AlertasMes extends Command {
                         Mail::send('emails.alertas', ['pais'=>'Chile','subject'=>'Carlos','data_f'=>$data_f,'data_e'=>$data_e,'data_d'=>$data_d],
                             function($message)
                             {
-                                $message->to('carlos.daza@hexagonmining.com', 'Carlos Daza')->subject('Documentos que vencen este mes.');
+                                $message->to('carlos.daza@hexagonmining.com', 'Carlos Daza')->subject('Documentos que vencen el próximo mes.');
                                 $this->info("Correo enviado a: Carlos.Daza@hexagonmining.com");
                             });
 

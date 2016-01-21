@@ -149,7 +149,7 @@
         <tr style="background-color: #3c8dbc;
                      color: #ffffff;">
             <td style="padding: 10px; font-size: 12px;">
-                <strong style="">Copyright © 2015 <a href="http://ssoleica.herokuapp.com/" target="_blank" style="color: #fff;
+                <strong style="">Copyright © 2016 <a href="http://ssoleica.com/" target="_blank" style="color: #fff;
                                                                                                                   text-decoration-line: none;
                                                                                                                   text-decoration-style: solid;">Leica Geosystems</a>.</strong> All rights reserved.
             </td>
