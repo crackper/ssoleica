@@ -354,8 +354,8 @@ $(function(){
                             message: 'El Nro de Fotocheck es requerido'
                         },
                         stringLength: {
-                            min: 8,
-                            message: 'Nro de Fotocheck debe tener 8 caracteres como mínimo'
+                            min: 5,
+                            message: 'Nro de Fotocheck debe tener 5 caracteres como mínimo'
                         }
                     }
                 }
