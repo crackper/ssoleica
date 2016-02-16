@@ -47,4 +47,14 @@ class MonthRepository extends Repository {
 
         return $data;
     }
+
+    function getMesesAmpliacion($solicita_id,$contrato_id)
+    {
+        $query = "select * from month where fecha_fin < now()::timestamptz at time zone 'UTC' and date_trunc('year',fecha_fin) = date_trunc('year',now()::timestamptz at time zone 'UTC') ";
+        $query .= "and deleted_at is null and id not in(select month_id from prorroga_contrato where solicita_id = :solicita_id  and contrato_id = :contrato_id)";
+
+        $data = DB::select(DB::Raw($query),array('solicita_id' => $solicita_id,'contrato_id'=> $contrato_id));
+
+        return $data;
+    }
 }

@@ -8,6 +8,7 @@
 
 namespace SSOLeica\Core\Model;
 
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Zizaco\Entrust\EntrustRole;
 
 class Role extends EntrustRole {

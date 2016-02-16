@@ -1,14 +1,22 @@
 <?php namespace SSOLeica\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Session;
+use Nayjest\Grids\Components\Filters\DateRangePicker;
+use Nayjest\Grids\Components\RenderFunc;
 use Nayjest\Grids\SelectFilterConfig;
 use SSOLeica\Core\Model\Contrato;
+use SSOLeica\Core\Model\ProrrogaContrato;
 use SSOLeica\Core\Repository\ContratoRepository;
+use SSOLeica\Core\Repository\HorasHombreRepository;
+use SSOLeica\Core\Repository\MonthRepository;
 use SSOLeica\Core\Repository\OperacionRepository;
+use SSOLeica\Core\Repository\ProrrogaContratoRepository;
 use SSOLeica\Core\Repository\TrabajadorRepository;
 use SSOLeica\Events\ContratoWasSaved;
 use SSOLeica\Http\Requests;
@@ -32,6 +40,7 @@ use Nayjest\Grids\IdFieldConfig;
 
 use Illuminate\Http\Request;
 use Zofe\Rapyd\DataForm\DataForm;
+use SSOLeica\Core\Helpers\Timezone;
 
 class ContratoController extends Controller {
 
@@ -48,20 +57,47 @@ class ContratoController extends Controller {
      * @var ContratoRepository
      */
     private $contrato_repository;
+    /**
+     * @var MonthRepository
+     */
+    private $month_repository;
+    /**
+     * @var HorasHombreRepository
+     */
+    private $horashombre_repository;
+
+    private $pais;
+    private $timezone;
+    /**
+     * @var ProrrogaContratoRepository
+     */
+    private $prorrogacontrato_Repository;
 
 
     /**
      * @param TrabajadorRepository $trabajador_repository
      * @param OperacionRepository $operacion_repository
      * @param ContratoRepository $contrato_repository
+     * @param MonthRepository $month_repository
      */
-    public function __construct(TrabajadorRepository $trabajador_repository, OperacionRepository $operacion_repository, ContratoRepository $contrato_repository)
+    public function __construct(TrabajadorRepository $trabajador_repository,
+                                OperacionRepository $operacion_repository,
+                                ContratoRepository $contrato_repository,
+                                MonthRepository $month_repository,
+                                HorasHombreRepository $horashombre_repository,
+                                ProrrogaContratoRepository $prorrogacontrato_Repository
+                                )
     {
         $this->middleware('auth');
         $this->middleware('workspace');
         $this->trabajador_repository = $trabajador_repository;
         $this->operacion_repository = $operacion_repository;
         $this->contrato_repository = $contrato_repository;
+        $this->month_repository = $month_repository;
+        $this->horashombre_repository = $horashombre_repository;
+        $this->pais = Session::get('pais_id');
+        $this->timezone = Session::get('timezone');
+        $this->prorrogacontrato_Repository = $prorrogacontrato_Repository;
     }
 
     /**
@@ -193,8 +229,9 @@ class ContratoController extends Controller {
 
                         $icon_edit = "<a href='/contrato/edit/$val' data-toggle='tooltip' data-placement='left' title='Editar Contrato'><span class='glyphicon glyphicon-pencil'></span></a>";
                         $icon_remove = "<a href='/contrato/delete/$val' data-toggle='tooltip' data-placement='left' title='Eliminar Contrato' ><span class='glyphicon glyphicon-trash'></span></a>";
+                        $icon_ampliar = "<a href='/contrato/solicita-ampliar-contrato/$val' data-toggle='tooltip' data-placement='left' title='Solicitar Ampliación' ><span class='fa fa-paperclip'></span></a>";
 
-                        return $icon_edit . ' ' . $icon_remove;
+                        return  $icon_edit . ' ' . $icon_remove.' '.$icon_ampliar;
                     })
 
             ])
@@ -388,4 +425,163 @@ class ContratoController extends Controller {
         return $trabajadores;
     }
 
+    public function anySolicitaAmpliarContrato($id = 0)
+    {
+
+        if($id == 0 || is_null(Auth::user()->trabajador_id))
+            return new RedirectResponse(url('/contrato'));
+
+        $data = $this->month_repository->getMesesAmpliacion(Auth::user()->trabajador_id,$id);
+
+        $months = array();
+
+        $months[''] = '[-– Seleccione –-]';
+
+        foreach($data as  $key => $row)
+        {
+            $months[$row->id] = $row->nombre;
+        }
+
+        $contrato = $this->contrato_repository->find($id);
+
+        $form = DataForm::create();
+        $form->hidden('contrato_id','')->rule('required')->insertValue($id);
+        $form->text('contrato','Contrato')
+            ->attr('disabled','disabled')
+            ->insertValue($contrato->nombre_contrato);
+        $form->date('fecha_cierre','Fecha de Cierre')->format('d/m/Y', 'es')->rule('required');
+        $form->select('mes_id','Mes')
+            ->options($months)
+            ->rule('required')
+            ->attr('data-live-search','true');
+        $form->textarea('comentario','Comentario');
+        $form->submit('Guardar');
+        $form->link("/contrato","Cancelar");
+
+        $form->passed(function() use ($form)
+        {
+            $ampliacion = new ProrrogaContrato();
+            $ampliacion->solicita_id = Auth::user()->trabajador_id;
+            $ampliacion->contrato_id = Input::get('contrato_id');
+            $ampliacion->month_id= Input::get('mes_id');
+
+            $fecha = Carbon::createFromFormat('d/m/Y H:i:s',Input::get('fecha_cierre') .' 23:59:59',$this->timezone);
+            $ampliacion->fecha_cierre = $fecha->timezone('UTC');
+
+            $ampliacion->comentario = Input::get('comentario');
+
+            $ampliacion->save();
+
+            Session::flash('message', 'La Solicitud a sido registrada, esta pendiente de aprobación');
+
+            //return new RedirectResponse(url('/contrato'));
+
+            $form->message("La Solicitud a sido registrada, esta pendiente de aprobación");
+            $form->link("/contrato", "Ir a Contratos");
+
+        });
+
+        return $form->view('contrato.ampliacion', compact('form'));
+    }
+
+    public  function getAmpliacionPendiente()
+    {
+        $query = $this->prorrogacontrato_Repository->getProrrogasPendientes();
+
+        $cfg = (new GridConfig())
+            ->setName('gridAmpliacones')
+            ->setDataProvider(
+                new EloquentDataProvider($query)
+            )
+            ->setColumns([
+                (new IdFieldConfig)->setLabel('#'),
+                (new FieldConfig)
+                    ->setName('contrato')
+                    ->setLabel('Contato')
+                    ->setSortable(true)
+                    ->addFilter(
+                        (new FilterConfig)
+                            ->setFilteringFunc(function($val, EloquentDataProvider $provider){
+                                $provider->getBuilder()->where(DB::raw('upper(c.nombre_contrato)'),'like','%'.strtoupper($val).'%');
+                            })
+                    ),
+                (new FieldConfig)
+                    ->setName('mes')
+                    ->setLabel('Mes')
+                    ->setSortable(true)
+                    ->addFilter(
+                        (new FilterConfig)
+                            ->setFilteringFunc(function($val, EloquentDataProvider $provider){
+                                $provider->getBuilder()->where(DB::raw('upper(m.nombre)'),'like','%'.strtoupper($val).'%');
+                            })
+                    ),
+                (new FieldConfig)
+                    ->setName('fecha_cierre')
+                    ->setLabel('Fecha de Cierre')
+                    ->setSortable(true)
+                    ->setCallback(function ($val) {
+                        return Carbon::createFromFormat('Y-m-d H:i:s',$val,'UTC')->timezone($this->timezone)->format('d/m/Y');
+                    }),
+                (new FieldConfig())
+                    ->setName('solicita')
+                    ->setLabel('Solicita')
+                    ->setSortable(true)
+                    ->addFilter(
+                        (new FilterConfig)
+                            ->setFilteringFunc(function ($val, EloquentDataProvider $provider) {
+                                $provider->getBuilder()
+                                    ->where(DB::raw('upper(s.app_paterno)'), 'like', '%' . strtoupper($val) . '%')
+                                    ->orWhere(DB::raw('upper(s.app_materno)'), 'like', '%' . strtoupper($val) . '%')
+                                    ->orWhere(DB::raw('upper(s.nombre)'), 'like', '%' . strtoupper($val) . '%');
+                            })
+                    ),
+                (new FieldConfig)
+                    ->setName('id')
+                    ->setLabel('Acciones')
+                    ->setCallback(function ($val) {
+
+                        $icon_ampliar = "<a href='/contrato/aprobar-ampliar-contrato/$val' data-toggle='tooltip' data-placement='left' title='Aprobar Ampliación' class='btn btn-xs btn-block btn-success' ><span class='fa  fa-thumbs-o-up'></span> Aprobar</a>";
+
+                        return  $icon_ampliar;
+                    })
+            ])
+            ->setComponents([
+                (new THead)
+                    ->setComponents([
+                        (new ColumnHeadersRow),
+                        (new FiltersRow),
+                        (new OneCellRow)
+                            ->setRenderSection(RenderableRegistry::SECTION_BEGIN)
+                            ->setComponents([
+                                (new RecordsPerPage)
+                                    ->setVariants([10,15,20,30,40,50]),
+                                new ColumnsHider,
+                                (new HtmlTag)
+                                    ->setContent('<span class="glyphicon glyphicon-refresh"></span> Filtrar')
+                                    ->setTagName('button')
+                                    ->setRenderSection(RenderableRegistry::SECTION_END)
+                                    ->setAttributes([
+                                        'class' => 'btn btn-success btn-sm'
+                                    ])
+                            ]),
+                        (new HtmlTag)
+                            ->setContent('&nbsp;')
+                            ->setRenderSection(RenderableRegistry::SECTION_END)
+                            ->setTagName('span')
+                    ]),
+                (new TFoot)
+                    ->addComponents([
+                        new Pager,
+                        (new HtmlTag)
+                            ->setAttributes(['class' => 'pull-right'])
+                            ->addComponent(new ShowingRecords)
+                    ])
+            ])->setPageSize(10);
+
+        $grid = new Grid($cfg);
+
+        $text = "<h3>Ampliación de Contratos Pendientes de Aprobación</h3>";
+
+        return view('contrato.ampliacion_pendiente', compact('grid', 'text'));
+    }
 }

@@ -1,12 +1,12 @@
- @extends('app')
+@extends('app')
 
- @section('pageheader')
+@section('pageheader')
     {!! $text !!}
- @endsection
+@endsection
 
  @section('breadcrumb')
      <li>Proyectos</li>
-     <li class="active">Contratos</li>
+     <li class="active">Ampliaciones Pendientes</li>
  @endsection
 
  @section('content')
@@ -46,11 +46,11 @@
          size: 7
      });
 
-     $('.grids-control-records-per-page ').width('70px');
+          $('.grids-control-records-per-page ').width('70px');
 
-     $('.pagination').first().remove();
+          $('.pagination').first().remove();
 
-     $('table').addClass('table-condensed');
+          $('table').addClass('table-condensed');
  });
  </script>
- @endsection
+  @endsection
