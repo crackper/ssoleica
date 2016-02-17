@@ -25,7 +25,7 @@ class AuthController extends Controller {
 	|
 	*/
 
-	use AuthenticatesAndRegistersUsers;//, Prorrogas, Alertas;
+	use AuthenticatesAndRegistersUsers, Prorrogas, Alertas;
     /**
      * @var EnumTablesRepository
      */
@@ -70,10 +70,10 @@ class AuthController extends Controller {
                 $pais_id = Auth::user()->pais_id;
 
                 //alertas
-                //$this->getAlertas($pais_id);
+                $this->getAlertas($pais_id);
 
                 //Cantidad Prorrogas por aprobar
-                //$this->getCantProrrogasPendientes($pais_id);
+                $this->getCantProrrogasPendientes($pais_id);
             }
             else
             {
