@@ -706,8 +706,13 @@ class ContratoController extends Controller {
 
     public function getDetalleAmpliaciones($id=0)
     {
+        if($id == 0)
+            return new RedirectResponse(url('/contrato'));
 
         $contrato = $this->contrato_repository->find($id);
+
+        if(is_null($contrato) )
+            return new RedirectResponse(url('/contrato'));
 
         $query = $this->prorrogacontrato_Repository->getProrrogasContrato($id);
 
