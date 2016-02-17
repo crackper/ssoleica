@@ -149,7 +149,7 @@ class ContratoController extends Controller {
                                     ->where(DB::raw('upper(nombre_contrato)'), 'like', '%' . strtoupper($val) . '%');
                             })
                     ),
-                (new FieldConfig)
+                /*(new FieldConfig)
                     ->setName('gerencia')
                     ->setLabel('Gerencia')
                     ->setSortable(true)
@@ -159,7 +159,7 @@ class ContratoController extends Controller {
                                 $provider->getBuilder()
                                     ->where(DB::raw('upper(gerencia)'), 'like', '%' . strtoupper($val) . '%');
                             })
-                    ),
+                    ),*/
                 (new FieldConfig)
                     ->setName('supervisor')
                     ->setLabel('Ing./Supervisor')
@@ -236,11 +236,23 @@ class ContratoController extends Controller {
                     ->setLabel('Acciones')
                     ->setCallback(function ($val) {
 
-                        $icon_edit = "<a href='/contrato/edit/$val' data-toggle='tooltip' data-placement='left' title='Editar Contrato'><span class='glyphicon glyphicon-pencil'></span></a>";
+                        $icon_edit = "<a href='/contrato/edit/$val' data-toggle='tooltip' data-placement='left' title='Editar Contrato'><span class='fa fa-edit'></span></a>";
                         $icon_remove = "<a href='/contrato/delete/$val' data-toggle='tooltip' data-placement='left' title='Eliminar Contrato' ><span class='glyphicon glyphicon-trash'></span></a>";
-                        $icon_ampliar = "<a href='/contrato/solicita-ampliar-contrato/$val' data-toggle='tooltip' data-placement='left' title='Solicitar Ampliación' ><span class='fa fa-paperclip'></span></a>";
+                        $icon_ampliar = "<a href='/contrato/solicita-ampliar-contrato/$val' data-toggle='tooltip' data-placement='left' title='Solicitar Ampliación' ><span class='fa fa-sitemap'></span></a>";
+                        $icon_det_amp = "<a href='/contrato/detalle-ampliaciones/$val' data-toggle='tooltip' data-placement='left' title='Ver Detalle Ampliaciones' ><span class='fa fa-list-ul'></span></a>";
 
-                        return  $icon_edit . ' ' . $icon_remove.' '.$icon_ampliar;
+                        $actions = '<div class="btn-group"><button type="button" class="btn btn-info btn-flat btn-xs">Actiones</button>
+                      <button aria-expanded="false" type="button" class="btn btn-info btn-flat dropdown-toggle btn-xs" data-toggle="dropdown">
+                        <span class="caret"></span>
+                        <span class="sr-only">Toggle Dropdown</span>
+                      </button>
+                      <ul class="dropdown-menu" role="menu">
+                        <li><a href="#">Editar</a></li>
+                        <li><a href="#">Soliciar Ampliación</a></li>
+                        <li><a href="#">Detalle Ampliaciones</a></li>
+                      </ul></div>';
+
+                        return  $icon_edit . ' ' . $icon_remove.' '.$icon_ampliar.' '.$icon_det_amp;
                     })
 
             ])
@@ -690,5 +702,117 @@ class ContratoController extends Controller {
 
         return new RedirectResponse(url('/contrato/ampliacion-pendiente'));
 
+    }
+
+    public function getDetalleAmpliaciones($id=0)
+    {
+
+        $contrato = $this->contrato_repository->find($id);
+
+        $query = $this->prorrogacontrato_Repository->getProrrogasContrato($id);
+
+        $cfg = (new GridConfig())
+            ->setName('gridAmpliacones')
+            ->setDataProvider(
+                new EloquentDataProvider($query)
+            )
+            ->setColumns([
+                (new IdFieldConfig)->setLabel('#'),
+                (new FieldConfig)
+                    ->setName('mes')
+                    ->setLabel('Mes')
+                    ->setSortable(true)
+                    ->addFilter(
+                        (new FilterConfig)
+                            ->setFilteringFunc(function($val, EloquentDataProvider $provider){
+                                $provider->getBuilder()->where(DB::raw('upper(m.nombre)'),'like','%'.strtoupper($val).'%');
+                            })
+                    ),
+                (new FieldConfig)
+                    ->setName('fecha_cierre')
+                    ->setLabel('Fecha de Cierre')
+                    ->setSortable(true)
+                    ->setCallback(function ($val) {
+                        return Carbon::createFromFormat('Y-m-d H:i:s',$val,'UTC')->timezone($this->timezone)->format('d/m/Y');
+                    }),
+                (new FieldConfig())
+                    ->setName('solicita')
+                    ->setLabel('Solicitado por')
+                    ->setSortable(true)
+                    ->addFilter(
+                        (new FilterConfig)
+                            ->setFilteringFunc(function ($val, EloquentDataProvider $provider) {
+                                $provider->getBuilder()
+                                    ->where(DB::raw('upper(s.app_paterno)'), 'like', '%' . strtoupper($val) . '%')
+                                    ->orWhere(DB::raw('upper(s.app_materno)'), 'like', '%' . strtoupper($val) . '%')
+                                    ->orWhere(DB::raw('upper(s.nombre)'), 'like', '%' . strtoupper($val) . '%');
+                            })
+                    ),
+                (new FieldConfig)
+                    ->setName('created_at')
+                    ->setLabel('Solicitado')
+                    ->setSortable(true)
+                    ->setCallback(function ($val) {
+                        return Carbon::createFromFormat('Y-m-d H:i:s',$val,'UTC')->timezone($this->timezone)->format('d/m/Y H:i a');
+                    }),
+                (new FieldConfig())
+                    ->setName('aprueba')
+                    ->setLabel('Aprobado por')
+                    ->setSortable(true)
+                    ->addFilter(
+                        (new FilterConfig)
+                            ->setFilteringFunc(function ($val, EloquentDataProvider $provider) {
+                                $provider->getBuilder()
+                                    ->where(DB::raw('upper(a.app_paterno)'), 'like', '%' . strtoupper($val) . '%')
+                                    ->orWhere(DB::raw('upper(a.app_materno)'), 'like', '%' . strtoupper($val) . '%')
+                                    ->orWhere(DB::raw('upper(a.nombre)'), 'like', '%' . strtoupper($val) . '%');
+                            })
+                    ),
+                (new FieldConfig)
+                    ->setName('fecha_aprobacion')
+                    ->setLabel('Aprobado')
+                    ->setSortable(true)
+                    ->setCallback(function ($val) {
+                        return Carbon::createFromFormat('Y-m-d H:i:s',$val,'UTC')->timezone($this->timezone)->format('d/m/Y H:i a');
+                    })
+            ])
+            ->setComponents([
+                (new THead)
+                    ->setComponents([
+                        (new ColumnHeadersRow),
+                        (new FiltersRow),
+                        (new OneCellRow)
+                            ->setRenderSection(RenderableRegistry::SECTION_BEGIN)
+                            ->setComponents([
+                                (new RecordsPerPage)
+                                    ->setVariants([10,15,20,30,40,50]),
+                                new ColumnsHider,
+                                (new HtmlTag)
+                                    ->setContent('<span class="glyphicon glyphicon-refresh"></span> Filtrar')
+                                    ->setTagName('button')
+                                    ->setRenderSection(RenderableRegistry::SECTION_END)
+                                    ->setAttributes([
+                                        'class' => 'btn btn-success btn-sm'
+                                    ])
+                            ]),
+                        (new HtmlTag)
+                            ->setContent('&nbsp;')
+                            ->setRenderSection(RenderableRegistry::SECTION_END)
+                            ->setTagName('span')
+                    ]),
+                (new TFoot)
+                    ->addComponents([
+                        new Pager,
+                        (new HtmlTag)
+                            ->setAttributes(['class' => 'pull-right'])
+                            ->addComponent(new ShowingRecords)
+                    ])
+            ])->setPageSize(10);
+
+        $grid = new Grid($cfg);
+
+        $text = "<h3>Detalle Apliaciones Contrato: ".$contrato->nombre_contrato."</h3>";
+
+        return view('contrato.detalle_ampliaciones', compact('grid', 'text'));
     }
 }
