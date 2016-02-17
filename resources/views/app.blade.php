@@ -60,6 +60,35 @@
           <!-- Navbar Right Menu -->
           <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
+             <!-- Messages: style can be found in dropdown.less-->
+             @if(Auth::user()->hasRole(['admin']))
+              <li class="dropdown messages-menu">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  <i class="fa fa-envelope-o"></i>
+                    @if(Session::get('cant_pr') > 0)
+                      <span class="label label-success">{!! Session::get('cant_pr') !!}</span>
+                    @endif
+                </a>
+                <ul class="dropdown-menu">
+                  <li class="header">Tienes {!! Session::get('cant_pr') !!} cosas pendientes</li>
+                  <li>
+                    <!-- inner menu: contains the actual data -->
+                    <ul class="menu">
+                      <!-- start message -->
+                        @if(Session::has('cant_pr') && Session::get('cant_pr') > 0)
+                       <li>
+                         <a href="{!! url('/contrato/ampliacion-pendiente')!!}">
+                             <i class="fa fa-folder-open text-aqua"></i> <b>{!! Session::get('cant_pr') !!}</b> <small> ampliaciones  de contrato que aprobar</small>
+                         </a>
+                       </li>
+                       @endif
+                      <!-- end message -->
+                    </ul>
+                  </li>
+                  <!--li class="footer"><a href="#">See All Messages</a></li-->
+                </ul>
+              </li>
+              @endif
               <!-- Notifications Menu -->
               <li class="dropdown notifications-menu">
                 <!-- Menu toggle button -->

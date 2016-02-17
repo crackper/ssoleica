@@ -11,8 +11,10 @@ use Nayjest\Grids\Components\Filters\DateRangePicker;
 use Nayjest\Grids\Components\RenderFunc;
 use Nayjest\Grids\SelectFilterConfig;
 use SSOLeica\Core\Model\Contrato;
+use SSOLeica\Core\Model\HorasHombre;
 use SSOLeica\Core\Model\ProrrogaContrato;
 use SSOLeica\Core\Repository\ContratoRepository;
+use SSOLeica\Core\Repository\EstadisticasRepository;
 use SSOLeica\Core\Repository\HorasHombreRepository;
 use SSOLeica\Core\Repository\MonthRepository;
 use SSOLeica\Core\Repository\OperacionRepository;
@@ -72,6 +74,10 @@ class ContratoController extends Controller {
      * @var ProrrogaContratoRepository
      */
     private $prorrogacontrato_Repository;
+    /**
+     * @var EstadisticasRepository
+     */
+    private $estadisticas_repository;
 
 
     /**
@@ -85,11 +91,13 @@ class ContratoController extends Controller {
                                 ContratoRepository $contrato_repository,
                                 MonthRepository $month_repository,
                                 HorasHombreRepository $horashombre_repository,
-                                ProrrogaContratoRepository $prorrogacontrato_Repository
+                                ProrrogaContratoRepository $prorrogacontrato_Repository,
+                                EstadisticasRepository $estadisticas_repository
                                 )
     {
         $this->middleware('auth');
         $this->middleware('workspace');
+        $this->middleware('prorroga');
         $this->trabajador_repository = $trabajador_repository;
         $this->operacion_repository = $operacion_repository;
         $this->contrato_repository = $contrato_repository;
@@ -98,6 +106,7 @@ class ContratoController extends Controller {
         $this->pais = Session::get('pais_id');
         $this->timezone = Session::get('timezone');
         $this->prorrogacontrato_Repository = $prorrogacontrato_Repository;
+        $this->estadisticas_repository = $estadisticas_repository;
     }
 
     /**
@@ -524,7 +533,7 @@ class ContratoController extends Controller {
                     }),
                 (new FieldConfig())
                     ->setName('solicita')
-                    ->setLabel('Solicita')
+                    ->setLabel('Solicitado por')
                     ->setSortable(true)
                     ->addFilter(
                         (new FilterConfig)
@@ -535,6 +544,13 @@ class ContratoController extends Controller {
                                     ->orWhere(DB::raw('upper(s.nombre)'), 'like', '%' . strtoupper($val) . '%');
                             })
                     ),
+                (new FieldConfig)
+                    ->setName('created_at')
+                    ->setLabel('Fecha de Solicitud')
+                    ->setSortable(true)
+                    ->setCallback(function ($val) {
+                        return Carbon::createFromFormat('Y-m-d H:i:s',$val,'UTC')->timezone($this->timezone)->format('d/m/Y H:i a');
+                    }),
                 (new FieldConfig)
                     ->setName('id')
                     ->setLabel('Acciones')
@@ -583,5 +599,96 @@ class ContratoController extends Controller {
         $text = "<h3>Ampliación de Contratos Pendientes de Aprobación</h3>";
 
         return view('contrato.ampliacion_pendiente', compact('grid', 'text'));
+    }
+
+    public function getAprobarAmpliarContrato($id = 0)
+    {
+        if($id == 0 || is_null(Auth::user()->trabajador_id))
+            return new RedirectResponse(url('/contrato'));
+
+        $prorroga = $this->prorrogacontrato_Repository->find($id);
+
+
+
+        if(is_null($prorroga) || $prorroga->aprobado)
+            return new RedirectResponse(url('/contrato'));
+
+        //horas hombre
+
+        $horas_hombre = $this->horashombre_repository->getModel()
+                        ->where('month_id', $prorroga->month_id)
+                        ->where('contrato_id', $prorroga->contrato_id)
+                        ->first();
+
+        if(is_null($horas_hombre))
+        {
+            $data['month_id'] = $prorroga->month_id;
+            $data['contrato_id'] = $prorroga->contrato_id;
+
+            $month = $this->month_repository->find($prorroga->month_id);
+
+            $data['fecha_inicio'] =  Timezone::toUTC($month->fecha_inicio,$this->timezone);
+
+            $data['fecha_fin'] = $prorroga->fecha_cierre;
+            $data['isOpen'] = true;
+            $data['conProrroga'] = true;
+
+            $this->horashombre_repository->create($data);
+
+        }
+        else
+        {
+
+            $data['fecha_fin'] = $prorroga->fecha_cierre;
+            $data['isOpen'] = true;
+            $data['conProrroga'] = true;
+
+            $this->horashombre_repository->update($data,$horas_hombre->id);
+
+        }
+
+        //estadisticas
+        $estadisticas = $this->estadisticas_repository->getModel()
+            ->where('month_id', $prorroga->month_id)
+            ->where('contrato_id', $prorroga->contrato_id)
+            ->first();
+
+
+        if(is_null($estadisticas))
+        {
+            $data['month_id'] = $prorroga->month_id;
+            $data['contrato_id'] = $prorroga->contrato_id;
+
+            $month = $this->month_repository->find($prorroga->month_id);
+
+            $data['fecha_inicio'] =  Timezone::toUTC($month->fecha_inicio,$this->timezone);
+
+            $data['fecha_fin'] = $prorroga->fecha_cierre;
+            $data['isOpen'] = true;
+            $data['conProrroga'] = true;
+
+            $this->estadisticas_repository->create($data);
+
+        }
+        else
+        {
+            $data['fecha_fin'] = $prorroga->fecha_cierre;
+            $data['isOpen'] = true;
+            $data['conProrroga'] = true;
+
+            $this->estadisticas_repository->update($data,$estadisticas->id);
+        }
+
+
+        $acept['aprobado'] = true;
+        $acept['fecha_aprobacion'] = Carbon::now($this->timezone)->timezone('UTC');
+        $acept['aprueba_id'] = Auth::user()->trabajador_id;
+
+        $this->prorrogacontrato_Repository->update($acept,$prorroga->id);
+
+        $this->middleware('ProrrogaMiddleware');
+
+        return new RedirectResponse(url('/contrato/ampliacion-pendiente'));
+
     }
 }

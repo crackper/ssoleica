@@ -23,6 +23,8 @@ Route::controllers([
 Route::group(['middleware' => ['entrust', 'auth'], 'roles' => 'admin'], function(){
     Route::controller('user','UserController');
     Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
+    Route::get('/contrato/ampliacion-pendiente','ContratoController@getAmpliacionPendiente');
+    Route::get('/contrato/aprobar-ampliar-contrato/{id}','ContratoController@getAprobarAmpliarContrato');
 });
 
 Route::get('/', 'WelcomeController@index');
@@ -39,9 +41,10 @@ Route::group(['middleware' => ['entrust', 'auth'], 'roles' => array('admin','apr
     Route::controller('contrato','ContratoController');
     Route::controller('horasHombre','HorasHombreController');
     Route::controller('estadisticas','EstadisticaSegController');
-    Route::get('trabajador/{id}/delete',['as'=>'index.delete','uses'=>'TrabajadorController@delete']);
     Route::controller('trabajador','TrabajadorController');
     Route::controller('incidente','IncidenteController');
+
+    Route::get('trabajador/{id}/delete',['as'=>'index.delete','uses'=>'TrabajadorController@delete']);
 });
 
 Route::group(['middleware' => ['entrust', 'auth'], 'roles' => array('admin','apr','joperaciones','gerente')], function(){

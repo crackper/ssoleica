@@ -28,6 +28,7 @@ class Kernel extends HttpKernel {
 		'auth.basic' => 'Illuminate\Auth\Middleware\AuthenticateWithBasicAuth',
 		'guest' => 'SSOLeica\Http\Middleware\RedirectIfAuthenticated',
         'workspace' => 'SSOLeica\Http\Middleware\WorkSpace',
+        'prorroga' => 'SSOLeica\Http\Middleware\ProrrogaMiddleware',
         'entrust' => 'SSOLeica\Http\Middleware\EntrustMiddleware'
 	];
 

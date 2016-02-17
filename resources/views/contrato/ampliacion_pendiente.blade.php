@@ -6,6 +6,7 @@
 
  @section('breadcrumb')
      <li>Proyectos</li>
+     <li><a href="/contrato">Contratos</a></li>
      <li class="active">Ampliaciones Pendientes</li>
  @endsection
 
