@@ -1,8 +1,6 @@
-PHP Fatal error:  Uncaught exception 'InvalidArgumentException' with message 'A non-empty PSR-4 prefix must end with a namespace separator.' in /Users/Samuel/PhpstormProjects/SSOLeicaDev/vendor/composer/ClassLoader.php:225
-Stack trace:
-#0 /Users/Samuel/PhpstormProjects/SSOLeicaDev/vendor/composer/autoload_real.php(33): Composer\Autoload\ClassLoader->setPsr4('SSOLeica\\Core\\T...', Array)
-#1 /Users/Samuel/PhpstormProjects/SSOLeicaDev/vendor/autoload.php(7): ComposerAutoloaderInit7cdbaa693ccca30d1a2548b833d64f9d::getLoader()
-#2 /Users/Samuel/PhpstormProjects/SSOLeicaDev/bootstrap/autoload.php(17): require('/Users/Samuel/P...')
-#3 /Users/Samuel/PhpstormProjects/SSOLeicaDev/artisan(16): require('/Users/Samuel/P...')
-#4 {main}
-  thrown in /Users/Samuel/PhpstormProjects/SSOLeicaDev/vendor/composer/ClassLoader.php on line 225
+Cerrando Horas Hombre
+-----------------------------
+2016-02-17 21:25:01 - cerrando: Perú
+OK
+2016-02-17 21:25:01 - cerrando: Chile
+OK

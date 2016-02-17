@@ -17,7 +17,7 @@ use Symfony\Component\Console\Helper\Helper;
 
 class PaisController extends Controller {
 
-    use Prorrogas, Alertas;
+   // use Prorrogas, Alertas;
 
     /**
      * @var EnumTables
@@ -55,10 +55,10 @@ class PaisController extends Controller {
         $pais_id = Input::get('pais_id');
 
         //alertas
-        $this->getAlertas($pais_id);
+        //$this->getAlertas($pais_id);
 
         //Cantidad Prorrogas por aprobar
-        $this->getCantProrrogasPendientes($pais_id);
+        //$this->getCantProrrogasPendientes($pais_id);
 
         return new RedirectResponse(url('/home'));
     }
