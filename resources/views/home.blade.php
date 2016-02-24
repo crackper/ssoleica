@@ -35,10 +35,11 @@
                     <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
                 </div>
             </div>
-            <div class="box-body">
-                <a href="/trabajador/create">Registrar Nuevo Trabajador</a><br/>
-               {!! link_to('/trabajador/index','Información de Trabajadores') !!}<br/>
-
+            <div class="box-body no-padding">
+              <ul class="nav nav-pills nav-stacked">
+                <li><a href="/trabajador"><i class="fa fa-list-alt"></i>{{ trans('home.trabajadores') }}</a></li>
+                <li><a href="/trabajador/create"><i class="fa fa-plus-circle"></i>{{ trans('home.trabajadores_create') }}</a></li>
+              </ul>
             </div>
 
         </div>
@@ -54,6 +55,7 @@
             </div>
             <div class="box-body">
                 @if(Auth::user()->hasRole(['admin','apr']))
+                <b>Pendiente</b><br/>
                 <a href="#">Registar EHSE Anual</a><br/>
                 <a href="#">Registar Cumplimiento EHSE</a><br/>
                 <a href="#">Registar EHSE Personalizado</a><br/>
@@ -78,9 +80,12 @@
                             <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
                         </div>
                     </div>
-                    <div class="box-body">
-                        <a href="/incidente/create">{{ trans('home.seguridad_create') }}</a><br/>
-                        <a href="/incidente">{{ trans('home.seguridad_view') }}</a>
+                    <div class="box-body no-padding">
+                      <ul class="nav nav-pills nav-stacked">
+                        <li><a href="#"><i class="fa fa-gears"></i>Pendiente / En Construcción</a></li>
+                        <li><a href="/incidente"><i class="fa fa-list-alt"></i>{{ trans('home.seguridad_view') }}</a></li>
+                        <li><a href="/incidente/create"><i class="fa fa-plus-circle"></i>{{ trans('home.seguridad_create') }}</a></li>
+                      </ul>
                     </div>
                 </div>
 
@@ -91,11 +96,14 @@
                         <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
                     </div>
                 </div>
-                <div class="box-body">
-                    <a href="/horasHombre/create"> Registar Hombre (HHT)</a><br/>
-                    <a href="/horasHombre/">Horas Hombre Trabajadas (HHT)</a><br/>
-                    <a href="/estadisticas/create">Registar Estadisticas</a><br/>
-                    <a href="/estadisticas/">Historial Estadisticas</a><br/>
+                <div class="box-body no-padding">
+                    <ul class="nav nav-pills nav-stacked">
+                    <li><a href="/horasHombre"><i class="fa fa-list-alt"></i>{{ trans('home.horashombre_view') }}</a></li>
+                    <li><a href="/horasHombre/create"><i class="fa fa-plus-circle"></i>{{ trans('home.horashombre_create') }}</a></li>
+                    <li><a href="/estadisticas/create"><i class="fa fa-plus-circle"></i>{{ trans('home.estadisticas_create') }}</a></li>
+                    <li><a href="/estadisticas"><i class="fa fa-list-alt"></i>{{ trans('home.estadisticas_view') }}</a></li>
+
+                    </ul>
                 </div>
             </div>
 
@@ -113,24 +121,29 @@
                         <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
                     </div>
                 </div>
-                <div class="box-body">
-                    <a href="/operacion/create">Registrar Proyecto</a><br/>
-                    <a href="/contrato/create">Registrar Contrato</a><br/>
-                    <a href="/operacion">Información de Proyectos</a><br/>
-                    <a href="/contrato">Información de Contratos</a>
+                <div class="box-body no-padding">
+                    <ul class="nav nav-pills nav-stacked">
+                        <li><a href="/operacion/create"><i class="fa fa-plus-circle"></i> {{ trans('home.proyectos_create') }}</a></li>
+                        <li><a href="/contrato/create"> <i class="fa fa-plus-circle"></i>{{ trans('home.contratos_create') }}</a></li>
+                        <li><a href="/operacion"><i class="fa fa-list-alt"></i>{{ trans('home.proyectos') }}</a></li>
+                        <li><a href="/contrato"><i class="fa fa-list-alt"></i>{{ trans('home.contratos') }}</a></li>
+                    </ul>
+
                 </div>
             </div>
         @endif
         @if(Auth::user()->hasRole(['admin','apr','joperaciones','gerente']))
                 <div class="box box-danger">
                     <div class="box-header">
-                        <h3 class="box-title">Repositorio Archivos</h3>
+                        <h3 class="box-title">{{ trans('home.repositorio_view') }}</h3>
                         <div class="box-tools pull-right">
                             <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
                         </div>
                     </div>
-                    <div class="box-body">
-                        <a href="{!! env('URL_FILEMANAGER', '/repository') !!}">Repositorio</a><br/>
+                    <div class="box-body no-padding">
+                        <ul class="nav nav-pills nav-stacked">
+                            <li><a href="{!! env('URL_FILEMANAGER', '/repository') !!}"><i class="fa fa-archive"></i>Repositorio</a></li>
+                        </ul>
                     </div>
                 </div>
         @endif
@@ -147,10 +160,13 @@
                                 <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
                             </div>
                         </div>
-                        <div class="box-body">
-                            <a href="/user/create">{{ trans('home.user_create') }}</a><br/>
-                            <a href="/user">{{ trans('home.user_view') }}</a><br/>
-                            <a href="#">{{ trans('home.meses_view') }}</a>
+                        <div class="box-body no-padding">
+                            <ul class="nav nav-pills nav-stacked">
+                                <li><a href="/user/create"><i class="fa fa-plus-circle"></i>{{ trans('home.user_create') }}</a></li>
+                                <li><a href="/user"><i class="fa fa-list-alt"></i>{{ trans('home.user_view') }}</a></li>
+                                <li><a href="/enums/create"> <i class="fa fa-plus-circle"></i> {{ trans('home.enum_create') }}</a></li>
+                                <li><a href="/enums"><i class="fa fa-list-alt"></i>{{ trans('home.enum_view') }}</a></li>
+                            </ul>
                         </div>
                     </div>
 

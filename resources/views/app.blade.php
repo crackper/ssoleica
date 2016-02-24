@@ -227,33 +227,33 @@
             <li class="treeview">
               <a href="#"><i class="fa fa-cube"></i> <span>{{ trans('home.general') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
               <ul class="treeview-menu">
-                <li><a href="/trabajador">{{ trans('home.trabajadores') }}</a></li>
-                <li><a href="/trabajador/create">{{ trans('home.trabajadores_create') }}</a></li>
+                <li><a href="/trabajador"><i class="fa fa-list-alt"></i>{{ trans('home.trabajadores') }}</a></li>
+                <li><a href="/trabajador/create"><i class="fa fa-plus-circle"></i>{{ trans('home.trabajadores_create') }}</a></li>
               </ul>
             </li>
             <li class="treeview">
                 <a href="#"><i class="fa fa-database"></i> <span>{{ trans('home.proyectos_title') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
                  <ul class="treeview-menu">
-                   <li><a href="/operacion">{{ trans('home.proyectos') }}</a></li>
-                   <li><a href="/contrato">{{ trans('home.contratos') }}</a></li>
-                   <li><a href="/operacion/create">{{ trans('home.proyectos_create') }}</a></li>
-                   <li><a href="/contrato/create">{{ trans('home.contratos_create') }}</a></li>
+                   <li><a href="/operacion"><i class="fa fa-list-alt"></i>{{ trans('home.proyectos') }}</a></li>
+                   <li><a href="/contrato"><i class="fa fa-list-alt"></i>{{ trans('home.contratos') }}</a></li>
+                   <li><a href="/operacion/create"><i class="fa fa-plus-circle"></i>{{ trans('home.proyectos_create') }}</a></li>
+                   <li><a href="/contrato/create"><i class="fa fa-plus-circle"></i>{{ trans('home.contratos_create') }}</a></li>
                  </ul>
             </li>
             <li class="treeview">
                  <a href="#"><i class="fa fa-rebel"></i> <span>{{ trans('home.seguridad_title') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
                   <ul class="treeview-menu">
-                    <li><a href="/incidente">{{ trans('home.seguridad_view') }}</a></li>
-                    <li><a href="/incidente/create">{{ trans('home.seguridad_create') }}</a></li>
+                    <li><a href="/incidente"><i class="fa fa-list-alt"></i>{{ trans('home.seguridad_view') }}</a></li>
+                    <li><a href="/incidente/create"><i class="fa fa-plus-circle"></i>{{ trans('home.seguridad_create') }}</a></li>
                   </ul>
              </li>
             <li class="treeview">
                  <a href="#"><i class="fa fa-pie-chart"></i> <span>{{ trans('home.estadisticas_title') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
                   <ul class="treeview-menu">
-                    <li><a href="/horasHombre">{{ trans('home.horashombre_view') }}</a></li>
-                    <li><a href="/horasHombre/create">{{ trans('home.horashombre_create') }}</a></li>
-                    <li><a href="/estadisticas/create">{{ trans('home.estadisticas_create') }}</a></li>
-                    <li><a href="/estadisticas">{{ trans('home.estadisticas_view') }}</a></li>
+                    <li><a href="/horasHombre"><i class="fa fa-list-alt"></i>{{ trans('home.horashombre_view') }}</a></li>
+                    <li><a href="/horasHombre/create"><i class="fa fa-plus-circle"></i>{{ trans('home.horashombre_create') }}</a></li>
+                    <li><a href="/estadisticas/create"><i class="fa fa-plus-circle"></i>{{ trans('home.estadisticas_create') }}</a></li>
+                    <li><a href="/estadisticas"><i class="fa fa-list-alt"></i>{{ trans('home.estadisticas_view') }}</a></li>
                   </ul>
              </li>
             @endif
@@ -264,8 +264,15 @@
             <li class="treeview">
                  <a href="#"><i class="fa fa-cubes"></i> <span>{{ trans('home.user_title') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
                   <ul class="treeview-menu">
-                    <li><a href="/user/create">{{ trans('home.user_create') }}</a></li>
-                    <li><a href="/user">{{ trans('home.user_view') }}</a></li>
+                    <li><a href="/user/create"><i class="fa fa-plus-circle"></i>{{ trans('home.user_create') }}</a></li>
+                    <li><a href="/user"><i class="fa fa-list-alt"></i>{{ trans('home.user_view') }}</a></li>
+                  </ul>
+             </li>
+            <li class="treeview">
+                 <a href="#"><i class="fa fa-list"></i> <span>{{ trans('home.enum_title') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
+                  <ul class="treeview-menu">
+                    <li><a href="/enums/create"><i class="fa fa-plus-circle"></i>{{ trans('home.enum_create') }}</a></li>
+                    <li><a href="/enums"><i class="fa fa-list-alt"></i>{{ trans('home.enum_view') }}</a></li>
                   </ul>
              </li>
              @endif

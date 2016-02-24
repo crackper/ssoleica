@@ -30,8 +30,8 @@ return [
     'contratos' => 'Información de Contratos',
     'contratos_create' => 'Registrar Contrato',
     'estadisticas_title' => 'Estadisticas Seguridad',
-    'horashombre_view'=>'Horas Hombre Trabajadas (HHT)',
-    'horashombre_create' => 'Registar Hombre (HHT)',
+    'horashombre_view'=>'Hrs. Hombre (HHT)',
+    'horashombre_create' => 'Registar Hrs. Hombre (HHT)',
     'estadisticas_view'=> 'Historial Estadisticas',
     'estadisticas_create'=>'Registar Estadisticas',
     'seguridad_title' => 'Seguridad',
@@ -44,6 +44,9 @@ return [
     'user_create'=>'Registar Usuario',
     'roles_view'=>'Roles',
     'roles_create'=>'Registrar Rol',
-    'help_view'=>'Ayuda'
+    'help_view'=>'Ayuda',
+    'enum_title' => 'Enums',
+    'enum_view'=>'Lista de Enums',
+    'enum_create'=>'Registar Enum'
 
 ];
