@@ -129,7 +129,7 @@ class EnumTablesController extends Controller {
                     ->setCallback(function ($val) {
 
                         $icon_edit = "<a href='/enums/edit/$val' data-toggle='tooltip' data-placement='left' title='Editar Enum'><span class='fa fa-edit'></span></a>";
-                        $icon_remove = "<a href='/enums/delete/$val' data-toggle='tooltip' data-placement='left' title='Eliminar Enum' onclick='return confirm('Desea eliminar el Enum?');' ><span class='glyphicon glyphicon-trash'></span></a>";
+                        $icon_remove = "<a href='/enums/delete/$val' data-toggle='tooltip' data-placement='left' title='Eliminar Enum' onclick='return confirm(\"Desea eliminar el Enum?\");' ><span class='glyphicon glyphicon-trash'></span></a>";
 
                         return  $icon_edit . ' ' . $icon_remove;
                     })
