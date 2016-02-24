@@ -7,7 +7,7 @@ use SSOLeica\Core\Traits\Prorrogas;
 
 class ProrrogaMiddleware {
 
-	use Prorrogas;
+	use \SSOLeica\Core\Traits\Prorrogas;
 
     /**
 	 * Handle an incoming request.

@@ -17,7 +17,7 @@ use Symfony\Component\Console\Helper\Helper;
 
 class PaisController extends Controller {
 
-   use Prorrogas, Alertas;
+   use \SSOLeica\Core\Traits\Prorrogas, \SSOLeica\Core\Traits\Alertas;
 
     /**
      * @var EnumTables
