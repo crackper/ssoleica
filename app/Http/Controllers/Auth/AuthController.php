@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use SSOLeica\Core\Repository\EnumTablesRepository;
 use SSOLeica\Core\Traits\Alertas;
-//use SSOLeica\Core\Traits\Prorrogas;
+use SSOLeica\Core\Traits\Prorrogas;
 use SSOLeica\Http\Controllers\Controller;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\Auth\Registrar;

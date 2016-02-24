@@ -37,7 +37,7 @@
 			"SSOLeica\\": "app/",
             "Database\\Seeds\\":"database/seeds",
             "SSOLeica\\Core\\": "core/",
-            "SSOLeica\\Core\\Traits\\": "app/core/traits/"
+            "SSOLeica\\Core\\Traits\\": "traits/"
 		}
 	},
 	"autoload-dev": {
