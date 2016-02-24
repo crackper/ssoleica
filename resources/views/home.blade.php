@@ -166,6 +166,8 @@
                                 <li><a href="/user"><i class="fa fa-list-alt"></i>{{ trans('home.user_view') }}</a></li>
                                 <li><a href="/enums/create"> <i class="fa fa-plus-circle"></i> {{ trans('home.enum_create') }}</a></li>
                                 <li><a href="/enums"><i class="fa fa-list-alt"></i>{{ trans('home.enum_view') }}</a></li>
+                                <li><a href="/permisos/create"> <i class="fa fa-plus-circle"></i> {{ trans('home.permiso_create') }}</a></li>
+                                <li><a href="/permisos"><i class="fa fa-list-alt"></i>{{ trans('home.permiso_view') }}</a></li>
                             </ul>
                         </div>
                     </div>

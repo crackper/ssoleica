@@ -47,6 +47,9 @@ return [
     'help_view'=>'Ayuda',
     'enum_title' => 'Enums',
     'enum_view'=>'Lista de Enums',
-    'enum_create'=>'Registar Enum'
+    'enum_create'=>'Registar Enum',
+    'permiso_title' => 'Permisos',
+    'permiso_view'=>'Lista de Permisos',
+    'permiso_create'=>'Registar Permiso'
 
 ];

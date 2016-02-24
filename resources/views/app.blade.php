@@ -275,6 +275,13 @@
                     <li><a href="/enums"><i class="fa fa-list-alt"></i>{{ trans('home.enum_view') }}</a></li>
                   </ul>
              </li>
+            <li class="treeview">
+                 <a href="#"><i class="fa fa-unlock"></i> <span>{{ trans('home.permiso_title') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
+                  <ul class="treeview-menu">
+                    <li><a href="/permisos/create"><i class="fa fa-plus-circle"></i>{{ trans('home.permiso_create') }}</a></li>
+                    <li><a href="/permisos"><i class="fa fa-list-alt"></i>{{ trans('home.permiso_view') }}</a></li>
+                  </ul>
+             </li>
              @endif
           </ul><!-- /.sidebar-menu -->
         </section>
