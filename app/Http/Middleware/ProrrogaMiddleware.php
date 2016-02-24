@@ -3,7 +3,7 @@
 use Closure;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
-use SSOLeica\Core\Traits\Prorrogas;
+//use SSOLeica\Core\Traits\Prorrogas;
 
 class ProrrogaMiddleware {
 
