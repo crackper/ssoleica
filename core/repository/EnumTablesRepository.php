@@ -105,7 +105,7 @@ class EnumTablesRepository extends Repository {
 
     public function getTypes()
     {
-        $query = EnumTables::distinct()->select('type');
+        $query = EnumTables::distinct()->select('type')->orderBy('type','ASC');
 
         return $query;
     }

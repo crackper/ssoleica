@@ -80,7 +80,7 @@ class EnumTablesController extends Controller {
                             ->setFilteringFunc(function($val, EloquentDataProvider $provider){
                                 $provider->getBuilder()->where('type','=',$val);
                             })
-                    ),
+                    )->setSorting('ASC'),
                 (new FieldConfig)
                     ->setName('name')
                     ->setLabel('Name')
