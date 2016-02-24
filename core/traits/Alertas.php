@@ -18,11 +18,23 @@ trait Alertas{
 
         $pais = EnumTables::find($pais_id);
 
-        $data = json_decode($pais->data);
+        $timezone = "";
+
+        if(is_null($pais->data))
+        {
+            $timezone = "UTC";
+            Session::put('error_timezone', 'Nose ha registrado una zona horaria para '.$pais->name);
+        }
+        else
+        {
+            $data = json_decode($pais->data);
+            $timezone = $data[0];
+            Session::forget('error_timezone');
+        }
 
         Session::put('pais_id', $pais_id);
         Session::put('pais_name', $pais->name);
-        Session::put('timezone', $data->timezone);
+        Session::put('timezone', $timezone);
 
         $total = 0;
         $total_nxm = 0;

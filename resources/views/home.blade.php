@@ -13,7 +13,17 @@
 @endsection
 
 @section('content')
+
 <div class="row">
+        @if (Session::has('error_timezone'))
+           <div class="col-lg-12 col-xs-12">
+            <div class="alert alert-danger alert-dismissible fade in" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h4><i class="icon fa fa-ban"></i> Alerta!</h4>
+                <h4>{{ Session::get('error_timezone') }}</h4>
+            </div>
+            </div>
+        @endif
 
     <div class="col-lg-3 col-xs-12">
 

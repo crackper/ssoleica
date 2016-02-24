@@ -1,12 +1,12 @@
 @extends('app')
 
  @section('pageheader')
-    Información del Contrato
+    Editar Enum
  @endsection
 
 @section('breadcrumb')
-    <li>Administracion</li>
-    <li><a href="/enums">Enums</a></li>
+    <li>Administración</li>
+    <li><a href="/contrato">Contratos</a></li>
     <li class="active">Editar</li>
 @endsection
 

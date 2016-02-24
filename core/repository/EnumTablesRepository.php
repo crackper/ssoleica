@@ -8,6 +8,8 @@
 
 namespace SSOLeica\Core\Repository;
 
+use SSOLeica\Core\Helpers\EnumTable;
+use SSOLeica\Core\Helpers\EnumType;
 use SSOLeica\Core\Model\EnumTables;
 use SSOLeica\Core\Data\Repository;
 use SSOLeica\Core\Model\TrabajadorVencimiento;
@@ -26,21 +28,21 @@ class EnumTablesRepository extends Repository {
 
     function getCargos()
     {
-        $query = EnumTables::where('type','=','Cargo')->get();
+        $query = EnumTables::where('type','=',EnumType::Cargo)->get();
 
         return $query;
     }
 
     function getPaises()
     {
-        $query = EnumTables::where('type','=','Pais')->get();
+        $query = EnumTables::where('type','=',EnumType::Pais)->get();
 
         return $query;
     }
 
     function getProfesiones()
     {
-        $query = EnumTables::where('type','=','Profesion')->get();
+        $query = EnumTables::where('type','=',EnumType::Profesion)->get();
 
         return $query;
     }
@@ -54,21 +56,21 @@ class EnumTablesRepository extends Repository {
 
     function getPartesAfectadas()
     {
-        $query = EnumTables::where('type','=','ParteAfectada')->get();
+        $query = EnumTables::where('type','=',EnumType::ParteAfectada)->get();
 
         return $query;
     }
 
     function getConsecuencias()
     {
-        $query = EnumTables::where('type','=','Consecuencia')->get();
+        $query = EnumTables::where('type','=',EnumType::Consecuencia)->get();
 
         return $query;
     }
 
     function getEntidades()
     {
-        $query = EnumTables::where('type','=','Entidad')->get();
+        $query = EnumTables::where('type','=',EnumType::Profesion)->get();
 
         return $query;
     }
@@ -81,7 +83,7 @@ class EnumTablesRepository extends Repository {
             ->select('trabajador_vencimiento.vencimiento_id')
             ->lists('trabajador_vencimiento.vencimiento_id');
 
-        $query = EnumTables::where('type','=','ExamenMedico')
+        $query = EnumTables::where('type','=',EnumType::ExamenMedico)
             ->whereNotIn('id',$in_examen)
             ->lists('name','id');
 
@@ -94,9 +96,16 @@ class EnumTablesRepository extends Repository {
             ->select('trabajador_vencimiento.vencimiento_id')
             ->lists('trabajador_vencimiento.vencimiento_id');
 
-        $query = EnumTables::where('type','=','Documento')
+        $query = EnumTables::where('type','=',EnumType::Documento)
             ->whereNotIn('id',$in_examen)
             ->lists('name','id');
+
+        return $query;
+    }
+
+    public function getTypes()
+    {
+        $query = EnumTables::distinct()->select('type');
 
         return $query;
     }

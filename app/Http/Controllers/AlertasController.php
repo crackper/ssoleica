@@ -48,7 +48,7 @@ class AlertasController extends Controller {
             //fotochecks
             $query_f = "select p.name as  pais,o.nombre_operacion as operacion, (t.nombre ||' '|| t.app_paterno ||' '|| t.app_materno) as trabajador, ";
             $query_f .= "tc.nro_fotocheck as fotocheck, ";
-            $query_f .= "tc.fecha_vencimiento at time zone 'utc' at time zone (p.data->>'timezone')::text as fecha_vencimiento ";
+            $query_f .= "tc.fecha_vencimiento at time zone 'utc' at time zone (p.data->>0)::text as fecha_vencimiento ";
             $query_f .= "from trabajador_contrato tc ";
             $query_f .= "inner join trabajador t on tc.trabajador_id = t.id ";
             $query_f .= "inner join contrato c on tc.contrato_id = c.id ";
@@ -75,7 +75,7 @@ class AlertasController extends Controller {
             $query_e = "select p.name as  pais,o.nombre_operacion as operacion,v.type, ";
             $query_e .= "(t.nombre ||' '|| t.app_paterno ||' '|| t.app_materno) as trabajador, ";
             $query_e .= "v.name as vencimiento, ";
-            $query_e .= "tv.fecha_vencimiento at time zone 'utc' at time zone (p.data->>'timezone')::text as fecha_vencimiento ";
+            $query_e .= "tv.fecha_vencimiento at time zone 'utc' at time zone (p.data->>0)::text as fecha_vencimiento ";
             $query_e .= "from trabajador_vencimiento tv ";
             $query_e .= "inner join enum_tables v on tv.vencimiento_id = v.id ";
             $query_e .= "inner join trabajador t on tv.trabajador_id = t.id ";
@@ -101,7 +101,7 @@ class AlertasController extends Controller {
         $query_d = "select p.name as  pais,v.type, ";
         $query_d .= "(t.nombre ||' '|| t.app_paterno ||' '|| t.app_materno) as trabajador, ";
         $query_d .= "v.name as vencimiento, ";
-        $query_d .= "tv.fecha_vencimiento at time zone 'utc' at time zone (p.data->>'timezone')::text as fecha_vencimiento ";
+        $query_d .= "tv.fecha_vencimiento at time zone 'utc' at time zone (p.data->>0)::text as fecha_vencimiento ";
         $query_d .= "from trabajador_vencimiento tv ";
         $query_d .= "inner join enum_tables v on tv.vencimiento_id = v.id ";
         $query_d .= "inner join trabajador t on tv.trabajador_id = t.id ";
@@ -139,7 +139,7 @@ class AlertasController extends Controller {
             //fotochecks
             $query_f = "select p.name as  pais,o.nombre_operacion as operacion, (t.nombre ||' '|| t.app_paterno ||' '|| t.app_materno) as trabajador, ";
             $query_f .= "tc.nro_fotocheck as fotocheck, ";
-            $query_f .= "tc.fecha_vencimiento at time zone 'utc' at time zone (p.data->>'timezone')::text as fecha_vencimiento ";
+            $query_f .= "tc.fecha_vencimiento at time zone 'utc' at time zone (p.data->>0)::text as fecha_vencimiento ";
             $query_f .= "from trabajador_contrato tc ";
             $query_f .= "inner join trabajador t on tc.trabajador_id = t.id ";
             $query_f .= "inner join contrato c on tc.contrato_id = c.id ";
@@ -166,7 +166,7 @@ class AlertasController extends Controller {
             $query_e = "select p.name as  pais,o.nombre_operacion as operacion,v.type, ";
             $query_e .= "(t.nombre ||' '|| t.app_paterno ||' '|| t.app_materno) as trabajador, ";
             $query_e .= "v.name as vencimiento, ";
-            $query_e .= "tv.fecha_vencimiento at time zone 'utc' at time zone (p.data->>'timezone')::text as fecha_vencimiento ";
+            $query_e .= "tv.fecha_vencimiento at time zone 'utc' at time zone (p.data->>0)::text as fecha_vencimiento ";
             $query_e .= "from trabajador_vencimiento tv ";
             $query_e .= "inner join enum_tables v on tv.vencimiento_id = v.id ";
             $query_e .= "inner join trabajador t on tv.trabajador_id = t.id ";
@@ -192,7 +192,7 @@ class AlertasController extends Controller {
         $query_d = "select p.name as  pais,v.type, ";
         $query_d .= "(t.nombre ||' '|| t.app_paterno ||' '|| t.app_materno) as trabajador, ";
         $query_d .= "v.name as vencimiento, ";
-        $query_d .= "tv.fecha_vencimiento at time zone 'utc' at time zone (p.data->>'timezone')::text as fecha_vencimiento ";
+        $query_d .= "tv.fecha_vencimiento at time zone 'utc' at time zone (p.data->>0)::text as fecha_vencimiento ";
         $query_d .= "from trabajador_vencimiento tv ";
         $query_d .= "inner join enum_tables v on tv.vencimiento_id = v.id ";
         $query_d .= "inner join trabajador t on tv.trabajador_id = t.id ";

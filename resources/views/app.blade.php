@@ -33,7 +33,7 @@
          @yield('scripts')
   </head>
 
-  <body class="skin-blue fixed">
+  <body class="skin-blue fixed sidebar-mini">
     <div class="wrapper">
 
       <!-- Main Header -->

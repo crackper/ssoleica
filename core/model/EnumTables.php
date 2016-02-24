@@ -20,4 +20,33 @@ class EnumTables extends Model {
         return $this->hasMany('SSOLeica\Core\Model\EnumCategories',$foreignKey = 'category_id',$localKey='id');
     }
 
+    public function getDataStringAttribute()
+    {
+        $data = "";
+
+        if(!is_null($this->data))
+        {
+            $json = json_decode($this->data);
+            $data = implode(',',$json);
+        }
+
+        return $data;
+    }
+
+    public function setDataStringAttribute($val)
+    {
+        $data = null;
+
+        if(!is_null($val) && $val != "")
+        {
+            $data = json_encode(explode(',',$val));
+        }
+        $this->data = $data;
+    }
+
+    public function getTypeLabelAttribute()
+    {
+        return $this->type;
+    }
+
 }

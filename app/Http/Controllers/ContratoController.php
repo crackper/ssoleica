@@ -816,7 +816,7 @@ class ContratoController extends Controller {
 
         $grid = new Grid($cfg);
 
-        $text = "<h3>Detalle Apliaciones Contrato: ".$contrato->nombre_contrato."</h3>";
+        $text = "<h4>Detalle Ampliaciones Contrato: </h4><h4>".$contrato->nombre_contrato."</h4>";
 
         return view('contrato.detalle_ampliaciones', compact('grid', 'text'));
     }

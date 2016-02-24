@@ -22,6 +22,7 @@ Route::controllers([
 
 Route::group(['middleware' => ['entrust', 'auth'], 'roles' => 'admin'], function(){
     Route::controller('user','UserController');
+    Route::controller('enums','EnumTablesController');
     Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
     Route::get('/contrato/ampliacion-pendiente','ContratoController@getAmpliacionPendiente');
     Route::get('/contrato/aprobar-ampliar-contrato/{id}','ContratoController@getAprobarAmpliarContrato');
