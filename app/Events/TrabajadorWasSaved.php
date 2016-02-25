@@ -20,7 +20,7 @@ class TrabajadorWasSaved extends Event {
 	public function __construct($trabajador)
 	{
         $this->trabajador = $trabajador;
-        \Log::info(print_r('TrabajadorWasSaved: '.$trabajador->FullName1, true));
+        //\Log::info(print_r('TrabajadorWasSaved: '.$trabajador->FullName1, true));
     }
 
 }

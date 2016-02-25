@@ -247,7 +247,7 @@ class HorasHombreController extends Controller {
 
         Session::flash('message', 'La información Registró Correctamente');
 
-        \Log::info('Registrando HHT: '.$data['id']);
+        //\Log::info('Registrando HHT: '.$data['id']);
 
         return new RedirectResponse(url('horasHombre/edit/' . $data['id']));
     }
@@ -328,8 +328,6 @@ class HorasHombreController extends Controller {
 
 
         $trabajadores = $this->horasHombreRepository->getDetalleHorasHombre($id,$this->timezone);
-
-        \Log::info('Editando HHT: '.$data['id']);
 
         return view('horasHombre.edit')
                     ->with('horasHombre',$horasHombre)

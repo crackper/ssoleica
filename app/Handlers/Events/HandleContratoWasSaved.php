@@ -33,7 +33,7 @@ class HandleContratoWasSaved {
 	public function handle(ContratoWasSaved $event)
 	{
 
-        \Log::info(print_r('HandleContratoWasSaved', true));
+        //\Log::info(print_r('HandleContratoWasSaved', true));
 
         $this->contrato= $event->contrato;
 
@@ -54,7 +54,7 @@ class HandleContratoWasSaved {
             $this->saveState();
         }
 
-        \Log::info(print_r('nuevo estado para el contrato: '.$this->contrato->contrado_id, true));
+        //\Log::info(print_r('nuevo estado para el contrato: '.$this->contrato->contrado_id, true));
     }
 
     private function saveState()

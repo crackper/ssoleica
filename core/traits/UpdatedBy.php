@@ -33,7 +33,7 @@ trait UpdatedBy {
     {
         $id = empty($this->attributes['id']) ? 'Nuevo':$this->attributes['id'];
 
-        \Log::info('save table: '.$this->getTable()." id: ".$id." --  by user: ".Auth::user()->id.' - '.Auth::user()->name);
+        //\Log::info('save table: '.$this->getTable()." id: ".$id." --  by user: ".Auth::user()->id.' - '.Auth::user()->name);
 
         $this->attributes['updated_by'] = $this->getUpdated();
         return parent::save($options);

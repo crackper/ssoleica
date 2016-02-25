@@ -59,7 +59,7 @@ class PermisosController extends Controller {
 	 */
 	public function getIndex()
 	{
-        \Log::info("Permisos->index");
+        //\Log::info("Permisos->index");
 
         $query = $this->permissionRepository->getModel()->query();
 
@@ -172,7 +172,7 @@ class PermisosController extends Controller {
 
         $form->saved(function () use ($form) {
 
-            \Log::info("Permiso guardado: ".$form->model->display_name);
+            //\Log::info("Permiso guardado: ".$form->model->display_name);
 
             Session::flash('message', 'La información del Permiso se Registró Correctamente');
             return new RedirectResponse(url('/permisos/edit/'.$form->model->id));
@@ -210,7 +210,7 @@ class PermisosController extends Controller {
 
         $form->saved(function () use ($form) {
 
-            \Log::info("Permiso modificado: ".$form->model->display_name);
+            //\Log::info("Permiso modificado: ".$form->model->display_name);
 
             Session::flash('message', 'La información del Permiso se Registró Correctamente');
             return new RedirectResponse(url('/permisos/edit/'.$form->model->id));

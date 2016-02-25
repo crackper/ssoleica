@@ -22,7 +22,7 @@ class ContratoWasSaved extends Event {
 	{
         $this->contrato= $contrado;
 
-        \Log::info(print_r('ContratoWasSaved', true));
+        //\Log::info(print_r('ContratoWasSaved', true));
     }
 
 }
