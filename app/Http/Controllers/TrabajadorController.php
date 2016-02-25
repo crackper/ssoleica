@@ -39,7 +39,6 @@ use Nayjest\Grids\Components\ShowingRecords;
 use Nayjest\Grids\Components\TFoot;
 use Nayjest\Grids\Components\THead;
 use Nayjest\Grids\Components\ColumnsHider;
-use Zofe\Rapyd\DataEdit\DataEdit;
 use Zofe\Rapyd\DataForm\DataForm;
 
 
@@ -297,7 +296,7 @@ class TrabajadorController extends Controller
             $licencias[$row->enum_value_id] = $row->categoria->name;
         }
 
-        $edit = DataEdit::source($trabajador);
+        $edit = DataForm::source($trabajador);
 
         $edit->add('dni', 'DNI', 'text')->rule('required|min:8');
         $edit->add('nombre', 'Nombre', 'text')->rule('required|max:100');
@@ -334,8 +333,6 @@ class TrabajadorController extends Controller
             Session::flash('message', 'La información del Trabajador se Registró Correctamente');
 
             return new RedirectResponse(url('trabajador/edit/' . $edit->model->id));
-            // $edit->message("ok record saved");
-            //$edit->link("/trabajador","Next Step");
         });
 
         $edit->built();
