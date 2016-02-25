@@ -62,7 +62,7 @@ class CerrarHrsHombre extends Command {
             $query .= "where id in (select hh.id from horas_hombre hh ";
             $query .= "inner join contrato c on hh.contrato_id = c.id ";
             $query .= "inner join operacion o on c.operacion_id = o.id ";
-            $query .= "where o.pais_id = :id and now() at time zone 'utc' at time zone '". $data->timezone ."' >= hh.fecha_fin and ".'"isOpen" = true)';
+            $query .= "where o.pais_id = :id and now() at time zone 'utc' at time zone '". $data[0] ."' >= hh.fecha_fin and ".'"isOpen" = true)';
 
             $rows = DB::statement(DB::Raw($query),array('id' => $pais->id,'updated_by' => $updated_by, 'now' => new \DateTime()));
 

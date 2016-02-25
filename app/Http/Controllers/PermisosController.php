@@ -46,6 +46,8 @@ class PermisosController extends Controller {
      */
     public function __construct(PermissionRepository $permissionRepository)
     {
+        \Log::info("Inicializando Permisos");
+
         $this->middleware('auth');
         $this->middleware('workspace');
         $this->pais = Session::get('pais_id');
