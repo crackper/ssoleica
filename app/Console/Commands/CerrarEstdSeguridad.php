@@ -62,7 +62,7 @@ class CerrarEstdSeguridad extends Command {
             $query .= "where id in (select es.id from estadistica_seguridad es ";
             $query .= "inner join contrato c on es.contrato_id = c.id ";
             $query .= "inner join operacion o on c.operacion_id = o.id ";
-            $query .= "where o.pais_id = :id and now() at time zone 'utc' at time zone '". $data->timezone ."' >= es.fecha_fin and ".'"isOpen" = true)';
+            $query .= "where o.pais_id = :id and now() at time zone 'utc' at time zone '". $data[0] ."' >= es.fecha_fin and ".'"isOpen" = true)';
 
             $rows = DB::statement(DB::Raw($query),array('id' => $pais->id,'updated_by' => $updated_by, 'now' => new \DateTime()));
 
