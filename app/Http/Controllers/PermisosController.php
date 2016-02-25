@@ -2,7 +2,9 @@
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
+use Monolog\Logger;
 use Nayjest\Grids\Components\Base\RenderableRegistry;
 use Nayjest\Grids\Components\ColumnHeadersRow;
 use Nayjest\Grids\Components\ColumnsHider;
@@ -59,6 +61,8 @@ class PermisosController extends Controller {
 	 */
 	public function getIndex()
 	{
+        \Log::info("Cargando Permisos");
+
         $query = $this->permissionRepository->getModel()->query();
 
         $btn_crear = (new HtmlTag)->setContent("")->setTagName('div')->setRenderSection(RenderableRegistry::SECTION_END); /*(new HtmlTag)
