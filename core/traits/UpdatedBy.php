@@ -31,6 +31,8 @@ trait UpdatedBy {
 
     public function save(array $options = array())
     {
+        \Log::info('table: '.$this->getTable()." save, by user: ".Auth::user()->id.' - '.Auth::user()->name);
+
         $this->attributes['updated_by'] = $this->getUpdated();
         return parent::save($options);
 

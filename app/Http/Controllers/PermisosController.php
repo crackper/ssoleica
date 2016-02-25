@@ -2,9 +2,7 @@
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
-use Monolog\Logger;
 use Nayjest\Grids\Components\Base\RenderableRegistry;
 use Nayjest\Grids\Components\ColumnHeadersRow;
 use Nayjest\Grids\Components\ColumnsHider;
@@ -46,8 +44,6 @@ class PermisosController extends Controller {
      */
     public function __construct(PermissionRepository $permissionRepository)
     {
-        \Log::info("Inicializando Permisos");
-
         $this->middleware('auth');
         $this->middleware('workspace');
         $this->pais = Session::get('pais_id');
@@ -63,21 +59,9 @@ class PermisosController extends Controller {
 	 */
 	public function getIndex()
 	{
-        \Log::info("Cargando Permisos");
+        \Log::info("Permisos->index");
 
         $query = $this->permissionRepository->getModel()->query();
-
-        $btn_crear = (new HtmlTag)->setContent("")->setTagName('div')->setRenderSection(RenderableRegistry::SECTION_END); /*(new HtmlTag)
-            ->setContent('<span class="glyphicon glyphicon-plus"></span> Crear Nuevo Permiso')
-            ->setTagName('a')
-            ->setRenderSection(RenderableRegistry::SECTION_END)
-            ->setAttributes([
-                'class' => 'btn btn-warning btn-sm',
-                'href' => '/permisos/create'
-            ]);*/
-
-        $acciones = (new FieldConfig())->setName('id')->setLabel(" ")->setCallback(function ($val) {return "";});
-        dd($query);
 
         $cfg = (new GridConfig())
             ->setName('gridPermisos')
@@ -178,8 +162,6 @@ class PermisosController extends Controller {
 	 */
 	public function anyCreate()
 	{
-        \Log::info("Registrar Permiso");
-
 		$form = DataForm::source(new Permission);
         $form->addText('name','Code')->rule('required');
         $form->addText('display_name','Nombre')->rule('required');
@@ -217,7 +199,6 @@ class PermisosController extends Controller {
         if(is_null($permiso))
             return new RedirectResponse(url('/permisos'));
 
-        \Log::info("Editar Permisop: ".$permiso->display_name);
 
         $form = DataForm::source($permiso);
         $form->addText('name','Code')->rule('required');
@@ -229,7 +210,7 @@ class PermisosController extends Controller {
 
         $form->saved(function () use ($form) {
 
-            \Log::info("Permiso guardado: ".$form->model->display_name);
+            \Log::info("Permiso modificado: ".$form->model->display_name);
 
             Session::flash('message', 'La información del Permiso se Registró Correctamente');
             return new RedirectResponse(url('/permisos/edit/'.$form->model->id));

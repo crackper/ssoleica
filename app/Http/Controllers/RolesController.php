@@ -62,6 +62,7 @@ class RolesController extends Controller {
 	 */
 	public function getIndex()
 	{
+        \Log::info("Roles->index");
         $query = $this->rolesRepository->getModel()->query();
 
         $btn_crear = (new HtmlTag)->setContent("")->setTagName('div')->setRenderSection(RenderableRegistry::SECTION_END); /*(new HtmlTag)
@@ -201,6 +202,7 @@ class RolesController extends Controller {
         $form->link("/roles","Cancelar");
 
         $form->saved(function () use ($form) {
+            \Log::info("Rol guardado: ".$form->model->display_name);
 
             Session::flash('message', 'La información del Rol se Registró Correctamente');
             return new RedirectResponse(url('/roles/edit/'.$form->model->id));
@@ -239,6 +241,7 @@ class RolesController extends Controller {
         $form->link("/roles","Cancelar");
 
         $form->saved(function () use ($form) {
+            \Log::info("Permiso modificado: ".$form->model->display_name);
 
             Session::flash('message', 'La información del Rol se Registró Correctamente');
             return new RedirectResponse(url('/roles/edit/'.$form->model->id));
