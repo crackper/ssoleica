@@ -162,10 +162,12 @@
                         </div>
                         <div class="box-body no-padding">
                             <ul class="nav nav-pills nav-stacked">
-                                <li><a href="/user/create"><i class="fa fa-plus-circle"></i>{{ trans('home.user_create') }}</a></li>
-                                <li><a href="/user"><i class="fa fa-list-alt"></i>{{ trans('home.user_view') }}</a></li>
                                 <li><a href="/enums/create"> <i class="fa fa-plus-circle"></i> {{ trans('home.enum_create') }}</a></li>
                                 <li><a href="/enums"><i class="fa fa-list-alt"></i>{{ trans('home.enum_view') }}</a></li>
+                                <li><a href="/user/create"><i class="fa fa-plus-circle"></i>{{ trans('home.user_create') }}</a></li>
+                                <li><a href="/user"><i class="fa fa-list-alt"></i>{{ trans('home.user_view') }}</a></li>
+                                <li><a href="/roles/create"><i class="fa fa-plus-circle"></i>{{ trans('home.role_create') }}</a></li>
+                                <li><a href="/roles"><i class="fa fa-list-alt"></i>{{ trans('home.role_view') }}</a></li>
                                 <li><a href="/permisos/create"> <i class="fa fa-plus-circle"></i> {{ trans('home.permiso_create') }}</a></li>
                                 <li><a href="/permisos"><i class="fa fa-list-alt"></i>{{ trans('home.permiso_view') }}</a></li>
                             </ul>

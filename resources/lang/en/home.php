@@ -50,6 +50,9 @@ return [
     'enum_create'=>'Registar Enum',
     'permiso_title' => 'Permisos',
     'permiso_view'=>'Lista de Permisos',
-    'permiso_create'=>'Registar Permiso'
+    'permiso_create'=>'Registar Permiso',
+    'role_title' => 'Roles',
+    'role_view'=>'Lista de Roles',
+    'role_create'=>'Registar Rol'
 
 ];

@@ -57,6 +57,13 @@
 	<li class="delete separator"><a href="#delete"></a></li>
 </ul>
 
+<script type="text/javascript">
+$(function(){
+   var can_remove = 0;
+});
+
+</script>
+
 <script type="text/javascript" src="scripts/jquery-1.8.3.min.js"></script>
 <script type="text/javascript" src="scripts/jquery.form-3.24.js"></script>
 <script type="text/javascript" src="scripts/jquery.splitter/jquery.splitter-1.5.1.js"></script>
@@ -65,6 +72,17 @@
 <script type="text/javascript" src="scripts/jquery.impromptu-3.2.min.js"></script>
 <script type="text/javascript" src="scripts/jquery.tablesorter-2.7.2.min.js"></script>
 <script type="text/javascript" src="scripts/filemanager.js"></script>
+
+
+<script>
+
+$(function(){
+   //$('.download').hide();
+  // $('.rename').hide();
+});
+
+</script>
+
 </div>
 </body>
 </html>
