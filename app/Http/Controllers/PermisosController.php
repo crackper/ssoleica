@@ -178,6 +178,8 @@ class PermisosController extends Controller {
 	 */
 	public function anyCreate()
 	{
+        \Log::info("Registrar Permiso");
+
 		$form = DataForm::source(new Permission);
         $form->addText('name','Code')->rule('required');
         $form->addText('display_name','Nombre')->rule('required');
@@ -187,6 +189,8 @@ class PermisosController extends Controller {
         $form->link("/permisos","Cancelar");
 
         $form->saved(function () use ($form) {
+
+            \Log::info("Permiso guardado: ".$form->model->display_name);
 
             Session::flash('message', 'La información del Permiso se Registró Correctamente');
             return new RedirectResponse(url('/permisos/edit/'.$form->model->id));
@@ -204,6 +208,7 @@ class PermisosController extends Controller {
 	 */
 	public function anyEdit($id = 0)
 	{
+
         if($id == 0)
             return new RedirectResponse(url('/permisos'));
 
@@ -211,6 +216,8 @@ class PermisosController extends Controller {
 
         if(is_null($permiso))
             return new RedirectResponse(url('/permisos'));
+
+        \Log::info("Editar Permisop: ".$permiso->display_name);
 
         $form = DataForm::source($permiso);
         $form->addText('name','Code')->rule('required');
@@ -222,6 +229,8 @@ class PermisosController extends Controller {
 
         $form->saved(function () use ($form) {
 
+            \Log::info("Permiso guardado: ".$form->model->display_name);
+
             Session::flash('message', 'La información del Permiso se Registró Correctamente');
             return new RedirectResponse(url('/permisos/edit/'.$form->model->id));
         });
@@ -231,48 +240,5 @@ class PermisosController extends Controller {
         return $form->view('permisos.edit', compact('form'));
 	}
 
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		//
-	}
-
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		//
-	}
-
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		//
-	}
-
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
-		//
-	}
 
 }
