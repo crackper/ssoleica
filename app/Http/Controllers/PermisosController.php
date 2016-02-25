@@ -71,6 +71,7 @@ class PermisosController extends Controller {
             ]);*/
 
         $acciones = (new FieldConfig())->setName('id')->setLabel(" ")->setCallback(function ($val) {return "";});
+        dd($query);
 
         $cfg = (new GridConfig())
             ->setName('gridPermisos')
@@ -113,7 +114,7 @@ class PermisosController extends Controller {
                         $icon_edit = "<a href='/permisos/edit/$val' data-toggle='tooltip' data-placement='left' title='Editar Permiso'><span class='fa fa-edit'></span>Editar</a>";
 
                         return  $icon_edit;
-                    }),$acciones
+                    })
 
             ])
             ->setComponents([
@@ -145,8 +146,7 @@ class PermisosController extends Controller {
                                     ->setAttributes([
                                         'class' => 'btn btn-warning btn-sm',
                                         'href' => '/permisos/create'
-                                    ]),
-                                $btn_crear
+                                    ])
                             ])
                     ]),
                 (new TFoot)
