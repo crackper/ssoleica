@@ -178,3 +178,10 @@
     @endif
 </div>
 @endsection
+@section('scripts')
+<script>
+    $(function(){
+        //introJs().start();
+    });
+</script>
+@endsection

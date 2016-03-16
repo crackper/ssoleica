@@ -44,7 +44,16 @@ Route::group(['middleware' => ['entrust', 'auth'], 'roles' => array('admin','apr
     Route::controller('contrato','ContratoController');
     Route::controller('horasHombre','HorasHombreController');
     Route::controller('estadisticas','EstadisticaSegController');
+
+    //Route::get('trabajador/create',['middleware' => ['permission:create_trabajador'],'uses'=> 'TrabajadorController@getIndex']);
+
+    Entrust::routeNeedsPermission('trabajador*', 'view_trabajador',Redirect::to('/home'));
+    Entrust::routeNeedsPermission('trabajador/create', 'create_trabajador',Redirect::to('/trabajador'));
+    Entrust::routeNeedsPermission('trabajador/edit*', 'edit_trabajador',Redirect::to('/trabajador'));
+    Entrust::routeNeedsPermission('trabajador/delete*', 'delete_trabajador',Redirect::to('/trabajador'));
+
     Route::controller('trabajador','TrabajadorController');
+
     Route::controller('incidente','IncidenteController');
 
     Route::get('trabajador/{id}/delete',['as'=>'index.delete','uses'=>'TrabajadorController@delete']);
@@ -70,5 +79,12 @@ Route::filter('csrf', function() {
         throw new Illuminate\Session\TokenMismatchException;
 });
 
+Route::filter('trabajador/anyCreate', function()
+{
+    // check the current user
+    if (!Entrust::can('create_trabajador')) {
+        return Redirect::to('trabajador');
+    }
+});
 
 

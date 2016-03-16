@@ -2,6 +2,7 @@
 
 use Carbon\Carbon;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Response;
@@ -39,6 +40,7 @@ use Nayjest\Grids\Components\ShowingRecords;
 use Nayjest\Grids\Components\TFoot;
 use Nayjest\Grids\Components\THead;
 use Nayjest\Grids\Components\ColumnsHider;
+use Zizaco\Entrust\Entrust;
 use Zofe\Rapyd\DataForm\DataForm;
 
 
@@ -340,8 +342,13 @@ class TrabajadorController extends Controller
         return $edit->view('trabajador.edit', compact('edit','id','text'));
     }
 
+
+    /**
+     * @Middleware("permission:create_trabajador")
+     */
     public function anyCreate()
     {
+
         $pais = $this->enumTablesRepository->find($this->pais)->load('categorias.categoria');
 
         $licencias = array();

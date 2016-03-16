@@ -14,6 +14,8 @@
     <!-- Theme style -->
     {!! Minify::stylesheet('/css/hexagon.admin.css') !!}
     {!! Minify::stylesheet('/css/skins/skin-blue.css') !!}
+    {!! Minify::stylesheet('/plugins/introjs/introjs.css') !!}
+
 
     @yield('styles')
 
@@ -30,6 +32,7 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
         <script src="/js/jquery.slimscroll.min.js"></script>
         {!! Minify::javascript('/js/app/app.js') !!}
+        {!! Minify::javascript('/plugins/introjs/intro.js') !!}
          @yield('scripts')
   </head>
 
@@ -40,7 +43,7 @@
       <header class="main-header">
 
         <!-- Logo -->
-        <a href="/" class="logo">
+        <a href="/" class="logo" data-intro="Ir al Home">
           <!-- mini logo for sidebar mini 50x50 pixels -->
           <span class="logo-mini"><b>SSO</b>L</span>
           <!-- logo for regular state and mobile devices -->
@@ -54,7 +57,7 @@
         <!-- Header Navbar -->
         <nav class="navbar navbar-static-top" role="navigation">
           <!-- Sidebar toggle button-->
-          <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+          <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button" data-intro="Esconder/Mostrar Menu">
             <span class="sr-only">Toggle navigation</span>
           </a>
           <!-- Navbar Right Menu -->
@@ -63,7 +66,7 @@
              <!-- Messages: style can be found in dropdown.less-->
              @if(Auth::user()->hasRole(['admin']))
               <li class="dropdown messages-menu">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-intro="Cosas Pendientes">
                   <i class="fa fa-envelope-o"></i>
                     @if(Session::get('cant_pr') > 0)
                       <span class="label label-success">{!! Session::get('cant_pr') !!}</span>
@@ -92,7 +95,7 @@
               <!-- Notifications Menu -->
               <li class="dropdown notifications-menu">
                 <!-- Menu toggle button -->
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-intro="Alertas de vencimientos">
                   <i class="fa fa-bell-o"></i>
                   @if(Session::get('total_n') > 0)
                     <span class="label label-warning">{!! Session::get('total_n') !!}</span>
@@ -157,7 +160,7 @@
               <!-- User Account Menu -->
               <li class="dropdown user user-menu">
                 <!-- Menu Toggle Button -->
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-intro="Información del Usuario">
                   <!-- The user image in the navbar-->
                   <img src="/images/user_accounts.png" class="user-image" alt="User Image" />
                   <!-- hidden-xs hides the username on small devices so only the image appears. -->
@@ -219,7 +222,7 @@
         <!-- sidebar: style can be found in sidebar.less -->
         <section class="sidebar">
           <!-- Sidebar Menu -->
-          <ul class="sidebar-menu">
+          <ul class="sidebar-menu" data-intro="Menu Principal">
             <li class="header">Menu</li>
             <!-- Optionally, you can add icons to the links -->
             <li class="active"><a href="/"><i class="fa fa-home"></i> <span>{{ trans('home.home') }}</span></a></li>
@@ -330,7 +333,7 @@
       <aside class="control-sidebar control-sidebar-dark">
         <!-- Create the tabs -->
         <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
-          <li class="active"><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
+          <li class="active"><a href="#control-sidebar-home-tab" data-toggle="tab" data-intro="Otras Actividades"><i class="fa fa-home"></i></a></li>
           <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
         </ul>
         <!-- Tab panes -->
