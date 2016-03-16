@@ -24,17 +24,17 @@
   <!-- Tab panes -->
     <div class="tab-content">
     <div role="tabpanel" class="tab-pane active" id="general">
-        @include('incidente.general_c')
+        @include('incidente.partial_c.general')
     </div>
     <div role="tabpanel" class="tab-pane fade" id="circunstancias">
-        safdsdfasdf
+        @include('incidente.partial_c.circunstancias')
     </div>
     <div role="tabpanel" class="tab-pane fade" id="perdidas">
-        @include('incidente.circunstancias_c')
+        @include('incidente.partial_c.perdidas')
     </div>
     <div role="tabpanel" class="tab-pane fade" id="danios">
         <div class="row" style="padding: 0px 10px 0px 10px;">
-            <div class="col-sm-12">dfdfdf121112</div>
+         @include('incidente.partial_c.danios')
         </div>
     </div>
     <div class="row">
@@ -56,6 +56,7 @@
      <link rel="stylesheet" href="/css/bootstrap-dialog.min.css"/>
 <link rel="stylesheet" href="{{ url('/packages/zofe/rapyd/assets/autocomplete/autocomplete.css') }}"/>
     <link rel="stylesheet" href="{{ url('/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css') }}"/>
+    <link rel="stylesheet" href="{{ url('/plugins/redactor/redactor.css') }}"/>
 
 <style type="text/css">
 .has-error .form-control-feedback {
@@ -79,8 +80,22 @@
 <script src="{{ url('/plugins/bootstrap-tagsinput/bootstrap-tagsinput.min.js') }}"></script>
 <script src="{{ url('/js/plugins/handlebars-v4.0.5.js') }}"></script>
 <script src="/js/bootstrap-dialog.min.js"></script>
+<script src="{{ url('/plugins/redactor/redactor.min.js') }}"></script>
 {!! Minify::javascript('/js/app/incidente.create.js') !!}
 
-@include('incidente.afectados')
+<script language="javascript" type="text/javascript">
+    $(document).ready(function () {
+
+     $('#des_situacion').redactor();
+     $('#cons_posibles').redactor();
+     $('#danios_mat').redactor();
+     $('#desc_danios_mat').redactor();
+     $('#danios_amb').redactor();
+     $('#desc_danios_amb').redactor();
+
+    });
+</script>
+
+@include('incidente.partial_c.afectados')
 
 @endsection

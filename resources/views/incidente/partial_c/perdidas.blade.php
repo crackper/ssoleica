@@ -1,7 +1,7 @@
 <div class="row" style="padding: 0px 10px 0px 10px;">
     <div class="col-sm-12">
         <h1 class="page-header">A las Personas</h1>
-        <div class="form-group col-sm-4">
+        <div class="form-group col-sm-4" style="border-right: 1px #eeeeee solid;">
             <label for="parte">Partes Afectadas</label>
                 <div class="row">
                     <div>
@@ -13,7 +13,7 @@
                     @endif
                          <div class="checkbox">
                             <label>
-                                {!! Form::checkbox('parte[]', $partes_afectadas[$i]->id,   false )  !!} {{ $partes_afectadas[$i]->name }}
+                                {!! Form::checkbox('parte_afectada[]', $partes_afectadas[$i]->id,   false )  !!} {{ $partes_afectadas[$i]->name }}
                             </label>
                           </div>
                     @if($i ==  count($partes_afectadas) - 1)
@@ -33,7 +33,7 @@
                     </div>
                 @endforeach
         </div>
-        <div class="form-group col-sm-3">
+        <div class="form-group col-sm-3" style="border-left: 1px #eeeeee solid;">
             <label for="consecuencia">Consecuencia</label>
                 @foreach($consecuencias as $key => $consecuencia)
                     <div class="checkbox">
@@ -44,4 +44,21 @@
                 @endforeach
         </div>
     </div>
+</div>
+<div class="row" style="padding: 0px 10px 0px 10px;">
+    <div class="col-sm-12">
+        <div class="form-inline">
+            <div class="form-group">
+                <label for="dias_perdidos">Cantidad de días perdidos previsibles</label>
+                 <input type="text" id="dias_perdidos" name="dias_perdidos" class="form-control input-sm" />
+                (Indicar solo para personal de LEICA)
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-sm-12">
+    <h1 class="page-header">Consecuencias Posibles</h1>
+</div>
+<div class="col-sm-12" style="padding: 0px 0px 10px 10px;">
+    <textarea name="cons_posibles" class="form-control" id="cons_posibles" cols="30" rows="10"></textarea>
 </div>

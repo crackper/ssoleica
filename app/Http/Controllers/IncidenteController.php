@@ -102,6 +102,9 @@ class IncidenteController extends Controller {
         $entidades = $this->enumTablesRepository->getEntidades()
             ->lists('name','id');
 
+        $jornadas =  array('' => '[-- Seleccione --]') + $this->enumTablesRepository->getEnumTables('Jornada')
+                ->lists('name','id');
+
         //dd($partes_afectadas);
 
         return view("incidente.create")
@@ -111,11 +114,13 @@ class IncidenteController extends Controller {
                     ->with('consecuencias',$consecuencias)
                     ->with('partes_afectadas',$partes_afectadas)
                     ->with('entidades',$entidades)
+                    ->with('jornadas',$jornadas)
                     ->with('trabajadores',$this->getTrabajadores());
 	}
 
-    public function postCreate(Request $request){
-
+    public function postCreate(Request $request)
+    {
+        //General
         $data['pais_id'] = $this->pais;
         $data['contrato_id'] = Input::get('contrato_id');
         $data['tipo_informe_id'] = Input::get('tipo_informe');
@@ -139,7 +144,7 @@ class IncidenteController extends Controller {
                 $trb[] = array('trabajador_id'=>$request->get('trbAfectado')[$i], 'cargo_id' => $request->get('trAfeCargo')[$i]);
             }
 
-            $data['tr_afectados'] = json_encode($trb);
+            $data['tr_afectados'] = json_encode($trb,JSON_NUMERIC_CHECK);
         }
 
 
@@ -152,8 +157,45 @@ class IncidenteController extends Controller {
                 $tr[] = array('trabajador_id'=>$request->get('trbInvolucrado')[$i], 'cargo_id' => $request->get('trInvolucrado')[$i]);
             }
 
-            $data['tr_involucrados'] = json_encode($tr);
+            $data['tr_involucrados'] = json_encode($tr,JSON_NUMERIC_CHECK);
         }
+
+        //Circunstancias
+        $data['jornada_id'] = $request->get('jornada_id');
+        $data['naturaleza'] = $request->get('naturaleza');
+        $data['actividad'] = $request->get('actividad');
+        $data['equipo'] = $request->get('equipo');
+        $data['parte_equipo'] = $request->get('parte_equipo');
+        $data['lugar'] = $request->get('lugar');
+        $data['producto'] = $request->get('producto');
+        $data['des_situacion'] = $request->get('des_situacion');
+
+        //Perdidas
+        if($request->has('parte_afectada'))
+            $data['partes_afectas'] = json_encode($request->get('parte_afectada'),JSON_NUMERIC_CHECK);
+
+        if($request->has('entidad'))
+            $data['entidad'] = json_encode($request->get('entidad'),JSON_NUMERIC_CHECK);
+
+        if($request->has('consecuencia'))
+            $data['consecuencia'] = json_encode($request->get('consecuencia'),JSON_NUMERIC_CHECK);
+
+        $data['dias_perdidos'] = $request->get('dias_perdidos');
+        $data['cons_posibles'] = $request->get('cons_posibles');
+
+        //daños
+
+        if($request->has('d_materiales'))
+            $data['entidad_sini_mat'] = json_encode($request->get('d_materiales'),JSON_NUMERIC_CHECK);
+
+        $data['danios_mat'] = $request->get('danios_mat');
+        $data['desc_danios_mat'] = $request->get('desc_danios_mat');
+
+        if($request->has('d_ambientales'))
+            $data['entidad_sini_amb'] = json_encode($request->get('d_ambientales'),JSON_NUMERIC_CHECK);
+
+        $data['lugar_danios_amb'] = $request->get('danios_amb');
+        $data['desc_danios_amb'] = $request->get('desc_danios_amb');
 
         $ok = $this->incidenteRepository->create($data);
 

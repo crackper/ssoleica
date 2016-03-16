@@ -37,7 +37,7 @@ class CreateIncidentesTable extends Migration {
             $table->json('tr_afectados');
             $table->json('tr_involucrados');
             //circunstancias
-            $table->integer('jornada_id')->unsigned();
+            $table->integer('jornada_id')->nullable()->unsigned();
             $table->foreign('jornada_id')->references('id')->on('enum_tables');
             $table->string('naturaleza');
             $table->string('actividad');

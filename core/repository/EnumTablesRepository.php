@@ -70,7 +70,14 @@ class EnumTablesRepository extends Repository {
 
     function getEntidades()
     {
-        $query = EnumTables::where('type','=',EnumType::Profesion)->get();
+        $query = EnumTables::where('type','=',EnumType::Entidad)->get();
+
+        return $query;
+    }
+
+    function getJornadas()
+    {
+        $query = EnumTables::where('type','=',EnumType::Jornada)->get();
 
         return $query;
     }

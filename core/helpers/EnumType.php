@@ -20,4 +20,5 @@ class EnumType{
     const Pais = 'Pais';
     const ParteAfectada = 'ParteAfectada';
     const Profesion= 'Profesion';
+    const Jornada = 'Jornada';
 } 
