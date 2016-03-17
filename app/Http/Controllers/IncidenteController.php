@@ -203,6 +203,48 @@ class IncidenteController extends Controller {
         dd($data);
     }
 
+    public function getEdit($id = 0)
+    {
+        $incidente = $this->incidenteRepository->find($id);
+
+        //dd($incidente);
+
+        $proyectos = array('' => '[-- Seleccione --]') + $this->operacionRepository->getOperaciones($this->pais)
+                ->lists('nombre_operacion','id');
+
+        $tipo_incidiente =  array('' => '[-- Seleccione --]') + $this->enumTablesRepository->getEnumTables('Incidente')
+                ->lists('name','id');
+
+        $tipo_informe =  array('' => '[-- Seleccione --]') + $this->enumTablesRepository->getEnumTables('Informe')
+                ->lists('name','id');
+
+        $consecuencias = $this->enumTablesRepository->getConsecuencias()
+            ->lists('name','id');
+
+        $partes_afectadas = $this->enumTablesRepository->getPartesAfectadas();
+        //->lists('name','id');
+
+        $entidades = $this->enumTablesRepository->getEntidades()
+            ->lists('name','id');
+
+        $jornadas =  array('' => '[-- Seleccione --]') + $this->enumTablesRepository->getEnumTables('Jornada')
+                ->lists('name','id');
+
+        return view("incidente.edit")
+            ->with('incidente',$incidente)
+            ->with('proyectos',$proyectos)
+            ->with('tipo_incidente',$tipo_incidiente)
+            ->with('tipo_informe',$tipo_informe)
+            ->with('consecuencias',$consecuencias)
+            ->with('partes_afectadas',$partes_afectadas)
+            ->with('entidades',$entidades)
+            ->with('jornadas',$jornadas)
+            ->with('trabajadores',$this->getTrabajadores());
+
+
+    }
+
+
     public function getContratos($id = 0)
     {
         $query = $this->contratoRepository->getListsContrato($id);
