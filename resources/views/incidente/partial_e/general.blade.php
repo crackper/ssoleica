@@ -4,14 +4,13 @@
                     <div class="form-group">
                         <label for="proyecto_id" class="form-label col-sm-4">Proyecto</label>
                         <div class="col-sm-8">
-                        {!! Form::select('proyecto_id',$proyectos,null,array('id'=> 'proyecto_id', 'class' => 'form-control input-sm','data-toggle' => 'select')) !!}
+                            <input type="text" class="form-control input-sm" readonly="readonly" value="{{ $incidente->contrato->operacion->nombre_operacion  }}"/>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="contrato_id" class="form-label col-sm-4">Contrato</label>
                         <div class="col-sm-8">
-                            <select class="form-control input-sm" data-toggle="select" id="contrato_id" name="contrato_id" data-header="Selecciona un Contrato">
-                             </select>
+                            <input type="text" class="form-control input-sm" readonly="readonly" value="{{ $incidente->contrato->nombre_contrato  }}"/>
                         </div>
                     </div>
                     <div class="form-group">
@@ -83,6 +82,27 @@
                   </div><!-- /.box-header -->
                   <div class="box-body no-padding">
                     <ul id="ulAfectados" class="nav nav-pills nav-stacked">
+                    @foreach($incidente->afectados as $key => $afectado)
+                         <li>
+                            <!--hidden-->
+                            <input type="hidden" name="trbAfectado[]" value="{{ $afectado->trabajador_id  }}"/>
+                            <!--hidden-->
+                            <a data-toggle="collapse" data-target="#{{ $afectado->dni  }}" aria-expanded="false" aria-controls="{{ $afectado->dni  }}">
+                                <i class="fa fa-caret-right"></i> {{ $afectado->trabajador }}
+                                <input type="checkbox" name="removeAfectado[]" class="pull-right" value="{{ $afectado->trabajador_id  }}"/>
+                            </a>
+                            <div class="collapse" id="{{ $afectado->dni }}">
+                                <div class="" style="padding: 5px 5px 5px 5px;">
+                                    <ul class="nav nav-pills nav-stacked">
+                                        <li class=""><b>RUT/DNI:</b> {{ $afectado->dni }}</li>
+                                        <li class=""><b>Cargo:</b> {{ $afectado->cargo }}</li>
+                                        <li class=""><b>Antiguedad Cargo:</b> {{ \Carbon\Carbon::parse($afectado->fecha_cargo)->format('d/m/Y') }}</li>
+                                        <li class=""><b>Antiguedad Empresa:</b> {{ \Carbon\Carbon::parse($afectado->fecha_ingreso)->format('d/m/Y') }}</li>
+                                    </ul>
+                                </div>
+                            </div>
+                         </li>
+                    @endforeach
                     </ul>
                   </div>
                   <div class="box-footer">
@@ -106,6 +126,27 @@
                   </div><!-- /.box-header -->
                   <div class="box-body no-padding">
                     <ul id="ulInvolucrados" class="nav nav-pills nav-stacked">
+                        @foreach($incidente->involucrados as $key => $involucrado )
+                         <li>
+                            <!--hidden-->
+                            <input type="hidden" name="trbInvolucrado[]" value="{{ $involucrado->trabajador_id }}"/>
+                            <!--hidden-->
+                            <a data-toggle="collapse" data-target="#{{ $involucrado->dni.'_'.$rand = rand(0,9999) }}" aria-expanded="false" aria-controls="[!{dni}!]">
+                                <i class="fa fa-caret-right"></i> {{  $involucrado->trabajador}}
+                                <input type="checkbox" name="removeInvolucrado[]" class="pull-right" value="{{ $involucrado->trabajador_id }}"/>
+                            </a>
+                            <div class="collapse" id="{{$involucrado->dni.'_'.$rand  }}">
+                                <div class="" style="padding: 5px 5px 5px 5px;">
+                                    <ul class="nav nav-pills nav-stacked">
+                                        <li class=""><b>RUT/DNI:</b> {{ $involucrado->dni  }}</li>
+                                        <li class=""><b>Cargo:</b> {{ $involucrado->cargo }}</li>
+                                        <li class=""><b>Antiguedad Cargo:</b> {{ \Carbon\Carbon::parse($involucrado->fecha_cargo)->format('d/m/Y') }}</li>
+                                        <li class=""><b>Antiguedad Empresa:</b> {{ \Carbon\Carbon::parse($involucrado->fecha_ingreso)->format('d/m/Y') }}</li>
+                                    </ul>
+                                </div>
+                            </div>
+                         </li>
+                         @endforeach
                     </ul>
                   </div>
                   <div class="box-footer">

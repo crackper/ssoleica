@@ -216,7 +216,7 @@ $(function(){
             BootstrapDialog.confirm('Desea quitar los trabajadores seleccionados', function(result){
                 if(result) {
                     checkboxValues.forEach(function(val){
-                        $('input[name="trbAfectado[]"]').each(function() {
+                        $('input[name="trAfeCargo[]"]').each(function() {
                             if($(this).val() == val)
                             {
                                 console.log('quitando: ' + val);
@@ -318,7 +318,7 @@ $(function(){
             BootstrapDialog.confirm('Desea quitar los trabajadores seleccionados', function(result){
                 if(result) {
                     checkboxValues.forEach(function(val){
-                        $('input[name="trbInvolucrado[]"]').each(function() {
+                        $('input[name="trInvolucrado[]"]').each(function() {
                             if($(this).val() == val)
                             {
                                 console.log('quitando: ' + val);

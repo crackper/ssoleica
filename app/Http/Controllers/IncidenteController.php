@@ -1,6 +1,7 @@
 <?php namespace SSOLeica\Http\Controllers;
 
 use Carbon\Carbon;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
@@ -135,7 +136,7 @@ class IncidenteController extends Controller {
         if(Input::get('responsables') != '')
             $data['responsable_id'] = Input::get('responsables');
 
-        $trb = array();
+       /*$trb = array();
 
         if($request->has('trbAfectado') && $request->has('trAfeCargo'))
         {
@@ -145,10 +146,12 @@ class IncidenteController extends Controller {
             }
 
             $data['tr_afectados'] = json_encode($trb,JSON_NUMERIC_CHECK);
-        }
+        }*/
 
+        if($request->has('trbAfectado'))
+            $data['tr_afectados'] = json_encode($request->get('trbAfectado'),JSON_NUMERIC_CHECK);
 
-        $tr = array();
+        /*$tr = array();
 
         if($request->has('trbInvolucrado') && $request->has('trInvolucrado'))
         {
@@ -158,7 +161,12 @@ class IncidenteController extends Controller {
             }
 
             $data['tr_involucrados'] = json_encode($tr,JSON_NUMERIC_CHECK);
-        }
+        }*/
+
+        if($request->has('trbInvolucrado'))
+            $data['tr_involucrados'] = json_encode($request->get('trbInvolucrado'),JSON_NUMERIC_CHECK);
+
+
 
         //Circunstancias
         $data['jornada_id'] = $request->get('jornada_id');
@@ -181,6 +189,8 @@ class IncidenteController extends Controller {
             $data['consecuencia'] = json_encode($request->get('consecuencia'),JSON_NUMERIC_CHECK);
 
         $data['dias_perdidos'] = $request->get('dias_perdidos');
+
+
         $data['cons_posibles'] = $request->get('cons_posibles');
 
         //daños
@@ -199,18 +209,17 @@ class IncidenteController extends Controller {
 
         $ok = $this->incidenteRepository->create($data);
 
-        dd($ok);
-        dd($data);
+        return new RedirectResponse(url('/incidente/edit/'.$ok->id));
     }
 
     public function getEdit($id = 0)
     {
-        $incidente = $this->incidenteRepository->find($id);
+        //$incidente = $this->incidenteRepository->find($id);
 
-        //dd($incidente);
-
-        $proyectos = array('' => '[-- Seleccione --]') + $this->operacionRepository->getOperaciones($this->pais)
-                ->lists('nombre_operacion','id');
+        $incidente = $this->incidenteRepository->getModel()
+                    ->where('id',$id)
+                    ->first()
+                    ->load('contrato.operacion');
 
         $tipo_incidiente =  array('' => '[-- Seleccione --]') + $this->enumTablesRepository->getEnumTables('Incidente')
                 ->lists('name','id');
@@ -232,7 +241,7 @@ class IncidenteController extends Controller {
 
         return view("incidente.edit")
             ->with('incidente',$incidente)
-            ->with('proyectos',$proyectos)
+           // ->with('proyectos',$proyectos)
             ->with('tipo_incidente',$tipo_incidiente)
             ->with('tipo_informe',$tipo_informe)
             ->with('consecuencias',$consecuencias)

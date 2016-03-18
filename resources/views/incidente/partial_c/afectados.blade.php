@@ -2,11 +2,10 @@
  <li>
     <!--hidden-->
     <input type="hidden" name="trbAfectado[]" value="[!{trabajador_id}!]"/>
-    <input type="hidden" name="trAfeCargo[]" value="[!{cargo_id}!]"/>
     <!--hidden-->
     <a data-toggle="collapse" data-target="#[!{dni}!]" aria-expanded="false" aria-controls="[!{dni}!]">
         <i class="fa fa-caret-right"></i> [!{trabajador}!]
-        <input type="checkbox" name="removeAfectado[]" class="pull-right" value="[!{cargo_id}!]"/>
+        <input type="checkbox" name="removeAfectado[]" class="pull-right" value="[!{trabajador_id}!]"/>
     </a>
     <div class="collapse" id="[!{dni}!]">
         <div class="" style="padding: 5px 5px 5px 5px;">
@@ -25,11 +24,10 @@
  <li>
     <!--hidden-->
     <input type="hidden" name="trbInvolucrado[]" value="[!{trabajador_id}!]"/>
-    <input type="hidden" name="trInvolucrado[]" value="[!{cargo_id}!]"/>
     <!--hidden-->
     <a data-toggle="collapse" data-target="#[!{dni}!]_{{ $rand = rand(0,9999) }}" aria-expanded="false" aria-controls="[!{dni}!]">
         <i class="fa fa-caret-right"></i> [!{trabajador}!]
-        <input type="checkbox" name="removeInvolucrado[]" class="pull-right" value="[!{cargo_id}!]"/>
+        <input type="checkbox" name="removeInvolucrado[]" class="pull-right" value="[!{trabajador_id}!]"/>
     </a>
     <div class="collapse" id="[!{dni}!]_{{ $rand  }}">
         <div class="" style="padding: 5px 5px 5px 5px;">

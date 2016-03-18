@@ -11,7 +11,7 @@
 @endsection
 
 @section('content')
-<form id="frmIncidente" action="/incidente/create" method="post">
+<form id="frmIncidente" action="/incidente/edit/{{$incidente->id}}" method="post">
 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 <div id="tabIncidente" role="tabpanel" class="nav-tabs-custom">
   <!-- Nav tabs -->

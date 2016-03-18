@@ -50,7 +50,7 @@
         <div class="form-inline">
             <div class="form-group">
                 <label for="dias_perdidos">Cantidad de días perdidos previsibles</label>
-                 <input type="text" id="dias_perdidos" name="dias_perdidos" class="form-control input-sm" />
+                 <input type="text" id="dias_perdidos" name="dias_perdidos" class="form-control input-sm" value="0" />
                 (Indicar solo para personal de LEICA)
             </div>
         </div>
