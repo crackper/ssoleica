@@ -221,10 +221,10 @@ class IncidenteController extends Controller {
                     ->first()
                     ->load('contrato.operacion');
 
-        $tipo_incidiente =  array('' => '[-- Seleccione --]') + $this->enumTablesRepository->getEnumTables('Incidente')
+        $tipo_incidiente =  $this->enumTablesRepository->getEnumTables('Incidente')
                 ->lists('name','id');
 
-        $tipo_informe =  array('' => '[-- Seleccione --]') + $this->enumTablesRepository->getEnumTables('Informe')
+        $tipo_informe =  $this->enumTablesRepository->getEnumTables('Informe')
                 ->lists('name','id');
 
         $consecuencias = $this->enumTablesRepository->getConsecuencias()
@@ -236,7 +236,7 @@ class IncidenteController extends Controller {
         $entidades = $this->enumTablesRepository->getEntidades()
             ->lists('name','id');
 
-        $jornadas =  array('' => '[-- Seleccione --]') + $this->enumTablesRepository->getEnumTables('Jornada')
+        $jornadas = $this->enumTablesRepository->getEnumTables('Jornada')
                 ->lists('name','id');
 
         return view("incidente.edit")
@@ -251,6 +251,86 @@ class IncidenteController extends Controller {
             ->with('trabajadores',$this->getTrabajadores());
 
 
+    }
+
+    public function postEdit($id,Request $request)
+    {
+        //General
+        $data['tipo_informe_id'] = Input::get('tipo_informe');
+        $data['tipo_incidente_id'] = Input::get('tipo_incidente');
+        $data['fecha'] = Input::get('fecha');
+        $data['lugar'] = Input::get('lugar');
+        $data['punto'] = Input::get('punto');
+        $data['equipos'] = Input::get('equipos');
+        $data['parte'] = Input::get('parte');
+        $data['sector'] = Input::get('sector');
+
+        if(Input::get('responsables') != '')
+            $data['responsable_id'] = Input::get('responsables');
+
+        if($request->has('trbAfectado'))
+            $data['tr_afectados'] = json_encode($request->get('trbAfectado'),JSON_NUMERIC_CHECK);
+        else
+            $data['tr_afectados'] = json_encode(array(),JSON_NUMERIC_CHECK);
+
+        if($request->has('trbInvolucrado'))
+            $data['tr_involucrados'] = json_encode($request->get('trbInvolucrado'),JSON_NUMERIC_CHECK);
+        else
+            $data['tr_involucrados'] = json_encode(array(),JSON_NUMERIC_CHECK);
+
+
+        //Circunstancias
+        $data['jornada_id'] = $request->get('jornada_id');
+        $data['naturaleza'] = $request->get('naturaleza');
+        $data['actividad'] = $request->get('actividad');
+        $data['equipo'] = $request->get('equipo');
+        $data['parte_equipo'] = $request->get('parte_equipo');
+        $data['lugar'] = $request->get('lugar');
+        $data['producto'] = $request->get('producto');
+        $data['des_situacion'] = $request->get('des_situacion');
+
+        //Perdidas
+        if($request->has('parte_afectada'))
+            $data['partes_afectas'] = json_encode($request->get('parte_afectada'),JSON_NUMERIC_CHECK);
+        else
+            $data['partes_afectas'] = json_encode(array(),JSON_NUMERIC_CHECK);
+
+        if($request->has('entidad'))
+            $data['entidad'] = json_encode($request->get('entidad'),JSON_NUMERIC_CHECK);
+        else
+            $data['entidad'] = json_encode(array(),JSON_NUMERIC_CHECK);
+
+        if($request->has('consecuencia'))
+            $data['consecuencia'] = json_encode($request->get('consecuencia'),JSON_NUMERIC_CHECK);
+        else
+            $data['consecuencia'] = json_encode(array(),JSON_NUMERIC_CHECK);
+
+        $data['dias_perdidos'] = $request->get('dias_perdidos');
+
+
+        $data['cons_posibles'] = $request->get('cons_posibles');
+
+        //daños
+
+        if($request->has('d_materiales'))
+            $data['entidad_sini_mat'] = json_encode($request->get('d_materiales'),JSON_NUMERIC_CHECK);
+        else
+            $data['entidad_sini_mat'] = json_encode(array(),JSON_NUMERIC_CHECK);
+
+        $data['danios_mat'] = $request->get('danios_mat');
+        $data['desc_danios_mat'] = $request->get('desc_danios_mat');
+
+        if($request->has('d_ambientales'))
+            $data['entidad_sini_amb'] = json_encode($request->get('d_ambientales'),JSON_NUMERIC_CHECK);
+        else
+            $data['entidad_sini_amb'] = json_encode(array(),JSON_NUMERIC_CHECK);
+
+        $data['lugar_danios_amb'] = $request->get('danios_amb');
+        $data['desc_danios_amb'] = $request->get('desc_danios_amb');
+
+        $this->incidenteRepository->update($data,$id);
+
+        return new RedirectResponse(url('/incidente/edit/'.$id));
     }
 
 
