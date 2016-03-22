@@ -5,6 +5,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
+use SSOLeica\Core\Helpers\Timezone;
 use SSOLeica\Core\Model\CargosTrabajador;
 use SSOLeica\Core\Model\Trabajador;
 use SSOLeica\Core\Repository\ContratoRepository;
@@ -126,7 +127,7 @@ class IncidenteController extends Controller {
         $data['contrato_id'] = Input::get('contrato_id');
         $data['tipo_informe_id'] = Input::get('tipo_informe');
         $data['tipo_incidente_id'] = Input::get('tipo_incidente');
-        $data['fecha'] = Input::get('fecha');
+        $data['fecha'] = Timezone::toUTC(Input::get('fecha'),$this->timezone);
         $data['lugar'] = Input::get('lugar');
         $data['punto'] = Input::get('punto');
         $data['equipos'] = Input::get('equipos');
@@ -169,7 +170,9 @@ class IncidenteController extends Controller {
 
 
         //Circunstancias
-        $data['jornada_id'] = $request->get('jornada_id');
+        if($request->get('jornada_id') != '')
+            $data['jornada_id'] = $request->get('jornada_id');
+
         $data['naturaleza'] = $request->get('naturaleza');
         $data['actividad'] = $request->get('actividad');
         $data['equipo'] = $request->get('equipo');
@@ -189,7 +192,6 @@ class IncidenteController extends Controller {
             $data['consecuencia'] = json_encode($request->get('consecuencia'),JSON_NUMERIC_CHECK);
 
         $data['dias_perdidos'] = $request->get('dias_perdidos');
-
 
         $data['cons_posibles'] = $request->get('cons_posibles');
 
@@ -221,6 +223,8 @@ class IncidenteController extends Controller {
                     ->first()
                     ->load('contrato.operacion');
 
+        $incidente->fecha = Timezone::toLocal($incidente->fecha,$this->timezone);
+
         $tipo_incidiente =  $this->enumTablesRepository->getEnumTables('Incidente')
                 ->lists('name','id');
 
@@ -236,7 +240,7 @@ class IncidenteController extends Controller {
         $entidades = $this->enumTablesRepository->getEntidades()
             ->lists('name','id');
 
-        $jornadas = $this->enumTablesRepository->getEnumTables('Jornada')
+        $jornadas = array('' => '[-- Seleccione --]') + $this->enumTablesRepository->getEnumTables('Jornada')
                 ->lists('name','id');
 
         return view("incidente.edit")
@@ -258,7 +262,7 @@ class IncidenteController extends Controller {
         //General
         $data['tipo_informe_id'] = Input::get('tipo_informe');
         $data['tipo_incidente_id'] = Input::get('tipo_incidente');
-        $data['fecha'] = Input::get('fecha');
+        $data['fecha'] = Timezone::toUTC(Input::get('fecha'),$this->timezone);
         $data['lugar'] = Input::get('lugar');
         $data['punto'] = Input::get('punto');
         $data['equipos'] = Input::get('equipos');
@@ -278,9 +282,9 @@ class IncidenteController extends Controller {
         else
             $data['tr_involucrados'] = json_encode(array(),JSON_NUMERIC_CHECK);
 
-
         //Circunstancias
-        $data['jornada_id'] = $request->get('jornada_id');
+        if($request->get('jornada_id') != '')
+            $data['jornada_id'] = $request->get('jornada_id');
         $data['naturaleza'] = $request->get('naturaleza');
         $data['actividad'] = $request->get('actividad');
         $data['equipo'] = $request->get('equipo');

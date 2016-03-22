@@ -13,7 +13,7 @@ class EnumType{
     const Consecuencia = 'Consecuencia';
     const Documento = 'Documento';
     const Entidad = "Entidad";
-    const ExamenMedico = "EXAMENMEDICO";
+    const ExamenMedico = "ExamenMedico";
     const Incidente = 'Incidente';
     const Informe = 'Informe';
     const LicConducirCategory = 'LicConducirCategory';

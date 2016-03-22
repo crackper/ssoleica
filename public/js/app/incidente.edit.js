@@ -124,7 +124,7 @@ $(function(){
     }).on('change', '[name=fecha]', function(e) {
         console.log('validando');
         $('#frmIncidente').formValidation('validateField', 'fecha');
-     });
+    });
 
     var blod_name = new Bloodhound({
         datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
@@ -174,7 +174,7 @@ $(function(){
         if($('#trbAfectados').val() != '' && $('#fecha').val() != '' ){
 
             $('#fecha_i').val($('#fecha').val());
-            $("#fecha").attr('readonly', 'readonly');
+            //$("#fecha").attr('readonly', 'readonly');
 
             var trabajadores = $('#trbAfectados').val().split(',');
 
@@ -216,7 +216,7 @@ $(function(){
             BootstrapDialog.confirm('Desea quitar los trabajadores seleccionados', function(result){
                 if(result) {
                     checkboxValues.forEach(function(val){
-                        $('input[name="trAfeCargo[]"]').each(function() {
+                        $('input[name="trbAfectado[]"]').each(function() {
                             if($(this).val() == val)
                             {
                                 console.log('quitando: ' + val);
@@ -271,7 +271,7 @@ $(function(){
 
     $('#btnAddInvolucrado').on('click',function(){
         $('#fecha_i').val($('#fecha').val());
-        $("#fecha").attr('readonly', 'readonly');
+        //$("#fecha").attr('readonly', 'readonly');
 
         if($('#trbInvolucrados').val() != '' && $('#fecha').val() != '' ){
             var trabajadores = $('#trbInvolucrados').val().split(',');
@@ -318,7 +318,7 @@ $(function(){
             BootstrapDialog.confirm('Desea quitar los trabajadores seleccionados', function(result){
                 if(result) {
                     checkboxValues.forEach(function(val){
-                        $('input[name="trInvolucrado[]"]').each(function() {
+                        $('input[name="trbInvolucrado[]"]').each(function() {
                             if($(this).val() == val)
                             {
                                 console.log('quitando: ' + val);

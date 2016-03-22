@@ -81,7 +81,7 @@
 <script src="{{ url('/js/plugins/handlebars-v4.0.5.js') }}"></script>
 <script src="/js/bootstrap-dialog.min.js"></script>
 <script src="{{ url('/plugins/redactor/redactor.min.js') }}"></script>
-{!! Minify::javascript('/js/app/incidente.create.js') !!}
+{!! Minify::javascript('/js/app/incidente.edit.js') !!}
 
 <script language="javascript" type="text/javascript">
     $(document).ready(function () {
