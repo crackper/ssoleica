@@ -568,7 +568,7 @@ class ContratoController extends Controller {
                     ->setLabel('Acciones')
                     ->setCallback(function ($val) {
 
-                        $icon_ampliar = "<a href='/contrato/aprobar-ampliar-contrato/$val' data-toggle='tooltip' data-placement='left' title='Aprobar Ampliación' class='btn btn-xs btn-block btn-success' ><span class='fa  fa-thumbs-o-up'></span> Aprobar</a>";
+                        $icon_ampliar = "<a href='/contrato/aprobar-ampliar-contrato/$val' data-toggle='tooltip' data-placement='left' title='Aprobar Ampliación' class='btn btn-xs btn-block btn-success' >  Aprobar</a>";
 
                         return  $icon_ampliar;
                     })

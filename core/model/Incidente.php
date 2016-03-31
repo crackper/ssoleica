@@ -1,12 +1,13 @@
 <?php namespace SSOLeica\Core\Model;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\DB;
 use SSOLeica\Core\Traits\UpdatedBy;
 
 class Incidente extends Model {
 
-    use UpdatedBy;
+    use UpdatedBy,SoftDeletes;
 
     protected $table = 'incidente';
 
@@ -66,5 +67,39 @@ class Incidente extends Model {
         }
 
         return $data;
+    }
+
+    public function getFotosAttribute()
+    {
+        $fotos = IncidenteFotos::where('incidente_id',$this->id)->get();
+
+        //dd($fotos);
+
+        $images = array();
+
+        foreach($fotos as $foto )
+        {
+            $attr = array();
+
+            if(!is_null($foto->attributes['attributes'])) {
+                $attributes = json_decode($foto->attributes['attributes']);
+                $attr['fullPath'] = $attributes->fullPath;
+                $attr['fullPathTumb'] = $attributes->fullPathTumb;
+            }
+            else{
+                $attr['fullPath'] = $foto->directorio.$foto->archivo;
+                $attr['fullPathTumb'] = $foto->directorio.'tumb/'.$foto->archivo;
+            }
+
+            $images[]= array('id'=>$foto->id,
+                             'incidente_id'=>$foto->incidente_id,
+                             'archivo'=>$foto->archivo,
+                             'directorio' => $foto->directorio,
+                             'fullPath' => $attr['fullPath'],
+                             'fullPathTumb' => $attr['fullPathTumb']
+                         );
+        }
+
+        return (object)$images;
     }
 }

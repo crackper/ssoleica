@@ -183,6 +183,10 @@ return [
          * Template JS
          */
         //'ProAI\Handlebars\HandlebarsServiceProvider'
+        /*
+         * Tratado de Imagenes
+         * */
+        'Intervention\Image\ImageServiceProvider'
 
 	],
 
@@ -249,7 +253,11 @@ return [
         /*
        * Zizaco\Entrust
        */
-        'Entrust' => 'Zizaco\Entrust\EntrustFacade'
+        'Entrust' => 'Zizaco\Entrust\EntrustFacade',
+        /*
+         * Tratado de Imagenes
+         * */
+        'Image' => 'Intervention\Image\Facades\Image'
 
 	],
 

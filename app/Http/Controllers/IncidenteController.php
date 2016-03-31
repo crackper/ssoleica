@@ -5,8 +5,11 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
+use Intervention\Image\Facades\Image;
+use Intervention\Image\ImageManager;
 use SSOLeica\Core\Helpers\Timezone;
 use SSOLeica\Core\Model\CargosTrabajador;
+use SSOLeica\Core\Model\IncidenteFotos;
 use SSOLeica\Core\Model\Trabajador;
 use SSOLeica\Core\Repository\ContratoRepository;
 use SSOLeica\Core\Repository\EnumTablesRepository;
@@ -416,6 +419,79 @@ class IncidenteController extends Controller {
         Return Response::json($data);
     }
 
+
+    public function postUploadFotos($id)
+    {
+        $fotos = array();
+
+        if (Input::hasFile('fotos'))
+        {
+            $file           	= Input::file('fotos')[0];
+            $destinationPath    = 'incidentes/';
+            $destinationPathTumb    = 'incidentes/tumb/';
+            $ext            	= $file->getClientOriginalExtension();
+            $fullname       	= $file->getFilename();
+            $hashname           = $id.'_'.date('His').'_'.md5($fullname).'.'.$ext;
+
+            //$success =  $file->move($destinationPath,$hashname);
+
+            $manager = new ImageManager(array('driver' => 'imagick'));
+
+            $image = $manager->make($file->getRealPath());
+
+            if($image->height() > 800)
+            {
+                $image->resize(null,800,function($constraint){
+                    $constraint->aspectRatio();
+                });
+            }
+            else if($image->width() > 800)
+            {
+                $image->resize(800,null,function($constraint){
+                    $constraint->aspectRatio();
+                });
+            }
+
+            $image->save($destinationPath.$hashname,100)
+                  ->resize(null,320,function($constraint){
+                      $constraint->aspectRatio();
+                  })->save($destinationPathTumb.$hashname,100);
+
+            $incidente_fotos = new IncidenteFotos;
+            $incidente_fotos->incidente_id = $id;
+            $incidente_fotos->archivo = $hashname;
+            $incidente_fotos->directorio = $destinationPath;
+
+            $attr = array('fullPath'=>$destinationPath.$hashname,'fullPathTumb'=>$destinationPathTumb.$hashname);
+
+            $incidente_fotos->attributes = json_encode($attr);
+            $incidente_fotos->save();
+
+            $fotos['id'] = $incidente_fotos->id;
+            $fotos['incidente'] = $incidente_fotos->incidente_id;
+            $fotos['fotos']=json_decode($incidente_fotos->attributes);
+
+        }
+        Return Response::json($fotos);
+    }
+
+    public function getDeleteImage($id=0){
+
+        $msg['success'] = false;
+
+        if($id == 0)
+            Return Response::json($msg);
+
+        $foto = IncidenteFotos::find($id);
+
+        if(is_null($foto))
+            Return Response::json($msg);
+
+        $foto->delete();
+        $msg['success'] = true;
+
+        Return Response::json($msg);
+    }
 	/**
 	 * Store a newly created resource in storage.
 	 *

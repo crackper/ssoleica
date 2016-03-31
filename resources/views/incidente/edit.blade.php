@@ -1,17 +1,17 @@
 @extends('app')
 
 @section('pageheader')
-    Registar Nuevo Incidente
+    Editar Incidente
 @endsection
 
 @section('breadcrumb')
     <li>Seguridad</li>
     <li><a href="/incidentes">Incidentes</a></li>
-    <li class="active">Registrar</li>
+    <li class="active">Editar</li>
 @endsection
 
 @section('content')
-<form id="frmIncidente" action="/incidente/edit/{{$incidente->id}}" method="post">
+<form id="frmIncidente" action="/incidente/edit/{{$incidente->id}}" method="post" enctype="multipart/form-data">
 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 <div id="tabIncidente" role="tabpanel" class="nav-tabs-custom">
   <!-- Nav tabs -->
@@ -20,6 +20,7 @@
     <li role="presentation"><a href="#circunstancias" aria-controls="circunstancias" role="tab" data-toggle="tab">Circunstancias/Descripción</a></li>
     <li role="presentation"><a href="#perdidas" aria-controls="perdidas" role="tab" data-toggle="tab">Perdidas</a></li>
     <li role="presentation"><a href="#danios" aria-controls="danios" role="tab" data-toggle="tab">Daños</a></li>
+    <li role="presentation"><a href="#fotos" aria-controls="fotos" role="tab" data-toggle="tab">Fotos</a></li>
   </ul>
   <!-- Tab panes -->
     <div class="tab-content">
@@ -35,6 +36,11 @@
     <div role="tabpanel" class="tab-pane fade" id="danios">
         <div class="row" style="padding: 0px 10px 0px 10px;">
          @include('incidente.partial_e.danios')
+        </div>
+    </div>
+    <div role="tabpanel" class="tab-pane fade" id="fotos">
+        <div class="row" style="padding: 0px 10px 0px 10px;">
+         @include('incidente.partial_e.fotos')
         </div>
     </div>
     <div class="row">
@@ -57,6 +63,8 @@
 <link rel="stylesheet" href="{{ url('/packages/zofe/rapyd/assets/autocomplete/autocomplete.css') }}"/>
     <link rel="stylesheet" href="{{ url('/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css') }}"/>
     <link rel="stylesheet" href="{{ url('/plugins/redactor/redactor.css') }}"/>
+    <link rel="stylesheet" href="{{ url('/plugins/fileupload/jquery.fileupload.css') }}"/>
+    <link rel="stylesheet" href="{{ url('/plugins/leastjs/least.min.css') }}"/>
 
 <style type="text/css">
 .has-error .form-control-feedback {
@@ -81,19 +89,19 @@
 <script src="{{ url('/js/plugins/handlebars-v4.0.5.js') }}"></script>
 <script src="/js/bootstrap-dialog.min.js"></script>
 <script src="{{ url('/plugins/redactor/redactor.min.js') }}"></script>
+<script src="{{ url('/plugins/fileupload/vendor/jquery.ui.widget.js') }}"></script>
+<script src="https://blueimp.github.io/JavaScript-Load-Image/js/load-image.all.min.js"></script>
+<script src="https://blueimp.github.io/JavaScript-Canvas-to-Blob/js/canvas-to-blob.min.js"></script>
+<script src="{{ url('/plugins/fileupload/jquery.iframe-transport.js') }}"></script>
+<script src="{{ url('/plugins/fileupload/jquery.fileupload.js')}}"></script>
+<script src="{{ url('/plugins/fileupload/jquery.fileupload-process.js')}}"></script>
+<script src="{{ url('/plugins/fileupload/jquery.fileupload-image.js')}}"></script>
+<script src="{{ url('/plugins/fileupload/jquery.fileupload-validate.js')}}"></script>
+<script src="{{ url('/plugins/leastjs/least.min.js')}}"></script>
 {!! Minify::javascript('/js/app/incidente.edit.js') !!}
-
+{!! Minify::javascript('/js/app/incidente.edit.fotos.js') !!}
 <script language="javascript" type="text/javascript">
-    $(document).ready(function () {
 
-     $('#des_situacion').redactor();
-     $('#cons_posibles').redactor();
-     $('#danios_mat').redactor();
-     $('#desc_danios_mat').redactor();
-     $('#danios_amb').redactor();
-     $('#desc_danios_amb').redactor();
-
-    });
 </script>
 
 @include('incidente.partial_e.afectados')
