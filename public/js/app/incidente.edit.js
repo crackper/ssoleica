@@ -1,6 +1,8 @@
 /**
  * Created by Samuel on 4/08/15.
  */
+
+
 $(function(){
 
     Handlebars.setDelimiter('[!','!]');
@@ -126,7 +128,7 @@ $(function(){
         $('#frmIncidente').formValidation('validateField', 'fecha');
     });
 
-    var blod_name = new Bloodhound({
+   var blod_name = new Bloodhound({
         datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
         queryTokenizer: Bloodhound.tokenizers.whitespace,
         remote: '/incidente/trabajador/%QUERY'

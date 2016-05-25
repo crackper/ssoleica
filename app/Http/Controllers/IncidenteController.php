@@ -492,6 +492,39 @@ class IncidenteController extends Controller {
 
         Return Response::json($msg);
     }
+
+    public function getMedidasSeguridad($id=0)
+    {
+        return view("incidente.partial_e.medidas");
+    }
+
+    public function postAddAccion()
+    {
+        $incidente          =   Input::get('incidente');
+        $type           =   Input::get('type');
+        $title         =   "";
+
+        switch($type)
+        {
+            case 'inmediata':
+                $title = 'Acción Inmediata';
+                break;
+            case 'correctiva':
+                $title = 'Acción Correctiva';
+                break;
+            case 'preventiva':
+                $title = 'Acción Preventiva';
+                break;
+            default:
+                $title = 'Acción';
+                break;
+        }
+
+        return view('incidente.addAccion')
+            ->with('incidente',$incidente)
+            ->with('type',$type)
+            ->with('title',$title);
+    }
 	/**
 	 * Store a newly created resource in storage.
 	 *

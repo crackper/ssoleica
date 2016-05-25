@@ -15,8 +15,8 @@ return [
 	*/
 
 	'mailgun' => [
-		'domain' => '',
-		'secret' => '',
+		'domain' => 'ssoleica.com',
+		'secret' => 'key-6a35a6f4509490afef1231746f99fc01',
 	],
 
 	'mandrill' => [
