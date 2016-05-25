@@ -36,7 +36,7 @@ $(function(){
 
         $.ajax({
             url: '/incidente/add-accion',
-            type: 'POST',
+            type: 'GET',
             data: {'_token': token, 'incidente':incidente,'type': type }
         })
             .done(function(data) {

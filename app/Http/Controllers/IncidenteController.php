@@ -498,7 +498,7 @@ class IncidenteController extends Controller {
         return view("incidente.partial_e.medidas");
     }
 
-    public function postAddAccion()
+    public function getAddAccion()
     {
         $incidente          =   Input::get('incidente');
         $type           =   Input::get('type');

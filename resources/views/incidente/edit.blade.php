@@ -43,8 +43,6 @@
     <div role="tabpanel" class="tab-pane fade" id="fotos">
         <div class="row" style="padding: 0px 10px 0px 10px;">
          @include('incidente.partial_e.fotos')
-         <input type="text" value="Amsterdam,Washington,Sydney,Beijing,Cairo" data-role="tagsinput"/>
-         <input type="text" id="resp1" placeholder="Apellidos o Nombres ..."  class="form-control autocompleter" >
         </div>
     </div>
     <div role="tabpanel" class="tab-pane fade" id="medidas">
@@ -58,9 +56,7 @@
 </div>
 </div>
 </form>
-<div id="modalView">
-
-</div>
+<div id="modalView"></div>
 
 @endsection
 

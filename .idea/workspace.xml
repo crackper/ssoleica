@@ -35,8 +35,8 @@
       <file leaf-file-name="addAccion.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/incidente/addAccion.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-11.875" vertical-offset="0" max-vertical-offset="525">
-              <caret line="19" column="60" selection-start-line="19" selection-start-column="60" selection-end-line="19" selection-end-column="60" />
+            <state vertical-scroll-proportion="-3.125" vertical-offset="0" max-vertical-offset="525">
+              <caret line="5" column="50" selection-start-line="5" selection-start-column="50" selection-end-line="5" selection-end-column="50" />
               <folding />
             </state>
           </provider>
@@ -83,11 +83,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="IncidenteController.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="IncidenteController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/IncidenteController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-12.75" vertical-offset="2064" max-vertical-offset="3360">
-              <caret line="522" column="21" selection-start-line="522" selection-start-column="21" selection-end-line="522" selection-end-column="40" />
+            <state vertical-scroll-proportion="0.33168316" vertical-offset="1839" max-vertical-offset="3360">
+              <caret line="500" column="23" selection-start-line="500" selection-start-column="23" selection-end-line="500" selection-end-column="23" />
               <folding>
                 <element signature="e#1344#1632#0#PHP" expanded="false" />
                 <element signature="e#1637#2487#0#PHP" expanded="false" />
@@ -105,11 +105,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="incidente.addAccion.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="incidente.addAccion.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/js/app/incidente.addAccion.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.70198673" vertical-offset="656" max-vertical-offset="1425">
-              <caret line="74" column="41" selection-start-line="74" selection-start-column="41" selection-end-line="74" selection-end-column="41" />
+            <state vertical-scroll-proportion="-14.576923" vertical-offset="176" max-vertical-offset="1425">
+              <caret line="39" column="36" selection-start-line="39" selection-start-column="36" selection-end-line="39" selection-end-column="36" />
               <folding>
                 <element signature="e#0#41#0" expanded="false" />
               </folding>
@@ -130,8 +130,8 @@
       <file leaf-file-name="edit.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/incidente/edit.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.75" vertical-offset="330" max-vertical-offset="1635">
-              <caret line="46" column="37" selection-start-line="46" selection-start-column="37" selection-end-line="46" selection-end-column="37" />
+            <state vertical-scroll-proportion="-20.625" vertical-offset="180" max-vertical-offset="1575">
+              <caret line="67" column="66" selection-start-line="67" selection-start-column="66" selection-end-line="67" selection-end-column="66" />
               <folding>
                 <element signature="tag#ul#0;tag#div#0;tag#form#0" expanded="false" />
                 <element signature="tag#div#0;tag#div#0;tag#div#0;tag#form#0" expanded="false" />
@@ -203,13 +203,13 @@
         <option value="$PROJECT_DIR$/database/migrations/2016_04_01_154804_create_incidente_medidas_seguridads_table.php" />
         <option value="$PROJECT_DIR$/public/js/app/incidente.edit.medidas.js" />
         <option value="$PROJECT_DIR$/config/app.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/IncidenteController.php" />
         <option value="$PROJECT_DIR$/resources/views/incidente/partial_e/medidas.blade.php" />
         <option value="$PROJECT_DIR$/public/js/app/incidente.edit.js" />
         <option value="$PROJECT_DIR$/resources/views/incidente/partial_e/general.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/incidente/addAccion.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/incidente/edit.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/incidente/addAccion.blade.php" />
         <option value="$PROJECT_DIR$/public/js/app/incidente.addAccion.js" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/IncidenteController.php" />
       </list>
     </option>
   </component>
@@ -940,26 +940,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/IncidenteController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.75" vertical-offset="2064" max-vertical-offset="3360">
-          <caret line="522" column="21" selection-start-line="522" selection-start-column="21" selection-end-line="522" selection-end-column="40" />
-          <folding>
-            <element signature="e#1344#1632#0#PHP" expanded="false" />
-            <element signature="e#1637#2487#0#PHP" expanded="false" />
-            <element signature="e#2564#2619#0#PHP" expanded="false" />
-            <element signature="e#2704#4237#0#PHP" expanded="false" />
-            <element signature="e#4243#7938#0#PHP" expanded="false" />
-            <element signature="e#9513#12874#0#PHP" expanded="false" />
-            <element signature="e#12881#13037#0#PHP" expanded="false" />
-            <element signature="e#13080#13470#0#PHP" expanded="false" />
-            <element signature="e#13476#14078#0#PHP" expanded="false" />
-            <element signature="e#14084#15726#0#PHP" expanded="false" />
-            <element signature="e#15733#17722#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/incidente/partial_e/danios.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="1005">
@@ -1003,18 +983,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/incidente/addAccion.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.875" vertical-offset="0" max-vertical-offset="525">
-          <caret line="19" column="60" selection-start-line="19" selection-start-column="60" selection-end-line="19" selection-end-column="60" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/incidente/edit.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.75" vertical-offset="330" max-vertical-offset="1635">
-          <caret line="46" column="37" selection-start-line="46" selection-start-column="37" selection-end-line="46" selection-end-column="37" />
+        <state vertical-scroll-proportion="-20.625" vertical-offset="180" max-vertical-offset="1575">
+          <caret line="67" column="66" selection-start-line="67" selection-start-column="66" selection-end-line="67" selection-end-column="66" />
           <folding>
             <element signature="tag#ul#0;tag#div#0;tag#form#0" expanded="false" />
             <element signature="tag#div#0;tag#div#0;tag#div#0;tag#form#0" expanded="false" />
@@ -1026,12 +998,40 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/incidente/addAccion.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.125" vertical-offset="0" max-vertical-offset="525">
+          <caret line="5" column="50" selection-start-line="5" selection-start-column="50" selection-end-line="5" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/public/js/app/incidente.addAccion.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.70198673" vertical-offset="656" max-vertical-offset="1425">
-          <caret line="74" column="41" selection-start-line="74" selection-start-column="41" selection-end-line="74" selection-end-column="41" />
+        <state vertical-scroll-proportion="-14.576923" vertical-offset="176" max-vertical-offset="1425">
+          <caret line="39" column="36" selection-start-line="39" selection-start-column="36" selection-end-line="39" selection-end-column="36" />
           <folding>
             <element signature="e#0#41#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/IncidenteController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33168316" vertical-offset="1839" max-vertical-offset="3360">
+          <caret line="500" column="23" selection-start-line="500" selection-start-column="23" selection-end-line="500" selection-end-column="23" />
+          <folding>
+            <element signature="e#1344#1632#0#PHP" expanded="false" />
+            <element signature="e#1637#2487#0#PHP" expanded="false" />
+            <element signature="e#2564#2619#0#PHP" expanded="false" />
+            <element signature="e#2704#4237#0#PHP" expanded="false" />
+            <element signature="e#4243#7938#0#PHP" expanded="false" />
+            <element signature="e#9513#12874#0#PHP" expanded="false" />
+            <element signature="e#12881#13037#0#PHP" expanded="false" />
+            <element signature="e#13080#13470#0#PHP" expanded="false" />
+            <element signature="e#13476#14078#0#PHP" expanded="false" />
+            <element signature="e#14084#15726#0#PHP" expanded="false" />
+            <element signature="e#15733#17722#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
