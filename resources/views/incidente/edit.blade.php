@@ -12,6 +12,17 @@
 
 @section('content')
 <form id="frmIncidente" action="/incidente/edit/{{$incidente->id}}" method="post" enctype="multipart/form-data">
+@if (Session::has('message'))
+    <div class="alert alert-success alert-dismissible fade in" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+          {{ Session::get('message') }}
+    </div>
+@endif
+<div class="row" style="padding: 0px 10px 0px 10px;">
+    <div class="col-md-12 mensaje">
+
+    </div>
+</div>
 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 <div id="tabIncidente" role="tabpanel" class="nav-tabs-custom">
   <!-- Nav tabs -->

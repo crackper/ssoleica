@@ -10,10 +10,12 @@ use Intervention\Image\ImageManager;
 use SSOLeica\Core\Helpers\Timezone;
 use SSOLeica\Core\Model\CargosTrabajador;
 use SSOLeica\Core\Model\IncidenteFotos;
+use SSOLeica\Core\Model\IncidenteMedidasSeguridad;
 use SSOLeica\Core\Model\Trabajador;
 use SSOLeica\Core\Repository\ContratoRepository;
 use SSOLeica\Core\Repository\EnumTablesRepository;
 use SSOLeica\Core\Repository\IncidenteRepository;
+use SSOLeica\Core\Repository\MedidasSeguridadRepository;
 use SSOLeica\Core\Repository\OperacionRepository;
 use SSOLeica\Core\Repository\TrabajadorRepository;
 use SSOLeica\Http\Requests;
@@ -21,6 +23,7 @@ use Illuminate\Support\Facades\Response;
 use SSOLeica\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
+use Zofe\Rapyd\DataForm\Field\Date;
 
 class IncidenteController extends Controller {
 
@@ -47,6 +50,10 @@ class IncidenteController extends Controller {
      * @var IncidenteRepository
      */
     private $incidenteRepository;
+    /**
+     * @var MedidasSeguridadRepository
+     */
+    private $medidasSeguridadRepository;
 
     /**
      * @param OperacionRepository $operacionRepository
@@ -59,7 +66,8 @@ class IncidenteController extends Controller {
                                 ContratoRepository $contratoRepository,
                                 TrabajadorRepository $trabajadorRepository,
                                 EnumTablesRepository $enumTablesRepository,
-                                IncidenteRepository $incidenteRepository)
+                                IncidenteRepository $incidenteRepository,
+                                MedidasSeguridadRepository $medidasSeguridadRepository)
     {
         $this->middleware('auth');
         $this->middleware('workspace');
@@ -70,6 +78,7 @@ class IncidenteController extends Controller {
         $this->trabajadorRepository = $trabajadorRepository;
         $this->enumTablesRepository = $enumTablesRepository;
         $this->incidenteRepository = $incidenteRepository;
+        $this->medidasSeguridadRepository = $medidasSeguridadRepository;
     }
 
 	/**
@@ -495,7 +504,22 @@ class IncidenteController extends Controller {
 
     public function getMedidasSeguridad($id=0)
     {
-        return view("incidente.partial_e.medidas");
+        $inmediatas = IncidenteMedidasSeguridad::where('incidente_id',$id)
+                   ->where('type','inmediata')->get();
+
+        //dd($inmediata);
+        /*$responsalbes = array();
+
+        foreach($inmediata as $key=>$row){
+            $responsalbes[] = $row->responsablesLbl;
+        }
+
+        dd($responsalbes);*/
+
+        return view("incidente.partial_e.medidas")
+                ->with('timezone',$this->timezone)
+                ->with('incidente_id',$id)
+                ->with('inmediatas',$inmediatas);
     }
 
     public function getAddAccion()
@@ -524,6 +548,34 @@ class IncidenteController extends Controller {
             ->with('incidente',$incidente)
             ->with('type',$type)
             ->with('title',$title);
+    }
+
+    public function postAddAccion($type,$incidente)
+    {
+
+        $date = \DateTime::createFromFormat('d/m/Y H:i:s',Input::get("fecComprometida") ." 23:59:59");
+
+        $fecha = $date->format('Y-m-d H:i:s');//->setTimezone(new \DateTimeZone($this->timezone));//Carbon::parse($date);//->format('y-m-d H:i:s');
+        $data["incidente_id"] = $incidente;
+        $data["type"] = $type;
+        $data["accion"] = Input::get("descripcion");
+        $data["fecha_comprometida"] = Timezone::toUTC($fecha,$this->timezone);
+        $data["responsables"] = json_encode( explode(",",Input::get("resp")),JSON_NUMERIC_CHECK);
+
+        $success = 0;
+        $msg = "";
+
+        $success = $this->medidasSeguridadRepository->create($data);
+
+        $success = !is_null($success);
+
+        $msg = $success ? "La informacion de guardo correctamente." : "Error: No se pudo guardar la información" ;
+
+        return Response::json(array(
+            'success' => $success,
+            'data'   => $msg
+        ));
+
     }
 	/**
 	 * Store a newly created resource in storage.
