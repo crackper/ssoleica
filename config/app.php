@@ -257,7 +257,9 @@ return [
         /*
          * Tratado de Imagenes
          * */
-        'Image' => 'Intervention\Image\Facades\Image'
+        'Image' => 'Intervention\Image\Facades\Image',
+        /**/
+        'Helper'=>'SSOLeica\Core\Helpers\Helpers'
 
 	],
 

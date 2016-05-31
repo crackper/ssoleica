@@ -507,19 +507,19 @@ class IncidenteController extends Controller {
         $inmediatas = IncidenteMedidasSeguridad::where('incidente_id',$id)
                    ->where('type','inmediata')->get();
 
-        //dd($inmediata);
-        /*$responsalbes = array();
+        $correctivas = IncidenteMedidasSeguridad::where('incidente_id',$id)
+            ->where('type','correctiva')->get();
 
-        foreach($inmediata as $key=>$row){
-            $responsalbes[] = $row->responsablesLbl;
-        }
+        $preventivas = IncidenteMedidasSeguridad::where('incidente_id',$id)
+            ->where('type','preventiva')->get();
 
-        dd($responsalbes);*/
 
         return view("incidente.partial_e.medidas")
                 ->with('timezone',$this->timezone)
                 ->with('incidente_id',$id)
-                ->with('inmediatas',$inmediatas);
+                ->with('inmediatas',$inmediatas)
+                ->with('correctivas',$correctivas)
+                ->with('preventivas',$preventivas);
     }
 
     public function getAddAccion()
