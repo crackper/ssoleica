@@ -19,10 +19,10 @@
     </div>
 @endif
 <div class="row" style="padding: 0px 10px 0px 10px;">
-    <div class="col-md-12 mensaje">
+            <div class="col-md-12 mensaje">
 
-    </div>
-</div>
+            </div>
+        </div>
 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 <div id="tabIncidente" role="tabpanel" class="nav-tabs-custom">
   <!-- Nav tabs -->
@@ -57,7 +57,7 @@
         </div>
     </div>
     <div role="tabpanel" class="tab-pane fade" id="medidas">
-        -----
+
     </div>
     <div class="row">
         <div class="col-sm-12" style="padding: 0px 10px 0px 30px;">
@@ -118,6 +118,7 @@
 <script src="{{ url('/plugins/leastjs/least.min.js')}}"></script>
 {!! Minify::javascript('/js/app/incidente.edit.js') !!}
 {!! Minify::javascript('/js/app/incidente.addAccion.js') !!}
+{!! Minify::javascript('/js/app/incidente.editAccion.js') !!}
 {!! Minify::javascript('/js/app/incidente.edit.fotos.js') !!}
 {!! Minify::javascript('/js/app/incidente.edit.medidas.js') !!}
 <script src="{{ url('/packages/zofe/rapyd/assets/datepicker/bootstrap-datepicker.js')}}"></script>

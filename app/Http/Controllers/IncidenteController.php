@@ -505,13 +505,16 @@ class IncidenteController extends Controller {
     public function getMedidasSeguridad($id=0)
     {
         $inmediatas = IncidenteMedidasSeguridad::where('incidente_id',$id)
-                   ->where('type','inmediata')->get();
+                   ->where('type','inmediata')
+                    ->orderBy('created_at', 'asc')->get();
 
         $correctivas = IncidenteMedidasSeguridad::where('incidente_id',$id)
-            ->where('type','correctiva')->get();
+            ->where('type','correctiva')
+            ->orderBy('created_at', 'asc')->get();
 
         $preventivas = IncidenteMedidasSeguridad::where('incidente_id',$id)
-            ->where('type','preventiva')->get();
+            ->where('type','preventiva')
+            ->orderBy('created_at', 'asc')->get();
 
 
         return view("incidente.partial_e.medidas")
@@ -576,6 +579,39 @@ class IncidenteController extends Controller {
             'data'   => $msg
         ));
 
+    }
+
+    public function getEditAccion($id = 0)
+    {
+        $accion = $this->medidasSeguridadRepository->find($id);
+
+        return view('incidente.editAccion')
+            ->with('accion',$accion)
+            ->with('timezone',$this->timezone);
+    }
+
+    public function postEditAccion($id=0)
+    {
+        $date = \DateTime::createFromFormat('d/m/Y H:i:s',Input::get("fecComprometida") ." 23:59:59");
+
+        $fecha = $date->format('Y-m-d H:i:s');
+        $data["accion"] = Input::get("descripcion");
+        $data["fecha_comprometida"] = Timezone::toUTC($fecha,$this->timezone);
+        $data["responsables"] = json_encode( explode(",",Input::get("resp")),JSON_NUMERIC_CHECK);
+
+        $success = 0;
+        $msg = "";
+
+        $success = $this->medidasSeguridadRepository->update($data,$id);
+
+        $success = !is_null($success);
+
+        $msg = $success ? "La informacion de guardo correctamente." : "Error: No se pudo guardar la información" ;
+
+        return Response::json(array(
+            'success' => $success,
+            'data'   => $msg
+        ));
     }
 	/**
 	 * Store a newly created resource in storage.

@@ -30,4 +30,21 @@ class IncidenteMedidasSeguridad extends Model {
         return $lbl;
     }
 
+    public function getResponsablesArrayAttribute(){
+
+        $resp = json_decode($this->responsables);
+
+        $trabajadores = Trabajador::whereIn('id',$resp)->get();
+
+        $val = array();
+
+        foreach($trabajadores as $key=>$row)
+        {
+
+            $val[] = ["value" => $row->id, "text" => $row->nombre." ". $row->app_paterno];
+        }
+
+        return $val;
+    }
+
 }
