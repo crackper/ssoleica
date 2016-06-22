@@ -39,4 +39,13 @@ trait UpdatedBy {
         return parent::save($options);
 
     }
+
+    public function delete() {
+
+        $this->attributes['updated_by'] = $this->getUpdated();
+
+        parent::save();
+
+        parent::delete();
+    }
 } 

@@ -6,7 +6,7 @@
 
 @section('breadcrumb')
     <li>Seguridad</li>
-    <li><a href="/incidentes">Incidentes</a></li>
+    <li><a href="/incidente">Incidentes</a></li>
     <li class="active">Registrar</li>
 @endsection
 

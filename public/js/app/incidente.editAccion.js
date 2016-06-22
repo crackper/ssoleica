@@ -4,25 +4,6 @@
 $(function(){
 
     /*
-     * Inicializacion para los datepicker
-     * */
-   /* $(document).on('focus','*[data-toggle="date"]', function(event) {
-        event.preventDefault();
-
-        $(this).mask("00/00/0000", {placeholder: "dia/mes/año"});
-
-        $(this).datepicker({
-            format: 'd/mm/yyyy',
-            language: 'es',
-            autoclose: true
-        });
-    });
-
-    $(document).on('focus','#resp',function(event){
-        console.log('no sale on focus');
-    });*/
-
-    /*
      * mostar popup para agregar acciones por tipo
      * */
     $(document).on('click','a.update-accion',function(e){
@@ -192,24 +173,4 @@ $(function(){
 
     });
 
-    $(document).on('click','a.remove-accion',function(event){
-        event.preventDefault();
-        accion = $(this).data('accion');
-        tr = $(this).closest('tr');
-        text = $(tr).find('td').eq(1).html();
-
-        BootstrapDialog.confirm({
-            title: '<b>SSO Leica</b>',
-            message: '<b>Desea eliminar esta Acción?</b>' + text,
-            type: BootstrapDialog.TYPE_WARNING, // <-- Default value is BootstrapDialog.TYPE_PRIMARY
-            btnCancelLabel: 'No', // <-- Default value is 'Cancel',
-            btnOKLabel: 'Si', // <-- Default value is 'OK',
-            btnOKClass: 'btn-warning', // <-- If you didn't specify it, dialog type will be used,
-            callback: function(result) {
-                if(result) {
-                    $(tr).fadeOut('slow',function(){ $(this).remove(); });
-                }
-            }
-        });
-    });
 });

@@ -82,6 +82,20 @@ class EnumTablesRepository extends Repository {
         return $query;
     }
 
+    function getIncidentes()
+    {
+        $query = EnumTables::where('type','=',EnumType::Incidente)->get();
+
+        return $query;
+    }
+
+    function getInformes()
+    {
+        $query = EnumTables::where('type','=',EnumType::Informe)->get();
+
+        return $query;
+    }
+
 
     public function getExamenesDisponibles($trabajador_id, $operacion_id)
     {

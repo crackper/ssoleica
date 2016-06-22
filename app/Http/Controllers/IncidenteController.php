@@ -7,6 +7,26 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
 use Intervention\Image\Facades\Image;
 use Intervention\Image\ImageManager;
+use Nayjest\Grids\Components\Filters\DateRangePicker;
+use Nayjest\Grids\Components\RenderFunc;
+use Nayjest\Grids\EloquentDataProvider;
+use Nayjest\Grids\FieldConfig;
+use Nayjest\Grids\GridConfig;
+use Nayjest\Grids\IdFieldConfig;
+use Nayjest\Grids\SelectFilterConfig;
+use Nayjest\Grids\Components\Base\RenderableRegistry;
+use Nayjest\Grids\Components\ColumnHeadersRow;
+use Nayjest\Grids\Components\ColumnsHider;
+use Nayjest\Grids\Components\FiltersRow;
+use Nayjest\Grids\Components\HtmlTag;
+use Nayjest\Grids\Components\OneCellRow;
+use Nayjest\Grids\Components\Laravel5\Pager;
+use Nayjest\Grids\Components\RecordsPerPage;
+use Nayjest\Grids\Components\ShowingRecords;
+use Nayjest\Grids\Components\TFoot;
+use Nayjest\Grids\Components\THead;
+use Nayjest\Grids\FilterConfig;
+use Nayjest\Grids\Grid;
 use SSOLeica\Core\Helpers\Timezone;
 use SSOLeica\Core\Model\CargosTrabajador;
 use SSOLeica\Core\Model\IncidenteFotos;
@@ -21,7 +41,7 @@ use SSOLeica\Core\Repository\TrabajadorRepository;
 use SSOLeica\Http\Requests;
 use Illuminate\Support\Facades\Response;
 use SSOLeica\Http\Controllers\Controller;
-
+use HTML;
 use Illuminate\Http\Request;
 use Zofe\Rapyd\DataForm\Field\Date;
 
@@ -88,7 +108,163 @@ class IncidenteController extends Controller {
 	 */
 	public function getIndex()
 	{
-		return view("home");
+        $data = $this->incidenteRepository->getIncidentes($this->pais);
+
+        //dd($data->get());
+
+        $cfg = (new GridConfig())
+            ->setName("gridIcidentes")
+            ->setDataProvider(
+                new EloquentDataProvider($data)
+            )
+            ->setColumns([
+                (new IdFieldConfig)->setLabel('#'),
+                (new FieldConfig)
+                    ->setName('fecha')
+                    ->setLabel('Fecha')
+                    ->setSortable(true)
+                    ->setSorting(Grid::SORT_DESC)
+                    ->setCallback(function ($val) {
+                        return "<span class='fa fa-calendar'></span> " . Timezone::toLocal($val,$this->timezone,'d/m/Y H:m');
+                    }),
+                (new FieldConfig)
+                    ->setName("operacion")
+                    ->setLabel("Proyecto")
+                    ->setSortable(true)
+                    ->addFilter(
+                        (new SelectFilterConfig)
+                            ->setSubmittedOnChange(true)
+                            ->setOptions($this->operacionRepository->getOperaciones($this->pais)->lists('nombre_operacion','id'))
+                            ->setFilteringFunc(function($val, EloquentDataProvider $provider){
+                                $provider->getBuilder()->where('operacion_id','=',$val);
+                            })
+                    ),
+                (new FieldConfig)
+                    ->setName('contrato')
+                    ->setLabel('Contrato')
+                    ->setSortable(true)
+                    ->addFilter(
+                        (new FilterConfig)
+                            ->setFilteringFunc(function ($val, EloquentDataProvider $provider) {
+                                $provider->getBuilder()
+                                    ->where(DB::raw('upper(c.nombre_contrato)'), 'like', '%' . strtoupper($val) . '%');
+                            })
+                    ),
+                (new FieldConfig)
+                    ->setName('tipo_informe')
+                    ->setLabel('Informe')
+                    ->setSortable(true)
+                    ->addFilter(
+                        (new SelectFilterConfig)
+                            ->setSubmittedOnChange(true)
+                            ->setOptions($this->enumTablesRepository->getInformes()->lists("name",'id'))
+                            ->setFilteringFunc(function ($val, EloquentDataProvider $provider) {
+                                $provider->getBuilder()->where('tipo_informe_id', '=', $val);
+                            })
+                    ),
+                (new FieldConfig)
+                    ->setName('tipo_incidente')
+                    ->setLabel('Incidente')
+                    ->setSortable(true)
+                    ->addFilter(
+                        (new SelectFilterConfig)
+                            ->setSubmittedOnChange(true)
+                            ->setOptions($this->enumTablesRepository->getIncidentes()->lists("name",'id'))
+                            ->setFilteringFunc(function ($val, EloquentDataProvider $provider) {
+                                $provider->getBuilder()->where('tipo_incidente_id', '=', $val);
+                            })
+                    ),
+                (new FieldConfig)
+                    ->setName('lugar')
+                    ->setLabel('Lugar')
+                    ->setSortable(true)
+                    ->addFilter(
+                        (new FilterConfig)
+                            ->setFilteringFunc(function ($val, EloquentDataProvider $provider) {
+                                $provider->getBuilder()
+                                    ->where(DB::raw('upper(lugar)'), 'like', '%' . strtoupper($val) . '%');
+                            })
+                    ),
+                (new FieldConfig())
+                    ->setName('id')
+                    ->setLabel('Acciones')
+                    ->setCallback(function ($val) {
+
+                        $icon_edit = "<a href='/incidente/edit/$val' data-toggle='tooltip' data-placement='left' title='Editar Incidente'><span class='fa fa-edit'></span></a>";
+                        $icon_remove = "<a href='/incidente/delete/$val' data-toggle='tooltip' data-placement='left' title='Eliminar Incidente' ><span class='glyphicon glyphicon-trash'></span></a>";
+
+                        return $icon_edit . ' ' . $icon_remove;
+                    })
+            ])
+            ->setComponents([
+                (new THead)
+                    ->setComponents([
+                        (new ColumnHeadersRow),
+                        (new FiltersRow)
+                            ->addComponents([
+                                (new RenderFunc(function () {
+                                    return HTML::style('js/daterangepicker/daterangepicker-bs3.css')
+                                    . HTML::script('js/moment/moment-with-locales.js')
+                                    . HTML::script('js/daterangepicker/daterangepicker.js')
+                                    . "<style>
+                                                .daterangepicker td.available.active,
+                                                .daterangepicker li.active,
+                                                .daterangepicker li:hover {
+                                                    color:black !important;
+                                                    font-weight: bold;
+                                                }
+                                           </style>";
+                                }))
+                                    ->setRenderSection('filters_row_column_fecha'),
+                                (new DateRangePicker)
+                                    ->setName('fecha')
+                                    ->setRenderSection('filters_row_column_fecha')
+                                    ->setDefaultValue(['2016-01-01', date('Y-m-d')])
+                            ])
+                        ,
+                        (new OneCellRow)
+                            ->setRenderSection(RenderableRegistry::SECTION_BEGIN)
+                            ->setComponents([
+                                (new RecordsPerPage)
+                                    ->setVariants([10,15,20,30,40,50]),
+                                new ColumnsHider,
+                                (new HtmlTag)
+                                    ->setContent('<span class="glyphicon glyphicon-refresh"></span> Filtrar')
+                                    ->setTagName('button')
+                                    ->setRenderSection(RenderableRegistry::SECTION_END)
+                                    ->setAttributes([
+                                        'class' => 'btn btn-success btn-sm'
+                                    ]),
+                                (new HtmlTag)
+                                    ->setContent('&nbsp;')
+                                    ->setRenderSection(RenderableRegistry::SECTION_END)
+                                    ->setTagName('span'),
+                                (new HtmlTag)
+                                    ->setContent('<span class="glyphicon glyphicon-plus"></span> Registrar Nuevo Incidente')
+                                    ->setTagName('a')
+                                    ->setRenderSection(RenderableRegistry::SECTION_END)
+                                    ->setAttributes([
+                                        'class' => 'btn btn-warning btn-sm',
+                                        'href' => '/incidente/create'
+                                    ])
+                            ])
+                    ]),
+                (new TFoot)
+                    ->addComponents([
+                        new Pager,
+                        (new HtmlTag)
+                            ->setAttributes(['class' => 'pull-right'])
+                            ->addComponent(new ShowingRecords)
+                    ])
+            ])->setPageSize(10);
+
+        $grid = new Grid($cfg);
+
+        $text = "<h3>Información de Incidentes</h3>";
+
+        $timezone = $this->timezone;
+
+        return view('incidente.index', compact('grid', 'text','timezone'));
 	}
 
 	/**
@@ -613,6 +789,32 @@ class IncidenteController extends Controller {
             'data'   => $msg
         ));
     }
+
+
+    public function getDeleteAccion($id)
+    {
+
+        $success = 0;
+        $msg = "";
+
+        $incidente = $this->medidasSeguridadRepository->find($id);
+
+        if(is_null($incidente))
+            return Response::json(array(
+                'success' => $success,
+                'data'   => "Esta Accion no existe."
+            ));
+
+        $success = $this->medidasSeguridadRepository->delete($incidente->id);
+
+        $msg = $success ? "La Acción se eliminó correctamente." : "Error: No se puede eliminar esta Acción" ;
+
+        return Response::json(array(
+            'success' => $success,
+            'data'   => $msg
+        ));
+    }
+
 	/**
 	 * Store a newly created resource in storage.
 	 *

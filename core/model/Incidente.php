@@ -18,6 +18,16 @@ class Incidente extends Model {
         return $this->hasOne('SSOLeica\Core\Model\Contrato',$foreingKey='id',$localKey='contrato_id');
     }
 
+    public function tipo_informe()
+    {
+        return $this->hasOne('SSOLeica\Core\Model\EnumTables',$foreingKey='id',$localKey='tipo_informe_id');
+    }
+
+    public function tipo_incidente()
+    {
+        return $this->hasOne('SSOLeica\Core\Model\EnumTables',$foreingKey='id',$localKey='tipo_incidente_id');
+    }
+
     public function getAfectadosAttribute(){
 
         $data = array();

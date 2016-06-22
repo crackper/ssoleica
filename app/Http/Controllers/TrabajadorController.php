@@ -205,7 +205,7 @@ class TrabajadorController extends Controller
                                 (new DateRangePicker)
                                     ->setName('fecha_ingreso')
                                     ->setRenderSection('filters_row_column_fecha_ingreso')
-                                    ->setDefaultValue(['1990-01-01', date('Y-m-d')])
+                                    ->setDefaultValue(['2005-01-01', date('Y-m-d')])
                             ])
                         ,
                         (new OneCellRow)
