@@ -614,6 +614,8 @@ class IncidenteController extends Controller {
             $file           	= Input::file('fotos')[0];
             $destinationPath    = 'incidentes/';
             $destinationPathTumb    = 'incidentes/tumb/';
+            $destinationPathRpt    = 'incidentes/rpt/';
+
             $ext            	= $file->getClientOriginalExtension();
             $fullname       	= $file->getFilename();
             $hashname           = $id.'_'.date('His').'_'.md5($fullname).'.'.$ext;
@@ -640,14 +642,19 @@ class IncidenteController extends Controller {
             $image->save($destinationPath.$hashname,100)
                   ->resize(null,320,function($constraint){
                       $constraint->aspectRatio();
-                  })->save($destinationPathTumb.$hashname,100);
+                  })->save($destinationPathTumb.$hashname,100)
+                  ->resize(null,160,function($constraint){
+                      $constraint->aspectRatio();
+                  })->save($destinationPathRpt.$hashname,100);
 
             $incidente_fotos = new IncidenteFotos;
             $incidente_fotos->incidente_id = $id;
             $incidente_fotos->archivo = $hashname;
             $incidente_fotos->directorio = $destinationPath;
 
-            $attr = array('fullPath'=>$destinationPath.$hashname,'fullPathTumb'=>$destinationPathTumb.$hashname);
+            $attr = array('fullPath'=>$destinationPath.$hashname,
+                          'fullPathTumb'=>$destinationPathTumb.$hashname,
+                          'fullPathRpt'=>$destinationPathRpt.$hashname);
 
             $incidente_fotos->attributes = json_encode($attr);
             $incidente_fotos->save();
@@ -868,5 +875,65 @@ class IncidenteController extends Controller {
 	{
 		//
 	}
+
+    public function  getReport($id=0)
+    {
+        //dd(getcwd());
+
+        header("Content-type: application/pdf");
+        header("Content-Disposition: attachment; filename=downloaded.pdf");
+
+        define ("JAVA_HOSTS", "127.0.0.1:8080");
+        define ("JAVA_SERVLET", "/JavaBridge/JavaBridge.phpjavabridge");
+
+        require_once("http://localhost:8080/JavaBridge/java/Java.inc");
+
+        session_start();
+
+        $here = getcwd();
+
+        $ctx = java_context()->getServletContext();
+
+        $birtReportEngine =        java("org.eclipse.birt.php.birtengine.BirtEngine")->getBirtEngine($ctx);
+        java_context()->onShutdown(java("org.eclipse.birt.php.birtengine.BirtEngine")->getShutdownHook());
+
+
+        try{
+
+            $report = $birtReportEngine->openReportDesign("${here}/Incidente_ok.rptdesign");
+            $task = $birtReportEngine->createRunAndRenderTask($report);
+
+            $task->setParameterValue("IdIncidente", new \java("java.lang.Integer", $id));
+
+            /*$path = new \Java("java.lang.String", $here);
+
+            $task->setParameterValue("path",$path);*/
+
+            $taskOptions = new \java("org.eclipse.birt.report.engine.api.PDFRenderOption");
+            $outputStream = new \java("java.io.ByteArrayOutputStream");
+
+            $taskOptions->setOutputStream($outputStream);
+
+            $taskOptions->setOption("pdfRenderOption.pageOverflow", "pdfRenderOption.fitToPage");
+            $taskOptions->setOption("pdfRenderOption.setEmbededFont", false);
+            //$taskOptions->setOption("pdfRenderOption.setFontDirectory", "/Library/Fonts");
+
+            //dd($taskOptions);
+
+
+            $taskOptions->setOutputFormat("pdf");
+
+            $task->setRenderOption( $taskOptions );
+            $task->run();
+            $task->close();
+
+        } catch (JavaException $e) {
+            echo $e; //"Error Calling BIRT";
+
+        }
+
+        echo java_values($outputStream->toByteArray());
+
+    }
 
 }
