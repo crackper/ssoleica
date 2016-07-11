@@ -886,7 +886,7 @@ class IncidenteController extends Controller {
         define ("JAVA_HOSTS", "127.0.0.1:8080");
         define ("JAVA_SERVLET", "/JavaBridge/JavaBridge.phpjavabridge");
 
-        require_once("http://ssoleica.com:8080/JavaBridge/java/Java.inc");
+        require_once("http://127.0.0.1:8080/JavaBridge/java/Java.inc");
 
         session_start();
 

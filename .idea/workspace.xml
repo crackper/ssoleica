@@ -32,11 +32,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="IncidenteController.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="IncidenteController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/IncidenteController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-11.833333" vertical-offset="4936" max-vertical-offset="6075">
-              <caret line="888" column="46" selection-start-line="888" selection-start-column="46" selection-end-line="888" selection-end-column="46" />
+            <state vertical-scroll-proportion="0.45151034" vertical-offset="4936" max-vertical-offset="6075">
+              <caret line="888" column="38" selection-start-line="888" selection-start-column="38" selection-end-line="888" selection-end-column="38" />
               <folding>
                 <element signature="e#44#62#0#PHP" expanded="true" />
                 <element signature="e#3768#12053#0#PHP" expanded="false" />
@@ -58,10 +58,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Incidente_ok.rptdesign" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Incidente_ok.rptdesign" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/Incidente_ok.rptdesign">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.38118023" vertical-offset="38401" max-vertical-offset="90795">
+            <state vertical-scroll-proportion="-9.192307" vertical-offset="38401" max-vertical-offset="90795">
               <caret line="2576" column="2" selection-start-line="2576" selection-start-column="2" selection-end-line="2576" selection-end-column="2" />
               <folding />
             </state>
@@ -152,8 +152,8 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/TrabajadorController.php" />
         <option value="$PROJECT_DIR$/java/Java.inc" />
         <option value="$PROJECT_DIR$/public/Incidente.rptdesign" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/IncidenteController.php" />
         <option value="$PROJECT_DIR$/public/Incidente_ok.rptdesign" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/IncidenteController.php" />
       </list>
     </option>
   </component>
@@ -762,10 +762,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/public/Incidente_ok.rptdesign">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-9.192307" vertical-offset="38401" max-vertical-offset="90795">
+          <caret line="2576" column="2" selection-start-line="2576" selection-start-column="2" selection-end-line="2576" selection-end-column="2" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/IncidenteController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.833333" vertical-offset="4936" max-vertical-offset="6075">
-          <caret line="888" column="46" selection-start-line="888" selection-start-column="46" selection-end-line="888" selection-end-column="46" />
+        <state vertical-scroll-proportion="0.45151034" vertical-offset="4936" max-vertical-offset="6075">
+          <caret line="888" column="38" selection-start-line="888" selection-start-column="38" selection-end-line="888" selection-end-column="38" />
           <folding>
             <element signature="e#44#62#0#PHP" expanded="true" />
             <element signature="e#3768#12053#0#PHP" expanded="false" />
@@ -783,14 +791,6 @@
             <element signature="e#27845#28717#0#PHP" expanded="false" />
             <element signature="e#28723#29477#0#PHP" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/Incidente_ok.rptdesign">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.38118023" vertical-offset="38401" max-vertical-offset="90795">
-          <caret line="2576" column="2" selection-start-line="2576" selection-start-column="2" selection-end-line="2576" selection-end-column="2" />
-          <folding />
         </state>
       </provider>
     </entry>
