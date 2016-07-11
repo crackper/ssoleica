@@ -3,6 +3,7 @@
 use Carbon\Carbon;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
 use Intervention\Image\Facades\Image;
@@ -889,8 +890,10 @@ class IncidenteController extends Controller {
         define ("JAVA_HOSTS", "127.0.0.1:8080");
         define ("JAVA_SERVLET", "/JavaBridge/JavaBridge.phpjavabridge");
 
-        //require_once("${path}/Java/Java.inc");
-        require_once("http://127.0.0.1:8080/JavaBridge/java/Java.inc");
+        //require_once($path."/Java/Java.inc");
+        //require_once("http://127.0.0.1:8080/JavaBridge/java/Java.inc");
+        require_once base_path("Java/Java.inc");
+
 
         session_start();
 
