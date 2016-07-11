@@ -892,7 +892,7 @@ class IncidenteController extends Controller {
 
         //require_once($path."/Java/Java.inc");
         //require_once("http://127.0.0.1:8080/JavaBridge/java/Java.inc");
-        require_once base_path("Java/Java.inc");
+        require_once base_path("java/Java.inc");
 
 
         session_start();
