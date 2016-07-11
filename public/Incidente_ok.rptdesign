@@ -2572,9 +2572,9 @@ where incidente_id = ? and ms.type = 'preventiva' and ms.deleted_at is null]]></
                 </structure>
             </list-property>
             <xml-property name="queryText"><![CDATA[select  inf.id,inf.incidente_id,
-'/Users/Samuel/PhpstormProjects/SSOLeicaDev/public/' || (inf.attributes->>'fullPathRpt')::text as fullPathRpt,
-'/Users/Samuel/PhpstormProjects/SSOLeicaDev/public/' || (inf.attributes->>'fullPathTumb')::text as fullPathTumb,
-'/Users/Samuel/PhpstormProjects/SSOLeicaDev/public/' || (inf.attributes->>'fullPath')::text as fullPath
+'/var/www/html/ssoleica/public/' || (inf.attributes->>'fullPathRpt')::text as fullPathRpt,
+'/var/www/html/ssoleica/public/' || (inf.attributes->>'fullPathTumb')::text as fullPathTumb,
+'/var/www/html/ssoleica/public/' || (inf.attributes->>'fullPath')::text as fullPath
 from incidente_foto inf
 where inf.incidente_id = ? and inf.deleted_at is null]]></xml-property>
             <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>

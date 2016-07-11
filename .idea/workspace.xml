@@ -35,8 +35,8 @@
       <file leaf-file-name="IncidenteController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/IncidenteController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-8.708333" vertical-offset="4936" max-vertical-offset="6075">
-              <caret line="883" column="8" selection-start-line="883" selection-start-column="8" selection-end-line="883" selection-end-column="8" />
+            <state vertical-scroll-proportion="-11.833333" vertical-offset="4936" max-vertical-offset="6075">
+              <caret line="888" column="46" selection-start-line="888" selection-start-column="46" selection-end-line="888" selection-end-column="46" />
               <folding>
                 <element signature="e#44#62#0#PHP" expanded="true" />
                 <element signature="e#3768#12053#0#PHP" expanded="false" />
@@ -61,8 +61,8 @@
       <file leaf-file-name="Incidente_ok.rptdesign" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/Incidente_ok.rptdesign">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.022970904" vertical-offset="0" max-vertical-offset="90795">
-              <caret line="1" column="71" selection-start-line="1" selection-start-column="71" selection-end-line="1" selection-end-column="71" />
+            <state vertical-scroll-proportion="0.38118023" vertical-offset="38401" max-vertical-offset="90795">
+              <caret line="2576" column="2" selection-start-line="2576" selection-start-column="2" selection-end-line="2576" selection-end-column="2" />
               <folding />
             </state>
           </provider>
@@ -359,7 +359,7 @@
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.11793215" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24959612" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26979" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26979" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -764,8 +764,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/IncidenteController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.708333" vertical-offset="4936" max-vertical-offset="6075">
-          <caret line="883" column="8" selection-start-line="883" selection-start-column="8" selection-end-line="883" selection-end-column="8" />
+        <state vertical-scroll-proportion="-11.833333" vertical-offset="4936" max-vertical-offset="6075">
+          <caret line="888" column="46" selection-start-line="888" selection-start-column="46" selection-end-line="888" selection-end-column="46" />
           <folding>
             <element signature="e#44#62#0#PHP" expanded="true" />
             <element signature="e#3768#12053#0#PHP" expanded="false" />
@@ -788,8 +788,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/Incidente_ok.rptdesign">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.022970904" vertical-offset="0" max-vertical-offset="90795">
-          <caret line="1" column="71" selection-start-line="1" selection-start-column="71" selection-end-line="1" selection-end-column="71" />
+        <state vertical-scroll-proportion="0.38118023" vertical-offset="38401" max-vertical-offset="90795">
+          <caret line="2576" column="2" selection-start-line="2576" selection-start-column="2" selection-end-line="2576" selection-end-column="2" />
           <folding />
         </state>
       </provider>
