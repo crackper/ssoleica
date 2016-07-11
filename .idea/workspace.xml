@@ -36,7 +36,7 @@
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/IncidenteController.php">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.45151034" vertical-offset="4936" max-vertical-offset="6075">
-              <caret line="888" column="38" selection-start-line="888" selection-start-column="38" selection-end-line="888" selection-end-column="38" />
+              <caret line="888" column="71" selection-start-line="888" selection-start-column="71" selection-end-line="888" selection-end-column="71" />
               <folding>
                 <element signature="e#44#62#0#PHP" expanded="true" />
                 <element signature="e#3768#12053#0#PHP" expanded="false" />
@@ -773,7 +773,7 @@
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/IncidenteController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.45151034" vertical-offset="4936" max-vertical-offset="6075">
-          <caret line="888" column="38" selection-start-line="888" selection-start-column="38" selection-end-line="888" selection-end-column="38" />
+          <caret line="888" column="71" selection-start-line="888" selection-start-column="71" selection-end-line="888" selection-end-column="71" />
           <folding>
             <element signature="e#44#62#0#PHP" expanded="true" />
             <element signature="e#3768#12053#0#PHP" expanded="false" />
