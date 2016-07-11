@@ -35,8 +35,8 @@
       <file leaf-file-name="IncidenteController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/IncidenteController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7138315" vertical-offset="4771" max-vertical-offset="6090">
-              <caret line="888" column="24" selection-start-line="888" selection-start-column="24" selection-end-line="888" selection-end-column="24" />
+            <state vertical-scroll-proportion="0.35612082" vertical-offset="4921" max-vertical-offset="6135">
+              <caret line="883" column="0" selection-start-line="883" selection-start-column="0" selection-end-line="884" selection-end-column="0" />
               <folding>
                 <element signature="e#44#62#0#PHP" expanded="true" />
                 <element signature="e#3768#12053#0#PHP" expanded="false" />
@@ -241,20 +241,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SSOLeicaDev" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SSOLeicaDev" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -772,8 +758,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/IncidenteController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7138315" vertical-offset="4771" max-vertical-offset="6090">
-          <caret line="888" column="24" selection-start-line="888" selection-start-column="24" selection-end-line="888" selection-end-column="24" />
+        <state vertical-scroll-proportion="0.35612082" vertical-offset="4921" max-vertical-offset="6135">
+          <caret line="883" column="0" selection-start-line="883" selection-start-column="0" selection-end-line="884" selection-end-column="0" />
           <folding>
             <element signature="e#44#62#0#PHP" expanded="true" />
             <element signature="e#3768#12053#0#PHP" expanded="false" />

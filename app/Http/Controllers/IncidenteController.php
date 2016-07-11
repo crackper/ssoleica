@@ -879,6 +879,9 @@ class IncidenteController extends Controller {
     public function  getReport($id=0)
     {
         //dd(getcwd());
+        $path = base_path();
+
+        //dd($path);
 
         header("Content-type: application/pdf");
         header("Content-Disposition: attachment; filename=downloaded.pdf");
@@ -886,7 +889,7 @@ class IncidenteController extends Controller {
         define ("JAVA_HOSTS", "127.0.0.1:8080");
         define ("JAVA_SERVLET", "/JavaBridge/JavaBridge.phpjavabridge");
 
-        require_once("../Java/Java.inc");
+        require_once("${path}/Java/Java.inc");
         //require_once("http://127.0.0.1:8080/JavaBridge/java/Java.inc");
 
         session_start();
