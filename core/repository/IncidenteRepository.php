@@ -9,6 +9,7 @@
 namespace SSOLeica\Core\Repository;
 
 
+use Illuminate\Support\Facades\DB;
 use SSOLeica\Core\Data\Repository;
 use SSOLeica\Core\Model\Incidente;
 
@@ -39,5 +40,20 @@ class IncidenteRepository extends Repository {
                 ->addSelect('ti.name as tipo_incidente');
 
         return $query;
+    }
+
+    public function getCorrelativo($pais_id,$fecha)
+    {
+
+        $query = "select case when max(i.id) is null ";
+        $query .= "then (select upper(substr(p.name,1,2)) from enum_tables p where p.type = 'Pais' and id = :pais_id) || '-' || trim(to_char(1,'0000')) || '-' || date_part('year', '".$fecha."'::timestamp at time zone 'utc' at time zone (select (data->>0)::text as timezone from enum_tables where id = :pais_id)::text) ";
+        $query .= "else (select upper(substr(p.name,1,2)) from enum_tables p where p.type = 'Pais' and id = :pais_id) || '-' || trim(to_char((max(substr(i.correlativo,4,4))::integer + 1),'0000')) || '-' || date_part('year', '".$fecha."'::timestamp at time zone 'utc' at time zone (select (data->>0)::text as timezone from enum_tables where id = :pais_id)::text)  end as next ";
+        $query .= "from incidente i ";
+        $query .= "where i.fecha between date_trunc('year', '".$fecha."'::timestamp at time zone 'utc' at time zone (select (data->>0)::text as timezone from enum_tables where id = :pais_id)::text) and (date_trunc('year', '".$fecha."'::timestamp at time zone 'utc' at time zone (select (data->>0)::text as timezone from enum_tables where id = :pais_id)::text) + interval '1 year' - interval '1 second') ";
+        $query .= "and i.pais_id = :pais_id";
+
+        $data = DB::select(DB::Raw($query),array('pais_id'=> $pais_id));
+
+        return $data;
     }
 }

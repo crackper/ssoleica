@@ -34,6 +34,7 @@
     <li role="presentation"><a href="#fotos" aria-controls="fotos" role="tab" data-toggle="tab">Fotografias</a></li>
     <li role="presentation"><a href="#medidas" aria-controls="medidas" role="tab" data-toggle="tab"
             data-url="/incidente/medidas-seguridad/{{ $incidente->id }}">Medidas de Seguridad</a></li>
+    <li class="pull-right"><a href="/incidente/report/{{ $incidente->id }}" class="text-muted" data-toggle='tooltip' data-placement='top' title='Imprimir Incidente'><i class="fa fa-print"></i></a></li>
   </ul>
   <!-- Tab panes -->
     <div class="tab-content">

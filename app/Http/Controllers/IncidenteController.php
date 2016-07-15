@@ -2,6 +2,7 @@
 
 use Carbon\Carbon;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Input;
@@ -111,6 +112,7 @@ class IncidenteController extends Controller {
 	{
         $data = $this->incidenteRepository->getIncidentes($this->pais);
 
+
         //dd($data->get());
 
         $cfg = (new GridConfig())
@@ -193,8 +195,9 @@ class IncidenteController extends Controller {
 
                         $icon_edit = "<a href='/incidente/edit/$val' data-toggle='tooltip' data-placement='left' title='Editar Incidente'><span class='fa fa-edit'></span></a>";
                         $icon_remove = "<a href='/incidente/delete/$val' data-toggle='tooltip' data-placement='left' title='Eliminar Incidente' ><span class='glyphicon glyphicon-trash'></span></a>";
+                        $icon_pdf = "<a href='/incidente/report/$val' data-toggle='tooltip' data-placement='left' title='Imprimir Incidente' ><span class='fa fa-print'></span></a>";
 
-                        return $icon_edit . ' ' . $icon_remove;
+                        return $icon_edit . ' ' . $icon_remove. ' '.$icon_pdf;
                     })
             ])
             ->setComponents([
@@ -275,6 +278,9 @@ class IncidenteController extends Controller {
 	 */
 	public function getCreate()
 	{
+        if(is_null(Auth::user()->trabajador_id))
+            return new RedirectResponse(url('/incidente'));
+
         $proyectos = array('' => '[-- Seleccione --]') + $this->operacionRepository->getOperaciones($this->pais)
                 ->lists('nombre_operacion','id');
 
@@ -311,7 +317,12 @@ class IncidenteController extends Controller {
 
     public function postCreate(Request $request)
     {
+        //dd(Timezone::toUTC(Input::get('fecha'),$this->timezone)." - ".Input::get('fecha'));
+
+        if(is_null(Auth::user()->trabajador_id))
+            return new RedirectResponse(url('/incidente'));
         //General
+        $data['register_by'] = Auth::user()->trabajador_id;
         $data['pais_id'] = $this->pais;
         $data['contrato_id'] = Input::get('contrato_id');
         $data['tipo_informe_id'] = Input::get('tipo_informe');
@@ -398,6 +409,11 @@ class IncidenteController extends Controller {
         $data['lugar_danios_amb'] = $request->get('danios_amb');
         $data['desc_danios_amb'] = $request->get('desc_danios_amb');
 
+        //insertamos el correlativo
+        $correlativo = $this->incidenteRepository->getCorrelativo($this->pais,$data['fecha']);
+
+        $data["correlativo"] = $correlativo[0]->next;
+
         $ok = $this->incidenteRepository->create($data);
 
         return new RedirectResponse(url('/incidente/edit/'.$ok->id));
@@ -405,7 +421,10 @@ class IncidenteController extends Controller {
 
     public function getEdit($id = 0)
     {
-        //$incidente = $this->incidenteRepository->find($id);
+        $incidente = $this->incidenteRepository->find($id);
+
+        if(is_null($incidente))
+            return new RedirectResponse(url('/incidente/'));
 
         $incidente = $this->incidenteRepository->getModel()
                     ->where('id',$id)
@@ -448,7 +467,6 @@ class IncidenteController extends Controller {
 
     public function postEdit($id,Request $request)
     {
-        //General
         $data['tipo_informe_id'] = Input::get('tipo_informe');
         $data['tipo_incidente_id'] = Input::get('tipo_incidente');
         $data['fecha'] = Timezone::toUTC(Input::get('fecha'),$this->timezone);
@@ -739,7 +757,6 @@ class IncidenteController extends Controller {
 
     public function postAddAccion($type,$incidente)
     {
-
         $date = \DateTime::createFromFormat('d/m/Y H:i:s',Input::get("fecComprometida") ." 23:59:59");
 
         $fecha = $date->format('Y-m-d H:i:s');//->setTimezone(new \DateTimeZone($this->timezone));//Carbon::parse($date);//->format('y-m-d H:i:s');
@@ -823,81 +840,28 @@ class IncidenteController extends Controller {
         ));
     }
 
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{
-		//
-	}
-
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		//
-	}
-
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		//
-	}
-
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		//
-	}
-
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
-		//
-	}
 
     public function  getReport($id=0)
     {
-        //dd(getcwd());
-        $path = base_path();
+        //$fecha = Timezone::toUTC('2016-01-01',$this->timezone);
+        //$correlativo = $this->incidenteRepository->getCorrelativo($this->pais,$fecha);
 
-        //dd($path);
+        //dd($correlativo[0]->next);
+
+        $incidente = $this->incidenteRepository->find($id);
+
+        if(is_null($incidente))
+            return new RedirectResponse(url('/incidente/'));
 
         header("Content-type: application/pdf");
-        header("Content-Disposition: attachment; filename=downloaded.pdf");
+        header("Content-Disposition: attachment; filename=".$incidente->correlativo.".pdf");
 
         define ("JAVA_HOSTS", "127.0.0.1:8080");
         define ("JAVA_SERVLET", "/JavaBridge/JavaBridge.phpjavabridge");
 
-        //require_once($path."/Java/Java.inc");
-        //require_once("http://127.0.0.1:8080/JavaBridge/java/Java.inc");
         require_once base_path("java/Java.inc");
 
-
         session_start();
-
-        $here = getcwd();
 
         $ctx = java_context()->getServletContext();
 
@@ -907,14 +871,10 @@ class IncidenteController extends Controller {
 
         try{
 
-            $report = $birtReportEngine->openReportDesign("${here}/Incidente_ok.rptdesign");
+            $report = $birtReportEngine->openReportDesign(base_path("/reports/Incidente.rptdesign"));
             $task = $birtReportEngine->createRunAndRenderTask($report);
 
             $task->setParameterValue("IdIncidente", new \java("java.lang.Integer", $id));
-
-            /*$path = new \Java("java.lang.String", $here);
-
-            $task->setParameterValue("path",$path);*/
 
             $taskOptions = new \java("org.eclipse.birt.report.engine.api.PDFRenderOption");
             $outputStream = new \java("java.io.ByteArrayOutputStream");
@@ -923,9 +883,6 @@ class IncidenteController extends Controller {
 
             $taskOptions->setOption("pdfRenderOption.pageOverflow", "pdfRenderOption.fitToPage");
             $taskOptions->setOption("pdfRenderOption.setEmbededFont", false);
-            //$taskOptions->setOption("pdfRenderOption.setFontDirectory", "/Library/Fonts");
-
-            //dd($taskOptions);
 
 
             $taskOptions->setOutputFormat("pdf");
@@ -935,7 +892,7 @@ class IncidenteController extends Controller {
             $task->close();
 
         } catch (JavaException $e) {
-            echo $e; //"Error Calling BIRT";
+            echo $e;
 
         }
 

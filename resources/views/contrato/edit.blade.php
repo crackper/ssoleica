@@ -5,8 +5,8 @@
  @endsection
 
 @section('breadcrumb')
-    <li>Administracion</li>
-    <li><a href="/enums">Enums</a></li>
+    <li>Proyectos</li>
+    <li><a href="/contrato">Contratos</a></li>
     <li class="active">Editar</li>
 @endsection
 

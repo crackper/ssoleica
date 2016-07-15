@@ -293,7 +293,7 @@ class TrabajadorController extends Controller
         $pais = $this->enumTablesRepository->find($this->pais)->load('categorias.categoria');
 
         $licencias = array();
-        $licencias[] = "[- Seleccione -]";
+        $licencias[""] = "[- Seleccione -]";
         foreach ($pais->categorias as $row) {
             $licencias[$row->enum_value_id] = $row->categoria->name;
         }
@@ -352,7 +352,7 @@ class TrabajadorController extends Controller
         $pais = $this->enumTablesRepository->find($this->pais)->load('categorias.categoria');
 
         $licencias = array();
-        $licencias[] = "[- Seleccione -]";
+        $licencias[""] = "[- Seleccione -]";
         foreach ($pais->categorias as $row) {
             $licencias[$row->enum_value_id] = $row->categoria->name;
         }

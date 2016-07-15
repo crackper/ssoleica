@@ -29,6 +29,7 @@ class CreateNextmesFunction extends Migration {
 	public function down()
 	{
 		//
+
 	}
 
 }

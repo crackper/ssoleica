@@ -149,10 +149,12 @@ class OperacionController extends Controller {
 	 */
 	public function anyCreate()
 	{
+
 		$form = DataForm::source(new Operacion);
 
         $form->add('pais_id', '', 'hidden')->insertValue(Session::get('pais_id'));
         $form->add('nombre_operacion','Nombre Proyecto', 'text')->rule('required|min:4');
+        //$form->add('Siglas','Siglas', 'text')->rule('required|min:3');;
         $form->add('ubicacion','Ubicación', 'text');
         $form->add('descripcion','Descripción', 'redactor');
 
@@ -215,8 +217,12 @@ class OperacionController extends Controller {
 
         $form->add('pais_id', '', 'hidden')->insertValue(Session::get('pais_id'));
         $form->add('nombre_operacion','Nombre Proyecto', 'text')->rule('required|min:4');
+        //$form->text('Siglas','Siglas', 'text','required|min:3');
+        //$form->add('Siglas','Siglas','SSOLeica\Core\Fields\Label')->updateValue($operacion->siglas);
         $form->add('ubicacion','Ubicación', 'text');
         $form->add('descripcion','Descripción', 'redactor');
+
+
 
         $form->submit('Guardar');
         $form->link("/operacion","Cancelar");
