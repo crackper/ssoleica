@@ -46,7 +46,7 @@
     @endif
 
 
-         <div class="box box-warning">
+         <!--div class="box box-warning">
             <div class="box-header with-border">
                 <h3 class="box-title">Programa Mensual SSO</h3>
                 <div class="box-tools pull-right">
@@ -67,7 +67,7 @@
                     <a href="#">Reporte Mensual</a><br/>
                 @endif
             </div>
-         </div>
+         </div-->
 
     </div>
     @if(Auth::user()->hasRole(['admin','apr']))
@@ -82,7 +82,6 @@
                     </div>
                     <div class="box-body no-padding">
                       <ul class="nav nav-pills nav-stacked">
-                        <li><a href="#"><i class="fa fa-gears"></i>Pendiente / En Construcción</a></li>
                         <li><a href="/incidente"><i class="fa fa-list-alt"></i>{{ trans('home.seguridad_view') }}</a></li>
                         <li><a href="/incidente/create"><i class="fa fa-plus-circle"></i>{{ trans('home.seguridad_create') }}</a></li>
                       </ul>
