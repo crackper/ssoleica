@@ -56,7 +56,7 @@
                 </ex-property>
             </list-property>
             <property name="odaDriverClass">org.postgresql.Driver</property>
-            <property name="odaURL">jdbc:postgresql://localhost:5432/ssoleica_prod</property>
+            <property name="odaURL">jdbc:postgresql://localhost:5432/ssoleica_dev</property>
             <property name="odaUser">hexagon</property>
             <encrypted-property name="odaPassword" encryptionID="base64">amlnc2F3</encrypted-property>
         </oda-data-source>
@@ -1453,6 +1453,17 @@ where t.id in (select r::text::int from (select json_array_elements(tr_afectados
                     <property name="isInput">true</property>
                     <property name="isOutput">false</property>
                 </structure>
+                <structure>
+                    <property name="name">incidente_id</property>
+                    <property name="paramName">IdIncidente</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                    <property name="position">2</property>
+                    <expression name="defaultValue" type="javascript">params["IdIncidente"].value</expression>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
             </list-property>
             <structure name="cachedMetaData">
                 <list-property name="resultSet">
@@ -1533,9 +1544,12 @@ where t.id in (select r::text::int from (select json_array_elements(tr_afectados
                     <property name="nativeDataType">91</property>
                 </structure>
             </list-property>
-            <xml-property name="queryText"><![CDATA[from trabajador t inner join (select ct.trabajador_id,c.name as cargo, (ct.inicio)::date from cargos_trabajador ct
-                                                    inner join enum_tables c on ct.cargo_id = c.id where inicio <= (select fecha from incidente where id = ?)) car on t.id =car.trabajador_id
-                                                    where t.id in (select r::text::int from (select json_array_elements(tr_involucrados) r from  incidente where id = ?)  as tr_afectados)]]></xml-property>
+            <xml-property name="queryText"><![CDATA[select t.id, (nombre || ' ' || app_paterno || ' ' || app_materno) as trabajador,
+t.dni,car.cargo, fecha_ingreso as  ant_empresa, car.inicio as ant_cargo
+from trabajador t inner join (select ct.trabajador_id,c.name as cargo, (ct.inicio)::date from cargos_trabajador ct
+inner join enum_tables c on ct.cargo_id = c.id where inicio <= (select fecha from incidente where id = ?)) car on t.id =car.trabajador_id
+where t.id in (select r::text::int from (select json_array_elements(tr_involucrados) r from  incidente where id = ?)  as tr_afectados)
+]]></xml-property>
             <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
 <model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
   <Version>2.0</Version>
@@ -1547,6 +1561,21 @@ where t.id in (select r::text::int from (select json_array_elements(tr_afectados
           <design:identifier>
             <design:name></design:name>
             <design:position>1</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>2</design:position>
           </design:identifier>
           <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
           <design:precision>0</design:precision>
@@ -2805,6 +2834,9 @@ where inf.incidente_id = ? and inf.deleted_at is null]]></xml-property>
             <property name="fontFamily">"Helvetica"</property>
             <property name="fontSize">9px</property>
             <property name="fontWeight">bold</property>
+        </style>
+        <style name="label" id="725">
+            <property name="fontFamily">sans-serif</property>
         </style>
     </styles>
     <page-setup>
@@ -5271,7 +5303,7 @@ where inf.incidente_id = ? and inf.deleted_at is null]]></xml-property>
                             <structure>
                                 <property name="name">entidad_siniestrada_amb</property>
                                 <text-property name="displayName">entidad_siniestrada_amb</text-property>
-                                <expression name="expression" type="javascript">dataSetRow["entidad_siniestrada_amb"] == null || dataSetRow["entidad_siniestrada_amb"] == "" ? "Ninguna.":dataSetRow["entidad_siniestrada_amb"]</expression>
+                                <expression name="expression" type="javascript">dataSetRow["entidad_siniestrada_amb"] == null || dataSetRow["entidad_siniestrada_amb"] == "" ? "Ninguna. ":dataSetRow["entidad_siniestrada_amb"]</expression>
                                 <property name="dataType">string</property>
                                 <property name="allowExport">true</property>
                             </structure>
