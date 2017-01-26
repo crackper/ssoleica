@@ -223,7 +223,7 @@ class IncidenteController extends Controller {
                                 (new DateRangePicker)
                                     ->setName('fecha')
                                     ->setRenderSection('filters_row_column_fecha')
-                                    ->setDefaultValue(['2016-01-01', date('Y-m-d')])
+                                    ->setDefaultValue(['2005-01-01', date('Y-m-d')])
                             ])
                         ,
                         (new OneCellRow)
@@ -600,7 +600,7 @@ class IncidenteController extends Controller {
             $data['trabajador']     = $query->trabajador->FullName1;
             $data['dni']            = $query->trabajador->dni;
             $data['cargo']          = $query->cargo->name;
-            $data['fecha_ingreso']  = Carbon::parse($query->inicio)->format('d/m/Y');
+            $data['fecha_ingreso']  = Carbon::parse($query->trabajador->fecha_ingreso)->format('d/m/Y');
             $data['fecha_cargo']    = Carbon::parse($query->inicio)->format('d/m/Y');
         }
         else
@@ -616,7 +616,7 @@ class IncidenteController extends Controller {
             $data['trabajador']     = $query->trabajador->FullName1;
             $data['dni']            = $query->trabajador->dni;
             $data['cargo']          = $query->cargo->name;
-            $data['fecha_ingreso']  = Carbon::parse($query->inicio)->format('d/m/Y');
+            $data['fecha_ingreso']  = Carbon::parse($query->trabajador->fecha_ingreso)->format('d/m/Y');
             $data['fecha_cargo']    = Carbon::parse($query->inicio)->format('d/m/Y');
         }
 
