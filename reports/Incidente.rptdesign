@@ -56,7 +56,7 @@
                 </ex-property>
             </list-property>
             <property name="odaDriverClass">org.postgresql.Driver</property>
-            <property name="odaURL">jdbc:postgresql://localhost:5432/ssoleica_dev</property>
+            <property name="odaURL">jdbc:postgresql://localhost:5432/ssoleica_prod</property>
             <property name="odaUser">hexagon</property>
             <encrypted-property name="odaPassword" encryptionID="base64">amlnc2F3</encrypted-property>
         </oda-data-source>
