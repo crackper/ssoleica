@@ -45,8 +45,8 @@
       <file leaf-file-name="Incidente.rptdesign" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/reports/Incidente.rptdesign">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.57256776" vertical-offset="16336" max-vertical-offset="94680">
-              <caret line="1113" column="46" selection-start-line="1113" selection-start-column="46" selection-end-line="1113" selection-end-column="46" />
+            <state vertical-scroll-proportion="0.33333334" vertical-offset="661" max-vertical-offset="94680">
+              <caret line="58" column="82" selection-start-line="58" selection-start-column="82" selection-end-line="58" selection-end-column="82" />
               <folding />
             </state>
           </provider>
@@ -855,8 +855,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/reports/Incidente.rptdesign">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.57256776" vertical-offset="16336" max-vertical-offset="94680">
-          <caret line="1113" column="46" selection-start-line="1113" selection-start-column="46" selection-end-line="1113" selection-end-column="46" />
+        <state vertical-scroll-proportion="0.33333334" vertical-offset="661" max-vertical-offset="94680">
+          <caret line="58" column="82" selection-start-line="58" selection-start-column="82" selection-end-line="58" selection-end-column="82" />
           <folding />
         </state>
       </provider>
