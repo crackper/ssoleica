@@ -32,11 +32,31 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="IncidenteController.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="IncidenteController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/IncidenteController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.78696346" vertical-offset="990" max-vertical-offset="13455">
+            <state vertical-scroll-proportion="-20.625" vertical-offset="990" max-vertical-offset="13455">
               <caret line="145" column="83" selection-start-line="145" selection-start-column="83" selection-end-line="145" selection-end-column="83" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Incidente.rptdesign" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/reports/Incidente.rptdesign">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.33333334" vertical-offset="661" max-vertical-offset="94665">
+              <caret line="58" column="82" selection-start-line="58" selection-start-column="82" selection-end-line="58" selection-end-column="82" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Incidente_ant.rptdesign" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/reports/Incidente_ant.rptdesign">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="94425">
+              <caret line="1249" column="131" selection-start-line="1246" selection-start-column="52" selection-end-line="1249" selection-end-column="131" />
               <folding />
             </state>
           </provider>
@@ -118,9 +138,9 @@
         <option value="$PROJECT_DIR$/resources/views/home.blade.php" />
         <option value="$PROJECT_DIR$/core/model/User.php" />
         <option value="$PROJECT_DIR$/app/Handlers/Events/HandleTrabajadorWasSaved.php" />
-        <option value="$PROJECT_DIR$/reports/Incidente.rptdesign" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/TrabajadorController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/IncidenteController.php" />
+        <option value="$PROJECT_DIR$/reports/Incidente.rptdesign" />
       </list>
     </option>
   </component>
@@ -782,14 +802,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/reports/Incidente_ant.rptdesign">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="660" max-vertical-offset="94425">
-          <caret line="1249" column="131" selection-start-line="1246" selection-start-column="52" selection-end-line="1249" selection-end-column="131" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Handlers/Events/HandleTrabajadorWasSaved.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="1.3593005" vertical-offset="0" max-vertical-offset="1215">
@@ -814,14 +826,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/reports/Incidente.rptdesign">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33333334" vertical-offset="661" max-vertical-offset="94680">
-          <caret line="58" column="82" selection-start-line="58" selection-start-column="82" selection-end-line="58" selection-end-column="82" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/TrabajadorController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-15.583333" vertical-offset="1141" max-vertical-offset="8895">
@@ -835,8 +839,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/IncidenteController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.78696346" vertical-offset="990" max-vertical-offset="13455">
+        <state vertical-scroll-proportion="-20.625" vertical-offset="990" max-vertical-offset="13455">
           <caret line="145" column="83" selection-start-line="145" selection-start-column="83" selection-end-line="145" selection-end-column="83" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/reports/Incidente_ant.rptdesign">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="660" max-vertical-offset="94425">
+          <caret line="1249" column="131" selection-start-line="1246" selection-start-column="52" selection-end-line="1249" selection-end-column="131" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/reports/Incidente.rptdesign">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33333334" vertical-offset="661" max-vertical-offset="94665">
+          <caret line="58" column="82" selection-start-line="58" selection-start-column="82" selection-end-line="58" selection-end-column="82" />
           <folding />
         </state>
       </provider>
