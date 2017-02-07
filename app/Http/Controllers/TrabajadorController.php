@@ -141,7 +141,7 @@ class TrabajadorController extends Controller
                     ->setSortable(true)
                     ->setSorting(Grid::SORT_ASC)
                     ->setCallback(function ($val,EloquentDataRow $row) {
-                        $icon_edit = "<a href='/trabajador/edit/{$row->getId()}' data-toggle='tooltip' data-placement='left' title='Editar Trabajador'><span class='glyphicon glyphicon-user'></span> {$val}</a>";
+                        $icon_edit = "<a href='/trabajador/edit/{$row->getSrc()->id}' data-toggle='tooltip' data-placement='left' title='Editar Trabajador'><span class='glyphicon glyphicon-user'></span> {$val}</a>";
                         return $icon_edit;
                     })
                     ->addFilter(

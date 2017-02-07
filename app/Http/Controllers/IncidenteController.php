@@ -143,7 +143,7 @@ class IncidenteController extends Controller {
                             })
                     )->setCallback(function ($val,EloquentDataRow $row) {
 
-                        $icon_edit = "<a href='/incidente/edit/".$row->getId()."' data-toggle='tooltip' data-placement='left' title='Editar Incidente'>".$val."</a>";
+                        $icon_edit = "<a href='/incidente/edit/{$row->getSrc()->id}' data-toggle='tooltip' data-placement='left' title='Editar Incidente'>".$val."</a>";
 
                         return $icon_edit;
                     }),

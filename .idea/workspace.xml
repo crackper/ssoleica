@@ -32,24 +32,24 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="IncidenteController.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="IncidenteController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/IncidenteController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-19.375" vertical-offset="990" max-vertical-offset="13455">
-              <caret line="143" column="70" selection-start-line="143" selection-start-column="50" selection-end-line="143" selection-end-column="70" />
+            <state vertical-scroll-proportion="0.78696346" vertical-offset="990" max-vertical-offset="13455">
+              <caret line="145" column="83" selection-start-line="145" selection-start-column="83" selection-end-line="145" selection-end-column="83" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TrabajadorController.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="TrabajadorController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/TrabajadorController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5707472" vertical-offset="1171" max-vertical-offset="8895">
-              <caret line="144" column="42" selection-start-line="144" selection-start-column="42" selection-end-line="144" selection-end-column="42" />
+            <state vertical-scroll-proportion="-15.583333" vertical-offset="1141" max-vertical-offset="8895">
+              <caret line="143" column="64" selection-start-line="143" selection-start-column="64" selection-end-line="143" selection-end-column="84" />
               <folding>
-                <marker date="1486500898000" expanded="true" signature="7947:8434" placeholder="..." />
-                <marker date="1486500898000" expanded="true" signature="8185:8383" placeholder="{...}" />
+                <marker date="1486508796000" expanded="true" signature="7952:8439" placeholder="..." />
+                <marker date="1486508796000" expanded="true" signature="8190:8388" placeholder="{...}" />
               </folding>
             </state>
           </provider>
@@ -117,10 +117,10 @@
         <option value="$PROJECT_DIR$/resources/views/contrato/edit.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/home.blade.php" />
         <option value="$PROJECT_DIR$/core/model/User.php" />
-        <option value="$PROJECT_DIR$/reports/Incidente.rptdesign" />
         <option value="$PROJECT_DIR$/app/Handlers/Events/HandleTrabajadorWasSaved.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/IncidenteController.php" />
+        <option value="$PROJECT_DIR$/reports/Incidente.rptdesign" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/TrabajadorController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/IncidenteController.php" />
       </list>
     </option>
   </component>
@@ -790,14 +790,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/reports/Incidente.rptdesign">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.5769231" vertical-offset="0" max-vertical-offset="95355">
-          <caret line="1" column="71" selection-start-line="1" selection-start-column="71" selection-end-line="1" selection-end-column="71" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Handlers/Events/HandleTrabajadorWasSaved.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="1.3593005" vertical-offset="0" max-vertical-offset="1215">
@@ -822,22 +814,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/IncidenteController.php">
+    <entry file="file://$PROJECT_DIR$/reports/Incidente.rptdesign">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-19.375" vertical-offset="990" max-vertical-offset="13455">
-          <caret line="143" column="70" selection-start-line="143" selection-start-column="50" selection-end-line="143" selection-end-column="70" />
+        <state vertical-scroll-proportion="0.33333334" vertical-offset="661" max-vertical-offset="94680">
+          <caret line="58" column="82" selection-start-line="58" selection-start-column="82" selection-end-line="58" selection-end-column="82" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/TrabajadorController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5707472" vertical-offset="1171" max-vertical-offset="8895">
-          <caret line="144" column="42" selection-start-line="144" selection-start-column="42" selection-end-line="144" selection-end-column="42" />
+        <state vertical-scroll-proportion="-15.583333" vertical-offset="1141" max-vertical-offset="8895">
+          <caret line="143" column="64" selection-start-line="143" selection-start-column="64" selection-end-line="143" selection-end-column="84" />
           <folding>
-            <marker date="1486500898000" expanded="true" signature="7947:8434" placeholder="..." />
-            <marker date="1486500898000" expanded="true" signature="8185:8383" placeholder="{...}" />
+            <marker date="1486508796000" expanded="true" signature="7952:8439" placeholder="..." />
+            <marker date="1486508796000" expanded="true" signature="8190:8388" placeholder="{...}" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/IncidenteController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.78696346" vertical-offset="990" max-vertical-offset="13455">
+          <caret line="145" column="83" selection-start-line="145" selection-start-column="83" selection-end-line="145" selection-end-column="83" />
+          <folding />
         </state>
       </provider>
     </entry>

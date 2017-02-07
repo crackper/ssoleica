@@ -26,7 +26,7 @@
             <text-property name="promptText">Incidente</text-property>
             <property name="valueType">static</property>
             <property name="isRequired">true</property>
-            <property name="dataType">integer</property>
+            <property name="dataType">string</property>
             <property name="distinct">true</property>
             <list-property name="selectionList"/>
             <property name="paramType">simple</property>
@@ -1254,11 +1254,11 @@ where i.id = ?]]></xml-property>
             <xml-property name="queryText"><![CDATA[with vars as (select ? as incidente_id),
 cargos as (select trabajador_id,max(inicio)::date as inicio from cargos_trabajador where inicio <= (select fecha from incidente where id = (select incidente_id from vars ))
 group by trabajador_id),
-afectados as (select r::text::int from (select json_array_elements(tr_afectados) r from  incidente where id = 2) as tr_afectados)
+afectados as (select r::text::int from (select json_array_elements(tr_afectados) r from  incidente where id = (select incidente_id from vars )) as tr_afectados) 
 
 select t.id, (nombre || ' ' || app_paterno || ' ' || app_materno) as trabajador,
 t.dni, cc.name as cargo, fecha_ingreso as  ant_empresa, c.inicio as ant_cargo
-from trabajador t
+from trabajador t 
 inner join cargos c on t.id = c.trabajador_id
 inner join cargos_trabajador as ct on c.trabajador_id = ct.trabajador_id and c.inicio = ct.inicio
 inner join enum_tables as cc on ct.cargo_id = cc.id
@@ -1470,11 +1470,8 @@ where t.id in (select * from afectados)]]></xml-property>
                 <structure>
                     <property name="name">idIncidente</property>
                     <property name="paramName">IdIncidente</property>
-                    <property name="nativeName"></property>
                     <property name="dataType">integer</property>
-                    <property name="nativeDataType">4</property>
                     <property name="position">1</property>
-                    <property name="isOptional">false</property>
                     <property name="isInput">true</property>
                     <property name="isOutput">false</property>
                 </structure>
@@ -1561,11 +1558,11 @@ where t.id in (select * from afectados)]]></xml-property>
             <xml-property name="queryText"><![CDATA[with vars as (select ? as incidente_id),
 cargos as (select trabajador_id,max(inicio)::date as inicio from cargos_trabajador where inicio <= (select fecha from incidente where id = (select incidente_id from vars ))
 group by trabajador_id),
-afectados as (select r::text::int from (select json_array_elements(tr_involucrados) r from  incidente where id = 2) as tr_afectados)
+afectados as (select r::text::int from (select json_array_elements(tr_involucrados) r from  incidente where id = (select incidente_id from vars )) as tr_afectados) 
 
 select t.id, (nombre || ' ' || app_paterno || ' ' || app_materno) as trabajador,
 t.dni, cc.name as cargo, fecha_ingreso as  ant_empresa, c.inicio as ant_cargo
-from trabajador t
+from trabajador t 
 inner join cargos c on t.id = c.trabajador_id
 inner join cargos_trabajador as ct on c.trabajador_id = ct.trabajador_id and c.inicio = ct.inicio
 inner join enum_tables as cc on ct.cargo_id = cc.id
@@ -1573,48 +1570,6 @@ where t.id in (select * from afectados)]]></xml-property>
             <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
 <model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
   <Version>2.0</Version>
-  <DataSetParameters>
-    <parameter>
-      <design:ParameterDefinition>
-        <design:inOutMode>In</design:inOutMode>
-        <design:attributes>
-          <design:identifier>
-            <design:name></design:name>
-            <design:position>1</design:position>
-          </design:identifier>
-          <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
-          <design:precision>0</design:precision>
-          <design:scale>0</design:scale>
-          <design:nullability>Unknown</design:nullability>
-        </design:attributes>
-        <design:inputAttributes>
-          <design:elementAttributes/>
-        </design:inputAttributes>
-      </design:ParameterDefinition>
-    </parameter>
-    <parameter>
-      <design:ParameterDefinition>
-        <design:inOutMode>In</design:inOutMode>
-        <design:attributes>
-          <design:identifier>
-            <design:name></design:name>
-            <design:position>2</design:position>
-          </design:identifier>
-          <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
-          <design:precision>0</design:precision>
-          <design:scale>0</design:scale>
-          <design:nullability>Unknown</design:nullability>
-        </design:attributes>
-        <design:inputAttributes>
-          <design:elementAttributes>
-            <design:defaultValues>
-              <design:values>CustomData value: params[&amp;quot;IdIncidente&amp;quot;].value, displayValue: null</design:values>
-            </design:defaultValues>
-          </design:elementAttributes>
-        </design:inputAttributes>
-      </design:ParameterDefinition>
-    </parameter>
-  </DataSetParameters>
   <design:ResultSets derivedMetaData="true">
     <design:resultSetDefinitions>
       <design:resultSetColumns>
@@ -2742,7 +2697,7 @@ where incidente_id = ? and ms.type = 'preventiva' and ms.deleted_at is null]]></
 conf.value || (inf.attributes->>'fullPathRpt')::text as fullPathRpt,
 conf.value || (inf.attributes->>'fullPathTumb')::text as fullPathTumb,
 conf.value || (inf.attributes->>'fullPath')::text as fullPath
-from incidente_foto inf inner join configurations conf on attribute = 'public_path'
+from incidente_foto inf inner join configurations conf on attribute = 'public_path' 
 and module = 'report' and application = 'SSOLeica'
 where inf.incidente_id = ? and inf.deleted_at is null]]></xml-property>
             <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
