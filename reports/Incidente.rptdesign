@@ -1120,36 +1120,42 @@ where i.id = ?]]></xml-property>
                     <property name="columnName">id</property>
                     <property name="analysis">measure</property>
                     <text-property name="displayName">id</text-property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">id</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">trabajador</property>
                     <property name="analysis">dimension</property>
                     <text-property name="displayName">trabajador</text-property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">trabajador</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">dni</property>
                     <property name="analysis">dimension</property>
                     <text-property name="displayName">dni</text-property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">dni</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">cargo</property>
                     <property name="analysis">dimension</property>
                     <text-property name="displayName">cargo</text-property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">cargo</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">ant_empresa</property>
                     <property name="analysis">dimension</property>
                     <text-property name="displayName">ant_empresa</text-property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">ant_empresa</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">ant_cargo</property>
                     <property name="analysis">dimension</property>
                     <text-property name="displayName">ant_cargo</text-property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">ant_cargo</text-property>
                 </structure>
             </list-property>
@@ -1161,6 +1167,7 @@ where i.id = ?]]></xml-property>
                     <property name="dataType">integer</property>
                     <property name="nativeDataType">4</property>
                     <property name="position">1</property>
+                    <property name="isOptional">false</property>
                     <property name="isInput">true</property>
                     <property name="isOutput">false</property>
                 </structure>
@@ -1244,10 +1251,18 @@ where i.id = ?]]></xml-property>
                     <property name="nativeDataType">91</property>
                 </structure>
             </list-property>
-            <xml-property name="queryText"><![CDATA[select t.id, (nombre || ' ' || app_paterno || ' ' || app_materno) as trabajador,
-t.dni,c.name as cargo, fecha_ingreso as  ant_empresa, fecha_ini_cargo as ant_cargo
-from trabajador t inner join enum_tables c on t.cargo_id = c.id
-where t.id in (select r::text::int from (select json_array_elements(tr_afectados) r from  incidente where id = ?)  as tr_afectados)]]></xml-property>
+            <xml-property name="queryText"><![CDATA[with vars as (select ? as incidente_id),
+cargos as (select trabajador_id,max(inicio)::date as inicio from cargos_trabajador where inicio <= (select fecha from incidente where id = (select incidente_id from vars ))
+group by trabajador_id),
+afectados as (select r::text::int from (select json_array_elements(tr_afectados) r from  incidente where id = 2) as tr_afectados)
+
+select t.id, (nombre || ' ' || app_paterno || ' ' || app_materno) as trabajador,
+t.dni, cc.name as cargo, fecha_ingreso as  ant_empresa, c.inicio as ant_cargo
+from trabajador t
+inner join cargos c on t.id = c.trabajador_id
+inner join cargos_trabajador as ct on c.trabajador_id = ct.trabajador_id and c.inicio = ct.inicio
+inner join enum_tables as cc on ct.cargo_id = cc.id
+where t.id in (select * from afectados)]]></xml-property>
             <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
 <model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
   <Version>2.0</Version>
@@ -1265,6 +1280,9 @@ where t.id in (select r::text::int from (select json_array_elements(tr_afectados
           <design:scale>0</design:scale>
           <design:nullability>Unknown</design:nullability>
         </design:attributes>
+        <design:inputAttributes>
+          <design:elementAttributes/>
+        </design:inputAttributes>
       </design:ParameterDefinition>
     </parameter>
   </DataSetParameters>
@@ -1409,36 +1427,42 @@ where t.id in (select r::text::int from (select json_array_elements(tr_afectados
                     <property name="columnName">id</property>
                     <property name="analysis">measure</property>
                     <text-property name="displayName">id</text-property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">id</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">trabajador</property>
                     <property name="analysis">dimension</property>
                     <text-property name="displayName">trabajador</text-property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">trabajador</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">dni</property>
                     <property name="analysis">dimension</property>
                     <text-property name="displayName">dni</text-property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">dni</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">cargo</property>
                     <property name="analysis">dimension</property>
                     <text-property name="displayName">cargo</text-property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">cargo</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">ant_empresa</property>
                     <property name="analysis">dimension</property>
                     <text-property name="displayName">ant_empresa</text-property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">ant_empresa</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">ant_cargo</property>
                     <property name="analysis">dimension</property>
                     <text-property name="displayName">ant_cargo</text-property>
+                    <property name="onColumnLayout">false</property>
                     <text-property name="heading">ant_cargo</text-property>
                 </structure>
             </list-property>
@@ -1450,17 +1474,7 @@ where t.id in (select r::text::int from (select json_array_elements(tr_afectados
                     <property name="dataType">integer</property>
                     <property name="nativeDataType">4</property>
                     <property name="position">1</property>
-                    <property name="isInput">true</property>
-                    <property name="isOutput">false</property>
-                </structure>
-                <structure>
-                    <property name="name">incidente_id</property>
-                    <property name="paramName">IdIncidente</property>
-                    <property name="nativeName"></property>
-                    <property name="dataType">integer</property>
-                    <property name="nativeDataType">4</property>
-                    <property name="position">2</property>
-                    <expression name="defaultValue" type="javascript">params["IdIncidente"].value</expression>
+                    <property name="isOptional">false</property>
                     <property name="isInput">true</property>
                     <property name="isOutput">false</property>
                 </structure>
@@ -1544,12 +1558,18 @@ where t.id in (select r::text::int from (select json_array_elements(tr_afectados
                     <property name="nativeDataType">91</property>
                 </structure>
             </list-property>
-            <xml-property name="queryText"><![CDATA[select t.id, (nombre || ' ' || app_paterno || ' ' || app_materno) as trabajador,
-t.dni,car.cargo, fecha_ingreso as  ant_empresa, car.inicio as ant_cargo
-from trabajador t inner join (select ct.trabajador_id,c.name as cargo, (ct.inicio)::date from cargos_trabajador ct
-inner join enum_tables c on ct.cargo_id = c.id where inicio <= (select fecha from incidente where id = ?)) car on t.id =car.trabajador_id
-where t.id in (select r::text::int from (select json_array_elements(tr_involucrados) r from  incidente where id = ?)  as tr_afectados)
-]]></xml-property>
+            <xml-property name="queryText"><![CDATA[with vars as (select ? as incidente_id),
+cargos as (select trabajador_id,max(inicio)::date as inicio from cargos_trabajador where inicio <= (select fecha from incidente where id = (select incidente_id from vars ))
+group by trabajador_id),
+afectados as (select r::text::int from (select json_array_elements(tr_involucrados) r from  incidente where id = 2) as tr_afectados)
+
+select t.id, (nombre || ' ' || app_paterno || ' ' || app_materno) as trabajador,
+t.dni, cc.name as cargo, fecha_ingreso as  ant_empresa, c.inicio as ant_cargo
+from trabajador t
+inner join cargos c on t.id = c.trabajador_id
+inner join cargos_trabajador as ct on c.trabajador_id = ct.trabajador_id and c.inicio = ct.inicio
+inner join enum_tables as cc on ct.cargo_id = cc.id
+where t.id in (select * from afectados)]]></xml-property>
             <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
 <model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
   <Version>2.0</Version>
@@ -1567,6 +1587,9 @@ where t.id in (select r::text::int from (select json_array_elements(tr_involucra
           <design:scale>0</design:scale>
           <design:nullability>Unknown</design:nullability>
         </design:attributes>
+        <design:inputAttributes>
+          <design:elementAttributes/>
+        </design:inputAttributes>
       </design:ParameterDefinition>
     </parameter>
     <parameter>
@@ -1582,6 +1605,13 @@ where t.id in (select r::text::int from (select json_array_elements(tr_involucra
           <design:scale>0</design:scale>
           <design:nullability>Unknown</design:nullability>
         </design:attributes>
+        <design:inputAttributes>
+          <design:elementAttributes>
+            <design:defaultValues>
+              <design:values>CustomData value: params[&amp;quot;IdIncidente&amp;quot;].value, displayValue: null</design:values>
+            </design:defaultValues>
+          </design:elementAttributes>
+        </design:inputAttributes>
       </design:ParameterDefinition>
     </parameter>
   </DataSetParameters>

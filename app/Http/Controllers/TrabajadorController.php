@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Session;
+use Nayjest\Grids\EloquentDataRow;
 use SSOLeica\Core\Helpers\Helpers;
 use SSOLeica\Core\Helpers\Timezone;
 use SSOLeica\Core\Model\Contrato;
@@ -139,8 +140,9 @@ class TrabajadorController extends Controller
                     ->setLabel('Trabajador')
                     ->setSortable(true)
                     ->setSorting(Grid::SORT_ASC)
-                    ->setCallback(function ($val) {
-                        return "<span class='glyphicon glyphicon-user'></span> {$val}";
+                    ->setCallback(function ($val,EloquentDataRow $row) {
+                        $icon_edit = "<a href='/trabajador/edit/{$row->getId()}' data-toggle='tooltip' data-placement='left' title='Editar Trabajador'><span class='glyphicon glyphicon-user'></span> {$val}</a>";
+                        return $icon_edit;
                     })
                     ->addFilter(
                         (new FilterConfig)

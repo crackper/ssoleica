@@ -12,6 +12,7 @@ use Intervention\Image\ImageManager;
 use Nayjest\Grids\Components\Filters\DateRangePicker;
 use Nayjest\Grids\Components\RenderFunc;
 use Nayjest\Grids\EloquentDataProvider;
+use Nayjest\Grids\EloquentDataRow;
 use Nayjest\Grids\FieldConfig;
 use Nayjest\Grids\GridConfig;
 use Nayjest\Grids\IdFieldConfig;
@@ -131,6 +132,22 @@ class IncidenteController extends Controller {
                         return "<span class='fa fa-calendar'></span> " . Timezone::toLocal($val,$this->timezone,'d/m/Y H:m');
                     }),
                 (new FieldConfig)
+                    ->setName('correlativo')
+                    ->setLabel('Correlativo')
+                    ->setSortable(true)
+                    ->addFilter(
+                        (new FilterConfig)
+                            ->setFilteringFunc(function ($val, EloquentDataProvider $provider) {
+                                $provider->getBuilder()
+                                    ->where(DB::raw('upper(correlativo)'), 'like', '%' . strtoupper($val) . '%');
+                            })
+                    )->setCallback(function ($val,EloquentDataRow $row) {
+
+                        $icon_edit = "<a href='/incidente/edit/".$row->getId()."' data-toggle='tooltip' data-placement='left' title='Editar Incidente'>".$val."</a>";
+
+                        return $icon_edit;
+                    }),
+                (new FieldConfig)
                     ->setName("operacion")
                     ->setLabel("Proyecto")
                     ->setSortable(true)
@@ -143,6 +160,23 @@ class IncidenteController extends Controller {
                             })
                     ),
                 (new FieldConfig)
+                    ->setName('naturaleza')
+                    ->setLabel('Naturaleza')
+                    ->setSortable(true)
+                    ->addFilter(
+                        (new FilterConfig)
+                            ->setFilteringFunc(function ($val, EloquentDataProvider $provider) {
+                                $provider->getBuilder()
+                                    ->where(DB::raw('upper(naturaleza)'), 'like', '%' . strtoupper($val) . '%');
+                            })
+                    ),
+                (new FieldConfig)
+                    ->setName('des_situacion')
+                    ->setLabel('Descripción')
+                    ->setCallback(function ($val) {
+                        return substr($val,0,100).'...</p>';
+                    }),
+                /*(new FieldConfig)
                     ->setName('contrato')
                     ->setLabel('Contrato')
                     ->setSortable(true)
@@ -152,7 +186,7 @@ class IncidenteController extends Controller {
                                 $provider->getBuilder()
                                     ->where(DB::raw('upper(c.nombre_contrato)'), 'like', '%' . strtoupper($val) . '%');
                             })
-                    ),
+                    ), */
                 (new FieldConfig)
                     ->setName('tipo_informe')
                     ->setLabel('Informe')

@@ -47,7 +47,16 @@ class HandleTrabajadorWasSaved {
         }
         else if($old_cargo->cargo_id != $this->trabajador->cargo_id)
         {
-            $this->saveCargo();
+            $valida_cargo = CargosTrabajador::where('trabajador_id','=',$this->trabajador->id)
+                ->where('cargo_id','=',$this->trabajador->cargo_id)
+                ->where('inicio','=',$this->trabajador->fecha_ini_cargo)
+                ->first();
+
+            if(!$valida_cargo)
+            {
+                $this->saveCargo();
+            }
+
         }
         elseif($old_cargo->inicio != $this->trabajador->fecha_ini_cargo)
         {
