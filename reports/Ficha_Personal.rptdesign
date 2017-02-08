@@ -1145,7 +1145,7 @@ where t.id = ?
                     <property name="nativeDataType">12</property>
                 </structure>
             </list-property>
-            <xml-property name="queryText"><![CDATA[select tc.trabajador_id,o.nombre_operacion as proyecto,tc.fecha_inicio,tc.nro_fotocheck from trabajador_contrato tc
+            <xml-property name="queryText"><![CDATA[select tc.trabajador_id,o.nombre_operacion as proyecto,tc.fecha_inicio,tc.nro_fotocheck from trabajador_contrato tc 
 inner join contrato c on tc.contrato_id = c.id
 inner join operacion o on c.operacion_id = o.id
 where tc.trabajador_id = ?]]></xml-property>
