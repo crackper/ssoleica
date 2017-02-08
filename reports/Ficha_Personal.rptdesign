@@ -1145,7 +1145,7 @@ where t.id = ?
                     <property name="nativeDataType">12</property>
                 </structure>
             </list-property>
-            <xml-property name="queryText"><![CDATA[select tc.trabajador_id,o.nombre_operacion as proyecto,tc.fecha_inicio,tc.nro_fotocheck from trabajador_contrato tc 
+            <xml-property name="queryText"><![CDATA[select tc.trabajador_id,o.nombre_operacion as proyecto,tc.fecha_inicio,tc.nro_fotocheck from trabajador_contrato tc
 inner join contrato c on tc.contrato_id = c.id
 inner join operacion o on c.operacion_id = o.id
 where tc.trabajador_id = ?]]></xml-property>
@@ -1391,7 +1391,7 @@ where tc.trabajador_id = ?]]></xml-property>
                         <property name="borderLeftStyle">none</property>
                         <property name="borderRightStyle">none</property>
                         <property name="borderTopStyle">none</property>
-                        <property name="height">110px</property>
+                        <property name="height">107px</property>
                         <property name="dataSet">trabajador</property>
                         <list-property name="boundDataColumns">
                             <structure>
@@ -1426,10 +1426,16 @@ where tc.trabajador_id = ?]]></xml-property>
                         <property name="marginRight">0px</property>
                         <property name="width">5.181in</property>
                         <column id="76">
-                            <property name="width">1.7083333333333333in</property>
+                            <property name="width">1.3888888888888888in</property>
                         </column>
                         <column id="105">
-                            <property name="width">3.4722222222222223in</property>
+                            <property name="width">1.625in</property>
+                        </column>
+                        <column id="346">
+                            <property name="width">1.0972222222222223in</property>
+                        </column>
+                        <column id="353">
+                            <property name="width">1.0416666666666667in</property>
                         </column>
                         <row id="85">
                             <property name="borderBottomStyle">solid</property>
@@ -1452,6 +1458,8 @@ where tc.trabajador_id = ?]]></xml-property>
                                 </label>
                             </cell>
                             <cell id="97">
+                                <property name="colSpan">1</property>
+                                <property name="rowSpan">1</property>
                                 <property name="borderLeftStyle">solid</property>
                                 <property name="borderLeftWidth">thin</property>
                                 <property name="paddingTop">3pt</property>
@@ -1473,6 +1481,42 @@ where tc.trabajador_id = ?]]></xml-property>
                                         </structure>
                                     </list-property>
                                     <property name="resultSetColumn">nombre</property>
+                                </data>
+                            </cell>
+                            <cell id="354">
+                                <property name="borderLeftStyle">solid</property>
+                                <property name="borderLeftWidth">thin</property>
+                                <property name="paddingTop">3pt</property>
+                                <property name="paddingLeft">3pt</property>
+                                <property name="paddingBottom">3pt</property>
+                                <property name="paddingRight">3pt</property>
+                                <label id="108">
+                                    <property name="fontSize">10pt</property>
+                                    <property name="fontWeight">bold</property>
+                                    <text-property name="text">T. de Sangre</text-property>
+                                </label>
+                            </cell>
+                            <cell id="355">
+                                <property name="borderLeftStyle">solid</property>
+                                <property name="borderLeftWidth">thin</property>
+                                <property name="paddingTop">3pt</property>
+                                <property name="paddingLeft">3pt</property>
+                                <property name="paddingBottom">3pt</property>
+                                <property name="paddingRight">3pt</property>
+                                <data id="110">
+                                    <property name="fontFamily">sans-serif</property>
+                                    <property name="fontSize">9pt</property>
+                                    <property name="dataSet">trabajador</property>
+                                    <list-property name="boundDataColumns">
+                                        <structure>
+                                            <property name="name">apellidos</property>
+                                            <text-property name="displayName">tipo_sangre</text-property>
+                                            <expression name="expression" type="javascript">dataSetRow["grupo_saguineo"]</expression>
+                                            <property name="dataType">string</property>
+                                            <property name="allowExport">true</property>
+                                        </structure>
+                                    </list-property>
+                                    <property name="resultSetColumn">apellidos</property>
                                 </data>
                             </cell>
                         </row>
@@ -1497,6 +1541,8 @@ where tc.trabajador_id = ?]]></xml-property>
                                 </label>
                             </cell>
                             <cell id="98">
+                                <property name="colSpan">3</property>
+                                <property name="rowSpan">1</property>
                                 <property name="borderLeftStyle">solid</property>
                                 <property name="borderLeftWidth">thin</property>
                                 <property name="paddingTop">3pt</property>
@@ -1542,6 +1588,8 @@ where tc.trabajador_id = ?]]></xml-property>
                                 </label>
                             </cell>
                             <cell id="99">
+                                <property name="colSpan">3</property>
+                                <property name="rowSpan">1</property>
                                 <property name="borderLeftStyle">solid</property>
                                 <property name="borderLeftWidth">thin</property>
                                 <property name="paddingTop">3pt</property>
@@ -1581,7 +1629,7 @@ where tc.trabajador_id = ?]]></xml-property>
                                 <label id="95">
                                     <property name="fontSize">10pt</property>
                                     <property name="fontWeight">bold</property>
-                                    <text-property name="text">Fecha de Nacimiento</text-property>
+                                    <text-property name="text">Fecha Nacimiento</text-property>
                                 </label>
                             </cell>
                             <cell id="100">
@@ -1610,6 +1658,48 @@ where tc.trabajador_id = ?]]></xml-property>
                                     <property name="resultSetColumn">apellidos</property>
                                 </data>
                             </cell>
+                            <cell id="343">
+                                <property name="borderBottomStyle">none</property>
+                                <property name="borderLeftStyle">solid</property>
+                                <property name="borderLeftWidth">thin</property>
+                                <property name="borderRightStyle">none</property>
+                                <property name="borderTopStyle">none</property>
+                                <property name="paddingTop">3pt</property>
+                                <property name="paddingLeft">3pt</property>
+                                <property name="paddingBottom">3pt</property>
+                                <property name="paddingRight">3pt</property>
+                                <label id="111">
+                                    <property name="fontSize">10pt</property>
+                                    <property name="fontWeight">bold</property>
+                                    <text-property name="text">Estado Civil</text-property>
+                                </label>
+                            </cell>
+                            <cell id="350">
+                                <property name="borderBottomStyle">none</property>
+                                <property name="borderLeftStyle">solid</property>
+                                <property name="borderLeftWidth">thin</property>
+                                <property name="borderRightStyle">none</property>
+                                <property name="borderTopStyle">none</property>
+                                <property name="paddingTop">3pt</property>
+                                <property name="paddingLeft">3pt</property>
+                                <property name="paddingBottom">3pt</property>
+                                <property name="paddingRight">3pt</property>
+                                <data id="112">
+                                    <property name="fontFamily">sans-serif</property>
+                                    <property name="fontSize">9pt</property>
+                                    <property name="dataSet">trabajador</property>
+                                    <list-property name="boundDataColumns">
+                                        <structure>
+                                            <property name="name">apellidos</property>
+                                            <text-property name="displayName">est_civil</text-property>
+                                            <expression name="expression" type="javascript">dataSetRow["estado_civil"]</expression>
+                                            <property name="dataType">string</property>
+                                            <property name="allowExport">true</property>
+                                        </structure>
+                                    </list-property>
+                                    <property name="resultSetColumn">apellidos</property>
+                                </data>
+                            </cell>
                         </row>
                         <row id="81">
                             <property name="borderBottomStyle">solid</property>
@@ -1625,28 +1715,30 @@ where tc.trabajador_id = ?]]></xml-property>
                                 <property name="paddingLeft">3pt</property>
                                 <property name="paddingBottom">3pt</property>
                                 <property name="paddingRight">3pt</property>
-                                <label id="108">
+                                <label id="29">
                                     <property name="fontSize">10pt</property>
                                     <property name="fontWeight">bold</property>
-                                    <text-property name="text">Tipo de Sangre</text-property>
+                                    <text-property name="text">E-Mail</text-property>
                                 </label>
                             </cell>
                             <cell id="101">
+                                <property name="colSpan">3</property>
+                                <property name="rowSpan">1</property>
                                 <property name="borderLeftStyle">solid</property>
                                 <property name="borderLeftWidth">thin</property>
                                 <property name="paddingTop">3pt</property>
                                 <property name="paddingLeft">3pt</property>
                                 <property name="paddingBottom">3pt</property>
                                 <property name="paddingRight">3pt</property>
-                                <data id="110">
+                                <data id="125">
                                     <property name="fontFamily">sans-serif</property>
                                     <property name="fontSize">9pt</property>
                                     <property name="dataSet">trabajador</property>
                                     <list-property name="boundDataColumns">
                                         <structure>
                                             <property name="name">apellidos</property>
-                                            <text-property name="displayName">tipo_sangre</text-property>
-                                            <expression name="expression" type="javascript">dataSetRow["grupo_saguineo"]</expression>
+                                            <text-property name="displayName">email</text-property>
+                                            <expression name="expression" type="javascript">dataSetRow["email"]</expression>
                                             <property name="dataType">string</property>
                                             <property name="allowExport">true</property>
                                         </structure>
@@ -1669,28 +1761,30 @@ where tc.trabajador_id = ?]]></xml-property>
                                 <property name="paddingLeft">3pt</property>
                                 <property name="paddingBottom">3pt</property>
                                 <property name="paddingRight">3pt</property>
-                                <label id="111">
+                                <label id="123">
                                     <property name="fontSize">10pt</property>
                                     <property name="fontWeight">bold</property>
-                                    <text-property name="text">Estado Civil</text-property>
+                                    <text-property name="text">Dirección</text-property>
                                 </label>
                             </cell>
                             <cell id="102">
+                                <property name="colSpan">3</property>
+                                <property name="rowSpan">1</property>
                                 <property name="borderLeftStyle">solid</property>
                                 <property name="borderLeftWidth">thin</property>
                                 <property name="paddingTop">3pt</property>
                                 <property name="paddingLeft">3pt</property>
                                 <property name="paddingBottom">3pt</property>
                                 <property name="paddingRight">3pt</property>
-                                <data id="112">
+                                <data id="124">
                                     <property name="fontFamily">sans-serif</property>
                                     <property name="fontSize">9pt</property>
                                     <property name="dataSet">trabajador</property>
                                     <list-property name="boundDataColumns">
                                         <structure>
                                             <property name="name">apellidos</property>
-                                            <text-property name="displayName">est_civil</text-property>
-                                            <expression name="expression" type="javascript">dataSetRow["estado_civil"]</expression>
+                                            <text-property name="displayName">direccion</text-property>
+                                            <expression name="expression" type="javascript">dataSetRow["direccion"]</expression>
                                             <property name="dataType">string</property>
                                             <property name="allowExport">true</property>
                                         </structure>
@@ -1703,118 +1797,17 @@ where tc.trabajador_id = ?]]></xml-property>
                 </cell>
             </row>
         </grid>
-        <grid id="114">
-            <property name="marginTop">5pt</property>
-            <property name="width">6.875in</property>
-            <column id="115"/>
-            <column id="116">
-                <property name="width">3.4444444444444446in</property>
-            </column>
-            <row id="117">
-                <cell id="118">
-                    <property name="borderBottomStyle">solid</property>
-                    <property name="borderBottomWidth">thin</property>
-                    <property name="borderLeftStyle">solid</property>
-                    <property name="borderLeftWidth">thin</property>
-                    <property name="borderRightStyle">solid</property>
-                    <property name="borderRightWidth">thin</property>
-                    <property name="borderTopStyle">solid</property>
-                    <property name="borderTopWidth">thin</property>
-                    <property name="paddingTop">3pt</property>
-                    <property name="paddingLeft">3pt</property>
-                    <property name="paddingBottom">3pt</property>
-                    <property name="paddingRight">3pt</property>
-                    <label id="123">
-                        <property name="fontSize">10pt</property>
-                        <property name="fontWeight">bold</property>
-                        <text-property name="text">Dirección</text-property>
-                    </label>
-                </cell>
-                <cell id="119">
-                    <property name="borderBottomStyle">solid</property>
-                    <property name="borderBottomWidth">thin</property>
-                    <property name="borderLeftStyle">solid</property>
-                    <property name="borderLeftWidth">thin</property>
-                    <property name="borderRightStyle">solid</property>
-                    <property name="borderRightWidth">thin</property>
-                    <property name="borderTopStyle">solid</property>
-                    <property name="borderTopWidth">thin</property>
-                    <property name="paddingTop">3pt</property>
-                    <property name="paddingLeft">3pt</property>
-                    <property name="paddingBottom">3pt</property>
-                    <property name="paddingRight">3pt</property>
-                    <label id="29">
-                        <property name="fontSize">10pt</property>
-                        <property name="fontWeight">bold</property>
-                        <text-property name="text">E-Mail</text-property>
-                    </label>
-                </cell>
-            </row>
-            <row id="120">
-                <cell id="121">
-                    <property name="borderBottomStyle">solid</property>
-                    <property name="borderBottomWidth">thin</property>
-                    <property name="borderLeftStyle">solid</property>
-                    <property name="borderLeftWidth">thin</property>
-                    <property name="borderRightStyle">solid</property>
-                    <property name="borderRightWidth">thin</property>
-                    <property name="borderTopStyle">solid</property>
-                    <property name="borderTopWidth">thin</property>
-                    <property name="paddingTop">3pt</property>
-                    <property name="paddingLeft">3pt</property>
-                    <property name="paddingBottom">3pt</property>
-                    <property name="paddingRight">3pt</property>
-                    <data id="124">
-                        <property name="fontFamily">sans-serif</property>
-                        <property name="fontSize">9pt</property>
-                        <property name="dataSet">trabajador</property>
-                        <list-property name="boundDataColumns">
-                            <structure>
-                                <property name="name">apellidos</property>
-                                <text-property name="displayName">direccion</text-property>
-                                <expression name="expression" type="javascript">dataSetRow["direccion"]</expression>
-                                <property name="dataType">string</property>
-                                <property name="allowExport">true</property>
-                            </structure>
-                        </list-property>
-                        <property name="resultSetColumn">apellidos</property>
-                    </data>
-                </cell>
-                <cell id="122">
-                    <property name="borderBottomStyle">solid</property>
-                    <property name="borderBottomWidth">thin</property>
-                    <property name="borderLeftStyle">solid</property>
-                    <property name="borderLeftWidth">thin</property>
-                    <property name="borderRightStyle">solid</property>
-                    <property name="borderRightWidth">thin</property>
-                    <property name="borderTopStyle">solid</property>
-                    <property name="borderTopWidth">thin</property>
-                    <data id="125">
-                        <property name="fontFamily">sans-serif</property>
-                        <property name="fontSize">9pt</property>
-                        <property name="dataSet">trabajador</property>
-                        <list-property name="boundDataColumns">
-                            <structure>
-                                <property name="name">apellidos</property>
-                                <text-property name="displayName">email</text-property>
-                                <expression name="expression" type="javascript">dataSetRow["email"]</expression>
-                                <property name="dataType">string</property>
-                                <property name="allowExport">true</property>
-                            </structure>
-                        </list-property>
-                        <property name="resultSetColumn">apellidos</property>
-                    </data>
-                </cell>
-            </row>
-        </grid>
         <grid id="127">
             <property name="marginTop">5pt</property>
             <property name="width">6.875in</property>
             <column id="128">
-                <property name="width">3.4444444444444446in</property>
+                <property name="width">1.681in</property>
             </column>
             <column id="129">
-                <property name="width">3.4305555555555554in</property>
+                <property name="width">1.389in</property>
+            </column>
+            <column id="358">
+                <property name="width">3.763888888888889in</property>
             </column>
             <row id="130">
                 <cell id="131">
@@ -1853,6 +1846,25 @@ where tc.trabajador_id = ?]]></xml-property>
                         <property name="fontSize">10pt</property>
                         <property name="fontWeight">bold</property>
                         <text-property name="text">Clase y Categoria</text-property>
+                    </label>
+                </cell>
+                <cell id="356">
+                    <property name="borderBottomStyle">solid</property>
+                    <property name="borderBottomWidth">thin</property>
+                    <property name="borderLeftStyle">solid</property>
+                    <property name="borderLeftWidth">thin</property>
+                    <property name="borderRightStyle">solid</property>
+                    <property name="borderRightWidth">thin</property>
+                    <property name="borderTopStyle">solid</property>
+                    <property name="borderTopWidth">thin</property>
+                    <property name="paddingTop">3pt</property>
+                    <property name="paddingLeft">3pt</property>
+                    <property name="paddingBottom">3pt</property>
+                    <property name="paddingRight">3pt</property>
+                    <label id="359">
+                        <property name="fontSize">10pt</property>
+                        <property name="fontWeight">bold</property>
+                        <text-property name="text">Telefonos</text-property>
                     </label>
                 </cell>
             </row>
@@ -1905,6 +1917,31 @@ where tc.trabajador_id = ?]]></xml-property>
                                 <property name="name">apellidos</property>
                                 <text-property name="displayName">clase_cat_lic_conducir</text-property>
                                 <expression name="expression" type="javascript">dataSetRow["lic_categoria"]</expression>
+                                <property name="dataType">string</property>
+                                <property name="allowExport">true</property>
+                            </structure>
+                        </list-property>
+                        <property name="resultSetColumn">apellidos</property>
+                    </data>
+                </cell>
+                <cell id="357">
+                    <property name="borderBottomStyle">solid</property>
+                    <property name="borderBottomWidth">thin</property>
+                    <property name="borderLeftStyle">solid</property>
+                    <property name="borderLeftWidth">thin</property>
+                    <property name="borderRightStyle">solid</property>
+                    <property name="borderRightWidth">thin</property>
+                    <property name="borderTopStyle">solid</property>
+                    <property name="borderTopWidth">thin</property>
+                    <data id="360">
+                        <property name="fontFamily">sans-serif</property>
+                        <property name="fontSize">9pt</property>
+                        <property name="dataSet">trabajador</property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">apellidos</property>
+                                <text-property name="displayName">nro_telefono</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["nro_telefono"]</expression>
                                 <property name="dataType">string</property>
                                 <property name="allowExport">true</property>
                             </structure>

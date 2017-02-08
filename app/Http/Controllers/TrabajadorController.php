@@ -635,7 +635,7 @@ class TrabajadorController extends Controller
             return new RedirectResponse(url('/trabajador/'));
 
         header("Content-type: application/pdf");
-        header("Content-Disposition: attachment; filename=Ficha_".$trabajador->nombre."_".$trabajador->app_paterno.".pdf");
+        header("Content-Disposition: attachment; filename=Ficha_".str_replace(" ","_",$trabajador->nombre)."_".$trabajador->app_paterno.".pdf");
 
         define ("JAVA_HOSTS", "127.0.0.1:8080");
         define ("JAVA_SERVLET", "/JavaBridge/JavaBridge.phpjavabridge");
