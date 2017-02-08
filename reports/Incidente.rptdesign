@@ -5489,6 +5489,7 @@ where inf.incidente_id = ? and inf.deleted_at is null]]></xml-property>
                     <property name="marginTop">10pt</property>
                     <property name="marginLeft">10pt</property>
                     <property name="display">inline</property>
+                    <property name="width">3in</property>
                     <property name="source">file</property>
                     <expression name="uri" type="javascript">row["fullpathrpt"]</expression>
                 </image>

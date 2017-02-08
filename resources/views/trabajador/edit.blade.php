@@ -32,6 +32,7 @@
       </li>
     <li role="presentation"><a href="#documentos" aria-controls="documentos" role="tab" data-toggle="tab"
         data-url="/trabajador/documentos/{!! $id !!}">Otros Documentos</a></li>
+    <li class="pull-right"><a href="/trabajador/ficha/{{ $id }}" class="text-muted" data-toggle='tooltip' data-placement='top' title='Imprimir Ficha'><i class="fa fa-print"></i></a></li>
 
   </ul>
 {!! $edit->header !!}

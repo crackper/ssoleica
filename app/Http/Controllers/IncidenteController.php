@@ -679,24 +679,24 @@ class IncidenteController extends Controller {
 
             $image = $manager->make($file->getRealPath());
 
-            if($image->height() > 800)
+            if($image->height() > 1280)
             {
-                $image->resize(null,800,function($constraint){
+                $image->resize(null,1280,function($constraint){
                     $constraint->aspectRatio();
                 });
             }
-            else if($image->width() > 800)
+            else if($image->width() > 1280)
             {
-                $image->resize(800,null,function($constraint){
+                $image->resize(1280,null,function($constraint){
                     $constraint->aspectRatio();
                 });
             }
 
             $image->save($destinationPath.$hashname,100)
-                  ->resize(null,320,function($constraint){
+                  ->resize(null,640,function($constraint){
                       $constraint->aspectRatio();
                   })->save($destinationPathTumb.$hashname,100)
-                  ->resize(null,160,function($constraint){
+                  ->resize(null,320,function($constraint){
                       $constraint->aspectRatio();
                   })->save($destinationPathRpt.$hashname,100);
 

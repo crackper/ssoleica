@@ -180,8 +180,9 @@ class TrabajadorController extends Controller
 
                         $icon_edit = "<a href='/trabajador/edit/$val' data-toggle='tooltip' data-placement='left' title='Editar Trabajador'><span class='glyphicon glyphicon-pencil'></span></a>";
                         $icon_remove = "<a href='/trabajador/$val/delete' data-toggle='tooltip' data-placement='left' title='Eliminar Trabajador' ><span class='glyphicon glyphicon-trash'></span></a>";
+                        $icon_pdf = "<a href='/trabajador/ficha/$val' data-toggle='tooltip' data-placement='left' title='Imprimir Ficha' ><span class='fa fa-print'></span></a>";
 
-                        return $icon_edit . ' ' . $icon_remove;
+                        return $icon_edit . ' ' . $icon_remove.' '. $icon_pdf;
                     })
             ])
             ->setComponents([
@@ -625,5 +626,59 @@ class TrabajadorController extends Controller
         dd($id);
     }
 
+    public function  getFicha($id=0)
+    {
+
+        $trabajador = $this->trabajadorRepository->find($id);
+
+        if(is_null($trabajador))
+            return new RedirectResponse(url('/trabajador/'));
+
+        header("Content-type: application/pdf");
+        header("Content-Disposition: attachment; filename=Ficha_".$trabajador->nombre."_".$trabajador->app_paterno.".pdf");
+
+        define ("JAVA_HOSTS", "127.0.0.1:8080");
+        define ("JAVA_SERVLET", "/JavaBridge/JavaBridge.phpjavabridge");
+
+        require_once base_path("java/Java.inc");
+
+        session_start();
+
+        $ctx = java_context()->getServletContext();
+
+        $birtReportEngine =  java("org.eclipse.birt.php.birtengine.BirtEngine")->getBirtEngine($ctx);
+        java_context()->onShutdown(java("org.eclipse.birt.php.birtengine.BirtEngine")->getShutdownHook());
+
+
+        try{
+
+            $report = $birtReportEngine->openReportDesign(base_path("/reports/Ficha_Personal.rptdesign"));
+            $task = $birtReportEngine->createRunAndRenderTask($report);
+
+            $task->setParameterValue("idTrabajador", new \java("java.lang.Integer", $id));
+
+            $taskOptions = new \java("org.eclipse.birt.report.engine.api.PDFRenderOption");
+            $outputStream = new \java("java.io.ByteArrayOutputStream");
+
+            $taskOptions->setOutputStream($outputStream);
+
+            $taskOptions->setOption("pdfRenderOption.pageOverflow", "pdfRenderOption.fitToPage");
+            $taskOptions->setOption("pdfRenderOption.setEmbededFont", false);
+
+
+            $taskOptions->setOutputFormat("pdf");
+
+            $task->setRenderOption( $taskOptions );
+            $task->run();
+            $task->close();
+
+        } catch (JavaException $e) {
+            echo $e;
+
+        }
+
+        echo java_values($outputStream->toByteArray());
+
+    }
 
 }
