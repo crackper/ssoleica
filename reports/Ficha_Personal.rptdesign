@@ -267,7 +267,18 @@
                     <text-property name="heading">t_pantalon</text-property>
                 </structure>
             </list-property>
-            <list-property name="parameters"/>
+            <list-property name="parameters">
+                <structure>
+                    <property name="name">idTrabajador</property>
+                    <property name="paramName">idTrabajador</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                    <property name="position">1</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+            </list-property>
             <structure name="cachedMetaData">
                 <list-property name="resultSet">
                     <structure>
@@ -732,10 +743,27 @@ left join enum_tables lc on t.lic_categoria_id = lc.id
 left join enum_tables p on t.profesion_id = p.id
 left join enum_tables c on t.cargo_id = c.id
 left join configurations conf on attribute = 'public_path' and module = 'report' and application = 'SSOLeica'
-where t.id = 2]]></xml-property>
+where t.id = ?]]></xml-property>
             <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
 <model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
   <Version>2.0</Version>
+  <DataSetParameters>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>1</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+  </DataSetParameters>
   <design:ResultSets derivedMetaData="true">
     <design:resultSetDefinitions>
       <design:resultSetColumns>
@@ -1343,7 +1371,7 @@ where t.id = 2]]></xml-property>
                     <property name="nativeDataType">12</property>
                 </structure>
             </list-property>
-            <xml-property name="queryText"><![CDATA[select tc.trabajador_id,o.nombre_operacion as proyecto,tc.fecha_inicio,tc.nro_fotocheck from trabajador_contrato tc 
+            <xml-property name="queryText"><![CDATA[select tc.trabajador_id,o.nombre_operacion as proyecto,tc.fecha_inicio,tc.nro_fotocheck from trabajador_contrato tc
 inner join contrato c on tc.contrato_id = c.id
 inner join operacion o on c.operacion_id = o.id
 where tc.trabajador_id = ?]]></xml-property>
