@@ -327,6 +327,25 @@ class TrabajadorController extends Controller
         $edit->add('em_telef_celular', 'Telefono Celular', 'text');
         $edit->add('em_parentesco', 'Parentesco', 'select')->options(array('' => '[- Seleccione -]', 'Padre' => 'Padre', 'Madre' => 'Madre', 'Esposo(a)' => 'Esposo(a)', 'Hijo(a)' => 'Hijo(a)', 'Hermano(a)' => 'Hermano(a)', 'Otro' => 'Otro'));
         $edit->add('em_direccion', 'Dirección', 'text');
+        //emfermedades
+        $edit->add('Enfermedades','Enfermedades', 'text');
+        $edit->add('Medicamentos','Medicamentos', 'text');
+        $edit->add('Alergias','Alergias', 'text');
+        $edit->add('Accidentes','Accidentes', 'text');
+        //otros datos
+
+        $tallas = array(''=>'[- Seleccione -]','XXS'=>'XXS','XS'=>'XS','S'=>'S','M'=>'M','L'=>'L','XL'=>'XL','XXL'=>'XXL');
+        $zapatos = array(''=>'[- Seleccione -]','35'=>'35','35 1/2'=>'35 1/2','36'=>'36','37'=>'37','37 1/2'=>'37 1/2','38'=>'38','38 1/2'=>'38 1/2','39'=>'39','40'=>'40','41'=>'41','42'=>'42','43'=>'43','44'=>'44','45'=>'45','46 1/2'=>'46 1/2','48 1/2'=>'48 1/2');
+        $pantalon = array(''=>'[- Seleccione -]','28'=>'28','30'=>'30','32'=>'32','34'=>'34','36'=>'36','38'=>'38','40'=>'40','42'=>'42' );
+
+        $edit->add('TCamisa', 'Talla Camisa', 'select')->options($tallas);
+        $edit->add('TZapatos', 'Talla Zapatos', 'select')->options($zapatos);
+        $edit->add('TPolo', 'Talla Polo', 'select')->options($tallas);
+        $edit->add('TGuantes', 'Talla Guantes', 'select')->options($tallas);
+        $edit->add('TRespirador', 'Talla Respirador', 'select')->options($tallas);
+        $edit->add('TCasaca', 'Talla Casaca', 'select')->options($tallas);
+        $edit->add('TChaleco', 'Talla Chaleco', 'select')->options($tallas);
+        $edit->add('TPantalon', 'Talla Pantalon', 'select')->options($pantalon);
 
         $edit->submit('Guardar');
         $edit->link("/trabajador", "Cancelar");

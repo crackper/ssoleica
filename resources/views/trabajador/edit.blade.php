@@ -237,6 +237,92 @@
                               </div>
                           </div>
                 </fielset>
+                <fileset>
+                    <legend>Información de Salud</legend>
+                          <div class="form-group">
+                              <label for="Enfermedades" class="col-md-2 control-label required">Enfermedades</label>
+                              <div class="col-sm-5">
+                                {!! $edit->field('Enfermedades') !!}
+                              </div>
+                          </div>
+                          <div class="form-group">
+                              <label for="Medicamentos" class="col-md-2 control-label required">Medicamentos</label>
+                              <div class="col-sm-5">
+                                {!! $edit->field('Medicamentos') !!}
+                              </div>
+                          </div>
+                          <div class="form-group">
+                              <label for="Alergias" class="col-md-2 control-label required">Alergias</label>
+                              <div class="col-sm-5">
+                                {!! $edit->field('Alergias') !!}
+                              </div>
+                          </div>
+                          <div class="form-group">
+                              <label for="Accidentes" class="col-md-2 control-label required">Accidentes</label>
+                              <div class="col-sm-5">
+                                {!! $edit->field('Accidentes') !!}
+                              </div>
+                          </div>
+                </fileset>
+                <fieldset>
+                    <legend>Otros Datos</legend>
+                    <div class="row">
+                        <div class="col-sm-4">
+                          <div class="form-group">
+                              <label for="TCamisa" class="col-md-6 control-label required">Talla Camisa</label>
+                              <div class="col-sm-6">
+                                {!! $edit->field('TCamisa') !!}
+                              </div>
+                          </div>
+                          <div class="form-group">
+                              <label for="TZapatos" class="col-md-6 control-label required">Talla Zapatos</label>
+                              <div class="col-sm-6">
+                                {!! $edit->field('TZapatos') !!}
+                              </div>
+                          </div>
+                          <div class="form-group">
+                              <label for="TPolo" class="col-md-6 control-label required">Talla Polo</label>
+                              <div class="col-sm-6">
+                                {!! $edit->field('TPolo') !!}
+                              </div>
+                          </div>
+                        </div>
+                        <div class="col-sm-4">
+                          <div class="form-group">
+                              <label for="TCasaca" class="col-md-6 control-label required">Talla Casaca</label>
+                              <div class="col-sm-6">
+                                {!! $edit->field('TCasaca') !!}
+                              </div>
+                          </div>
+                          <div class="form-group">
+                              <label for="TChaleco" class="col-md-6 control-label required">Talla Chaleco</label>
+                              <div class="col-sm-6">
+                                {!! $edit->field('TChaleco') !!}
+                              </div>
+                          </div>
+                          <div class="form-group">
+                              <label for="TPantalon" class="col-md-6 control-label required">Talla Pantalon</label>
+                              <div class="col-sm-6">
+                                {!! $edit->field('TPantalon') !!}
+                              </div>
+                          </div>
+                        </div>
+                        <div class="col-sm-4">
+                          <div class="form-group">
+                              <label for="TGuantes" class="col-md-6 control-label required">Talla Guantes</label>
+                              <div class="col-sm-6">
+                                {!! $edit->field('TGuantes') !!}
+                              </div>
+                          </div>
+                          <div class="form-group">
+                              <label for="TRespirador" class="col-md-6 control-label required">Talla Respirador</label>
+                              <div class="col-sm-6">
+                                {!! $edit->field('TRespirador') !!}
+                              </div>
+                          </div>
+                        </div>
+                    </div>
+                </fieldset>
             </div>
         </div>
     </div>

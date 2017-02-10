@@ -194,19 +194,80 @@
                     <text-property name="displayName">updated_at</text-property>
                     <text-property name="heading">updated_at</text-property>
                 </structure>
-            </list-property>
-            <list-property name="parameters">
                 <structure>
-                    <property name="name">idTrabajador</property>
-                    <property name="paramName">idTrabajador</property>
-                    <property name="nativeName"></property>
-                    <property name="dataType">integer</property>
-                    <property name="nativeDataType">4</property>
-                    <property name="position">1</property>
-                    <property name="isInput">true</property>
-                    <property name="isOutput">false</property>
+                    <property name="columnName">enfermedades</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">enfermedades</text-property>
+                    <text-property name="heading">enfermedades</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">medicamentos</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">medicamentos</text-property>
+                    <text-property name="heading">medicamentos</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">alergias</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">alergias</text-property>
+                    <text-property name="heading">alergias</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">accidentes</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">accidentes</text-property>
+                    <text-property name="heading">accidentes</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">t_camisa</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">t_camisa</text-property>
+                    <text-property name="heading">t_camisa</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">t_zapatos</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">t_zapatos</text-property>
+                    <text-property name="heading">t_zapatos</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">t_polo</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">t_polo</text-property>
+                    <text-property name="heading">t_polo</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">t_guantes</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">t_guantes</text-property>
+                    <text-property name="heading">t_guantes</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">t_respirador</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">t_respirador</text-property>
+                    <text-property name="heading">t_respirador</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">t_casaca</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">t_casaca</text-property>
+                    <text-property name="heading">t_casaca</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">t_chaleco</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">t_chaleco</text-property>
+                    <text-property name="heading">t_chaleco</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">t_pantalon</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">t_pantalon</text-property>
+                    <text-property name="heading">t_pantalon</text-property>
                 </structure>
             </list-property>
+            <list-property name="parameters"/>
             <structure name="cachedMetaData">
                 <list-property name="resultSet">
                     <structure>
@@ -328,6 +389,66 @@
                         <property name="position">24</property>
                         <property name="name">updated_at</property>
                         <property name="dataType">date-time</property>
+                    </structure>
+                    <structure>
+                        <property name="position">25</property>
+                        <property name="name">enfermedades</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">26</property>
+                        <property name="name">medicamentos</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">27</property>
+                        <property name="name">alergias</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">28</property>
+                        <property name="name">accidentes</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">29</property>
+                        <property name="name">t_camisa</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">30</property>
+                        <property name="name">t_zapatos</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">31</property>
+                        <property name="name">t_polo</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">32</property>
+                        <property name="name">t_guantes</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">33</property>
+                        <property name="name">t_respirador</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">34</property>
+                        <property name="name">t_casaca</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">35</property>
+                        <property name="name">t_chaleco</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">36</property>
+                        <property name="name">t_pantalon</property>
+                        <property name="dataType">string</property>
                     </structure>
                 </list-property>
             </structure>
@@ -501,6 +622,90 @@
                     <property name="dataType">date-time</property>
                     <property name="nativeDataType">93</property>
                 </structure>
+                <structure>
+                    <property name="position">25</property>
+                    <property name="name">enfermedades</property>
+                    <property name="nativeName">enfermedades</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">26</property>
+                    <property name="name">medicamentos</property>
+                    <property name="nativeName">medicamentos</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">27</property>
+                    <property name="name">alergias</property>
+                    <property name="nativeName">alergias</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">28</property>
+                    <property name="name">accidentes</property>
+                    <property name="nativeName">accidentes</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">29</property>
+                    <property name="name">t_camisa</property>
+                    <property name="nativeName">t_camisa</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">30</property>
+                    <property name="name">t_zapatos</property>
+                    <property name="nativeName">t_zapatos</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">31</property>
+                    <property name="name">t_polo</property>
+                    <property name="nativeName">t_polo</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">32</property>
+                    <property name="name">t_guantes</property>
+                    <property name="nativeName">t_guantes</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">33</property>
+                    <property name="name">t_respirador</property>
+                    <property name="nativeName">t_respirador</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">34</property>
+                    <property name="name">t_casaca</property>
+                    <property name="nativeName">t_casaca</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">35</property>
+                    <property name="name">t_chaleco</property>
+                    <property name="nativeName">t_chaleco</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">36</property>
+                    <property name="name">t_pantalon</property>
+                    <property name="nativeName">t_pantalon</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
             </list-property>
             <xml-property name="queryText"><![CDATA[select t.id, t.dni,t.nombre, (t.app_paterno || ' ' ||t.app_materno) as apellidos,t.nro_telefono,
 case when t.sexo = 'M' then 'Masculino' else 'Femenino' end as orientacion,t.fecha_nacimiento,
@@ -509,35 +714,28 @@ conf.value || 'uploads/images/' ||t.foto as foto,
 t.grupo_saguineo as grupo_saguineo,lic_conducir,lc.name as lic_categoria,
 p.name as profesion,c.name as  cargo, t.fecha_ini_cargo,
 em_nombres,em_telef_fijo,em_telef_celular,em_parentesco,em_direccion,
-t.updated_at
+t.updated_at,
+t.attributes->>0 as enfermedades,
+t.attributes->>1 as medicamentos,
+t.attributes->>2 as alergias,
+t.attributes->>3 as accidentes,
+t.attributes->>4 as t_camisa,
+t.attributes->>5 as t_zapatos,
+t.attributes->>6 as t_polo,
+t.attributes->>7 as t_guantes,
+t.attributes->>8 as t_respirador,
+t.attributes->>9 as t_casaca,
+t.attributes->>10 as t_chaleco,
+t.attributes->>11 as t_pantalon
 from trabajador t
 left join enum_tables lc on t.lic_categoria_id = lc.id
 left join enum_tables p on t.profesion_id = p.id
 left join enum_tables c on t.cargo_id = c.id
 left join configurations conf on attribute = 'public_path' and module = 'report' and application = 'SSOLeica'
-where t.id = ?
-
-]]></xml-property>
+where t.id = 2]]></xml-property>
             <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
 <model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
   <Version>2.0</Version>
-  <DataSetParameters>
-    <parameter>
-      <design:ParameterDefinition>
-        <design:inOutMode>In</design:inOutMode>
-        <design:attributes>
-          <design:identifier>
-            <design:name></design:name>
-            <design:position>1</design:position>
-          </design:identifier>
-          <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
-          <design:precision>0</design:precision>
-          <design:scale>0</design:scale>
-          <design:nullability>Unknown</design:nullability>
-        </design:attributes>
-      </design:ParameterDefinition>
-    </parameter>
-  </DataSetParameters>
   <design:ResultSets derivedMetaData="true">
     <design:resultSetDefinitions>
       <design:resultSetColumns>
@@ -1350,6 +1548,8 @@ where tc.trabajador_id = ?]]></xml-property>
             </page-header>
             <page-footer>
                 <text id="3">
+                    <property name="fontFamily">sans-serif</property>
+                    <property name="fontSize">9px</property>
                     <property name="contentType">html</property>
                     <text-property name="content"><![CDATA[<value-of>new Date()</value-of>]]></text-property>
                 </text>
@@ -1505,7 +1705,9 @@ where tc.trabajador_id = ?]]></xml-property>
                                 <property name="paddingRight">3pt</property>
                                 <data id="110">
                                     <property name="fontFamily">sans-serif</property>
-                                    <property name="fontSize">9pt</property>
+                                    <property name="fontSize">10pt</property>
+                                    <property name="fontWeight">bold</property>
+                                    <property name="textAlign">left</property>
                                     <property name="dataSet">trabajador</property>
                                     <list-property name="boundDataColumns">
                                         <structure>
@@ -2332,12 +2534,22 @@ where tc.trabajador_id = ?]]></xml-property>
                     <property name="paddingLeft">3pt</property>
                     <property name="paddingBottom">3pt</property>
                     <property name="paddingRight">3pt</property>
-                    <label id="256">
-                        <property name="fontSize">10px</property>
-                        <property name="fontWeight">bold</property>
-                        <property name="color">#FFFFFF</property>
-                        <text-property name="text">TALLA POLO</text-property>
-                    </label>
+                    <data id="362">
+                        <property name="fontFamily">sans-serif</property>
+                        <property name="fontSize">9pt</property>
+                        <property name="textAlign">left</property>
+                        <property name="dataSet">trabajador</property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">apellidos</property>
+                                <text-property name="displayName">enfermedades</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["enfermedades"]</expression>
+                                <property name="dataType">string</property>
+                                <property name="allowExport">true</property>
+                            </structure>
+                        </list-property>
+                        <property name="resultSetColumn">apellidos</property>
+                    </data>
                 </cell>
                 <cell id="254">
                     <property name="borderBottomStyle">solid</property>
@@ -2348,6 +2560,22 @@ where tc.trabajador_id = ?]]></xml-property>
                     <property name="borderRightWidth">thin</property>
                     <property name="borderTopStyle">solid</property>
                     <property name="borderTopWidth">thin</property>
+                    <data id="363">
+                        <property name="fontFamily">sans-serif</property>
+                        <property name="fontSize">9pt</property>
+                        <property name="textAlign">left</property>
+                        <property name="dataSet">trabajador</property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">apellidos</property>
+                                <text-property name="displayName">medicamentos</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["medicamentos"]</expression>
+                                <property name="dataType">string</property>
+                                <property name="allowExport">true</property>
+                            </structure>
+                        </list-property>
+                        <property name="resultSetColumn">apellidos</property>
+                    </data>
                 </cell>
             </row>
         </grid>
@@ -2415,12 +2643,22 @@ where tc.trabajador_id = ?]]></xml-property>
                     <property name="paddingLeft">3pt</property>
                     <property name="paddingBottom">3pt</property>
                     <property name="paddingRight">3pt</property>
-                    <label id="267">
-                        <property name="fontSize">10px</property>
-                        <property name="fontWeight">bold</property>
-                        <property name="color">#FFFFFF</property>
-                        <text-property name="text">TALLA POLO</text-property>
-                    </label>
+                    <data id="364">
+                        <property name="fontFamily">sans-serif</property>
+                        <property name="fontSize">9pt</property>
+                        <property name="textAlign">left</property>
+                        <property name="dataSet">trabajador</property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">apellidos</property>
+                                <text-property name="displayName">alergias</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["alergias"]</expression>
+                                <property name="dataType">string</property>
+                                <property name="allowExport">true</property>
+                            </structure>
+                        </list-property>
+                        <property name="resultSetColumn">apellidos</property>
+                    </data>
                 </cell>
                 <cell id="268">
                     <property name="borderBottomStyle">solid</property>
@@ -2431,6 +2669,22 @@ where tc.trabajador_id = ?]]></xml-property>
                     <property name="borderRightWidth">thin</property>
                     <property name="borderTopStyle">solid</property>
                     <property name="borderTopWidth">thin</property>
+                    <data id="365">
+                        <property name="fontFamily">sans-serif</property>
+                        <property name="fontSize">9pt</property>
+                        <property name="textAlign">left</property>
+                        <property name="dataSet">trabajador</property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">apellidos</property>
+                                <text-property name="displayName">accidentes</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["accidentes"]</expression>
+                                <property name="dataType">string</property>
+                                <property name="allowExport">true</property>
+                            </structure>
+                        </list-property>
+                        <property name="resultSetColumn">apellidos</property>
+                    </data>
                 </cell>
             </row>
         </grid>
@@ -2445,22 +2699,28 @@ where tc.trabajador_id = ?]]></xml-property>
             <property name="marginTop">0pt</property>
             <property name="width">6.875in</property>
             <column id="167">
-                <property name="width">0.9305555555555556in</property>
+                <property name="width">0.7916666666666666in</property>
             </column>
             <column id="168">
-                <property name="width">1.0694444444444444in</property>
+                <property name="width">0.75in</property>
             </column>
             <column id="330">
-                <property name="width">1.1111111111111112in</property>
+                <property name="width">0.6944444444444444in</property>
             </column>
             <column id="169">
-                <property name="width">1.1111111111111112in</property>
+                <property name="width">0.9166666666666666in</property>
             </column>
             <column id="333">
-                <property name="width">1.3194444444444444in</property>
+                <property name="width">1.0138888888888888in</property>
             </column>
             <column id="336">
-                <property name="width">1.3333333333333333in</property>
+                <property name="width">0.875in</property>
+            </column>
+            <column id="380">
+                <property name="width">0.7777777777777778in</property>
+            </column>
+            <column id="377">
+                <property name="width">1.0555555555555556in</property>
             </column>
             <row id="170">
                 <cell id="171">
@@ -2479,7 +2739,7 @@ where tc.trabajador_id = ?]]></xml-property>
                     <label id="172">
                         <property name="fontSize">10pt</property>
                         <property name="fontWeight">bold</property>
-                        <text-property name="text">Talla Polo</text-property>
+                        <text-property name="text">Polo</text-property>
                     </label>
                 </cell>
                 <cell id="173">
@@ -2498,7 +2758,7 @@ where tc.trabajador_id = ?]]></xml-property>
                     <label id="174">
                         <property name="fontSize">10pt</property>
                         <property name="fontWeight">bold</property>
-                        <text-property name="text">Nro. Calzado</text-property>
+                        <text-property name="text">Calzado</text-property>
                     </label>
                 </cell>
                 <cell id="328">
@@ -2517,7 +2777,7 @@ where tc.trabajador_id = ?]]></xml-property>
                     <label id="176">
                         <property name="fontSize">10pt</property>
                         <property name="fontWeight">bold</property>
-                        <text-property name="text">Talla Camisa</text-property>
+                        <text-property name="text">Camisa</text-property>
                     </label>
                 </cell>
                 <cell id="175">
@@ -2536,7 +2796,7 @@ where tc.trabajador_id = ?]]></xml-property>
                     <label id="190">
                         <property name="fontSize">10pt</property>
                         <property name="fontWeight">bold</property>
-                        <text-property name="text">Talla Guantes</text-property>
+                        <text-property name="text">Guantes</text-property>
                     </label>
                 </cell>
                 <cell id="331">
@@ -2555,7 +2815,7 @@ where tc.trabajador_id = ?]]></xml-property>
                     <label id="192">
                         <property name="fontSize">10pt</property>
                         <property name="fontWeight">bold</property>
-                        <text-property name="text">Talla Respirador</text-property>
+                        <text-property name="text">Respirador</text-property>
                     </label>
                 </cell>
                 <cell id="334">
@@ -2574,7 +2834,45 @@ where tc.trabajador_id = ?]]></xml-property>
                     <label id="194">
                         <property name="fontSize">10pt</property>
                         <property name="fontWeight">bold</property>
-                        <text-property name="text">Otros</text-property>
+                        <text-property name="text">Pantalon</text-property>
+                    </label>
+                </cell>
+                <cell id="378">
+                    <property name="borderBottomStyle">solid</property>
+                    <property name="borderBottomWidth">thin</property>
+                    <property name="borderLeftStyle">solid</property>
+                    <property name="borderLeftWidth">thin</property>
+                    <property name="borderRightStyle">solid</property>
+                    <property name="borderRightWidth">thin</property>
+                    <property name="borderTopStyle">solid</property>
+                    <property name="borderTopWidth">thin</property>
+                    <property name="paddingTop">3pt</property>
+                    <property name="paddingLeft">3pt</property>
+                    <property name="paddingBottom">3pt</property>
+                    <property name="paddingRight">3pt</property>
+                    <label id="381">
+                        <property name="fontSize">10pt</property>
+                        <property name="fontWeight">bold</property>
+                        <text-property name="text">Casaca</text-property>
+                    </label>
+                </cell>
+                <cell id="375">
+                    <property name="borderBottomStyle">solid</property>
+                    <property name="borderBottomWidth">thin</property>
+                    <property name="borderLeftStyle">solid</property>
+                    <property name="borderLeftWidth">thin</property>
+                    <property name="borderRightStyle">solid</property>
+                    <property name="borderRightWidth">thin</property>
+                    <property name="borderTopStyle">solid</property>
+                    <property name="borderTopWidth">thin</property>
+                    <property name="paddingTop">3pt</property>
+                    <property name="paddingLeft">3pt</property>
+                    <property name="paddingBottom">3pt</property>
+                    <property name="paddingRight">3pt</property>
+                    <label id="382">
+                        <property name="fontSize">10pt</property>
+                        <property name="fontWeight">bold</property>
+                        <text-property name="text">Chaleco</text-property>
                     </label>
                 </cell>
             </row>
@@ -2593,12 +2891,22 @@ where tc.trabajador_id = ?]]></xml-property>
                     <property name="paddingLeft">3pt</property>
                     <property name="paddingBottom">3pt</property>
                     <property name="paddingRight">3pt</property>
-                    <label id="199">
-                        <property name="fontSize">10px</property>
-                        <property name="fontWeight">bold</property>
-                        <property name="color">#FFFFFF</property>
-                        <text-property name="text"> M</text-property>
-                    </label>
+                    <data id="368">
+                        <property name="fontFamily">sans-serif</property>
+                        <property name="fontSize">9pt</property>
+                        <property name="textAlign">center</property>
+                        <property name="dataSet">trabajador</property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">apellidos</property>
+                                <text-property name="displayName">polo</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["t_polo"]</expression>
+                                <property name="dataType">string</property>
+                                <property name="allowExport">true</property>
+                            </structure>
+                        </list-property>
+                        <property name="resultSetColumn">apellidos</property>
+                    </data>
                 </cell>
                 <cell id="180">
                     <property name="borderBottomStyle">solid</property>
@@ -2613,6 +2921,22 @@ where tc.trabajador_id = ?]]></xml-property>
                     <property name="paddingLeft">3pt</property>
                     <property name="paddingBottom">3pt</property>
                     <property name="paddingRight">3pt</property>
+                    <data id="369">
+                        <property name="fontFamily">sans-serif</property>
+                        <property name="fontSize">9pt</property>
+                        <property name="textAlign">center</property>
+                        <property name="dataSet">trabajador</property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">apellidos</property>
+                                <text-property name="displayName">zapatos</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["t_zapatos"]</expression>
+                                <property name="dataType">string</property>
+                                <property name="allowExport">true</property>
+                            </structure>
+                        </list-property>
+                        <property name="resultSetColumn">apellidos</property>
+                    </data>
                 </cell>
                 <cell id="329">
                     <property name="borderBottomStyle">solid</property>
@@ -2627,6 +2951,22 @@ where tc.trabajador_id = ?]]></xml-property>
                     <property name="paddingLeft">3pt</property>
                     <property name="paddingBottom">3pt</property>
                     <property name="paddingRight">3pt</property>
+                    <data id="370">
+                        <property name="fontFamily">sans-serif</property>
+                        <property name="fontSize">9pt</property>
+                        <property name="textAlign">center</property>
+                        <property name="dataSet">trabajador</property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">apellidos</property>
+                                <text-property name="displayName">camisa</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["t_camisa"]</expression>
+                                <property name="dataType">string</property>
+                                <property name="allowExport">true</property>
+                            </structure>
+                        </list-property>
+                        <property name="resultSetColumn">apellidos</property>
+                    </data>
                 </cell>
                 <cell id="182">
                     <property name="borderBottomStyle">solid</property>
@@ -2637,6 +2977,22 @@ where tc.trabajador_id = ?]]></xml-property>
                     <property name="borderRightWidth">thin</property>
                     <property name="borderTopStyle">solid</property>
                     <property name="borderTopWidth">thin</property>
+                    <data id="372">
+                        <property name="fontFamily">sans-serif</property>
+                        <property name="fontSize">9pt</property>
+                        <property name="textAlign">center</property>
+                        <property name="dataSet">trabajador</property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">apellidos</property>
+                                <text-property name="displayName">guantes</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["t_guantes"]</expression>
+                                <property name="dataType">string</property>
+                                <property name="allowExport">true</property>
+                            </structure>
+                        </list-property>
+                        <property name="resultSetColumn">apellidos</property>
+                    </data>
                 </cell>
                 <cell id="332">
                     <property name="borderBottomStyle">solid</property>
@@ -2647,6 +3003,22 @@ where tc.trabajador_id = ?]]></xml-property>
                     <property name="borderRightWidth">thin</property>
                     <property name="borderTopStyle">solid</property>
                     <property name="borderTopWidth">thin</property>
+                    <data id="373">
+                        <property name="fontFamily">sans-serif</property>
+                        <property name="fontSize">9pt</property>
+                        <property name="textAlign">center</property>
+                        <property name="dataSet">trabajador</property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">apellidos</property>
+                                <text-property name="displayName">respirador</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["t_respirador"]</expression>
+                                <property name="dataType">string</property>
+                                <property name="allowExport">true</property>
+                            </structure>
+                        </list-property>
+                        <property name="resultSetColumn">apellidos</property>
+                    </data>
                 </cell>
                 <cell id="335">
                     <property name="borderBottomStyle">solid</property>
@@ -2657,6 +3029,74 @@ where tc.trabajador_id = ?]]></xml-property>
                     <property name="borderRightWidth">thin</property>
                     <property name="borderTopStyle">solid</property>
                     <property name="borderTopWidth">thin</property>
+                    <data id="374">
+                        <property name="fontFamily">sans-serif</property>
+                        <property name="fontSize">9pt</property>
+                        <property name="textAlign">center</property>
+                        <property name="dataSet">trabajador</property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">apellidos</property>
+                                <text-property name="displayName">pantalon</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["t_pantalon"]</expression>
+                                <property name="dataType">string</property>
+                                <property name="allowExport">true</property>
+                            </structure>
+                        </list-property>
+                        <property name="resultSetColumn">apellidos</property>
+                    </data>
+                </cell>
+                <cell id="379">
+                    <property name="borderBottomStyle">solid</property>
+                    <property name="borderBottomWidth">thin</property>
+                    <property name="borderLeftStyle">solid</property>
+                    <property name="borderLeftWidth">thin</property>
+                    <property name="borderRightStyle">solid</property>
+                    <property name="borderRightWidth">thin</property>
+                    <property name="borderTopStyle">solid</property>
+                    <property name="borderTopWidth">thin</property>
+                    <data id="383">
+                        <property name="fontFamily">sans-serif</property>
+                        <property name="fontSize">9pt</property>
+                        <property name="textAlign">center</property>
+                        <property name="dataSet">trabajador</property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">apellidos</property>
+                                <text-property name="displayName">casaca</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["t_casaca"]</expression>
+                                <property name="dataType">string</property>
+                                <property name="allowExport">true</property>
+                            </structure>
+                        </list-property>
+                        <property name="resultSetColumn">apellidos</property>
+                    </data>
+                </cell>
+                <cell id="376">
+                    <property name="borderBottomStyle">solid</property>
+                    <property name="borderBottomWidth">thin</property>
+                    <property name="borderLeftStyle">solid</property>
+                    <property name="borderLeftWidth">thin</property>
+                    <property name="borderRightStyle">solid</property>
+                    <property name="borderRightWidth">thin</property>
+                    <property name="borderTopStyle">solid</property>
+                    <property name="borderTopWidth">thin</property>
+                    <data id="384">
+                        <property name="fontFamily">sans-serif</property>
+                        <property name="fontSize">9pt</property>
+                        <property name="textAlign">center</property>
+                        <property name="dataSet">trabajador</property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">apellidos</property>
+                                <text-property name="displayName">chaleco</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["t_chaleco"]</expression>
+                                <property name="dataType">string</property>
+                                <property name="allowExport">true</property>
+                            </structure>
+                        </list-property>
+                        <property name="resultSetColumn">apellidos</property>
+                    </data>
                 </cell>
             </row>
         </grid>
