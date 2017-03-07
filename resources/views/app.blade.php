@@ -292,6 +292,13 @@
                     <li><a href="/permisos"><i class="fa fa-list-alt"></i>{{ trans('home.permiso_view') }}</a></li>
                   </ul>
              </li>
+            <li class="treeview">
+                 <a href="#"><i class="fa fa-gear"></i> <span>{{ trans('home.config_title') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
+                  <ul class="treeview-menu">
+                    <li><a href="/configurations/create"><i class="fa fa-plus-circle"></i>{{ trans('home.config_create') }}</a></li>
+                    <li><a href="/configurations"><i class="fa fa-list-alt"></i>{{ trans('home.config_view') }}</a></li>
+                  </ul>
+             </li>
              @endif
           </ul><!-- /.sidebar-menu -->
         </section>

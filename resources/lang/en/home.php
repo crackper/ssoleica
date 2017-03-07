@@ -53,6 +53,9 @@ return [
     'permiso_create'=>'Registar Permiso',
     'role_title' => 'Roles',
     'role_view'=>'Lista de Roles',
-    'role_create'=>'Registar Rol'
+    'role_create'=>'Registar Rol',
+    'config_title'=>'Configuraciones',
+    'config_view'=>'Lista de Configuraciones',
+    'config_create'=>'Registar Configuración',
 
 ];

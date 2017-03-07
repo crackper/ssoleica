@@ -38,7 +38,7 @@
             <div class="box-body no-padding">
               <ul class="nav nav-pills nav-stacked">
                 <li><a href="/trabajador"><i class="fa fa-list-alt"></i>{{ trans('home.trabajadores') }}</a></li>
-                <li><a href="/trabajador/create"><i class="fa fa-plus-circle"></i>{{ trans('home.trabajadores_create') }}</a></li>
+                <!--li><a href="/trabajador/create"><i class="fa fa-plus-circle"></i>{{ trans('home.trabajadores_create') }}</a></li-->
               </ul>
             </div>
 
@@ -83,7 +83,7 @@
                     <div class="box-body no-padding">
                       <ul class="nav nav-pills nav-stacked">
                         <li><a href="/incidente"><i class="fa fa-list-alt"></i>{{ trans('home.seguridad_view') }}</a></li>
-                        <li><a href="/incidente/create"><i class="fa fa-plus-circle"></i>{{ trans('home.seguridad_create') }}</a></li>
+                        <!--li><a href="/incidente/create"><i class="fa fa-plus-circle"></i>{{ trans('home.seguridad_create') }}</a></li-->
                       </ul>
                     </div>
                 </div>
@@ -98,8 +98,8 @@
                 <div class="box-body no-padding">
                     <ul class="nav nav-pills nav-stacked">
                     <li><a href="/horasHombre"><i class="fa fa-list-alt"></i>{{ trans('home.horashombre_view') }}</a></li>
-                    <li><a href="/horasHombre/create"><i class="fa fa-plus-circle"></i>{{ trans('home.horashombre_create') }}</a></li>
-                    <li><a href="/estadisticas/create"><i class="fa fa-plus-circle"></i>{{ trans('home.estadisticas_create') }}</a></li>
+                    <!--li><a href="/horasHombre/create"><i class="fa fa-plus-circle"></i>{{ trans('home.horashombre_create') }}</a></li-->
+                    <!--li><a href="/estadisticas/create"><i class="fa fa-plus-circle"></i>{{ trans('home.estadisticas_create') }}</a></li-->
                     <li><a href="/estadisticas"><i class="fa fa-list-alt"></i>{{ trans('home.estadisticas_view') }}</a></li>
 
                     </ul>
@@ -122,8 +122,8 @@
                 </div>
                 <div class="box-body no-padding">
                     <ul class="nav nav-pills nav-stacked">
-                        <li><a href="/operacion/create"><i class="fa fa-plus-circle"></i> {{ trans('home.proyectos_create') }}</a></li>
-                        <li><a href="/contrato/create"> <i class="fa fa-plus-circle"></i>{{ trans('home.contratos_create') }}</a></li>
+                        <!--li><a href="/operacion/create"><i class="fa fa-plus-circle"></i> {{ trans('home.proyectos_create') }}</a></li-->
+                        <!--li><a href="/contrato/create"> <i class="fa fa-plus-circle"></i>{{ trans('home.contratos_create') }}</a></li-->
                         <li><a href="/operacion"><i class="fa fa-list-alt"></i>{{ trans('home.proyectos') }}</a></li>
                         <li><a href="/contrato"><i class="fa fa-list-alt"></i>{{ trans('home.contratos') }}</a></li>
                     </ul>
@@ -161,14 +161,15 @@
                         </div>
                         <div class="box-body no-padding">
                             <ul class="nav nav-pills nav-stacked">
-                                <li><a href="/enums/create"> <i class="fa fa-plus-circle"></i> {{ trans('home.enum_create') }}</a></li>
+                                <!--li><a href="/enums/create"> <i class="fa fa-plus-circle"></i> {{ trans('home.enum_create') }}</a></li-->
                                 <li><a href="/enums"><i class="fa fa-list-alt"></i>{{ trans('home.enum_view') }}</a></li>
-                                <li><a href="/user/create"><i class="fa fa-plus-circle"></i>{{ trans('home.user_create') }}</a></li>
+                                <!--li><a href="/user/create"><i class="fa fa-plus-circle"></i>{{ trans('home.user_create') }}</a></li-->
                                 <li><a href="/user"><i class="fa fa-list-alt"></i>{{ trans('home.user_view') }}</a></li>
-                                <li><a href="/roles/create"><i class="fa fa-plus-circle"></i>{{ trans('home.role_create') }}</a></li>
+                                <!--li><a href="/roles/create"><i class="fa fa-plus-circle"></i>{{ trans('home.role_create') }}</a></li-->
                                 <li><a href="/roles"><i class="fa fa-list-alt"></i>{{ trans('home.role_view') }}</a></li>
-                                <li><a href="/permisos/create"> <i class="fa fa-plus-circle"></i> {{ trans('home.permiso_create') }}</a></li>
+                                <!--li><a href="/permisos/create"> <i class="fa fa-plus-circle"></i> {{ trans('home.permiso_create') }}</a></li-->
                                 <li><a href="/permisos"><i class="fa fa-list-alt"></i>{{ trans('home.permiso_view') }}</a></li>
+                                <li><a href="/configurations"><i class="fa fa-gear"></i>{{ trans('home.config_title') }}</a></li>
                             </ul>
                         </div>
                     </div>

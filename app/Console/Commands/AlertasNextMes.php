@@ -177,6 +177,13 @@ class AlertasNextMes extends Command {
                                 $this->info("Correo enviado a: fredy.novoa@hexagonmining.com");
                             });
 
+                        Mail::send('emails.alertas', ['pais'=>'Perú','subject'=>'Rolando','data_f'=>$data_f,'data_e'=>$data_e,'data_d'=>$data_d],
+                            function($message)
+                            {
+                                $message->to('rolando.chilon@hexagonmining.com', 'Rolando Chilon')->subject('Documentos que vencen el próximo mes.');
+                                $this->info("Correo enviado a: fredy.novoa@hexagonmining.com");
+                            });
+
                         $this->info("----------------------------------------");
 
                         break;
@@ -208,6 +215,13 @@ class AlertasNextMes extends Command {
                             {
                                 $message->to('carlos.daza@hexagonmining.com', 'Carlos Daza')->subject('Documentos que vencen el próximo mes.');
                                 $this->info("Correo enviado a: Carlos.Daza@hexagonmining.com");
+                            });
+
+                        Mail::send('emails.alertas', ['pais'=>'Chile','subject'=>'Miguel','data_f'=>$data_f,'data_e'=>$data_e,'data_d'=>$data_d],
+                            function($message)
+                            {
+                                $message->to('miguel.flores@hexagonmining.com', 'Miguel Flores')->subject('Documentos que vencen este mes.');
+                                $this->info("Correo enviado a: miguel.flores@hexagonmining.com");
                             });
 
                         $this->info("----------------------------------------");
