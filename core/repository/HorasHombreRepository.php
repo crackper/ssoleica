@@ -204,7 +204,7 @@ class HorasHombreRepository extends Repository{
         $query .= "inner join trabajador t on tc.trabajador_id = t.id ";
         $query .= "inner join enum_tables cr on t.cargo_id = cr.id ";
         $query .= "inner join month m on m.id = :mes_id ";
-        $query .= "where tc.contrato_id = :contrato_id and tc.is_activo = '1'";
+        $query .= "where t.deleted_at is null and  tc.contrato_id = :contrato_id and tc.is_activo = '1'";
 
         $trabajadores = DB::select(DB::Raw($query),array('mes_id' => $mes_id,'contrato_id' => $contrato_id));
 

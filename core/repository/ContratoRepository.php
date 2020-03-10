@@ -120,7 +120,7 @@ class ContratoRepository extends Repository {
 
     public function getListsContrato($operacion_id)
     {
-        return Contrato::where('operacion_id','=',$operacion_id)->lists('nombre_contrato','id');
+        return Contrato::where('operacion_id','=',$operacion_id)->where('is_activo','=',1)->lists('nombre_contrato','id');
     }
 
     public function getTrabajadores($contrato_id)
