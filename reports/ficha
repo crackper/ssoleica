@@ -2652,7 +2652,7 @@ where tc.trabajador_id = ?]]></xml-property>
                     <label id="264">
                         <property name="fontSize">10pt</property>
                         <property name="fontWeight">bold</property>
-                        <text-property name="text">Accidentes Laborales</text-property>
+                        <text-property name="text">Accidetntes Laborales</text-property>
                     </label>
                 </cell>
             </row>

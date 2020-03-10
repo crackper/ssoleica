@@ -122,7 +122,11 @@ class TrabajadorRepository extends Repository {
         return $query;
     }
 
-
+function remove($id)
+{
+   $res=Trabajador::where('id',$id)->delete();
+return $res;
+}
 
 
 }

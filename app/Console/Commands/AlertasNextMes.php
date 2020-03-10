@@ -75,7 +75,7 @@ class AlertasNextMes extends Command {
                     $query_f .= "inner join contrato c on tc.contrato_id = c.id ";
                     $query_f .= "inner join operacion o on c.operacion_id = o.id ";
                     $query_f .= "inner join enum_tables p on o.pais_id = p.id ";
-                    $query_f .= "where (tc.fecha_vencimiento  between (DATE_TRUNC('month', nextmes()) at time zone 'utc') and  ((DATE_TRUNC('month', nextmes())  at time zone 'utc') + '1 month')) ";
+                    $query_f .= "where t.deleted_at is null and (tc.fecha_vencimiento  between (DATE_TRUNC('month', nextmes()) at time zone 'utc') and  ((DATE_TRUNC('month', nextmes())  at time zone 'utc') + '1 month')) ";
                     $query_f .= "and p.id = :pais_id and operacion_id = :operacion_id order by tc.fecha_vencimiento";
 
                     $fotochecks = DB::select(DB::Raw($query_f),array('pais_id' => $pais->id,'operacion_id'=>$proyecto->id));
@@ -104,7 +104,7 @@ class AlertasNextMes extends Command {
                     $query_e .= "inner join trabajador t on tv.trabajador_id = t.id ";
                     $query_e .= "inner join operacion o on tv.operacion_id = o.id ";
                     $query_e .= "inner join enum_tables p on o.pais_id = p.id ";
-                    $query_e .= "where tv.caduca = true and v.type = 'ExamenMedico' ";
+                    $query_e .= "where t.deleted_at is null and  tv.caduca = true and v.type = 'ExamenMedico' ";
                     $query_e .= "and (tv.fecha_vencimiento  between (DATE_TRUNC('month', nextmes()) at time zone 'utc') and  ((DATE_TRUNC('month', nextmes())  at time zone 'utc') + '1 month')) ";
                     $query_e .= "and p.id = :pais_id and o.id = :operacion_id ";
                     $query_e .= "order by o.nombre_operacion,tv.fecha_vencimiento,t.app_paterno";
@@ -132,7 +132,7 @@ class AlertasNextMes extends Command {
                 $query_d .= "inner join enum_tables v on tv.vencimiento_id = v.id ";
                 $query_d .= "inner join trabajador t on tv.trabajador_id = t.id ";
                 $query_d .= "inner join enum_tables p on t.pais_id = p.id ";
-                $query_d .= "where tv.caduca = true and v.type = 'Documento' ";
+                $query_d .= "where t.deleted_at is null and tv.caduca = true and v.type = 'Documento' ";
                 $query_d .= "and (tv.fecha_vencimiento  between (DATE_TRUNC('month', nextmes()) at time zone 'utc') and  ((DATE_TRUNC('month', nextmes())  at time zone 'utc') + '1 month')) ";
                 $query_d .= "and p.id = :pais_id ";
                 $query_d .= "order by tv.fecha_vencimiento,t.app_paterno ";

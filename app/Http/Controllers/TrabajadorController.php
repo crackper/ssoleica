@@ -148,7 +148,8 @@ class TrabajadorController extends Controller
                         (new FilterConfig)
                             ->setFilteringFunc(function ($val, EloquentDataProvider $provider) {
                                 $provider->getBuilder()
-                                    ->where(DB::raw('upper(app_paterno)'), 'like', '%' . strtoupper($val) . '%')
+				    //->where('deleted_at','')
+				    ->Where(DB::raw('upper(app_paterno)'), 'like', '%' . strtoupper($val) . '%')
                                     ->orWhere(DB::raw('upper(app_materno)'), 'like', '%' . strtoupper($val) . '%')
                                     ->orWhere(DB::raw('upper(nombre)'), 'like', '%' . strtoupper($val) . '%');
                             })
@@ -179,7 +180,7 @@ class TrabajadorController extends Controller
                     ->setCallback(function ($val) {
 
                         $icon_edit = "<a href='/trabajador/edit/$val' data-toggle='tooltip' data-placement='left' title='Editar Trabajador'><span class='glyphicon glyphicon-pencil'></span></a>";
-                        $icon_remove = "<a href='/trabajador/$val/delete' data-toggle='tooltip' data-placement='left' title='Eliminar Trabajador' ><span class='glyphicon glyphicon-trash'></span></a>";
+                        $icon_remove = "<a href='/trabajador/remove/$val' data-toggle='tooltip' data-placement='left' title='Eliminar Trabajador' onclick=\"return confirm('Desea eliminar el trabajdor')\"  ><span class='glyphicon glyphicon-trash'></span></a>";
                         $icon_pdf = "<a href='/trabajador/ficha/$val' data-toggle='tooltip' data-placement='left' title='Imprimir Ficha' ><span class='fa fa-print'></span></a>";
 
                         return $icon_edit . ' ' . $icon_remove.' '. $icon_pdf;
@@ -199,7 +200,7 @@ class TrabajadorController extends Controller
                                                 .daterangepicker td.available.active,
                                                 .daterangepicker li.active,
                                                 .daterangepicker li:hover {
-                                                    color:black !important;
+                                                     color:black !important;
                                                     font-weight: bold;
                                                 }
                                            </style>";
@@ -308,12 +309,12 @@ class TrabajadorController extends Controller
         $edit->add('app_paterno', 'Apellido Paterno', 'text')->rule('required');
         $edit->add('app_materno', 'Apellido Materno', 'text')->rule('required');
         $edit->add('sexo', 'Sexo', 'radiogroup')->option('F', 'Femenino')->option('M', 'Masculino');
-        $edit->add('fecha_nacimiento', 'Fecha de Nacimiento', 'date')->format('d/m/Y', 'it')->rule('required');
+        $edit->add('fecha_nacimiento', 'Fecha de Nacimiento', 'date')->format('d/m/Y', 'es')->rule('required');
         $edit->add('estado_civil', 'Estado Civil', 'select')->options(array('Soltero' => 'Soltero', 'Casado' => 'Casado', 'Viudo' => 'Viudo', 'Divorciado' => 'Divorciado', 'Conviviente' => 'Conviviente'));
         $edit->add('direccion', 'Direccion', 'text');
         $edit->add('email', 'E-mail', 'text')->rule('email');
         $edit->add('nro_telefono', 'Nro. Telefono', 'text');
-        $edit->add('fecha_ingreso', 'Fecha de Ingreso', 'date')->format('d/m/Y', 'it')->rule('required');
+        $edit->add('fecha_ingreso', 'Fecha de Ingreso', 'date')->format('d/m/Y', 'es')->rule('required');
         $edit->add('profesion_id', 'Profesion', 'select')->options($this->enumTablesRepository->getProfesiones()->lists('name', 'id'));
         $edit->add('cargo_id', 'Cargo', 'select')->options($this->enumTablesRepository->getCargos()->lists('name', 'id'));
         $edit->add('fecha_ini_cargo', 'Fecha Inicio Cargo', 'date')->format('d/m/Y', 'es')->rule('required');
@@ -387,12 +388,12 @@ class TrabajadorController extends Controller
         $edit->add('app_paterno', 'Apellido Paterno', 'text')->rule('required');
         $edit->add('app_materno', 'Apellido Materno', 'text')->rule('required');
         $edit->add('sexo', 'Sexo', 'radiogroup')->option('F', 'Femenino')->option('M', 'Masculino')->rule('required');
-        $edit->add('fecha_nacimiento', 'Fecha de Nacimiento', 'date')->format('d/m/Y', 'es')->rule('required');
+        $edit->add('fecha_nacimiento', 'Fecha de Nacimiento', 'date')->rule('required'); //->format('d/m/Y', 'es')
         $edit->add('estado_civil', 'Estado Civil', 'select')->options(array('' => '[- Seleccione -]','Soltero' => 'Soltero', 'Casado' => 'Casado', 'Viudo' => 'Viudo', 'Divorciado' => 'Divorciado', 'Conviviente' => 'Conviviente'))->rule('required');
         $edit->add('direccion', 'Direccion', 'text');
         $edit->add('email', 'E-mail', 'text')->rule('email');
         $edit->add('nro_telefono', 'Nro. Telefono', 'text');
-        $edit->add('fecha_ingreso', 'Fecha de Ingreso', 'date')->format('d/m/Y', 'es')->rule('required');
+        $edit->add('fecha_ingreso', 'Fecha de Ingreso', 'date')->format('d/m/Y', 'es') ->rule('required');//->format('d/m/Y', 'es')
         $edit->add('profesion_id', 'Profesion', 'select')->options(array('' => '[- Seleccione -]') + $this->enumTablesRepository->getProfesiones()->lists('name', 'id'))->rule('required');
         $edit->add('cargo_id', 'Cargo', 'select')->options(array('' => '[- Seleccione -]') + $this->enumTablesRepository->getCargos()->lists('name', 'id'))->rule('required');
         $edit->add('fecha_ini_cargo', 'Fecha Inicio Cargo', 'date')->format('d/m/Y', 'es')->rule('required');
@@ -640,10 +641,10 @@ class TrabajadorController extends Controller
     /**
      * @param $id
      */
-    public function delete($id)
-    {
-        dd($id);
-    }
+    //public function delete($id)
+    //{
+       // dd($id);
+    //}
 
     public function  getFicha($id=0)
     {
@@ -696,8 +697,21 @@ class TrabajadorController extends Controller
 
         }
 
-        echo java_values($outputStream->toByteArray());
+        echo java_values($outputStream->toByteArray());    
+    }
 
+ public function getRemove($id)
+    {
+	$trabajador = $this->trabajadorRepository->find($id);
+
+       if(is_null($trabajador))
+            return new RedirectResponse(url('/trabajador/'));
+
+        $this->trabajadorRepository->remove($id);
+
+        Session::flash('message', 'El trabajador fue eliminado Correctamente');
+
+return new RedirectResponse(url('/trabajador/'));
     }
 
 }

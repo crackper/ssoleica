@@ -241,8 +241,7 @@
                    <li><a href="/contrato"><i class="fa fa-list-alt"></i>{{ trans('home.contratos') }}</a></li>
                    <li><a href="/operacion/create"><i class="fa fa-plus-circle"></i>{{ trans('home.proyectos_create') }}</a></li>
                    <li><a href="/contrato/create"><i class="fa fa-plus-circle"></i>{{ trans('home.contratos_create') }}</a></li>
-	 >
-<!--a href="{!! env('URL_FILEMANAGER', '/repository') !!}"><i class="fa fa-archive"></i> <span>{{ trans('home.repositorio_view') }}</span></a--></li></ul>
+                 </ul>
             </li>
             <li class="treeview">
                  <a href="#"><i class="fa fa-rebel"></i> <span>{{ trans('home.seguridad_title') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
@@ -261,15 +260,8 @@
                   </ul>
              </li>
             @endif
-            <!--Chile-->
-	@if(Session::get('pais_name') == 'Chile')
-            <li><a href="https://hexmet.sharepoint.com/:f:/s/repositoriossohexagon/EjgOA579ydlJoyKl7feea9EBdvy1IC-aNg7COfGYs33SRQ?e=GiKzJd" target="_blank"><i class="fa fa-archive"></i> <span>Repositorio</span></a></li>
-	@endif
- @if(Session::get('pais_name') == 'Perú') 	    
-<li><a href="https://hexmet.sharepoint.com/:f:/s/repositoriossohexagon/Er-D0JBwk_NFkLbmPj2F25cBS2N3dzaOfNQx1iiNGWiLBA?e=gG0E2e" target="_blank"><i class="fa fa-archive"></i> <span>{{ trans('home.repositorio_view') }}</span></a></li>
-            <li>
-@endif
-<a href="{!! url('/help') !!}"><i class="fa fa-question-circle"></i> <span>{{ trans('home.help_view') }}</span></a></li>
+            <li><a href="{!! env('URL_FILEMANAGER', '/repository') !!}"><i class="fa fa-archive"></i> <span>{{ trans('home.repositorio_view') }}</span></a></li>
+            <li><a href="{!! url('/help') !!}"><i class="fa fa-question-circle"></i> <span>{{ trans('home.help_view') }}</span></a></li>
             @if(Auth::user()->hasRole('admin'))
             <li class="header">{{ trans('home.administracion_title') }}</li>
             <li class="treeview">
@@ -352,8 +344,6 @@
           <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
         </ul>
         <!-- Tab panes -->
-@if(Auth::user()->hasRole(['admin']))
-
         <div class="tab-content">
           <!-- Home tab content -->
           <div class="tab-pane active" id="control-sidebar-home-tab">
@@ -386,9 +376,7 @@
               </li>
             </ul--><!-- /.control-sidebar-menu -->
 
-          </div>
-	@endif	
-<!-- /.tab-pane -->
+          </div><!-- /.tab-pane -->
           <!-- Stats tab content -->
           @if(Auth::user()->hasRole(['admin']))
           <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div><!-- /.tab-pane -->
@@ -401,8 +389,7 @@
               </ul>
               <!--div class="form-group">
                 <label class="control-sidebar-subheading">
-                  Report panel usageuth::user()->hasRole(['admin']))
-
+                  Report panel usage
                   <input type="checkbox" class="pull-right" checked />
                 </label>
                 <p>

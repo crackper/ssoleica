@@ -1,28 +1,6 @@
-PHP Warning:  PHP Startup: imagick: Unable to initialize module
-Module compiled with module API=20131226
-PHP    compiled with module API=20121212
-These options need to match
- in Unknown on line 0
 Cerrando Horas Hombre
 -----------------------------
-2016-11-09 16:00:00 - cerrando: Perú
+2019-09-04 13:00:01 - cerrando: Chile
 OK
-2016-11-09 16:00:00 - cerrando: Chile
+2019-09-04 13:00:01 - cerrando: Perú
 OK
-2016-11-09 16:00:00 - cerrando: Brazil
-
-
-                                                                                                                                                                                                                                                                                                                                                                                                                                      
-  [Illuminate\Database\QueryException]                                                                                                                                                                                                                                                                                                                                                                                                
-  SQLSTATE[22023]: Invalid parameter value: 7 ERROR:  time zone "" not recognized (SQL: update horas_hombre set "isOpen" = false, updated_at = :now, updated_by = :updated_by where id in (select hh.id from horas_hombre hh inner join contrato c on hh.contrato_id = c.id inner join operacion o on c.operacion_id = o.id where o.pais_id = :id and now() at time zone 'utc' at time zone '' >= hh.fecha_fin and "isOpen" = true))  
-                                                                                                                                                                                                                                                                                                                                                                                                                                      
-
-
-
-
-                                                                                   
-  [PDOException]                                                                   
-  SQLSTATE[22023]: Invalid parameter value: 7 ERROR:  time zone "" not recognized  
-                                                                                   
-
-
